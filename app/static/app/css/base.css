@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+  }
+.header{
+ border-bottom: 1px solid rgba(58, 57, 57, 0.3);
+ height: 57px;
+}
+.footer {
+    height: 80px;
+    text-align: center;
+    padding: 3px;
+    background-color: rgb(231, 231, 231);
+    color: white;
+  }
+.icon-open{
+    color: #e9c12f;
+}
+.icon-export{
+    color: rgb(31 203 45);
+}
+.icon-extract{
+    color: rgb(250, 115, 194);
+}
+#list-menu-top .nav-item:hover{
+    background-color: #95eef5;
+}
+.list_export{
+    cursor: pointer;
+}
+.list_export:hover{
+    background-color: #dddddd;
+}
+.active{
+    background-color: #95eef5;
+}
+.icon-emlFile{
+    color: rgb(33 199 91);
+}
+.icon-msgFile{
+    color: #d97a42;
+}
+
+.icon-chooseFolder{
+    color: #e9c12f;
+}
+.icon-chooseFile{
+    color: #00b6e3;
+}
+
+.dropdown-menu-exportDropdown{
+    width:250px;
+    padding: 0px;
+}
+
+.title_list_export{
+    height: 35px;
+    line-height: 35px;
+    text-align: left;
+    background-color: rgba(192, 191, 191, 0.836);
+}
+.content{
+    height: calc(100vh - 57px - 80px);
+    border-bottom: 1px solid rgba(58, 57, 57, 0.3);
+}
+
+.text_footer{
+    color: black;
+}
+
+.disable{
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+}
+
+/* ==========================EXPORT==================== */
+#name-export{
+    padding: 0px 10px;
+    height:100%;
+    display: flex;
+    align-items: center;
+    color: #3d7ec1;
+}
+
+  
+
+#box-save-close{
+    padding: 0px;
+    height:100%; 
+    display: flex;
+    color: #3d7ec1;
+}
+
+#box-save{
+    padding: 0px;
+    height:100%;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3d7ec1;
+}
+#box-close{
+    padding: 0px;
+    height:100%;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3d7ec1;
+}
+#box-close:hover {
+    background-color: rgba(226, 226, 226, 0.884);
+}
+#box-save:hover {
+    background-color: rgba(226, 226, 226, 0.884);
+}

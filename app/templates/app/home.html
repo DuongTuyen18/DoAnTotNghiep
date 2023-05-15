@@ -1,0 +1,9 @@
+{% extends 'app/base.html' %}
+{%load static%}
+{% block main-content %}
+{% comment %} <form method="post" enctype="multipart/form-data" action="{% url 'choosefolder' %}">
+    {% csrf_token %}
+    <input type="file" name="folder" webkitdirectory>
+    <input type="submit" value="Open folder">
+</form> {% endcomment %}
+{% endblock main-content %}

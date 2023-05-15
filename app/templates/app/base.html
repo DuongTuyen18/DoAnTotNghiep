@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="{%static 'app/bootstrap/css/bootstrap.min.css'%}" />
+    <link rel="stylesheet" href="{%static 'app/css/all.min.css'%}" />
+    <link rel="stylesheet" href="{%static 'app/css/base.css'%}" />
+    <link rel="stylesheet" href="{%static 'app/css/emaildatafile.css'%}" />
+    <link rel="stylesheet" href="{%static 'app/css/inforEmaildatafile.css'%}" />
+    <script href="{%static 'app/jquery/3.6.4/jquery.min.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <script src="{%static 'app/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'app/js/all.min.js'%}"></script>
+    <script src="{%static 'app/js/jquery-3.6.4.slim.min.js'%}"></script>
+    <script src="{%static 'app/js/base.js'%}"></script>
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">EMAIL FORENSIC</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="list-menu-top">
+                        <li class="nav-item dropdown" id="li-open">
+                            <a class="nav-link dropdown-toggle stopPropagation" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-folder-open fa-lg icon-open"></i>&nbsp;Open
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropend edfDropdown" id="edfDropdown">
+                                    <a class="dropdown-item dropdown-toggle stopPropagation-edfDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                                      <i class="bi bi-envelope-paper-fill icon-edfDropdown"></i>&nbsp;Email Data Files
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-edfDropdown dropdown-menu-end">
+                                        <li class="dropend emlDropdown">
+                                            <a class="dropdown-item dropdown-toggle stopPropagation-emlDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                                              <i class="fas fa-file-alt icon-emlFile"></i>&nbsp;EML Files
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-emlDropdown dropdown-menu-end">
+                                                <li>
+                                                    <form style="display: none;" id="chooseFolderForm" method="post" enctype="multipart/form-data" action="{% url 'choosefolder' %}">
+                                                        {% csrf_token %}
+                                                        <input type="text" id="folder_name" name="folder_name" webkitdirectory>
+                                                        <input type="file" id="folder" name="folder" webkitdirectory>
+                                                        <input type="submit" value="Open folder">
+                                                    </form>
+                                                    <a class="dropdown-item" href="#" id="ChooseFolderEML">
+                                                        <i class="fas fa-folder icon-chooseFolder"></i>&nbsp;Choose Folder ...
+                                                    </a>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="fas fa-file icon-chooseFile"></i>&nbsp;Choose Files ...
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropend msgDropdown">
+                                            <a class="dropdown-item dropdown-toggle stopPropagation-msgDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                                              <i class="fas fa-file-alt icon-msgFile"></i>&nbsp;MSG Files
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-msgDropdown dropdown-menu-end">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                      <i class="fas fa-folder icon-chooseFolder"></i>&nbsp;Choose Folder ...
+                                                    </a>
+                                                    <a class="dropdown-item" href="#">
+                                                      <i class="fas fa-file icon-chooseFile"></i>&nbsp; Choose Files ...
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropend eaDropdown">
+                                    <a class="dropdown-item dropdown-toggle stopPropagation-eaDropdown" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+                                        <i class="bi bi-envelope-fill"></i>&nbsp;Email Accounts
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-eaDropdown dropdown-menu-end">
+                                        <li class="dropend addADropdown">
+                                            <a class="dropdown-item dropdown-toggle stopPropagation-addADropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">Add Accounts</a>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Choose Folder ...</a>
+                                                    <a class="dropdown-item" href="#">Choose Files ...</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropend manageADropdown">
+                                            <a class="dropdown-item dropdown-toggle stopPropagation-manageADropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">Manage Accounts</a>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Choose Folder ...</a>
+                                                    <a class="dropdown-item" href="#">Choose Files ...</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropend eaDropdown">
+                                    <a class="dropdown-item" href={% url 'clearfilefolders' %} aria-expanded="false" role="button">
+                                        <i class="bi bi-eraser-fill"></i>&nbsp;Clear File/Folders
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown disable " id="li-export">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-file-export fa-lg icon-export"></i>&nbsp;Export
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-exportDropdown">
+                                <div class="container text-center">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 title_list_export">
+                                            Email Files
+                                        </div>
+                                        <div class="col-6 col-sm-6 list_export">
+                                            <button type="button" class="btn">EML</button>
+                                        </div>
+                                        <div class="col-6 col-sm-6 list_export">
+                                            <button type="button" class="btn">MBOX</button>
+                                        </div>
+                                        <div class="w-100 d-none d-md-block"></div>
+                                        <div class="col-6 col-sm-6 list_export">
+                                            <button type="button" class="btn">PST</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container text-center">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 title_list_export">
+                                            Document Files
+                                        </div>
+                                        <div class="col-6 col-sm-6 list_export">
+                                            <button type="button" class="btn">PDF</button>
+                                        </div>
+                                        <div class="col-6 col-sm-6 list_export">
+                                            <button type="button" class="btn">HTML</button>
+                                        </div>
+                                        <div class="w-100 d-none d-md-block"></div>
+                                        <div class="col-6 col-sm-6 list_export">
+                                            <button type="button" class="btn">TEXT</button>
+                                        </div>
+                                        <div class="col-6 col-sm-6 list_export">
+                                            <button type="button" class="btn">CSV</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown disable" id="li-extract">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-sign-out-alt fa-lg icon-extract"></i>&nbsp;Extract
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Email Adresses</a></li>
+                                <li><a class="dropdown-item" href="#">Attachments</a></li>
+                                <li><a class="dropdown-item" href="#">Phone Numbers</a></li>
+                                <li> <a class="dropdown-item" href="#">Associated Email & Phone Numbers</a> </li>
+                                <li><a class="dropdown-item" href="#">Contact Photos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        {% block main-content%} {% endblock main-content%}
+    </div>
+    <div class="footer">
+        <p class="text_footer">
+            ĐỒ ÁN TỐT NGHIỆP: TRUY VẾT EMAIL </br>
+            Thực hiện: Dương Văn Tuyên, Nông Thị Trang</br>
+            Hướng dẫn: 4/ Phạm Trường Sơn</br>
+        </p>
+    </div>
+</body>
+
+</html>

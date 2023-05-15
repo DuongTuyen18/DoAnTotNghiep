@@ -1,0 +1,7 @@
+{% extends 'app/inforEmaildatafile.html' %}
+{%load static%}
+{% block content-right-content %}
+{% for key, value in infor_email.message_header %}
+  <p>{{ key }}: {{ value }}</p>
+{% endfor %}
+{% endblock content-right-content %}

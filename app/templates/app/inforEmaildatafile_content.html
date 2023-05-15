@@ -1,0 +1,5 @@
+{% extends 'app/inforEmaildatafile.html' %}
+{%load static%}
+{% block content-right-content %}
+{{infor_email.email_content|safe}}
+{% endblock content-right-content %}
