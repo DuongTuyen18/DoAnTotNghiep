@@ -11,7 +11,6 @@ from django.http import JsonResponse
 from django.shortcuts import redirect
 from pathlib import Path
 from django.core.files.uploadhandler import FileUploadHandler
-from filebrowser.fields import FileBrowseField
 from django.conf import settings
 import shutil
 folder_name = ''

@@ -19,7 +19,7 @@ def List_Infor_Email_Eml(folder_path):
     eml_files = [f for f in os.listdir(folder_path) if f.endswith('.eml')]
     data=[]
     for file_name in eml_files:
-        eml_file_path = 'D:\\hoc tap\\DoAn\\ProjectDoAn\\EmailForensicTool\\media\\uploads\\'+file_name
+        eml_file_path = folder_path+'\\'+file_name
         with open(eml_file_path, 'rb') as eml_file:
             eml_data = eml_file.read()
         eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
