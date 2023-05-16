@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .utils import List_Infor_Email_Eml,Content_Email_Eml,inforEmail,convert_eml_to_csv
+from .utils import List_Infor_Email_Eml,Content_Email_Eml,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file
 import os
 import email
 from email.utils import parseaddr
@@ -14,6 +14,7 @@ from django.core.files.uploadhandler import FileUploadHandler
 from django.conf import settings
 import shutil
 folder_name = ''
+path_file_export = ''
 def choosefolder(request):
     global folder_name
     if request.method == 'POST':
@@ -23,10 +24,8 @@ def choosefolder(request):
         # Lấy đường dẫn tuyệt đối đến thư mục upload
         upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
 
-        # Xóa toàn bộ các file trong thư mục upload 
-        shutil.rmtree(upload_path)
-        # Tạo lại thư mục upload trống
-        os.mkdir(upload_path)
+        # Dọn file trong folder uoloads
+        clear_folder_in_media('uploads')
         
         # Tạo đối tượng FileUploadHandler để xử lý các file được upload từ thư mục
         handler = FileUploadHandler()
@@ -40,26 +39,31 @@ def choosefolder(request):
                     destination.write(chunk)
         return redirect("emaildatafile")
     
-def export(request):
+def csv(request):
     global folder_name
-    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
-    data=List_Infor_Email_Eml(folder_path)
+    global path_file_export
+    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    export_path = os.path.join(settings.MEDIA_ROOT, 'export')
+    clear_folder_in_media('export')
+    data=List_Infor_Email_Eml(upload_path)
     if not data:
         return redirect("base")
-    else:   
-        context = {'list_email':data,'folder_name':folder_name}
-        return render(request,'app/export/export.html',context)
+    else:
+        path_file_export = convert_eml_to_csv(upload_path,export_path,folder_name)
+        csv_infor = read_csv_file(path_file_export)
+        context = {'list_email':data,'folder_name':folder_name,'csv_infor':csv_infor}
+        return render(request,'app/export/csv_file.html',context)
 
 def save_export(request):
     global folder_name
+    global path_file_export
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
     data=List_Infor_Email_Eml(folder_path)
     if not data:
         return redirect("base")
     else:   
-        csv_file_path = convert_eml_to_csv(folder_path,folder_name)
-        if os.path.exists(csv_file_path):
-            with open(csv_file_path, 'rb') as file:
+        if os.path.exists(path_file_export):
+            with open(path_file_export, 'rb') as file:
                 response = HttpResponse(file.read(), content_type='text/csv')
                 response['Content-Disposition'] = 'attachment; filename="'+folder_name+'.csv"'
                 return response
@@ -78,12 +82,10 @@ def emaildatafile(request):
 
 
 def base(request):
-    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
-    # Xóa toàn bộ các file trong thư mục upload 
-    shutil.rmtree(upload_path)
-    # Tạo lại thư mục upload trống
-    os.mkdir(upload_path)
+    clear_folder_in_media('uploads')
+    clear_folder_in_media('export')
     return render(request,'app/base.html')
+
 def home(request):
     return render(request,'app/home.html')
 
@@ -153,11 +155,6 @@ def view_content(request):
     return render(request, 'app/home.html')
     # return HttpResponse(email_content)
 def clearfilefolders(request):
-    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
-
-    # Xóa toàn bộ các file trong thư mục upload 
-    shutil.rmtree(upload_path)
-
-    # Tạo lại thư mục upload trống
-    os.mkdir(upload_path)
+    clear_folder_in_media('uploads')
+    clear_folder_in_media('export')
     return redirect("base")

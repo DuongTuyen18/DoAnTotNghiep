@@ -1,0 +1,5 @@
+
+.content-right-content-export{
+    height: calc(100% - 49px);
+    overflow: auto;
+}
