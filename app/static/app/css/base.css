@@ -26,7 +26,16 @@
 }
 .list_export{
     cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: black;
+    height: 40px;
 }
+
+
 .list_export:hover{
     background-color: #dddddd;
 }
@@ -39,7 +48,9 @@
 .icon-msgFile{
     color: #d97a42;
 }
-
+.icon-csvFile{
+    color: #86b7fe;
+}
 .icon-chooseFolder{
     color: #e9c12f;
 }

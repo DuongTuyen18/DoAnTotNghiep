@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .utils import List_Infor_Email_Eml,Content_Email_Eml,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file
 import os
+import csv
 import email
 from email.utils import parseaddr
 from django.http import HttpResponse
@@ -14,6 +15,7 @@ from django.core.files.uploadhandler import FileUploadHandler
 from django.conf import settings
 import shutil
 folder_name = ''
+filecsv_name = ''
 path_file_export = ''
 def choosefolder(request):
     global folder_name
@@ -39,7 +41,7 @@ def choosefolder(request):
                     destination.write(chunk)
         return redirect("emaildatafile")
     
-def csv(request):
+def export_csv(request):
     global folder_name
     global path_file_export
     upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
@@ -79,11 +81,35 @@ def emaildatafile(request):
     else:   
         context = {'list_email':data,'folder_name':folder_name}
         return render(request,'app/emaildatafile.html',context)
+    
+def choosefile_csv(request):
+    global filecsv_name
+    if request.method == 'POST':
+        csv_file = request.FILES.get('csv_file_input')  # Lấy file CSV từ request.FILES
+        # Lấy đường dẫn tuyệt đối đến thư mục upload
+        upload_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+        # Dọn file trong folder uoloads
+        clear_folder_in_media('csv_file')
+        filecsv_name = os.path.basename(csv_file.name)
+        # Lưu file vào thư mục upload
+        with open(os.path.join(upload_path, filecsv_name), 'wb+') as destination:
+            for chunk in csv_file.chunks():
+                destination.write(chunk)
+        return redirect('csvdatafile')
 
+def csvdatafile(request):
+    global filecsv_name
+    #folder_path = Path(folder_path)
+    csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+    path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    csv_infor = read_csv_file(path_file_csv)
+    context = {'filecsv_name':filecsv_name,'csv_infor':csv_infor}
+    return render(request,'app/Email_CsvFile/csvdatafile.html',context)
 
 def base(request):
     clear_folder_in_media('uploads')
     clear_folder_in_media('export')
+    clear_folder_in_media('csv_file')
     return render(request,'app/base.html')
 
 def home(request):
@@ -157,4 +183,5 @@ def view_content(request):
 def clearfilefolders(request):
     clear_folder_in_media('uploads')
     clear_folder_in_media('export')
+    clear_folder_in_media('csv_file')
     return redirect("base")

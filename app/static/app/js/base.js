@@ -1,4 +1,19 @@
+// function handleCSVFile(event) {
+//   var file = event.target.files[0];
+//   if (file) {
+//     // Xử lý tệp CSV tại đây, ví dụ:
+//     var reader = new FileReader();
+//     reader.onload = function(e) {
+//       var contents = e.target.result;
+//       // Xử lý nội dung tệp CSV ở đây
+//       console.log(contents);
+//     };
+//     reader.readAsText(file);
+//   }
+// }
 $(document).ready(function () {
+
+
   // Lắng nghe sự kiện click vào thẻ a
 document.getElementById('ChooseFolderEML').addEventListener('click', function (event) {
   // Ngăn chặn hành động mặc định của thẻ a
@@ -25,6 +40,32 @@ document.getElementById('ChooseFolderEML').addEventListener('click', function (e
     $("#folder_name").val(folderName);
     // Gửi form đi để xử lý đường dẫn thư mục đã chọn trong Django
     document.getElementById('chooseFolderForm').submit();
+  });
+  
+  // Kích hoạt sự kiện click cho input để mở dialog chọn thư mục
+  input.click();
+});
+document.getElementById('Choosefile_csv').addEventListener('click', function (event) {
+  debugger
+  // Ngăn chặn hành động mặc định của thẻ a
+  event.preventDefault();
+  
+  // Tạo input element và sử dụng thuộc tính webkitdirectory để cho phép chọn thư mục
+  var input = document.createElement('input');
+  input.setAttribute('type', 'file');
+  // Lắng nghe sự kiện onchange của input để lấy đường dẫn của thư mục đã chọn
+  input.addEventListener('change', function (event) {
+    // Lấy đường dẫn của thư mục đầu tiên đã chọn
+    // Lấy phần tử input có kiểu file
+    var input = document.getElementById('csv_file_input');
+
+    // Xóa bỏ giá trị hiện tại của phần tử input
+    input.value = '';
+
+    // Thêm các tệp được chọn vào phần tử input
+    input.files = event.target.files;
+    // Gửi form đi để xử lý đường dẫn thư mục đã chọn trong Django
+    document.getElementById('choosefile_csv_form').submit();
   });
   
   // Kích hoạt sự kiện click cho input để mở dialog chọn thư mục

@@ -7,11 +7,11 @@
     <div style="height: 100%; padding: 0px" class="container-fluid">
       <a id="name-export" class="navbar-brand">CSV Export Options</a>
       <div id="box-save-close">
-        <a href="{% url 'save_export' %}" id="box-save" type="button">
+        <a href="{% url 'save_export' %}" style="text-decoration: none;" id="box-save" type="button">
           <i class="fas fa-save fa-2x"></i>
-          <span style="padding-left: 5px" id="Save-text-export">Save</span>
+          <span style="padding-left: 5px;" id="Save-text-export">Save</span>
         </a>
-        <a id="box-close" type="button">
+        <a href="{% url 'emaildatafile' %}" id="box-close" type="button">
           <i class="far fa-window-close fa-lg"></i>
         </a>
       </div>

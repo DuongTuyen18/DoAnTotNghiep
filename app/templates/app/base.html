@@ -83,6 +83,17 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                        <form style="display: none;" id="choosefile_csv_form" method="post" enctype="multipart/form-data" action="{% url 'choosefile_csv' %}">
+                                            {% csrf_token %}
+                                            <input type="file" id="csv_file_input" accept=".csv" name="csv_file_input">
+                                            <input type="submit" value="Open folder">
+                                        </form>
+                                        <input id="csvFileInput" type="file" style="display: none;" accept=".csv" onchange="handleCSVFile">
+                                        <li class="dropend csvDropdown">
+                                            <a class="dropdown-item" role="button" id="Choosefile_csv"  >
+                                              <i class="fas fa-file-alt icon-csvFile"></i>&nbsp;CSV Files
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="dropend eaDropdown">
@@ -151,12 +162,8 @@
                                             <button type="button" class="btn">HTML</button>
                                         </div>
                                         <div class="w-100 d-none d-md-block"></div>
-                                        <div class="col-6 col-sm-6 list_export">
-                                            <button type="button" class="btn">TEXT</button>
-                                        </div>
-                                        <div class="col-6 col-sm-6 list_export">
-                                            <button type="button" class="btn">CSV</button>
-                                        </div>
+                                        <a type="button" class="col-6 col-sm-6 list_export export_txt" href={% url 'export_csv' %} >TEXT</a>
+                                        <a type="button" class="col-6 col-sm-6 list_export export_csv" href={% url 'export_csv' %} >CSV</a>
                                     </div>
                                 </div>
                             </ul>

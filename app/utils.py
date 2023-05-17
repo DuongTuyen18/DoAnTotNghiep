@@ -68,22 +68,6 @@ def read_csv_file(csv_file_path):
             for row in reader:
                 data += ','.join(row) + '\n'
         return data
-    # data = pd.read_csv(csv_file_path)
-    # # Chuẩn hóa dữ liệu, dùng biến data_detail để lưu dữ liệu cần thiết
-    # arr_message_detail = []
-    # for item in data.message:
-    #     x=re.split(r'Message-ID: |\nDate: |\nFrom: |\nTo: |\nSubject: |\nMime-Version: |\nContent-Type: |\nContent-Transfer-Encoding: |\nCc: |\nBcc: |\n\n', item,maxsplit=11)
-    #     del x[0]
-    #     del x[10]
-    #     arr_message_detail.append(x)
-    # data_detail = DataFrame(arr_message_detail, columns=['MassageID','Date','From','To','Subject','MimeVersion','ContentType','ContentTransferEncoding','Xcc','Xbcc'])
-    # data_detail.insert(loc=0, column="file",value=np.array(data.file))
-    # tmt=[]
-    # for item in data_detail['Date']:
-    #     tmt.append(item[:-12])
-    # data_detail['Date']=tmt
-    # data_detail['Date']= pd.to_datetime(data_detail.Date)   
-    # return data_detail
 def convert_csv_to_datafarm(csv_file_path):
     data = pd.read_csv(csv_file_path)
     # Chuẩn hóa dữ liệu, dùng biến data_detail để lưu dữ liệu cần thiết
