@@ -1,0 +1,670 @@
+Delivered-To: dvt18012000@gmail.com
+Received: by 2002:a54:26cd:0:b0:1f8:ee1f:5798 with SMTP id c13csp1670710ecp;
+        Sun, 19 Feb 2023 23:24:59 -0800 (PST)
+X-Google-Smtp-Source: AK7set/nYyvFMdui3JeF31cI9eh3aqwN9hMjBmllA7DbRqRhsU2z8x+sEaq4VerqUkWXHsnWovtW
+X-Received: by 2002:a17:903:2289:b0:19a:ae30:3a42 with SMTP id b9-20020a170903228900b0019aae303a42mr255150plh.21.1676877899640;
+        Sun, 19 Feb 2023 23:24:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1676877899; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ik4lzNGtICoG5NLW8a6KflRUyhOq+D/XP3odbef07DE0CxOPvJOZMwQ+qa0dFwq/gJ
+         SiN5N9IJl3HJ5jZQ9vEoFuCKptko19/IMgCJ5/EKORNuepGbP/ajZJQA1mNmSAbjSozJ
+         BeJoRPZ6H7bdB5mbyYr/2+QavFNUp/iQM40Pi3ngpTifjDc1jMT4Wj9Uto+Ygz80aIG4
+         EBTFqjNG+OHVMbY32r9CyLabs12aOjIUMI1+27tHNB1oXUPh2f2ScQ6JdBXJrhSPZ4TK
+         vmyP7ylvTIkUKWBekudgi8qiQEIt5HnGzbEOd4NzPpUcjo570r0Kng+Z7Dsskrm+XLZS
+         j5fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:list-unsubscribe:precedence:reply-to:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=PZBXiecM4hY+vr72nhA9LBPDbrxLIpS5YY7cpT+qagE=;
+        b=Zcy3f27utFlPkFKAYa0UyqGXgsZEh0mzdKVKU0dUit9WPWYIU43zfDi9i2M90hIARX
+         tj4OEFFLN0wagMpvYubjgEnADsYnFYMLLx16Clyvb2/QHWt3f9MTWrBdFA+wshC8G1XO
+         FluN8WZlkc2S3lHADccpj+Iie/c18bDNAxBICDHMPjfwccONEHop0zQQI8kJI/2KJ3Pb
+         xgTcKiAeKYiPMKPjUnN0btlfeN0Q57gh0a9acQd2esJxPiWPptu5ZnrNdjcBPKeK3hwj
+         lQIUg5+YzYMr7tqMeu4PQnNLj8Hr2XZJ+VKcsXMzU9MS9nyifLtsJJo/v6YRwhl3E/s0
+         Kp/Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@turing.ac header.s=s1 header.b=DN3sqYQk;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=IRxv9N5C;
+       spf=pass (google.com: domain of bounces+26422699-7026-dvt18012000=gmail.com@em4204.turing.ac designates 159.183.133.98 as permitted sender) smtp.mailfrom="bounces+26422699-7026-dvt18012000=gmail.com@em4204.turing.ac";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=turing.ac
+Return-Path: <bounces+26422699-7026-dvt18012000=gmail.com@em4204.turing.ac>
+Received: from o1.ptr9551.turing.ac (o1.ptr9551.turing.ac. [159.183.133.98])
+        by mx.google.com with ESMTPS id d13-20020a170902654d00b0019a997e5675si307279pln.197.2023.02.19.23.24.59
+        for <dvt18012000@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Feb 2023 23:24:59 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+26422699-7026-dvt18012000=gmail.com@em4204.turing.ac designates 159.183.133.98 as permitted sender) client-ip=159.183.133.98;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@turing.ac header.s=s1 header.b=DN3sqYQk;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=IRxv9N5C;
+       spf=pass (google.com: domain of bounces+26422699-7026-dvt18012000=gmail.com@em4204.turing.ac designates 159.183.133.98 as permitted sender) smtp.mailfrom="bounces+26422699-7026-dvt18012000=gmail.com@em4204.turing.ac";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=turing.ac
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=turing.ac;
+	h=content-type:from:mime-version:subject:reply-to:list-unsubscribe:
+	x-feedback-id:to:cc:content-type:from:subject:to;
+	s=s1; bh=PZBXiecM4hY+vr72nhA9LBPDbrxLIpS5YY7cpT+qagE=;
+	b=DN3sqYQkS8OkHn8gzo2IcPHqitLoH8IHxxYnd9e8Pv7qiD0AV6bK00QyhWGW0HXFfRnA
+	Bs2m7KGl9BGcMxcn/Pp73Dhl20KypZbL2Inww2dBH5yLcUGh591+9Bu9tNonFEVpuOYAac
+	W663SqIHYNeuI6emv0UvOlFv1WSH8xprHcPbCo6Cx9oEo601OyfQejV43StJ97CGtrpxLp
+	91zatw7yZHCEdKIJRMYM+RtkbF8kzp7LWBs4asPtKcSzWM0E4cYfnEO6DhBAC5i0/BdNAX
+	jqTp6YB2F168nL05sd+hyUqXbHO+FtSqzHKK6gg/jHv4WQUgeXjn6qfBzOxitd+Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:reply-to:list-unsubscribe:
+	x-feedback-id:to:cc:content-type:from:subject:to;
+	s=smtpapi; bh=PZBXiecM4hY+vr72nhA9LBPDbrxLIpS5YY7cpT+qagE=;
+	b=IRxv9N5CzU1i2UKP/fYZnlQvossYs3/o59lm7o/vVuZITJaF0GGwg0S1YsJ+lrLIpfY6
+	HXhOKL8PA/xOxzH/XpT026R7WW8T2CbOg2KBTvf2t652n4NWYRpZQbY7IoLfr/3VKt4TXm
+	LAkIdn4Gizib8TpFkp2ZVIlFyWVoDXoUo=
+Received: by filterdrecv-7ddc4b679f-hwkqd with SMTP id filterdrecv-7ddc4b679f-hwkqd-1-63F3204A-40
+        2023-02-20 07:24:58.892535076 +0000 UTC m=+822262.175063654
+Received: from MjY0MjI2OTk (unknown)
+	by geopod-ismtpd-6-0 (SG) with HTTP
+	id aDL_XrdoS2uUCUt4prYn2A
+	Mon, 20 Feb 2023 07:24:58.880 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=0f03a02e5beffeafc051423ee835e3bbe0f7e9ece5592ddb7bf951bb63a3
+Date: Mon, 20 Feb 2023 07:24:58 +0000 (UTC)
+From: "Turing - U.S. Software Jobs" <support@turing.ac>
+Mime-Version: 1.0
+Message-ID: <ae05c740-b0ef-11ed-b4e5-b19e8b6306f5@turing.ac>
+Subject: Good news! You are pre-approved to create a Deep Developer Profile!
+Reply-To: vk@turing.ac
+Precedence: bulk
+List-Unsubscribe: <mailto:emailabuse@turing.com?subject=unsubscribe>,
+ =?us-ascii?Q?=3Chttps=3A=2F=2Fmail=2Eturing=2Ecom=2Fapi=2Funsubscribe=3Fui=3De19f3733e7290ad2cc?=
+ =?us-ascii?Q?d6c08377beb08e06f18da7c8bcac4b70514ad7a?=
+ =?us-ascii?Q?6087a73531e842123ba0a5a84ad34c787bce547?=
+ =?us-ascii?Q?efd2f343b0fc18e71a27982a3265316d6ab67c0?=
+ =?us-ascii?Q?56ce84b061163d5a9da8cc23b01dddc184aad0f?=
+ =?us-ascii?Q?17956e517fee4cb696fc43be&email=3Ddvt18012?=
+ =?us-ascii?Q?000%40gmail=2Ecom=3E?=
+X-Company-Id: Email Campaigns -Upload Resume Remarketing -
+ 3-e82c2fe796cd4ee22c9b189b01860252698012d2e237ee5f1399eed3e84a506c306645a65f
+X-Feedback-ID: 26422699:SG
+X-SG-EID: 
+ =?us-ascii?Q?wLGQoPUxOe1DEB5=2FI0pVS=2FVCrONRtCtROxXmW7IspBoQOK6a2dbqVcoZfe17Ak?=
+ =?us-ascii?Q?s=2FBQ3mdWS7Vtbnac5ql4hRSGehWm7vBhc6PsWvM?=
+ =?us-ascii?Q?qttB0kATYLTgeXdI2EQ9g6UBzjPfnGBq8MMlC+1?=
+ =?us-ascii?Q?4VB7fZZoZjpGJMoxQJ4KSxDNzpUlizMGOG9n3No?=
+ =?us-ascii?Q?yn5l8O+C=2F0+p40AcHHiy+rw69Cs0Z6LEkhAFAt5?=
+ =?us-ascii?Q?FXfXb=2FEH7rWgoW0ZjwM=2FSsw0Z4RPcxJ1oF3kmaR?=
+ =?us-ascii?Q?Ssbo9Vx7rbN1YiTd8JRDA=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb6yM3R=2Fe5LsNBeqKz=2FDAmWvZrue4J=2F2WxZtRxpCyEh?=
+ =?us-ascii?Q?8OaMf4A6Viohl1R9DjZnAcTA=3D=3D?=
+To: dvt18012000@gmail.com
+X-Entity-ID: MM4wFKqSrycSniRjmopJvw==
+
+--0f03a02e5beffeafc051423ee835e3bbe0f7e9ece5592ddb7bf951bb63a3
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+<div style=3D'color:transparent; font-size:0;'>
+It takes about 30 sec to upload a resume and get ahead of 50% Turing develo=
+pers who are interested in working remotely for top U.S. companies.
+</div>
+<div style=3D"font-family: Arial, Roboto, Helvetica, sans-serif">
+<p style=3D"font-size: 0.8em;display:none">
+			<i style=3D"text-decoration:none;color:#999999;">Not interested in U.S. =
+software jobs? Then
+				<a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGIPx-2FZ=
+EXWhAP9bG94I2c9bFRrdv5-2FA-2Bd0A0hoAlniJyWp5Yj19B8KLzm3MVWl0Jj3Agx3nMPq8DwV=
+zR-2F7HkELZ8mJlWf5hjRWfKgldIRM3zEYwABSPNuHAoKyqm8ovdHP6bGqtroQhNFweedryDDYT=
+d-2B66KiIT2oQA-2FvZ2YUdOJIuGgRh61TNl8kMC7nOyCcnEjVp6sJQLSNgwYHsv3MdWmy3ENL-=
+2FcwdfJTNBfGULryn-2BO03VRDBs11cMhIRhgPoD2pJCf1jiUc-2BuZ6XrYXQNcN7F3ZdXFZfBz=
+OjtQReA7t5EedthFA3hTLdTEf5ux-2FOVm3RFk-2BFwkq3eiph3oo5723vemIX4u-2FGDgE3dZi=
+ySTdqbU0xk-2FXJn8-2B5DI75bonbpB4U3uFUlompqnzuY198frHeR1ct5JD6Ktz-2BeychQqHJ=
+nyVaol1C4JN555KkPvoDNrjUKERoFGCpxzh1hvQ-3D-3DIAnv_wUg6XbRT2Dc4maoRgr1Hw-2BI=
+PVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjIXHfN-2FiDzLhxh-2BtSi7pALzfZKlzq=
+pzVK2Ptp3GO-2Fd-2FxtMvTdzhQFvAj9AurMspbMvfsNeRAIUDJVAz6q9fcdZZthAj1zvPjDTvf=
+EEazUVUvnkEnlnJCs-2FN0Gof9t0RfA7EEkkPhPxngtoTpCjffEj923KckOq4zlaqy9Rb47kG-2=
+BBvwXcI-2FygmRlXZJe5jFo8 style=3D"text-decoration:none;color:#999999;">
+					please click <u>here</u> to unsubscribe.
+				</a>
+        <br>--
+			</i>
+		</p>
+    <p>Hi Tuyen,</p>
+    <p>You are an ideal candidate to create a Deep Developer profile on Tur=
+ing. We recommend you upload your resume at the earliest to bag attractive =
+opportunities with US-based tech companies.</p>
+    <p>
+        As a Turing Developer, you will have access to global, remote, high=
+-paying opportunities that offer:
+		</p>
+    <p>
+				<ol>
+					<li>Long-term engagement.</li>
+					<li>Easy, lifelong job matching.</li>
+					<li>Access to developer community, mentorship, and upskilling opportun=
+ities. </li>
+				</ol>
+    </p>
+<p>If this sounds like something you=E2=80=99d be interested in, you can qu=
+ickly move <strong>ahead of 50% of candidates</strong> by uploading your re=
+sume right now. All you need to do is:</p>
+		<p>
+			<ol>
+			<li>Upload your existing resume.</li>
+			<li>Take the Automated Coding Challenge. </li>
+                        <li>Check and incorporate our suggestions as you fi=
+nalize your profile. We recommend actions that can add weight to your resum=
+e based on your skill level, experience, and Turing test results.
+ </li>
+			</ol>
+		</p>
+<p>You can also click on the Help widget on your screen to find self-help a=
+rticles or chat with us live for specific help regarding your resume.<a hre=
+f=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGIPx-2FZEXWhAP9bG9=
+4I0k3gc3A-2BymrFh9LJAKYcOI0VQuKwTVzRHjbAbPkLjtnYTLDM77Hi87J-2FLtlpgFJRS64VI=
+QOqsBcRI3uFcJPHr1H2XpyWXxFuce2H0RTGMiV029__wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8=
+VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjG5jHRAk1rOZ2MqhdvOIvcHUnHmWqF2tsZR3kiIH=
+JBA0JUw0qHXGzViXjucHQsu0g3bRbRzki1Ay4KUUF3ldwerfLSsCi2ERth83mKYWG50643qAj2Q=
+AV5kD9gW5sHB5qPotv0NnOAv7fRlIIsl-2Bx8Ui-2Fo4AZqYDw0xfdRCkn04UCNbLzcVjQwLbmB=
+n-2F1y7dz> Click here to learn more.</a>
+</p>
+    <p style=3D"text-align: center; padding: 20px;display:none">
+        <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGIPx=
+-2FZEXWhAP9bG94I8-2BnnlO7-2B4WU0iPzy7RhvUvNE0Z9KkJ1VjhW0DyOyt5VYnGGSUfDNL3E=
+GgEMlQG1vOS6SCv48-2F7kRih1A4NHc2NYkS6GPBahT3Rgu0PkNkHQtecL1zC1X3gcErVirQsYy=
+5RMlF9aN6X7hyuHIEvgDSxfZ2T38NKUn1mJM4YhxBmZ-2F7TNBi1Ewe56mpTuCPfWPH8v7G9r4I=
+7uFHBFaf7r-2Fr-2BvhAp6aUvJGGOikEwsLP55JCB1qiu4si4WJJ0MenZgpSTr0LyZzJm5CMN-2=
+BCMXwgUZsQC80wESLcDIrsDcgYpYF7kh-2FiIr2tRMOis9-2FuNSO-2Fw-3D-3DOnpP_wUg6XbR=
+T2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjLWMDwJ4H5U0KIn=
+pl2vEFqdUZvB8X-2ByjzI2fsteYBFsJI5CaqgTrFK2CuzDGghdszRQXQXrkfVj4zQJSKYISKizc=
+YTFuwzr60Ux-2BqeV17Iuzlo8a-2FHRIgM4et0KXYLpJYeU0VNA8xAN7S-2F7v0GEhr5-2BylH0=
+-2FoJ5Df75iqkTS-2FrifyGM-2Ft0qpV8V2KxQcp1Z-2Fz
+            style=3D"font-size: 18px;font-style:Arial; white-space: nowrap;=
+ text-decoration: none; background-color: #4CAF50; color: #ffffff; padding:=
+ 10px 20px; border-radius: 4px; margin-top: 10px;">
+            Count me in for remote U.S. jobs</a>
+    </p>
+    <p>
+        If you encounter any difficulties while creating your profile, plea=
+se email us at <a href=3D"mailto:support@turing.com">support@turing.com</a>=
+.=20
+    </p>
+<p>We look forward to matching you with new, exciting opportunities!</p>
+    <p>
+      Good luck!
+      <br>Turing
+</p>
+    <p style=3D"color:#090909;">-------------------------------------------=
+----------------</p>
+
+       <p><strong><u>Interesting facts about Turing</u></strong></p>
+    <!--<p>Turing is led by Stanford University alumni and successful A.I. =
+entrepreneurs <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DU=
+AuGIPx-2FZEXWhAP9bG94Iwvobx9QD1O81RvCiSzb8qu-2F6FRUre-2FAFyl7BflKfpwpxDbM_w=
+Ug6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjgLhNSEh1=
+9nMNrY6OUtCtRg0Q-2F8qKJIbctLQFwVXloLukJsV9qjS8pogXzmJnvGuHK5e8op8x8tXiwv9z7=
+M3efoLkaMXj3V2bT5WrERXzJFRyuowqZeC5vdm-2BX1CHxM0QjcxeRFAZ4PqyfAlmwFZP9TakGP=
+9FpbMKUVITX4ZZ8d-2B8EjYes6M1xUlDY5ZngbD-2B>Jonathan Siddharth</a> and <a hr=
+ef=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGIPx-2FZEXWhAP9bG=
+94Iwvobx9QD1O81RvCiSzb8qsqKFtQutX4Drx3Ab7oF4xKPChv_wUg6XbRT2Dc4maoRgr1Hw-2B=
+IPVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjNrJVZUEEgVRAUIQ8ePbH6HHuwe1omWg=
+ElojehtgOW8-2Bcmx6S285ZIQ-2BUk9uOnrGIDWzQq34rqaprXq8WFEvFxjzpgLAE7avtDd8oyS=
+k4QlUaUzsJh8-2Fxws794qRkl7d901JrTHn0SQoAAgj-2FllC2fneLsypGfBf6ws3L9Hebv3szS=
+hLIK2fv8y3Wc9gp4abm>Vijay Krishnan</a>, whose last A.I. company leveraged e=
+lite remote talent and had a successful acquisition (<a href=3D"https://u26=
+422699.ct.sendgrid.net/ls/click?upn=3DUAuGIPx-2FZEXWhAP9bG94Iy13lTM1TQh8N8l=
+3ywdgST5FwhMd6091YhpW9Mui-2B4fzvLEVdo70Q69rIIgvOT1lIWdG-2BxNnbUpP-2BgBj74Md=
+vRc-3DbgB4_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXy=
+yPIjpKAowdF23LImPaY-2Fn-2FCSmPj1TZrUJxMpCOtZsFQehNEw6DBG-2BWlUu-2B8oxHA9t-2=
+BK0N8KD1C0TypAHCB053SM3uItz75Ne-2BKOPhIxXXv5CRs5V7cJMc9uOQslbkf8LiyLpmSBBo5=
+n7wIh4TmWY1WjSus-2BGzHJQXV-2F6Ub7IzqBSoqiOhCyyTuIJTELoaTan1XJl>Techcrunch S=
+tory</a>). Turing is backed by well-known investors, such as:</p>
+<ul>
+<li> Facebook's first CTO, Quora CEO (Adam D'Angelo)</li>
+<li> Upwork=E2=80=99s founder (Beerud Sheth)</li>
+<li> Executives from Google, Facebook, Amazon, and Twitter</li>
+<li>Investors in Netflix, Uber, etc</li>
+</ul> -->
+<p>Turing is an AI-based platform that recently raised its Series D at a <b=
+>$1.1 billion valuation</b> and became a unicorn. We help engineers find lo=
+ng-term, high-paying, remote software jobs with US-based companies such as =
+<b>Disney+, J&J, Dell, and Pepsi.</b></p>
+
+    <p>Videos of current Turing engineers talking about their experience wi=
+th Turing:</p>
+    <ul>
+<li>
+            <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAu=
+GIPx-2FZEXWhAP9bG94I5QTj-2BToNUVOXVBligALEFc7ewvjgM8HW4Gnf6HYeUcXusrq0IZqm3=
+YqFfFUxHmzzA-3D-3DqNCh_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tR=
+BUjB0KMH5TXyyPIjEUhaHSAgrgNEy5KpePWSSlSSfhZbe5VmrZI-2FDbz9WzmtdURB22zlSaAI3=
+Zo2Zw3qYht5ecfP2PZUa-2Bi9QebZhqStvA0PvKS0swdW6uiL9P5TYYh7Y-2FWPTrnVM56Q8PXp=
+ev5Cv4ohOD6zKTSW6JdZtcArqAgKVn8xj0Fx-2B59Zg-2FvWrS6KNMrL8UwTbyemppm4 style=
+=3D"text-decoration:none;">Isaac (Nigeria)</a>
+        </li>
+<li>
+            <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAu=
+GIPx-2FZEXWhAP9bG94I5QTj-2BToNUVOXVBligALEFfd42WlIg8rE1G-2B2po2VtJ3PpxoWrA4=
+MMRu06V6bB4xWA-3D-3D66mp_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5=
+tRBUjB0KMH5TXyyPIj16KfQGoszp2e1UcRKbFCB5nPH2MFuIBvyT0tVbIyhbsWf34lJ5qLZvKsF=
+iNN-2FPdATwDYm7kZkz19-2FBI42NWTkOYJCcqRvlOG00m-2BfGA263rDSeFnZAG0UQvX3rdMc2=
+BScY-2BGyoDL-2BDd6fv8TZy7mSXQGYUkjmn6ZilpLQDJLkuhGyBf0-2F2GDswsDFCcN9AYf st=
+yle=3D"text-decoration:none;">Andrew (Brazil)</a>
+        </li>
+        <li>
+            <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAu=
+GIPx-2FZEXWhAP9bG94I5QTj-2BToNUVOXVBligALEFdM0jwULDxNrQ6h2CsS-2F2K03uqZ2b57=
+g6e1-2B6XpqCAhdw-3D-3DzG2g_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2=
+F5tRBUjB0KMH5TXyyPIjE-2BdfrfF3Y-2FqUz-2FIp-2B-2F22OnUphA8BA0KZq7jQiiyOWoBNj=
+tsxaqeLOdS9Rl24NXMUor6OL46RSacJnsGRcGYBzXa7YsFkzxaFCXUmkDHwKDJxSjuflW-2BDFw=
+NbOSLDeK-2BZc6IxOPWgb9XRjc3h8MqntCvGW-2BYU4vzYsQk4cLyqGmWC5q-2BpIJevv3VxZvH=
+S4p1C style=3D"text-decoration:none;">James (South Africa)</a>
+        </li>
+        <li>
+            <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAu=
+GIPx-2FZEXWhAP9bG94I5QTj-2BToNUVOXVBligALEFf336RFutbahzEN74kDXp2zGQNUUae-2B=
+VibB7fzQ24vDiw-3D-3DpVVe_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5=
+tRBUjB0KMH5TXyyPIjGThw1zfainwaTayOI3iQ1sVHxpGhd5mwnqUO0tm8hpHxoj1nchonYeAdT=
+fqxE6XFtIEvw0Rk-2Fxx1Qyt5DGyymPAzBz1hHoCbeyiYlcA3b7XzF5x6fAYemHWoy5SkBQbN-2=
+BPXCWZ1lB-2FnS03be8qbXU3rIjEebw8np1zDMFKXU-2BPg2J08hnjd6NhMPv61HaN-2Bc styl=
+e=3D"text-decoration:none;">Numan (Pakistan)</a>
+        </li>
+        <li>
+            <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAu=
+GIPx-2FZEXWhAP9bG94I5QTj-2BToNUVOXVBligALEFeATcVmvJpJL3AYRlSgW0y21A7Dd5L7O3=
+aghfKw2tzLHw-3D-3DfrqN_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tR=
+BUjB0KMH5TXyyPIjEUMTM-2FraD3cnXYD5Ovm0OT03zlwcAquaUSON5-2BgnnuQ9eyxf5Z1CzSl=
+vHyckts7hOLF9J9lFqPosw-2BPMWDKZYQdChYCaQFRrtoE3jCmkNbvOd3aowWvKAj2j9DVdND1E=
+TrP2oBIFime7HSX9JTWDvp3wuQh-2BMPNXIkF0P-2B-2BYv3IPm0AAtmIQ50pCEndgukE3 styl=
+e=3D"text-decoration:none;">Mukul (India)</a>
+        </li>
+    </ul>
+    <p>
+Read more articles about Turing here:
+</p>
+    <ul>
+<li> <span>Forbes</span>
+          <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGI=
+Px-2FZEXWhAP9bG94I3LFehIIikBmHxvNa4LuPCpDFPAcu9LCIgwLWxD7-2BcCLf8wHz30oAVL8=
+Tdk8UJm1ShxsT-2FMs6PiSsdefGflD-2F7VItjtKPNSGx00b-2FP1PLa-2FAXZ5K_wUg6XbRT2D=
+c4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIj9vos78A-2B0V9Jti0=
+SlFArn-2BpxAofInB009bPhY-2BGy36ZtJrfSC8KA65jKcuBAGbqHrIlKYQ50Rq10gTV1xAQ-2F=
+ZkLJr9wiD3szNDYLlBRqTBfPy1-2B5LgrhARmMqj5YGBIJWYvEiru-2BhjSFC7bmo95FHFOKFEU=
+0Yq7IeW-2F2vLGpeeI7V9i8dNnfjgyj5QfWwiHJ style=3D"text-decoration:none;">
+America=E2=80=99s Best Startup Employers</a>
+      </li>
+      <li><span>Tech Crunch</span>
+          <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGI=
+Px-2FZEXWhAP9bG94Iy13lTM1TQh8N8l3ywdgST6O5Kq0-2BcgbhaFUFIRQowb3T85tEZS7fMaK=
+AtT53BdZysNfQc9zt6usD0YIpCAh7BO84afRgf2u-2BtI0dUbuhuz0CSzlCW66-2Be3sfjiaxwC=
+fVdotN5aMBbfw8qFxVI4HIOe55t75BDVPbep1TXDkit3tHZCj_wUg6XbRT2Dc4maoRgr1Hw-2BI=
+PVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjvhVDjLsFNRrNGunWZad8cXNKoNpOzhl4=
+EfFNVO0L6dIigv5sBdXL5p2x3E4lYO8RSQgDmB3lBWiATZ3UsYcOI1FL7Uw094UIoyc-2BjV49g=
+CBQORzH2KkxMXvtwJ5VbNDqPeWN87ONGIQZx2GxYWrmDDSie-2BZWxFxrEJpJ2izGumXaBQzEVU=
+zsp53cjMHSSlL3 style=3D"text-decoration:none;">Turing books $87M at a $1.1B=
+ valuation to help companies hire engineers remotely</a>
+      </li>
+<li><span>Fast Company: Turing featured in Fast Company=E2=80=99s</span>
+          <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGI=
+Px-2FZEXWhAP9bG94I4CYeGZ7qk8Ur-2BGk61xSAJdYRwKyQWtaLDN56GHjhna89dB49xBoZgZo=
+3hUqtVke0Bb2Tl7lKSMH2KH0Wxpf3HWEWj8tEGH8hEwokoj9kajBlCYEhZMzHlGMogm8TTmr-2B=
+bewafziNugj9YRem9sAa8w-3Dgmzj_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs=
+1-2F5tRBUjB0KMH5TXyyPIjcJVstpUjiq7Tp70u6-2FXw0g4g15NGfApvOaBVX5Zv22HM4ZBf5r=
+fM5VVlGik6kvfjHxSUu-2F2GnrAcvkFuVthGyqqN4tMzlE-2F9Gfy-2B1mxFGJGRwJJXQBDSzpB=
+uq2JaKkzfFklr-2Bdiuu8nNWBDW1cTI4vK50Zn7P46IU3JmO3pAD7cXUqV1C8XFc7t6jPtKFf8m=
+ style=3D"text-decoration:none;">Annual List of the World=E2=80=99s Most In=
+novative Companies 2021</a>
+      </li>
+<li><span>The Information: </span>
+          <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGI=
+Px-2FZEXWhAP9bG94I4CYeGZ7qk8Ur-2BGk61xSAJdYRwKyQWtaLDN56GHjhna8xcVO6J2mHvnb=
+AMTfDGpjg-2FPPWZDjEUQYFpPFGdjuvitwGI-2F-2FAWP-2BQ143MUSCD5zfBNsB-2FRqdsXtCO=
+RwiDcQQrg-3D-3DoCz7_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tRBUj=
+B0KMH5TXyyPIj6gtkucLiDAfCQNONZpzi2FvpdWo7QkE4QmtZMVbHM86xg9xMwW49s1AS3469Lh=
+xWyO6E0uRpgBuIm989Nm0NIzqyqducwrXJZSKS-2F3uQmJtGpnkWM2gd8y-2Fm1HG5mGQJTnXE1=
+yrqFBxq6cdpD1QvlcFbn7tJ4mGeMsIKrXKdhKvae1yMJ35KsL0C-2FHQAZ5Sm style=3D"text=
+-decoration:none;">Turing named the Most Promising B2B Startup by The Infor=
+mation  </a>
+      </li>
+
+    </ul>
+</div>
+<br>
+<p>Turing Enterprises Inc, 1900 Embarcadero Rd, Suite 104, Palo Alto, Calif=
+ornia, 94303, USA</p>
+<br>
+--0f03a02e5beffeafc051423ee835e3bbe0f7e9ece5592ddb7bf951bb63a3
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<div style=3D'color:transparent; font-size:0;'>
+It takes about 30 sec to upload a resume and get ahead of 50% Turing develo=
+pers who are interested in working remotely for top U.S. companies.
+</div>
+<div style=3D"font-family: Arial, Roboto, Helvetica, sans-serif">
+<p style=3D"font-size: 0.8em;display:none">
+			<i style=3D"text-decoration:none;color:#999999;">Not interested in U.S. =
+software jobs? Then
+				<a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGIPx-2FZ=
+EXWhAP9bG94I2c9bFRrdv5-2FA-2Bd0A0hoAlniJyWp5Yj19B8KLzm3MVWl0Jj3Agx3nMPq8DwV=
+zR-2F7HkELZ8mJlWf5hjRWfKgldIRM3zEYwABSPNuHAoKyqm8ovdHP6bGqtroQhNFweedryDDYT=
+d-2B66KiIT2oQA-2FvZ2YUdOJIuGgRh61TNl8kMC7nOyCcnEjVp6sJQLSNgwYHsv3MdWmy3ENL-=
+2FcwdfJTNBfGULryn-2BO03VRDBs11cMhIRhgPoD2pJCf1jiUc-2BuZ6XrYXQNcN7F3ZdXFZfBz=
+OjtQReA7t5EedthFA3hTLdTEf5ux-2FOVm3RFk-2BFwkq3eiph3oo5723vemIX4u-2FGDgE3dZi=
+ySTdqbU0xk-2FXJn8-2B5DI75bonbpB4U3uFUlompqnzuY198frHeR1ct5JD6Ktz-2BeychQqHJ=
+nyVaol1C4JN555KkPE1NsLBSOf5E2K74lZfqOxw-3D-3DPDIK_wUg6XbRT2Dc4maoRgr1Hw-2BI=
+PVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjkh3gbFYhPMMZbuv1R7mAWwvqHHgf8DJH=
+LgjIzvwff0bn3xqXgbOU8kQpmWpwbKuykiHVW7T0eFApAbOLmPtu9ht-2FKMEqEeAwRnk4NfXdD=
+gfXbTeKlHyBjTqIwemJE-2FVSejn3cf1uA1MKYfx4c0zmW-2BeSf1DH0kYnEcBPMTX7A4PsKT2q=
+0OWFBES3pPqc6kcV" style=3D"text-decoration:none;color:#999999;">
+					please click <u>here</u> to unsubscribe.
+				</a>
+        <br>--
+			</i>
+		</p>
+    <p>Hi Tuyen,</p>
+    <p>You are an ideal candidate to create a Deep Developer profile on Tur=
+ing. We recommend you upload your resume at the earliest to bag attractive =
+opportunities with US-based tech companies.</p>
+    <p>
+        As a Turing Developer, you will have access to global, remote, high=
+-paying opportunities that offer:
+		</p>
+    <p>
+				<ol>
+					<li>Long-term engagement.</li>
+					<li>Easy, lifelong job matching.</li>
+					<li>Access to developer community, mentorship, and upskilling opportun=
+ities. </li>
+				</ol>
+    </p>
+<p>If this sounds like something you=E2=80=99d be interested in, you can qu=
+ickly move <strong>ahead of 50% of candidates</strong> by uploading your re=
+sume right now. All you need to do is:</p>
+		<p>
+			<ol>
+			<li>Upload your existing resume.</li>
+			<li>Take the Automated Coding Challenge. </li>
+                        <li>Check and incorporate our suggestions as you fi=
+nalize your profile. We recommend actions that can add weight to your resum=
+e based on your skill level, experience, and Turing test results.
+ </li>
+			</ol>
+		</p>
+<p>You can also click on the Help widget on your screen to find self-help a=
+rticles or chat with us live for specific help regarding your resume.<a hre=
+f=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGIPx-2FZEXWhAP9bG9=
+4Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYPepuvdhOje6bAGzgsF4=
+ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t5GXolpRMtudW6BuHVa=
+hkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv6X0Zw1F6sKUqx9uY6x=
+mdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z93ZDvVQU21Srbs7XpuS=
+b7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYHGBqAByTgC4WYAEnYE1=
+votq6m1eZIg9RBR-2FMJHyCXIwe-2Fhg47RIWxm31UswYi4ARDFOqvKZiwjSDZsZdUomzh7gIZi=
+sNZd-2Bm-2F7vXxBXyEFNganK6bTrReNZrwAH5RKHhPXX-2BiJeMMrqieSxROqAFaIEjI0Wj6Lt=
+kFb-2FjCfNdg-3D-3DFVQj_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tR=
+BUjB0KMH5TXyyPIjdbUXzB-2FWTKZ4iuBBh9Y3qH0nP3bxKkAWbd1rVM7AB0PJhbNiu69aZc8hg=
+1NO5fw6t4kIzYbw0f-2FzLe4J20Abc6ViqTczffAGOmOEJe5AcI-2BT9v-2B-2F-2Fz98tRsyau=
+17SgwZiPR9-2BsXI6YZRyueMtGYuTX1s37A6Ey2n5Vjy1GyZ8-2BoUM6BxZKf-2FCyxgKmABk9G=
+C"> Click here to learn more.</a>
+</p>
+    <p style=3D"text-align: center; padding: 20px;display:none">
+        <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGIPx=
+-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt3OKq-2FrqNRVRTlCeoRglcXxrXhH2kjyd26d=
+dODWoQ9Ppfmv5W4h7e7haaQAOHwbbON-2BR3OpQJD-2B-2BjPNhUwamrhE3Y5RgcWYIkxPqF13Z=
+QP-2Fwn95iqdJ8PEn1Qiv8RJOJ8m4YGNa61xB4bmZDV3-2FD79FuJCmq-2Fnd-2FH6STJBekWMa=
+B1lmA1Ep6KCM0-2FCQQ3ZSuS7VLCB4j1q4m4POU6iKJnMnOuNfkPHlklAADQzqM4jXRuRiS81sS=
+ETLjCrLi2egG4x3NOTdep9oC2DTgDFsvN-2FDzWw1HAyzk-2F3OyQS5-2BfR-2FiqQgniyHy3jU=
+l9Hl9YipXnNFz41KKYufJdVOevfAOHXPAom3m7fFvZJz87MV5EtuzURSN9QroRhpGhYMWQsK72z=
+GXHPHhNqqgfVws2FzI2-2BrN6Rn-2FR5nQT3fEhBrIi8F-2FgtKlC0dmWWqwtdXchJixjv-2F7c=
+OMN8JD9Tts6HmwSFps1seereiZ5-2Fv7ZKqrDsikSSKwLKbsUfavGoXdVAw0RWQ61HX-2FLNRss=
+F7YGUGpLi45qsMLKlOWrwN25c7VZOKanlCiuW3xFwN9K4n2Chq7Xjx3-2Bh7dK9vJC4qvKXrv-2=
+Bbue5xT7n9TD4N7PDUXyEMugIAqIHtgy7IsMt4gOB6R9FBQI7Pnrf-2BLV-2Fg73Fa00gh-2Bp6=
+4rNeqHSlfkNNkCPUMqZ3Zvhocfoh2Rj4cZj6H1HUkRBX2rxG8xjwvSYoGR9aOUGAL0o_wUg6XbR=
+T2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjD2OFo-2Fzrwf-2=
+Bgw8xMLveAYS7a8Dm4gQXwXTw2DrYzmVy66AM24e9O8okGyfbAj8VdRchHL-2BAdEPjkp8vs-2B=
+T4sI7yMulwmm43fAs9P3oAy3sWhFwri1DVUlOQpJz0pc7XaFhA4sj3doTbgRaUsyQjeJWNJ0g28=
+L4uYaTHpuq09s-2BiRamEYuiqOAWJtcItCJFYv"
+            style=3D"font-size: 18px;font-style:Arial; white-space: nowrap;=
+ text-decoration: none; background-color: #4CAF50; color: #ffffff; padding:=
+ 10px 20px; border-radius: 4px; margin-top: 10px;">
+            Count me in for remote U.S. jobs</a>
+    </p>
+    <p>
+        If you encounter any difficulties while creating your profile, plea=
+se email us at <a href=3D"mailto:support@turing.com">support@turing.com</a>=
+.=20
+    </p>
+<p>We look forward to matching you with new, exciting opportunities!</p>
+    <p>
+      Good luck!
+      <br>Turing
+</p>
+    <p style=3D"color:#090909;">-------------------------------------------=
+----------------</p>
+
+       <p><strong><u>Interesting facts about Turing</u></strong></p>
+    <!--<p>Turing is led by Stanford University alumni and successful A.I. =
+entrepreneurs <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DU=
+AuGIPx-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjp=
+YPepuvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG=
+2t5GXolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6=
+cv6X0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1=
+z93ZDvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZ=
+YHGBqAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCTtl9Hm-2BQFTIydA2VlszUKUR9KQKE-2=
+BxagBi-2FREyJxOjq-2BIzF9KvPFMyLLke3hsDS4A-3D-3DbP30_wUg6XbRT2Dc4maoRgr1Hw-2=
+BIPVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjdL6tu1FXydA5UB52mNJIdtt7d6VzLe=
+2Nl3Xhrj2Tupiy5IDxPbhi-2FOLCPnI1RL2vCog4Q6YuDDDqmHFpcJBPSVEnuS6NvNnm9fTG-2B=
+A-2FsjlB8iA8Uuul-2BV0IargRUE6OPlZs-2B1jljvgblR0yFPW6Abj6zDzGxdkcicFjUmgm-2F=
+Y717PAZkY3pVIfiVSRyX66wx">Jonathan Siddharth</a> and <a href=3D"https://u26=
+422699.ct.sendgrid.net/ls/click?upn=3DUAuGIPx-2FZEXWhAP9bG94Ixcke-2BQB2yTmG=
+tJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYPepuvdhOje6bAGzgsF4ssBYSrfNb8iJr7qO=
+OAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t5GXolpRMtudW6BuHVahkjVUCqAmHiOj81U=
+C16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv6X0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFf=
+yiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z93ZDvVQU21Srbs7XpuSb7xf5NmrI4jPUnwB=
+pIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYHGBqAByTgC4WYAEnYE1votq6m1eZIg9RBR-=
+2FMJHyCTtl9Hm-2BQFTIydA2VlszUKXv17xuiKl0w7Un-2B7bo9jVL-2Bc60XZ2MPAUQ8pJAV1b=
+owQ-3D-3DH5kc_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5=
+TXyyPIjbfSDD8PqWhJI60lLiH2VwpT3iomHEad6O4ukPpLDHf7q9G9Y-2FvLWgWxYR0A78cUsaZ=
+u3CDCOlRIwLutAHmwWBHl8ZPOdij35vz-2FOhWpW5wTEtkO44iN4LR7uLdz82tvg2hGGrSZaPOR=
+aGeHuwM9iDFZp2ps4j5cmWDscLS2M3alP0bAw1kxmtX-2F4peZHvks8">Vijay Krishnan</a>=
+, whose last A.I. company leveraged elite remote talent and had a successfu=
+l acquisition (<a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3D=
+UAuGIPx-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvj=
+pYPepuvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsU=
+G2t5GXolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh=
+6cv6X0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR=
+1z93ZDvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7b=
+ZYHGBqAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCS4UzO5QIwUt-2BsylgyJ35T51QLYqWh=
+envHLFdrub72VZ12SzMaWprLhH9jAhYUJ3kdRo0uDO8uxJlHogBF4eFxK7e33DuZirsM28sz9-2=
+Fwp2OUpz7_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyy=
+PIj0qWrttvAkIWzTt7h4nGENPfsN4aWPefjm9S5Rn7AzCPsl16pu9SZj2PRuligV1A-2Fyuw-2B=
+5ZJDD0kdeI7-2FsgNMzeZnyEVgM6H9tyAl5h29EEX7RM0aCMiARh2zBqljbqiCgQUC-2B-2BPmG=
+tIBoqjz4oFZZggCpTAGGOH3k49ULJGBmk2Yuj0aWWORC5JvEAksmjIe">Techcrunch Story</=
+a>). Turing is backed by well-known investors, such as:</p>
+<ul>
+<li> Facebook's first CTO, Quora CEO (Adam D'Angelo)</li>
+<li> Upwork=E2=80=99s founder (Beerud Sheth)</li>
+<li> Executives from Google, Facebook, Amazon, and Twitter</li>
+<li>Investors in Netflix, Uber, etc</li>
+</ul> -->
+<p>Turing is an AI-based platform that recently raised its Series D at a <b=
+>$1.1 billion valuation</b> and became a unicorn. We help engineers find lo=
+ng-term, high-paying, remote software jobs with US-based companies such as =
+<b>Disney+, J&J, Dell, and Pepsi.</b></p>
+
+    <p>Videos of current Turing engineers talking about their experience wi=
+th Turing:</p>
+    <ul>
+<li>
+            <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAu=
+GIPx-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYP=
+epuvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t=
+5GXolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv=
+6X0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z9=
+3ZDvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYH=
+GBqAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCVLcw1JUjhMZSPQnXuNPsjg-2FkoX9NQUh-=
+2FNwlzfpzjzm04ViOi1y1c02YJsfKNsiAiw-3D-3DSGOD_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzE=
+Sx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjjzVl3pwmZtdxgTFBSUDH3DO4HJ0OzqvP-2B5=
+2LcUmL0I0DYHNJSA2yWSbDifjXYWCUDLkDqZOBLdqsxkAMhFjgzB-2BeuSgGwMQiiTnCiw7TrBE=
+H72YSM5-2BNYhZ17DfvBu3npUitNMIhB0j1QYlAnXAOwMFWqMug5miOKIDpbOILIB7YbsqTq8gg=
+EEPcyzForOwY" style=3D"text-decoration:none;">Isaac (Nigeria)</a>
+        </li>
+<li>
+            <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAu=
+GIPx-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYP=
+epuvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t=
+5GXolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv=
+6X0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z9=
+3ZDvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYH=
+GBqAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCVLcw1JUjhMZSPQnXuNPsjg-2FkoX9NQUh-=
+2FNwlzfpzjzm01TmvaV87dkiUik5XyL03CQ-3D-3Dsjdd_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzE=
+Sx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjMGU6yZkSOK0HnnxV9BkEac7k-2FZJvdJRRl1=
+QzjU-2B9SQ02rGlHmHRaIYOp8BELR1z7GDxRb-2FWMncpZaBqRGYBShFBUAC6TI-2FNgbIOrmAS=
+m2aOZLMTbkdsyqf2PjgyU2jy5lKktZLiEcDXJo9V1uayvfsNZwsGbIb-2BF7x7pcauqJB-2F11K=
+VjfPnIsB2oQSIjbqn-2F" style=3D"text-decoration:none;">Andrew (Brazil)</a>
+        </li>
+        <li>
+            <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAu=
+GIPx-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYP=
+epuvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t=
+5GXolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv=
+6X0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z9=
+3ZDvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYH=
+GBqAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCVLcw1JUjhMZSPQnXuNPsjg-2FkoX9NQUh-=
+2FNwlzfpzjzm0zJKlJycFpGc93VEAgkcSyg-3D-3Ddmqv_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzE=
+Sx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjVm-2Fw8aHhEQfjOgTdxr-2BPn0vISoYJFQHX=
+Vhd4QUnKnvpKu23TVETtMt3VL894fNAm9YOEItZ9QmGEutoMnbNWyJgG-2F-2Bp5OnODIlQuKmw=
+tp0o10-2B76H4KQrQYuM1rZiOhfwjAiVxlVRE4wkhSAGqS-2FdUTfS2UE9c0Ddtro-2B3T0-2Bh=
+Gq6HIhHf4e8UVthJlOw4Vk" style=3D"text-decoration:none;">James (South Africa=
+)</a>
+        </li>
+        <li>
+            <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAu=
+GIPx-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYP=
+epuvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t=
+5GXolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv=
+6X0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z9=
+3ZDvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYH=
+GBqAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCVLcw1JUjhMZSPQnXuNPsjg-2FkoX9NQUh-=
+2FNwlzfpzjzm0RDdLJuNxAIIAjQUNGx2KCg-3D-3D7mMD_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzE=
+Sx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjd1Xq21ivSj4f-2B04lMsL7fwC6UXmJP4RB4b=
+S8uIKbwbATTzvD-2BXab-2B5VX-2BwDGnAPxiURwymh8lTnLirZRXw-2B3H0wfssC6EUBa2KTmu=
+pydqvxJsTowY8p9RB8rm8-2Fs9aprT-2By-2FBoSTlCE9DF-2F5q70-2B0K4CZWFeXN3G72e-2B=
+rMN9pBI-2BajWsL-2FnzXbzcx-2F8JkRLz" style=3D"text-decoration:none;">Numan (=
+Pakistan)</a>
+        </li>
+        <li>
+            <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAu=
+GIPx-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYP=
+epuvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t=
+5GXolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv=
+6X0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z9=
+3ZDvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYH=
+GBqAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCVLcw1JUjhMZSPQnXuNPsjg-2FkoX9NQUh-=
+2FNwlzfpzjzm09VIo-2BpJORgQEofS8gUVRCQ-3D-3DOpXX_wUg6XbRT2Dc4maoRgr1Hw-2BIPV=
+zESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjRmjtbnoeEACH0FCGzC562YCLEnujwheW48=
+TqGCzm03rt9dFP17i4eBlGchrsdKhRWPO8kqp9C2ZSyFiVwbds8-2FvwUjWDtFxNREPYk3tMMvs=
+LGyJkRKS5im7FWRS6P4-2Fbk5N7rphhQYwHGnDPtT2ZKTzvZg4ZYBXRm-2FhlYjqlLO5qm9MKGQ=
+K9onsk6Bfsf-2FWQ" style=3D"text-decoration:none;">Mukul (India)</a>
+        </li>
+    </ul>
+    <p>
+Read more articles about Turing here:
+</p>
+    <ul>
+<li> <span>Forbes</span>
+          <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGI=
+Px-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYPep=
+uvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t5G=
+XolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv6X=
+0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z93Z=
+DvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYHGB=
+qAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCXI8SgTW3LjndYSYCk1DhfW-2BrUzRcehcd0m=
+nrxf0zFLSzL0btTSXNQ0Xgxu8MtS-2FGkrgDsRKKekPdIE-2BC-2Fn8jpQ24NhkZJ1ZPDsJ1XQV=
+B6fGOYgNAjiPSE-2BgiJCLpBiQvA-3D-3DeuJ-_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU=
+38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjP9fc0jo9X0vL90TwX-2FFHsw98yrGTq0OrjMDBnFiwS=
+cPJkgVrzaNmkeeesABAIy4GJuPm8bnwouUIcwmgubdJ-2F2EI9xkx7Njz0VWc0m-2FYyQfc3PLz=
+ON1A31NLaMLiYOohMzSfF1MbhNEv8ixZfcVNItVl3Nky24mxSgWI-2BeI0K8yAJoJTMgJIEJ-2F=
+y6jhSYWfo" style=3D"text-decoration:none;">
+America=E2=80=99s Best Startup Employers</a>
+      </li>
+      <li><span>Tech Crunch</span>
+          <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGI=
+Px-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYPep=
+uvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t5G=
+XolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv6X=
+0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z93Z=
+DvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYHGB=
+qAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCS4UzO5QIwUt-2BsylgyJ35T58O2e96GGNL9z=
+aHdF04oLEy8rGsHUyMfvlqb9MCYUds0Y7qp5Bu6UvZVju285pE8kdiiexkv9-2BTOj719KoD0-2=
+FA9s028pd5PqC3xT3WuWzpJD-2B1ZLH93HBnwjN287SZYiV4PX6KvgGfbsTLmqq3RKESgNJdJKJ=
+2b3-2Fvif0tgjjNQA-3D-3DColf_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-=
+2F5tRBUjB0KMH5TXyyPIjpQIFNwUFClD9w-2BAjuVkOUYfiPSfuDturCR-2F-2FTtTva349wgS6=
+DYHHmCb7OpLuiYySqFY712IO-2BoZJBUbOqMMqasA0-2Be6dwAH31EIMtctPEXxdEm5VIuw-2BX=
+Fla2ZoYmg1G-2BAcJbdrx7lyxX4eGqKJXdeGfYJGhzsCMgD6fm91gRBUsykoq0c-2FhoVQH3xp8=
+X-2F62" style=3D"text-decoration:none;">Turing books $87M at a $1.1B valuat=
+ion to help companies hire engineers remotely</a>
+      </li>
+<li><span>Fast Company: Turing featured in Fast Company=E2=80=99s</span>
+          <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGI=
+Px-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYPep=
+uvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t5G=
+XolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv6X=
+0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z93Z=
+DvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYHGB=
+qAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCQIm71vdEJcyYINQWYiS-2B-2F-2FG48s0eTp=
+BMDCtCyMYO0VkO2qihcO3riwbp7ouHVPeGQw3WykJ9dHnSKVIffm1gKKo22UCYH2lMUKQDe5WOn=
+4KjSa8LfqLMl7zfFv7T5OoGlSiaqoGFa92itN-2B-2BAJOs6kz1kIKLV5wXlEA1ZQlw0CuwcJ2_=
+wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjn2mEc1-=
+2BE5jp5SWe-2B74zsZN7YkfmYKsfI9N5C4k-2FTTqLl5nUdwTH-2B-2Bg4uiTAfxdIwgIlh2cAx=
+wILp-2Bs9jyK1cUxgqNFI-2FeK91X1-2FXdrVtooJbb-2FuEic3IMRjFvw6bHqPcg0yVzObXtkg=
+m2fKxc8QPqwS7n6PqJapWDDP9zChvBJtaTwe2auE75H2XrRogzH-2BC" style=3D"text-deco=
+ration:none;">Annual List of the World=E2=80=99s Most Innovative Companies =
+2021</a>
+      </li>
+<li><span>The Information: </span>
+          <a href=3D"https://u26422699.ct.sendgrid.net/ls/click?upn=3DUAuGI=
+Px-2FZEXWhAP9bG94Ixcke-2BQB2yTmGtJU8TbvDt2zAEMnlMvFFUghTxOcqhUlcIrumvjpYPep=
+uvdhOje6bAGzgsF4ssBYSrfNb8iJr7qOOAtNWTk44tSrV2-2FOZAjVyk-2BEExlmrbxVsUG2t5G=
+XolpRMtudW6BuHVahkjVUCqAmHiOj81UC16k7d4ZzbQ5NV-2Ff4K373j-2Fpe7hbJ8uEBh6cv6X=
+0Zw1F6sKUqx9uY6xmdw2kxWqDScMZzFfyiCk0kjLwrLJheTUM3FPt6EF4PhI384CloXHgR1z93Z=
+DvVQU21Srbs7XpuSb7xf5NmrI4jPUnwBpIKIy3UiZb8FHTB5BYxhfWMFYtKRRQ70tVac7bZYHGB=
+qAByTgC4WYAEnYE1votq6m1eZIg9RBR-2FMJHyCQIm71vdEJcyYINQWYiS-2B-2F-2FG48s0eTp=
+BMDCtCyMYO0Vkqr7zOIsROfs77idcBbJHJup6jD1tOfMxOX7mJJ8uZplt6BzAwAaY-2FO1kpZ5R=
+t7kAbyZ-2FZlhjLxg1t-2B1GSGxitA-3D-3DWunY_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VP=
+FU38ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjz2y92MSkJNi9cA3ATdNTMXqTgILVK2Ca0drZ4bweK=
+-2BxhJXw4lQk7Ai234e5J7aACLOxpfdWp-2BWgxpEZaq8e9Ol-2FtLCVg3Frmc-2Fge1qxxIT-2=
+Bce-2B5WD8XiBBC-2Fr5E9jlpSekS1vin64c6OwKbT4-2BqXgP-2FeWRZvDJ4eLyTprXgTENwNk=
+tZ9uGXAjqi1WsSBaFXa" style=3D"text-decoration:none;">Turing named the Most =
+Promising B2B Startup by The Information  </a>
+      </li>
+
+    </ul>
+</div>
+<br>
+<p>Turing Enterprises Inc, 1900 Embarcadero Rd, Suite 104, Palo Alto, Calif=
+ornia, 94303, USA</p>
+<br><img alt=3D'.' src=3Dhttps://mail.turing.com/api/analytics/open/173ed6f=
+fa777ba2872e501129142d01427b5a3a6256c56a7d7a75a7a7f4bfcf697e0e7145a8ed8ec7c=
+2c23f7493f4278f7feb82e477499de75cc37e82f8932d90bf0797b407cf64a6dad743ca33c5=
+c7e3b0cdf621e549fe25de4e6c38e542b0acee1a84f9023dce7d308af69f1c804d40528a5dd=
+8bb7522cb7 height=3D'1' width=3D'1'/><p style=3D'text-align: center'> Pleas=
+e use this link to <a href =3D 'https://u26422699.ct.sendgrid.net/ls/click?=
+upn=3DUAuGIPx-2FZEXWhAP9bG94I2c9bFRrdv5-2FA-2Bd0A0hoAlniJyWp5Yj19B8KLzm3MVW=
+l0Jj3Agx3nMPq8DwVzR-2F7Hh-2BLbx2ztK-2BYuazPgeExbNKdfJQ8G8hrSaAhP1P9BWgPlLCH=
+M6C3YuMtFDsWe9wMWueCEltXvBFE1RqajZ3obquNq8PE-2FcdDxgcRYGrLWM1boBXx2zJH7S-2B=
+ZRIY5JgEAokw-2FpHgZ8zZn0rVmxKTrnpP1RENjGdboRyGKmuJWsFubtPreOMIlBSP-2FWA9XQ-=
+2BZq0EviC8WT3UNQhdIQctI6dh-2BIHKOqeHMn49RY9-2BQjncSORLLWoRQ2XYUoKp52aPFw9aj=
+JytqMyqDKdNCK0YF0CyfcrmmNyzVhbGvBozSjv7WnzefqLrN3jiQ65dL2-2Blpqt6NgMzYze45o=
+jNBUCBz0xMglhYUnHJUICzmsTg9a043tNH1E_wUg6XbRT2Dc4maoRgr1Hw-2BIPVzESx8VPFU38=
+ufuNCIs1-2F5tRBUjB0KMH5TXyyPIjlZr1U-2BfcwZsdrFAdKe2N-2F2AB-2By72k5anpbq0Vx9=
+FNxCx4Dei5p-2BSFfcWGHCSkzs3Ljm4sdFH35nUxyL3Gxbxkn4rjlKxP6SettQ9q9YVkJnCG1mR=
+ILhprgdnwWAWRN0OJSqnUE8EoQuOsOXsd7-2B2FbjDaT0GTBRJWsXo9l4qrCBFrxVf9u2augvK0=
+fmHQosn' style =3D 'color: #777777'>unsubscribe</a> from all our emails.</p=
+><img src=3D"https://u26422699.ct.sendgrid.net/wf/open?upn=3D8yjgFn7N4T4Xv8=
+MxrAuJpx-2BQB-2F-2F98L4PwZCbp0r29dW8IS5EnbAyQFrhp0BVcSjsnw9CfSQY8FdMSajY41c=
+boUUVVyYJsYxhXBLRoLqPGqdyISFha4fL6sRLtV7Pq8FZHd-2FOAPTVz9PrScp-2BPzTVnw8sag=
+Bdz92br9x4g7L64IwFjG0lk2FB7I7-2BDi8RIBilF2qYSRBwi9jIAjwE9fkC8JG4KZS6aJl8DGq=
+m5TWbU6oP-2FTW2eEYSKWnyXt3hgt2D-2Bx7lXi5s9qQupPl8Ckx1Wg-3D-3D" alt=3D"" wid=
+th=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !important;width:1px=
+ !important;border-width:0 !important;margin-top:0 !important;margin-bottom=
+:0 !important;margin-right:0 !important;margin-left:0 !important;padding-to=
+p:0 !important;padding-bottom:0 !important;padding-right:0 !important;paddi=
+ng-left:0 !important;"/>
+--0f03a02e5beffeafc051423ee835e3bbe0f7e9ece5592ddb7bf951bb63a3--
