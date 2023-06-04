@@ -1,19 +1,14 @@
 from django.shortcuts import render
-from .utils import List_Infor_Email_Eml,Content_Email_Eml,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file
+from .utils import List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical
 import os
-import csv
 import email
-from email.utils import parseaddr
 from django.http import HttpResponse
-from email.parser import Parser
-from dateutil.parser import parse
-from email.header import decode_header
-from django.http import JsonResponse
 from django.shortcuts import redirect
-from pathlib import Path
 from django.core.files.uploadhandler import FileUploadHandler
 from django.conf import settings
-import shutil
+from django.core.paginator import Paginator
+import json
+
 folder_name = ''
 filecsv_name = ''
 path_file_export = ''
@@ -55,6 +50,8 @@ def export_csv(request):
         csv_infor = read_csv_file(path_file_export)
         context = {'list_email':data,'folder_name':folder_name,'csv_infor':csv_infor}
         return render(request,'app/export/csv_file.html',context)
+    
+
 
 def save_export(request):
     global folder_name
@@ -71,17 +68,7 @@ def save_export(request):
                 return response
         return HttpResponse('File not found.', status=404)
     
-def emaildatafile(request):
-    global folder_name
-    #folder_path = Path(folder_path)
-    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
-    data=List_Infor_Email_Eml(folder_path)
-    if not data:
-        return redirect("base") 
-    else:   
-        context = {'list_email':data,'folder_name':folder_name}
-        return render(request,'app/emaildatafile.html',context)
-    
+
 def choosefile_csv(request):
     global filecsv_name
     if request.method == 'POST':
@@ -96,6 +83,42 @@ def choosefile_csv(request):
             for chunk in csv_file.chunks():
                 destination.write(chunk)
         return redirect('csvdatafile')
+    
+
+
+def dashboard_csv(request):
+    global filecsv_name
+    #folder_path = Path(folder_path)
+    csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+    path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    data_detail = convert_csv_to_dataframe(path_file_csv)
+    data_day_statistical = get_data_day_statistical(data_detail)
+    data_month_dtatistical = get_data_month_statistical(data_detail)
+    data_year_dtatistical = get_data_year_statistical(data_detail)
+    data_list_from = get_list_from(data_detail)
+    data_day_statistical_json = json.dumps(data_day_statistical.to_dict('records'))
+    data_month_statistical_json = json.dumps(data_month_dtatistical.to_dict('records'))
+    data_year_statistical_json = json.dumps(data_year_dtatistical.to_dict('records'))
+    data_list_from_json = json.dumps(data_list_from.to_dict('records'))
+    context = {'filecsv_name':filecsv_name,'data_day_statistical_json':data_day_statistical_json,'data_month_statistical_json':data_month_statistical_json,'data_year_statistical_json':data_year_statistical_json,'data_list_from_json':data_list_from_json}
+    return render(request,'app/emailcsvfile/home.html',context)
+
+def dataframe_table(request):
+    global filecsv_name
+    #folder_path = Path(folder_path)
+    csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+    path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    data_detail = convert_csv_to_dataframe(path_file_csv)
+    # Chuyển đổi DataFrame thành danh sách dict
+    data_list = data_detail.to_dict('records')
+    
+    paginator = Paginator(data_list, 12)  # mỗi trang có tối đa 10 phần tử
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'filecsv_name':filecsv_name,'page_obj': page_obj}
+    return render(request, 'app/emailcsvfile/dataframe_table.html', context)
+    # csv_table = convert_csv_to_dataframe(path_file_csv)
+    # context = {'filecsv_name':filecsv_name,'csv_table':csv_table}
 
 def csvdatafile(request):
     global filecsv_name
@@ -104,8 +127,20 @@ def csvdatafile(request):
     path_file_csv = os.path.join(csv_file_path, filecsv_name) 
     csv_infor = read_csv_file(path_file_csv)
     context = {'filecsv_name':filecsv_name,'csv_infor':csv_infor}
-    return render(request,'app/Email_CsvFile/csvdatafile.html',context)
+    return render(request,'app/emailcsvfile/csv_file.html',context)
 
+
+def emaildatafile(request):
+    global folder_name
+    #folder_path = Path(folder_path)
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base") 
+    else:   
+        context = {'list_email':data,'folder_name':folder_name}
+        return render(request,'app/emaildatafile.html',context)
+    
 def base(request):
     clear_folder_in_media('uploads')
     clear_folder_in_media('export')

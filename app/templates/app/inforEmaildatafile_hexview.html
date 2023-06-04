@@ -1,5 +1,7 @@
 {% extends 'app/inforEmaildatafile.html' %}
 {%load static%}
 {% block content-right-content %}
-{{infor_email.hex_data|safe}}
+<div id="box_hex_data" >
+    {{infor_email.hex_data|safe}}
+<div>
 {% endblock content-right-content %}

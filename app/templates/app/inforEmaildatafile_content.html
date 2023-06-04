@@ -1,5 +1,6 @@
 {% extends 'app/inforEmaildatafile.html' %}
 {%load static%}
 {% block content-right-content %}
-{{infor_email.email_content|safe}}
+<iframe class="ifram_email" srcdoc="{{infor_email.email_content}}"></iframe>
+
 {% endblock content-right-content %}

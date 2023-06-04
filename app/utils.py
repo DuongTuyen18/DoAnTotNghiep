@@ -15,7 +15,8 @@ import re
 import pandas as pd
 import numpy as np
 from pandas import DataFrame
-
+from urllib.parse import unquote
+import html
 def select_folder():
     root = tk.Tk()
     root.withdraw()
@@ -31,6 +32,13 @@ def List_Infor_Email_Eml(folder_path):
         eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
         from_email = eml_message['From']
         sender_name, sender_email = parseaddr(from_email)
+        if(sender_name == ""):
+            sender_name = sender_email
+        decoded_name = decode_header(sender_name)[0][0]
+        if isinstance(decoded_name, bytes):
+            sender_name = decoded_name.decode()
+        else:
+            sender_name = decoded_name
         date_email = parse(eml_message['date']).strftime("%d/%m/%Y")
         subject_header = decode_header(eml_message['subject'])
         subject_decoded = ''
@@ -39,7 +47,7 @@ def List_Infor_Email_Eml(folder_path):
                 subject_decoded += part[0].decode(part[1] or 'utf-8')
             else:
                 subject_decoded += part[0]
-        data.append({'file_name':file_name,'subject_email': subject_decoded, 'from_email' : sender_name, 'date_email' : date_email})
+        data.append({'file_name':file_name,'subject_email': subject_decoded, 'sender_name' : sender_name, 'date_email' : date_email})
     return data
 
 def Content_Email_Eml(file_path):
@@ -68,7 +76,41 @@ def read_csv_file(csv_file_path):
             for row in reader:
                 data += ','.join(row) + '\n'
         return data
-def convert_csv_to_datafarm(csv_file_path):
+    
+def get_list_from(data_detail):
+    list_from = data_detail.From.value_counts().reset_index()
+    list_from.columns = ['from', 'counts']
+    return list_from
+
+
+def get_data_day_statistical(data_detail):
+    data_day_statistical=pd.DataFrame()
+    day_statistical = pd.DataFrame()
+    data_day_statistical["Day"]=data_detail['Date'].apply(lambda x: x.day)
+    day_statistical["Day"]=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    day_statistical["counts"] = day_statistical["Day"].map(data_day_statistical["Day"].value_counts())
+    day_statistical["counts"] = day_statistical["counts"].fillna(0)
+    return day_statistical
+
+def get_data_month_statistical(data_detail):
+    data_month_statistical=pd.DataFrame()
+    month_statistical = pd.DataFrame()
+    data_month_statistical["Month"]=data_detail['Date'].apply(lambda x: x.month)
+    month_statistical["Month"]=[1,2,3,4,5,6,7,8,9,10,11,12]
+    month_statistical["counts"] = month_statistical["Month"].map(data_month_statistical["Month"].value_counts())
+    month_statistical["counts"] = month_statistical["counts"].fillna(0)
+    return month_statistical
+
+def get_data_year_statistical(data_detail):
+    data_year_statistical=pd.DataFrame()
+    year_statistical = pd.DataFrame()
+    data_year_statistical["Year"]=data_detail['Date'].apply(lambda x: x.year)
+    year_statistical["Year"]=pd.Series(range(min(data_year_statistical["Year"]), max(data_year_statistical["Year"]) + 1))
+    year_statistical["counts"] = data_year_statistical["Year"].map(data_year_statistical["Year"].value_counts())
+    year_statistical["counts"] = year_statistical["counts"].fillna(0)
+    return year_statistical
+
+def convert_csv_to_dataframe(csv_file_path):
     data = pd.read_csv(csv_file_path)
     # Chuẩn hóa dữ liệu, dùng biến data_detail để lưu dữ liệu cần thiết
     arr_message_detail = []
@@ -111,6 +153,15 @@ def inforEmail(file_path):
         cc = ''
     from_email = eml_message['From']
     sender_name, sender_email = parseaddr(from_email)
+    decoded_name = decode_header(sender_name)[0][0]
+    if isinstance(decoded_name, bytes):
+        sender_name = decoded_name.decode()
+    else:
+        sender_name = decoded_name
+    if(sender_name==""):
+        from_email ="<" + sender_email + ">"
+    else:
+        from_email = sender_name +" "+ "<" + sender_email + ">"
     date_email = parse(eml_message['date']).strftime("%d/%m/%Y")
     subject_header = decode_header(eml_message['subject'])
     subject_decoded = ''
@@ -162,6 +213,14 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
             message_id = eml_message['Message-ID']
             date = eml_message['Date']
             from_email = eml_message['From']
+            sender_name, sender_email = parseaddr(from_email)
+            if(sender_name == ""):
+                sender_name = sender_email
+            decoded_name = decode_header(sender_name)[0][0]
+            if isinstance(decoded_name, bytes):
+                sender_name = decoded_name.decode()
+            else:
+                sender_name = decoded_name
             to_email = eml_message['To']
             subject = decode_header(eml_message['subject'])
             subject_decoded = ''
@@ -184,7 +243,7 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
                     text_content = html2text.html2text(part_content)
                     # Thêm nội dung vào biến lưu trữ
                     email_content += text_content
-            csv_row = f'{"Message-ID"}: {message_id}\n{"Date"}: {date}\n{"From"}: {from_email}\n{"To"}: {to_email}\n{"Subject"}: {subject_decoded}\n{"Mime-Version"}: {mime_version}\n{"Content-Type"}: {content_type}\n{"Content-Transfer-Encoding"}: {content_encoding}\n{"Cc"}: {x_cc}\n{"Bcc"}: {x_bcc}\n\n{email_content}'
+            csv_row = f'{"Message-ID"}: {message_id}\n{"Date"}: {date}\n{"From"}: {sender_name}\n{"To"}: {to_email}\n{"Subject"}: {subject_decoded}\n{"Mime-Version"}: {mime_version}\n{"Content-Type"}: {content_type}\n{"Content-Transfer-Encoding"}: {content_encoding}\n{"Cc"}: {x_cc}\n{"Bcc"}: {x_bcc}\n\n{email_content}'
             # Định dạng thành chuỗi tương ứng
             writer.writerow([file_name, csv_row])   
     return  csv_file_path

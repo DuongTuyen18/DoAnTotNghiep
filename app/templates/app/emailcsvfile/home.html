@@ -1,0 +1,485 @@
+{% extends 'app/emailcsvfile/csvdatafile.html' %} {%load static%} 
+{% block right-content %}
+<div class="container-dashboard py-4">
+  <div class="row mt-4">
+      <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
+          <div class="card z-index-2">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                  <div class="bg-gradient-primary background-chart-day shadow-primary border-radius-lg py-3 pe-1">
+                      <div class="chart">
+                          <canvas id="chart-day" class="chart-canvas" height="170"></canvas>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <h6 class="mb-0">BIỂU ĐỒ THỐNG KÊ THEO NGÀY</h6>
+                  <p class="text-sm chart-title">
+                      Biểu đồ thống kê số lượng email được gửi trong các ngày
+                  </p>
+              </div>
+          </div>
+      </div>
+      <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
+          <div class="card z-index-2">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                  <div
+                      class="bg-gradient-primary background-chart-month shadow-primary border-radius-lg py-3 pe-1">
+                      <div class="chart">
+                          <canvas id="chart-month" class="chart-canvas" height="170"></canvas>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <h6 class="mb-0">BIỂU ĐỒ THỐNG KÊ THEO THÁNG</h6>
+                  <p class="text-sm chart-title">
+                      Biểu đồ thống kê số lượng email được gửi trong các tháng
+                  </p>
+              </div>
+          </div>
+      </div>
+      <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
+          <div class="card z-index-2">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                  <div
+                      class="bg-gradient-primary background-chart-year shadow-primary border-radius-lg py-3 pe-1">
+                      <div class="chart">
+                          <canvas id="chart-year" class="chart-canvas" height="170"></canvas>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <h6 class="mb-0">BIỂU ĐỒ THỐNG KÊ THEO NĂM</h6>
+                  <p class="text-sm chart-title">
+                      Biểu đồ thống kê số lượng email được gửi trong các năm
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row mb-4">
+      <div class="col-lg-7 col-md-7">
+          <div class="card">
+              <div class="card-header pb-0">
+                  <div class="row">
+                      <div class="col-lg-6 col-7">
+                          <h6>BẢNG DANH SÁCH NHỮNG NGƯỜI GỬI THƯ</h6>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-body px-0 pb-2">
+                  <div class="table-responsive">
+                      <table class="table table-hover" id="table_from">
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-5 col-md-5">
+          <div class="card h-100">
+              <div class="card-header pb-0">
+                  <h6>Orders overview</h6>
+                  <p class="text-sm">
+                      <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
+                      <span class="font-weight-bold">24%</span> this month
+                  </p>
+              </div>
+              <div class="card-body p-3">
+                  <div class="timeline timeline-one-side">
+                      <div class="timeline-block mb-3">
+                          <span class="timeline-step">
+                              <i class="material-icons text-success text-gradient">notifications</i>
+                          </span>
+                          <div class="timeline-content">
+                              <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
+                              <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
+                          </div>
+                      </div>
+                      <div class="timeline-block mb-3">
+                          <span class="timeline-step">
+                              <i class="material-icons text-danger text-gradient">code</i>
+                          </span>
+                          <div class="timeline-content">
+                              <h6 class="text-dark text-sm font-weight-bold mb-0">New order #1832412</h6>
+                              <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 11 PM</p>
+                          </div>
+                      </div>
+                      <div class="timeline-block mb-3">
+                          <span class="timeline-step">
+                              <i class="material-icons text-info text-gradient">shopping_cart</i>
+                          </span>
+                          <div class="timeline-content">
+                              <h6 class="text-dark text-sm font-weight-bold mb-0">Server payments for April</h6>
+                              <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 9:34 PM</p>
+                          </div>
+                      </div>
+                      <div class="timeline-block mb-3">
+                          <span class="timeline-step">
+                              <i class="material-icons text-warning text-gradient">credit_card</i>
+                          </span>
+                          <div class="timeline-content">
+                              <h6 class="text-dark text-sm font-weight-bold mb-0">New card added for order
+                                  #4395133</h6>
+                              <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 DEC 2:20 AM</p>
+                          </div>
+                      </div>
+                      <div class="timeline-block mb-3">
+                          <span class="timeline-step">
+                              <i class="material-icons text-primary text-gradient">key</i>
+                          </span>
+                          <div class="timeline-content">
+                              <h6 class="text-dark text-sm font-weight-bold mb-0">Unlock packages for development
+                              </h6>
+                              <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">18 DEC 4:54 AM</p>
+                          </div>
+                      </div>
+                      <div class="timeline-block">
+                          <span class="timeline-step">
+                              <i class="material-icons text-dark text-gradient">payments</i>
+                          </span>
+                          <div class="timeline-content">
+                              <h6 class="text-dark text-sm font-weight-bold mb-0">New order #9583120</h6>
+                              <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    Load_table_list_from();
+   
+  });
+  function Load_table_list_from(){
+    var list_from = JSON.parse("{{ data_list_from_json|escapejs }}");
+    var tabletext = '<thead><tr><th style="width:10%">STT</th><th style="width:50%">Người gửi</th><th style="width:20%">Số lần</th "><th style="width:20%">Người nhận</th></tr></thead><tbody>';
+      var i = 1;
+      $.each(list_from, function (key, item) {
+          tabletext += "<tr><td>" + i + "</td><td>" + item.from + "</td><td>" + item.counts + '</td><td>xem</td></tr>';
+          i = i + 1;
+      });
+      tabletext += "</tbody>";
+      $('#table_from').html(tabletext);
+      loadTableFrom();
+  }
+  function loadTableFrom() {
+    $('table[id=table_from]').each(function () {
+        var table1 = $(this).DataTable({
+            destroy: true,
+            stateSave: true,
+            searching: false,
+            lengthChange: false,
+            ordering: false,
+        });
+    });
+};
+  var data_day_statistical = JSON.parse("{{ data_day_statistical_json|escapejs }}");
+  // Truy cập các giá trị "Day"
+  var data_day = data_day_statistical.map((item) => item.counts);
+  var ctx_day = document.getElementById("chart-day").getContext("2d");
+
+  new Chart(ctx_day, {
+    type: "bar",
+    data: {
+      labels: [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+      ],
+      datasets: [
+        {
+          label: "Sum",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "rgba(255, 255, 255, .8)",
+          data: data_day,
+          maxBarThickness: 6,
+        },
+      ],
+    },
+
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      interaction: {
+        intersect: false,
+        mode: "index",
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [5, 5],
+            color: "rgba(255, 255, 255, .2)",
+          },
+          ticks: {
+            suggestedMin: 0,
+            suggestedMax: 500,
+            beginAtZero: true,
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              family: "Roboto",
+              style: "normal",
+              lineHeight: 2,
+            },
+            color: "#fff",
+          },
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [5, 5],
+            color: "rgba(255, 255, 255, .2)",
+          },
+          ticks: {
+            display: true,
+            color: "#f8f9fa",
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              family: "Roboto",
+              style: "normal",
+              lineHeight: 2,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  var data_month_statistical = JSON.parse("{{ data_month_statistical_json|escapejs }}");
+  // Truy cập các giá trị "Day"
+  var data_month = data_month_statistical.map((item) => item.counts);
+  var ctx_month = document.getElementById("chart-month").getContext("2d");
+
+  new Chart(ctx_month, {
+    type: "line",
+    data: {
+      labels: [
+        "Tháng 1",
+        "Tháng 2",
+        "Tháng 3",
+        "Tháng 4",
+        "Tháng 5",
+        "Tháng 6",
+        "Tháng 7",
+        "Tháng 8",
+        "Tháng 9",
+        "Tháng 10",
+        "Tháng 11",
+        "Tháng 12",
+      ],
+      datasets: [
+        {
+          label: "Sum",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: data_month,
+          maxBarThickness: 6,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      interaction: {
+        intersect: false,
+        mode: "index",
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [5, 5],
+            color: "rgba(255, 255, 255, .2)",
+          },
+          ticks: {
+            display: true,
+            color: "#f8f9fa",
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              family: "Roboto",
+              style: "normal",
+              lineHeight: 2,
+            },
+          },
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+            borderDash: [5, 5],
+          },
+          ticks: {
+            display: true,
+            color: "#f8f9fa",
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              family: "Roboto",
+              style: "normal",
+              lineHeight: 2,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  var data_year_statistical = JSON.parse("{{ data_year_statistical_json|escapejs }}");
+  // Truy cập các giá trị "Day"
+  var labels = data_year_statistical.map((item) => item.Year.toString());
+  var data_year = data_year_statistical.map((item) => item.counts);
+  var ctx_year = document.getElementById("chart-year").getContext("2d");
+
+  new Chart(ctx_year, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Sum",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: data_year,
+          maxBarThickness: 6,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      interaction: {
+        intersect: false,
+        mode: "index",
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [5, 5],
+            color: "rgba(255, 255, 255, .2)",
+          },
+          ticks: {
+            display: true,
+            color: "#f8f9fa",
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              family: "Roboto",
+              style: "normal",
+              lineHeight: 2,
+            },
+          },
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+            borderDash: [5, 5],
+          },
+          ticks: {
+            display: true,
+            color: "#f8f9fa",
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              family: "Roboto",
+              style: "normal",
+              lineHeight: 2,
+            },
+          },
+        },
+      },
+    },
+  });
+</script>
+
+{% endblock right-content %}

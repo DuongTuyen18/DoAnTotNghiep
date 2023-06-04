@@ -1,0 +1,27 @@
+        /* CSS để tạo bảng đẹp */
+
+#table_dataframe{
+    table-layout: fixed;
+    width: 100%;
+}
+
+#table_dataframe td{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.page_table{
+    margin-top: 15px;
+}
+#table-box{
+    margin-top: 60px;
+    padding: 0px 20px;
+    height: calc(100% - 60px);
+}
+#table{
+    height: calc(100% - 110px);
+    overflow: auto;
+}
+/* ------------------------ */
+

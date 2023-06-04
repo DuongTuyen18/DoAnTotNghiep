@@ -1,0 +1,471 @@
+Delivered-To: dvt18012000@gmail.com
+Received: by 2002:a05:6a20:7d82:b0:59:1366:4226 with SMTP id v2csp286112pzj;
+        Fri, 17 Sep 2021 22:53:19 -0700 (PDT)
+X-Received: by 2002:a17:902:654d:b0:13a:50b5:da29 with SMTP id d13-20020a170902654d00b0013a50b5da29mr12928447pln.68.1631944398785;
+        Fri, 17 Sep 2021 22:53:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1631944398; cv=none;
+        d=google.com; s=arc-20160816;
+        b=nWhQG2kvEGjzWIlxoCYB8nDTk2dg/DITWv0ypTVcFIb/kKuN3OZVL5D7zeynxMahyO
+         +sah7fc5zSNZHhykHgzap+HhYiw2WkvJuRn0F9ioPCNomVs5UvOVDCnowUtYVtkOLjWf
+         YAeI1EUH5f6c2qvMK6QkG4agu5tey2q3RssfZF6HnAn64uDBu5Ys3P2Id0WhAfTrevkv
+         o3gEFd0nGm6IdZuWf+Swd6cyrgVndJzK92mLwPARlVM9IqvONNCvzS0AMaCvMCAq80bT
+         xXbAxuy+VdW+OtEtCSATOO1ZNUZg+W7R6by/nd1jPKhisgnPnZnfx/hLY3FOaqYl9akr
+         6JQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:date:message-id:subject:to:from:dkim-signature;
+        bh=ceZj6J9a3j6vdz+w+ECfgBJB81DNMNkVZxuWdd1YTxg=;
+        b=OelzuHfZJVmG3NNPHjVPgmO9pNCCOl8vnz92gXzhUbbbGjdDcnGyjjdRlLQzqJDqMz
+         ZB2+SZJXpOoiAaxoudfXcertBdsHHc+6UY4vaYtfK+BMAYDlE9uFV+69Ka3NiGwxOjJ7
+         yqAqDbFfnWWpV9nu/IPjZh3ANpIZh2ueatsihwXxsuJjvBaILHf2+cVSjO77sGPx9V+t
+         KcJE/ylUTARIH88xNWhsXeZCpSWouTJfKexAqzl4xeQAZmmiEO9wDIgZnav5VzETT+Bo
+         SBXMgfKgcq5b22n/44iZNGcU5jD1A3c6vj+afxOVphPSTm2YRPGCreeRyTWTArjSRnbp
+         zGAw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@getambee-com.20210112.gappssmtp.com header.s=20210112 header.b=fOON1CRb;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of alerts@getambee.com) smtp.mailfrom=alerts@getambee.com
+Return-Path: <alerts@getambee.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id c7sor5027005plo.45.2021.09.17.22.53.18
+        for <dvt18012000@gmail.com>
+        (Google Transport Security);
+        Fri, 17 Sep 2021 22:53:18 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of alerts@getambee.com) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@getambee-com.20210112.gappssmtp.com header.s=20210112 header.b=fOON1CRb;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of alerts@getambee.com) smtp.mailfrom=alerts@getambee.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=getambee-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:subject:message-id:date:mime-version;
+        bh=ceZj6J9a3j6vdz+w+ECfgBJB81DNMNkVZxuWdd1YTxg=;
+        b=fOON1CRbHadOL8Zr2Wq/Scks/vueFUykHRhbYKTYQeAc6Nz5PiGKonzC2BaDt0mKGI
+         8YK/RUjEWFLkq7NfO9WqsFCQhQuU12GbthB7kipy2EE5iftlNOnYGef/7CXkz6xnFFvJ
+         GXin/fXNulTSXRmYbv6s7Nbkb2wAUBIxqSRCIyDg+EcuB93RnzuIHEDNCo9A/2ojxPHR
+         r3DwYxIzmXeJEsVzkr1PrPXVbtHGNSQpt2Z51kv8YDj5Pxd7T0DgIlL+Y4crHXDIo2id
+         6fMFvxDSZNjbzLaSZ6EMCnEyLn+YHv6dq6KLLjqzIQXA8JdKVFEZ32ApBSZJHJzEu4Rx
+         mR6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:message-id:date:mime-version;
+        bh=ceZj6J9a3j6vdz+w+ECfgBJB81DNMNkVZxuWdd1YTxg=;
+        b=d3FKKKDdYECplg+LUTPY+CngYMIfeiIrIBp9T9IO3mP0sbTWQ4sXvfzwPo/pnqGdwg
+         QbvfwPHEvXdLi+ppHe4nJtJeHff+tAn/FlIp6YBIPr1GRsI7RUPJOg7rcc9EyEYgsMob
+         pUNP0s8DstLa/v74s80lKRAxVf17fG+aYn4NsvT+Dd08TwU0UOWUhnW9pplTKA74EdKp
+         vcQL+aR0cP3/8GfYIs5qVu8bEXAQVWVt2dCc6u1JL8ZxfxoPgfLKF62jRwmvWBpNTwVd
+         zyME3rg4AUALM/7smut/DYu1Y0PmtYsdM3ReqT/0NMuz2Tjpm+bqa9ESqT7qOPHDya26
+         hOWw==
+X-Gm-Message-State: AOAM531JJAu/oZdhtcAotTf211b6nhfkIRsySMyorMBj7kgwjurf4Pri
+	DFfcZS2eCsnrE0afoZGaoa9V/n9bLyuoBQ==
+X-Google-Smtp-Source: ABdhPJyajY5s8evAGG7uiAIM34hmvd6zSXb7cvovO5H7nSOYd9g0KSfx7b4QuqNI9GEhyH06eF3Acg==
+X-Received: by 2002:a17:902:d202:b0:13a:709b:dfb0 with SMTP id t2-20020a170902d20200b0013a709bdfb0mr13027860ply.34.1631944397661;
+        Fri, 17 Sep 2021 22:53:17 -0700 (PDT)
+Return-Path: <alerts@getambee.com>
+Received: from [127.0.0.1] (ec2-65-1-106-58.ap-south-1.compute.amazonaws.com. [65.1.106.58])
+        by smtp.gmail.com with ESMTPSA id q11sm7311239pjf.14.2021.09.17.22.53.15
+        for <dvt18012000@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Sep 2021 22:53:16 -0700 (PDT)
+From: alerts@getambee.com
+X-Google-Original-From: no-reply@getambee.com
+Content-Type: multipart/alternative;
+ boundary="--_NmP-75b0abd4b4457b96-Part_1"
+To: dvt18012000@gmail.com
+Subject: Welcome to Ambee
+Message-ID: <a814bc2c-05a6-aa73-4a7d-b9eac55f6a9a@getambee.com>
+Date: Sat, 18 Sep 2021 05:53:14 +0000
+MIME-Version: 1.0
+
+----_NmP-75b0abd4b4457b96-Part_1
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+
+Click on link then reset your passord
+----_NmP-75b0abd4b4457b96-Part_1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang=3D"en">
+<head>
+<title>Ambee</title>
+<meta charset=3D"utf-8">
+<meta name=3D"viewport" content=3D"width=3Ddevice-=
+width">
+<style type=3D"text/css">
+    #outlook a{padding:0;}
+    .ReadMsgBody{width:100%;} .ExternalClass{width:100%;}
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass =
+font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+    body, table, td, a{-webkit-text-size-adjust:100%; =
+-ms-text-size-adjust:100%;}
+    table, td{mso-table-lspace:0pt; =
+mso-table-rspace:0pt;}
+    img{-ms-interpolation-mode:bicubic;}
+    body{margin:0; padding:0;}
+    img{border:0; height:auto; =
+line-height:100%; outline:none; text-decoration:none;}
+    table{border-collapse:collapse !important;}
+    body{height:100% !=
+important; margin:0; padding:0; width:100% !important;}
+    .appleBody a {color:#68440a; text-decoration: none;}
+    .appleFooter a {color:#999999; text-decoration: none;}
+    @media screen and (max-width: 525px) {
+        table[class=3D"wrapper"]=
+{
+          width:100% !important;
+        }
+        td[class=3D"logo"]{
+          text-align: left;
+          padding: 20px 0 20px 0 !important;
+        }
+        td[class=3D"logo"] img{
+          margin:0 auto!=
+important;
+        }
+        td[class=3D"mobile-hide"]{
+          display:none;}
+
+        img[class=3D"mobile-hide"]{
+          display: none !important;
+        }
+        =
+img[class=3D"img-max"]{
+          max-width: 80% !important;
+          height:auto !important;
+        }
+        =
+table[class=3D"responsive-table"]{
+          width:100%!important;
+        }
+        td[class=3D"padding"]{
+          padding: 10px 5% 15px 5%=
+ !important;
+        }
+        td[class=3D"padding-copy"]{
+          text-align: center !important;
+        }
+        =
+td[class=3D"padding-meta"]{
+          padding: 30px 5% 0px 5% !important;
+          text-align: center !important;
+        }
+        =
+td[class=3D"no-pad"]{
+          padding: 0 0 20px 0 !important;
+        }
+        td[class=3D"no-padding"]{
+          padding: 0 !important;
+        }
+        td[class=3D"section-padding"]{
+          padding: 30px =
+15px 30px 15px !important;
+        }
+        td[class=3D"section-padding-bo=
+ttom-image"]{
+          padding: 30px 15px 30px 15px !important;
+        }
+        td[class=3D"mobile-wrapper"]{
+            padding: 10px 5% 15px 5% =
+!important;
+        }
+        table[class=3D"mobile-button-container"]{
+            margin:0 auto;
+            width:80% !important;
+        }
+        a[class=3D"mobile-button"]{
+            font-size: 16px !important;
+        }
+
+    }
+</style>
+</head>
+<body style=3D"margin: 0; padding: 0;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+    <tr>
+        <td align=3D"center" style=3D"padding: 30px 0px 30px 0px;"=
+ class=3D"section-padding">
+            <table border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" width=3D"600" class=3D"responsive-table=
+">
+                <tr>
+                       <td background=3D"" =
+bgcolor=3D"#E7F6F0" width=3D"600" valign=3D"top">
+  <div>
+      <br />
+      <br />
+      <br />
+                        <table align=3D"center" =
+width=3D"80%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+bgcolor=3D"#ffffff">
+                            <tr>
+                                <td>
+                                    =
+<table align=3D"center"  width=3D"80%" border=3D"0" cellspacing=3D"0" =
+bgcolor=3D"#ffffff" cellpadding=3D"0">
+                                    =
+    <tbody>
+                                             <tr>
+                                                  <td =
+class=3D"padding-copy">
+                                                   =
+   <table width=3D"85%" align=3D"center" bgcolor=3D"#ffffff" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0">
+                                      =
+                    <tr>
+                                                  =
+            <td cellpadding=3D"0">
+                                        =
+                          <br />
+                                          =
+                        <a href=3D"https://getambee.com/" =
+target=3D"_blank"><img src=3D"https://assetambee.s3-us-west-2.amazonaws.=
+com/ambeelogo.png" width=3D"100" border=3D"0" alt=3D"ambee logo" =
+style=3D"width: 5rem; display: block; padding: 50px 0 5px 0; transform: =
+scale(1.3);color: #666666; text-decoration: none; font-family: Roboto, =
+Helvetica, Arial, sans-serif;font-size: 16px;" class=3D"img-max"></a>
+                                                                  <br />
+                                                              </td>
+                                                            </tr>
+                                                        </table>
+                                                  </td>
+                                              </tr>
+                                        </tbody>
+                          =
+          </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <!=
+-- COPY -->
+                                    <table width=3D"80%" =
+align=3D"center" border=3D"0" bgcolor=3D"#ffffff" cellspacing=3D"0" =
+cellpadding=3D"0">
+                                        <tr>
+                                            <td align=3D"center" =
+style=3D"font-size: 25px; font-weight:400; font-family: Roboto, Helvetica, =
+Arial, sans-serif; color: #333333; padding: 8px 30px 8px =
+30px;text-align:left;" class=3D"padding-copy">Welcome to Ambee!</td>
+                                        </tr>
+                             =
+           <tr>
+                                            <td =
+align=3D"center" style=3D"padding: 20px 30px 20px 30px; text-align:justify;=
+ font-size: 13px; font-weight:400; line-height: 17px; font-family: Roboto, =
+Helvetica, Arial, sans-serif; color: #666666;" class=3D"padding-copy">Thank=
+ you for signing up at getambee.com! You=E2=80=99re one step away from =
+using Ambee=E2=80=99s APIs to enhance your innovative products, projects, =
+and more. Our users come from a wide range of industries including digital =
+health, pharma, mobility, insurance, academia, and advanced analytics. =
+</td>
+                                        </tr>
+                                        <tr>
+                              =
+              <td align=3D"center" style=3D"padding: 5px 0px 0px 30px; =
+text-align:justify; font-size: 13px; font-weight:400; line-height: 17px; =
+font-family: Roboto, Helvetica, Arial, sans-serif; color: #666666;" =
+class=3D"padding-copy">What can you expect:</td>
+                          =
+              </tr>
+                                        <tr>
+                                            <td align=3D"center" =
+style=3D"padding: 0px 30px 0px 0px; text-align:left; font-size: 13px; =
+font-weight:400; line-height: 17px; font-family: Roboto, Helvetica, Arial, =
+sans-serif; color: #666666;" class=3D"padding-copy">
+                                                <ul>
+                                                    <li =
+style=3D"text-align: justify;">100 API calls/day</li>
+                                                    <li =
+style=3D"text-align: justify;">A single API key for all the APIs (Air, =
+Weather, Pollen & more)</li>
+                                              =
+  </ul>
+                                            </td>
+                                        </tr>
+                             =
+           <tr>
+                                            <td =
+align=3D"center" style=3D"padding: 20px 30px 20px 30px; text-align:justify;=
+ font-size: 13px; font-weight:400; line-height: 17px; font-family: Roboto, =
+Helvetica, Arial, sans-serif; color: #666666;" class=3D"padding-copy">You =
+can start using your account to access our granular real-time data. Click =
+the below button to log in.</td>
+                                        =
+</tr>
+                                        <tr>
+                        =
+                    <td>
+                                                =
+<table align=3D"center" width=3D"80%" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"10" class=3D"mobile-button-container" bgcolor=3D"#ffffff">
+                                                    <tr>
+                                                        <td =
+align=3D"center" style=3D"padding: 20px 0px 20px 0px;" =
+class=3D"padding-copy">
+                                                   =
+         <a href=3D"https://api-dashboard.getambee.com/#/confirm-account?=
+token=3DeyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTQ1N2VjYWI2Nz=
+FmZmQ4ZDY2YzkxNDYiLCJlbWFpbCI6ImR2dDE4MDEyMDAwQGdtYWlsLmNvbSIsIkNvbmZpcm1hd=
+GlvbiI6dHJ1ZSwiaWF0IjoxNjMxOTQ0Mzk0LCJleHAiOjE2MzE5ODc1OTQsImF1ZCI6Imh0dHBz=
+Oi8vZ2V0YW1iZWUuY29tIiwiaXNzIjoiQW1iZWUiLCJzdWIiOiJhZG1pbkBnZXRhbWJlZS5jb20=
+ifQ.KRKeezpafnfcx9FuBLYurIqDAALv_ldYSX7RzKnhzDJDagOPFS2oQZPV4Oq6VdxGz7RV5Ab=
+lQzyjy_kGtFLj6w" target=3D"_blank" style=3D"font-size: 16px; font-family: =
+Roboto, Helvetica, Arial, sans-serif; font-weight: normal; color: #ffffff; =
+text-decoration: none;" class=3D"mobile-button">
+                          =
+                                  <table border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" class=3D"responsive-table" bgcolor=3D"blue" width=3D"90%"=
+ align=3D"center" style=3D"border-radius: 3px; -webkit-border-radius: 3px; =
+-moz-border-radius: 3px;">
+                                                =
+                <tr>
+                                                      =
+              <td align=3D"center" style=3D"padding: 10px;">
+                                                                        =
+Verify Your Ambee Account
+                                                 =
+                   <br />
+                                                 =
+                   </td>
+                                                  =
+              </tr>
+                                                       =
+        =20
+                                                               =
+=20
+                                                            </table>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                         =
+               </tr>
+                                        <tr>
+                                            <td align=3D"center" =
+style=3D"padding: 20px 30px 20px 30px; text-align:center; font-size: 13px; =
+font-weight:400; line-height: 17px; font-family: Roboto, Helvetica, Arial, =
+sans-serif; color: #666666;" class=3D"padding-copy">Or</td>
+                                        </tr>
+                             =
+           <tr>
+                                            <td =
+align=3D"center" style=3D"padding: 20px 30px 20px 30px; text-align:justify;=
+ font-size: 13px; font-weight:400; line-height: 17px; font-family: Roboto, =
+Helvetica, Arial, sans-serif; color: #666666;" class=3D"padding-copy">Click=
+ on this link <p>https://api-dashboard.getambee.com/#/confirm-account?=
+token=3DeyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTQ1N2VjYWI2Nz=
+FmZmQ4ZDY2YzkxNDYiLCJlbWFpbCI6ImR2dDE4MDEyMDAwQGdtYWlsLmNvbSIsIkNvbmZpcm1hd=
+GlvbiI6dHJ1ZSwiaWF0IjoxNjMxOTQ0Mzk0LCJleHAiOjE2MzE5ODc1OTQsImF1ZCI6Imh0dHBz=
+Oi8vZ2V0YW1iZWUuY29tIiwiaXNzIjoiQW1iZWUiLCJzdWIiOiJhZG1pbkBnZXRhbWJlZS5jb20=
+ifQ.KRKeezpafnfcx9FuBLYurIqDAALv_ldYSX7RzKnhzDJDagOPFS2oQZPV4Oq6VdxGz7RV5Ab=
+lQzyjy_kGtFLj6w</p></td>
+                                        </tr>
+                                        <tr>
+                              =
+              <td align=3D"center" style=3D"padding: 20px 30px 20px 30px; =
+text-align:justify; font-size: 13px; font-weight:400; line-height: 17px; =
+font-family: Roboto, Helvetica, Arial, sans-serif; color: #666666;" =
+class=3D"padding-copy">If you=E2=80=99d like to unlock your usage limits or=
+ would like to know more about some of the exciting ways in which companies=
+ are using our APIs, write to Jaideep at jaideep@getambee.com.</td>
+                                        </tr>
+                             =
+           <tr>
+                                            <td =
+align=3D"center" style=3D"padding: 10px 30px 0px 30px; text-align:justify; =
+font-size: 12px; font-weight:200; line-height: 17px; font-family: Roboto, =
+Helvetica, Arial, sans-serif; color: #666666;" class=3D"padding-copy">If =
+you face any issues or have any queries with accessing your account or =
+using the APIs, kindly write to us at support@getambee.com.</td>
+                                        </tr>
+                             =
+           <tr>
+                                            <td =
+align=3D"center" style=3D"padding: 20px 30px 20px 30px; text-align:left; =
+font-size: 13px; font-weight:400; line-height: 17px; font-family: Roboto, =
+Helvetica, Arial, sans-serif; color: #666666;" class=3D"padding-copy">Cheer=
+s!<br /> Team Ambee</td>
+                                            <br />
+
+                                        </tr>
+                            =
+        </table>
+                                </td>
+                            </tr>
+                           =20
+                            <tr>
+                                <td =
+align=3D"center" style=3D"padding: 20px 30px 20px 30px; text-align:center; =
+font-size: 11px; font-weight:400; line-height: 15px; font-family: Roboto, =
+Helvetica, Arial, sans-serif; color: #666666;" class=3D"padding-copy">If =
+you didn=E2=80=99t sign up for this, please ignore this email.</td>
+                            </tr>
+                        </table>
+                        <table align=3D"center" border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" width=3D"80%">
+                        =
+   <tr>
+                                <td align=3D"center">
+                                    <table width=3D"80%" align=3D"center" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+                         =
+               <tr>
+                                            <td =
+style=3D"padding: 30px 0px 10px 0px;">
+                                    =
+            <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+align=3D"center" class=3D"responsive-table">
+                              =
+                      <tr>
+                                                =
+        <td align=3D"center" valign=3D"middle" style=3D"font-size: 12px; =
+line-height: 18px; font-family: Roboto, Helvetica, Arial, sans-serif; =
+color:#666666;">
+                                                          =
+  <span class=3D"appleFooter" style=3D"color:#666666;padding:10px 10px 10px=
+ 10px;">Follow Us On:</span>
+                                              =
+              <br />
+                                                      =
+      <a class=3D"original-only" style=3D"color: #666666; text-decoration: =
+none;" href=3D"https://www.linkedin.com/company/getambee/" =
+target=3D"_blank"><img src=3D"https://assetambee.s3-us-west-2.amazonaws.=
+com/email/linkedin_logo.png" alt=3D"Linkedin" border=3D"0" width=3D"30" =
+height=3D"30" style=3D"margin:15px 10px 15px 10px;"></a>
+                                                            <a =
+style=3D"color: #666666; text-decoration: none;" href=3D"https://www.=
+facebook.com/getambee/" target=3D"_blank"><img src=3D"https://assetambee.=
+s3-us-west-2.amazonaws.com/email/facebook_logo.png" alt=3D"Facebook" =
+border=3D"0" width=3D"30" height=3D"30" style=3D"margin:15px 10px 15px =
+10px;"></a>
+                                                            <a =
+style=3D"color: #666666; text-decoration: none;" href=3D"https://twitter.=
+com/get_ambee" target=3D"_blank"><img src=3D"https://assetambee.=
+s3-us-west-2.amazonaws.com/email/twitter_logo.jpeg" alt=3D"Twitter" =
+border=3D"0" width=3D"30" height=3D"30" style=3D"margin:15px 10px 15px =
+10px;"></a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                         =
+               </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                            </tr>
+                        </table>
+                      </div>
+</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+
+</body>
+</html>
+----_NmP-75b0abd4b4457b96-Part_1--
