@@ -78,8 +78,9 @@ def read_csv_file(csv_file_path):
         return data
     
 def get_list_from(data_detail):
-    list_from = data_detail.From.value_counts().reset_index()
-    list_from.columns = ['from', 'counts']
+
+    list_from = data_detail.groupby(['Sender_name', 'Sender_email']).size().reset_index()
+    list_from.columns = ['sender_name', 'sender_email', 'counts']
     return list_from
 
 
@@ -106,7 +107,7 @@ def get_data_year_statistical(data_detail):
     year_statistical = pd.DataFrame()
     data_year_statistical["Year"]=data_detail['Date'].apply(lambda x: x.year)
     year_statistical["Year"]=pd.Series(range(min(data_year_statistical["Year"]), max(data_year_statistical["Year"]) + 1))
-    year_statistical["counts"] = data_year_statistical["Year"].map(data_year_statistical["Year"].value_counts())
+    year_statistical["counts"] = year_statistical["Year"].map(data_year_statistical["Year"].value_counts())
     year_statistical["counts"] = year_statistical["counts"].fillna(0)
     return year_statistical
 
@@ -115,11 +116,11 @@ def convert_csv_to_dataframe(csv_file_path):
     # Chuẩn hóa dữ liệu, dùng biến data_detail để lưu dữ liệu cần thiết
     arr_message_detail = []
     for item in data.message:
-        x=re.split(r'Message-ID: |\nDate: |\nFrom: |\nTo: |\nSubject: |\nMime-Version: |\nContent-Type: |\nContent-Transfer-Encoding: |\nCc: |\nBcc: |\n\n', item,maxsplit=11)
+        x=re.split(r'Message-ID: |\nDate: |\nFrom: |\nSender_name: |\nSender_email: |\nTo: |\nSubject: |\nMime-Version: |\nContent-Type: |\nContent-Transfer-Encoding: |\nCc: |\nBcc: |\n\n', item,maxsplit=13)
         del x[0]
         del x[10]
         arr_message_detail.append(x)
-    data_detail = DataFrame(arr_message_detail, columns=['MassageID','Date','From','To','Subject','MimeVersion','ContentType','ContentTransferEncoding','Xcc','Xbcc'])
+    data_detail = DataFrame(arr_message_detail, columns=['MassageID','Date','From','Sender_name','Sender_email','To','Subject','MimeVersion','ContentType','ContentTransferEncoding','Xcc','Xbcc'])
     data_detail.insert(loc=0, column="file",value=np.array(data.file))
     tmt=[]
     for item in data_detail['Date']:
@@ -212,6 +213,16 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
             # Lấy thông tin từ EML
             message_id = eml_message['Message-ID']
             date = eml_message['Date']
+            # from_email = eml_message['From']
+            # sender_name, sender_email = parseaddr(from_email)
+            # if(sender_name == ""):
+            #     sender_name = sender_email
+            # decoded_name = decode_header(sender_name)[0][0]
+            # if isinstance(decoded_name, bytes):
+            #     sender_name = decoded_name.decode()
+            # else:
+            #     sender_name = decoded_name
+
             from_email = eml_message['From']
             sender_name, sender_email = parseaddr(from_email)
             if(sender_name == ""):
@@ -221,6 +232,8 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
                 sender_name = decoded_name.decode()
             else:
                 sender_name = decoded_name
+            from_email = sender_name +" "+ "<" + sender_email + ">"
+
             to_email = eml_message['To']
             subject = decode_header(eml_message['subject'])
             subject_decoded = ''
@@ -243,7 +256,7 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
                     text_content = html2text.html2text(part_content)
                     # Thêm nội dung vào biến lưu trữ
                     email_content += text_content
-            csv_row = f'{"Message-ID"}: {message_id}\n{"Date"}: {date}\n{"From"}: {sender_name}\n{"To"}: {to_email}\n{"Subject"}: {subject_decoded}\n{"Mime-Version"}: {mime_version}\n{"Content-Type"}: {content_type}\n{"Content-Transfer-Encoding"}: {content_encoding}\n{"Cc"}: {x_cc}\n{"Bcc"}: {x_bcc}\n\n{email_content}'
+            csv_row = f'{"Message-ID"}: {message_id}\n{"Date"}: {date}\n{"From"}: {from_email}\n{"Sender_name"}: {sender_name}\n{"Sender_email"}: {sender_email}\n{"To"}: {to_email}\n{"Subject"}: {subject_decoded}\n{"Mime-Version"}: {mime_version}\n{"Content-Type"}: {content_type}\n{"Content-Transfer-Encoding"}: {content_encoding}\n{"Cc"}: {x_cc}\n{"Bcc"}: {x_bcc}\n\n{email_content}'
             # Định dạng thành chuỗi tương ứng
             writer.writerow([file_name, csv_row])   
     return  csv_file_path
