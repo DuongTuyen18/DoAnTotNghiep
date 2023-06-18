@@ -1,0 +1,787 @@
+Delivered-To: dvt18012000@gmail.com
+Received: by 2002:a05:7300:b29d:b0:7f:de69:3acf with SMTP id dr29csp3022200dyb;
+        Mon, 17 Oct 2022 23:28:46 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM5vBMNJtyAZRvgtKh3LMaI201ZNLbfvweJvMjgn6g3c4D5jYoBnQK/vEq1KXo6CWKQFZA3t
+X-Received: by 2002:a17:902:d2ce:b0:185:3f05:acf4 with SMTP id n14-20020a170902d2ce00b001853f05acf4mr1725287plc.35.1666074526361;
+        Mon, 17 Oct 2022 23:28:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1666074526; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xlCfZPSKpENsr1d3qHHE+VpX262XjlMuHgB8x0yJV8zu/IdlHJQZUHDtXaTlrvJA1a
+         tCv2UKCn2T3aA39e0hQvo6XwaICAxW/+d+QFjYApX/NSV1Aoz9/Y3mPwkrj3pkIz8n0C
+         pu24xCksbUIBNXidblaVNKOuJ1Ei2ZdlK3K128s73R/bcq/hjQqy1WPTNXz8XKG5BtWY
+         SvaLJnhRRx2xnzQgolM8TyLSY8txU88oDnRnUwKjia5bZHwNKucHBKMeEwmpLa/4mcJE
+         QFIuynLXuhTbAxBW1XD24iWF0btdzJJIVU+gon25cwYVpkiqIhuLddZhXLxQcegDXjz2
+         txCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:list-unsubscribe:mime-version:to:reply-to:from:subject
+         :date:message-id:dkim-signature;
+        bh=6Iq680abeWLD6V91gYHLIr89GN1ge1XKPtpBEd6SA2g=;
+        b=Wx3GuIADYYo8FQ01kssrz/QjGR3xM2amSoYYS0hogrkHY5RhhcOHPcmTsycneL5Fl4
+         p/r3oaF5Ij30/21V8xiwBrb3LmPwIId5LJpDhZxtybWTiqhnBpBoLGZsnjsPBM0+uAgu
+         JvqgpyaPEh9mlHE5gOab6XQCLvj5jf0gERL84WJ4+iJXco0HdaFff88Pp3J+IuKHNeiW
+         CRF0EdSUBSz6+Wcp/3JmD9qRnLrqT8YY++1noWFgH06jG6oD/C9zcvGwFwgmyOuijwm5
+         X/C17O4Gzq8s6gDC4WIGbVIq+pOq6bXLcs2I1caqJps+5Z54sNYKXkB/EADp4wHi5YlS
+         COBA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@amazonses.com header.s=dvogjbaa3ou3tduyzvyu4rj5tkuzdi4h header.b=M64srKRp;
+       spf=pass (google.com: domain of 01090183e9c7bb5e-bb28b1e2-80bc-4ab0-9089-72f46b64dea7-000000@ap-south-1.amazonses.com designates 76.223.180.14 as permitted sender) smtp.mailfrom=01090183e9c7bb5e-bb28b1e2-80bc-4ab0-9089-72f46b64dea7-000000@ap-south-1.amazonses.com
+Return-Path: <01090183e9c7bb5e-bb28b1e2-80bc-4ab0-9089-72f46b64dea7-000000@ap-south-1.amazonses.com>
+Received: from c180-14.smtp-out.ap-south-1.amazonses.com (c180-14.smtp-out.ap-south-1.amazonses.com. [76.223.180.14])
+        by mx.google.com with ESMTPS id l191-20020a6391c8000000b00460358671e2si13870870pge.547.2022.10.17.23.28.45
+        for <dvt18012000@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 17 Oct 2022 23:28:46 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 01090183e9c7bb5e-bb28b1e2-80bc-4ab0-9089-72f46b64dea7-000000@ap-south-1.amazonses.com designates 76.223.180.14 as permitted sender) client-ip=76.223.180.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@amazonses.com header.s=dvogjbaa3ou3tduyzvyu4rj5tkuzdi4h header.b=M64srKRp;
+       spf=pass (google.com: domain of 01090183e9c7bb5e-bb28b1e2-80bc-4ab0-9089-72f46b64dea7-000000@ap-south-1.amazonses.com designates 76.223.180.14 as permitted sender) smtp.mailfrom=01090183e9c7bb5e-bb28b1e2-80bc-4ab0-9089-72f46b64dea7-000000@ap-south-1.amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=dvogjbaa3ou3tduyzvyu4rj5tkuzdi4h; d=amazonses.com; t=1666074524;
+	h=Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe:Feedback-ID;
+	bh=1ulFm6nE8qMOz/d9qpzpTWdBEs6SZcW6qVshGEtsGxo=;
+	b=M64srKRpUR5hvx/F1sQsx8O53kgXtG4JFPXA/crEsm49a5QQ/bz7ALBnImtxFq8O
+	DvyYl7ZXaEFii//Ed4YHiknhmZTNIDLYx/onJvnaNel81ahe9c+dfzzblxcHzToJo+S
+	gmpwHZyiqvPeUw2jSQ9pZw1zMFs6HhKErEUlkZEE=
+Message-ID: <01090183e9c7bb5e-bb28b1e2-80bc-4ab0-9089-72f46b64dea7-000000@ap-south-1.amazonses.com>
+Date: Tue, 18 Oct 2022 06:28:44 +0000
+Subject: =?utf-8?Q?Th=C6=B0_m=E1=BB=9Di?= tham =?utf-8?Q?d=E1=BB=B1?=
+ Workshop:" =?utf-8?Q?B=E1=BB=AFa_ti=E1=BB=87c?= Halloween
+ =?utf-8?Q?c=C3=B4ng_ngh=E1=BB=87=22?=
+From: =?utf-8?Q?Tr=C6=B0=E1=BB=9Dng_h=E1=BB=8Dc_C=C3=B4ng_Ngh=E1=BB=87?=
+ =?utf-8?Q?_S=C3=A1ng_T=E1=BA=A1o?= <cskh@dinotech.edu.vn>
+Reply-To: cskh@dinotech.edu.vn
+To: Duong Van Tuyen <dvt18012000@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="_=_swift_v4_1666074511_7fd4cf1e0b83419858dda0990e29bfa9_=_"
+X-EMAIL-ID: 1168
+List-Unsubscribe: <https://mautic.f6.com.vn/email/unsubscribe/634e479c39775006838257>
+Feedback-ID: 1.ap-south-1.yPmHyHQ2d8OkzzVEtkPycb/Ih9QBcu6XDE0N2MmflOM=:AmazonSES
+X-SES-Outgoing: 2022.10.18-76.223.180.14
+
+
+--_=_swift_v4_1666074511_7fd4cf1e0b83419858dda0990e29bfa9_=_
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+
+
+--_=_swift_v4_1666074511_7fd4cf1e0b83419858dda0990e29bfa9_=_
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+w3.org/TR/html4/loose.dtd"><html xmlns=3D"http://www.w3.org/1999/xhtml" lan=
+g=3D"en" style=3D"" class=3D" js flexbox flexboxlegacy canvas canvastext we=
+bgl no-touch geolocation postmessage websqldatabase indexeddb hashchange hi=
+story draganddrop websockets rgba hsla multiplebgs backgroundsize borderima=
+ge borderradius boxshadow textshadow opacity cssanimations csscolumns cssgr=
+adients cssreflections csstransforms csstransforms3d csstransitions fontfac=
+e generatedcontent video audio localstorage sessionstorage webworkers no-ap=
+plicationcache svg inlinesvg smil svgclippaths js csstransforms csstransfor=
+ms3d csstransitions responsejs "><head>
+<meta http-equiv=3D"Content-Type"=
+ content=3D"text/html; charset=3Dutf-8" />
+<meta name=3D"viewport" conten=
+t=3D"width=3Ddevice-width, initial-scale=3D1.0" />
+<meta http-equiv=3D"X-=
+UA-Compatible" content=3D"IE=3Dedge" />
+<meta name=3D"robots" content=3D"=
+noindex, nofollow" />
+<title>Th=C6=B0 m=E1=BB=9Di tham d=E1=BB=B1 Worksho=
+p:" B=E1=BB=AFa ti=E1=BB=87c Halloween c=C3=B4ng ngh=E1=BB=87"</title>
+<s=
+tyle type=3D"text/css">
+            body, table, td, a{-webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%;}
+            table, td{mso-tabl=
+e-lspace: 0pt; mso-table-rspace: 0pt;}
+            img{border: 0; height:=
+ auto; line-height: 100%; outline: none; text-decoration: none; -ms-interpo=
+lation-mode: bicubic;}
+            table{border-collapse: collapse !impor=
+tant;}
+            body{font-family: 'Open Sans', Verdana, Arial, sans-se=
+rif; height: 100% !important; margin: 0 !important; padding: 0 !important; =
+width: 100% !important; -webkit-font-smoothing: antialiased !important; fon=
+t-smoothing: antialiased !important;}
+            div[style*=3D"margin: 1=
+6px 0;"] { margin:0 !important; }
+            a[x-apple-data-detectors] {=
+
+                color: inherit !important;
+                text-decora=
+tion: none !important;
+                font-size: inherit !important;
+ =
+               font-family: inherit !important;
+                font-weig=
+ht: inherit !important;
+                line-height: inherit !important;=
+
+            }
+            @media only screen and (min-width: 660px) {=
+
+                .shrinker {
+                    padding: 0 30px !impor=
+tant;
+                }
+                .header-split {
+             =
+       display: block;
+                    width: 50%;
+                =
+    float: left;
+                }
+                .header-split.right =
+p, .header-split.right td, .header-split.right {
+                    text=
+-align: right !important;
+                    float: right !important;
+=
+                }
+                .small-circle {
+                    w=
+idth: 16% !important;
+                    float: left !important;
+     =
+               display: block !important;
+                }
+           =
+     .small-circle-text {
+                    width: 75% !important;
+  =
+                  padding-left: 9% !important;
+                    float:=
+ left !important;
+                    display: block !important;
+      =
+          }
+                .large-circle {
+                    width: =
+30% !important;
+                    float: left !important;
+           =
+         display: block !important;
+                }
+                .=
+large-circle-text {
+                    width: 63% !important;
+        =
+            padding-left: 7% !important;
+                    float: left =
+!important;
+                    display: block !important;
+            =
+    }
+            }
+            @media only screen and (max-width: 660p=
+x) {
+                * {
+                    text-align: center !import=
+ant;
+                }
+                .shrinker {
+                  =
+  width: 100% !important;
+                    padding: 0 15px !important;=
+
+                }
+                .header-split td {
+               =
+     padding: 5px 0 !important;
+                    width: 100% !importan=
+t;
+                    text-align: center !important;
+                }=
+
+                .header-split a, .header-split p {
+                   =
+ text-align: center !important;
+                }
+                .larg=
+e-circle-text {
+                    margin-bottom: 15px;
+              =
+      float: left;
+                    width: 100%;
+                }=
+
+                .large-circle-text td {
+                    float: lef=
+t;
+                    width: 100%;
+                }
+               =
+ .c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c10,.c11,.c12 {
+                    wid=
+th: 100% !important;
+                    float: left !important;
+      =
+              display: block;
+                    padding: 0 !important;=
+
+                    margin: 10px 0;
+                }
+            }=
+
+        </style>
+<!--[if !mso]><!---->
+<style type=3D"text/css">
+ =
+           /* Opens sans font */
+            @font-face {
+             =
+ font-family: 'Open Sans';
+              src: url('https://mautic.f6.com.=
+vn/themes/vibrant/assets/open-sans/OpenSans-Regular.WOFF') format('woff'),=
+
+                   url('https://mautic.f6.com.vn/themes/vibrant/assets/o=
+pen-sans/OpenSans-Regular.ttf')  format('truetype');=20
+              font-=
+weight: 300;
+            }
+            @font-face {
+              fon=
+t-family: 'Open Sans';
+              src: url('https://mautic.f6.com.vn/t=
+hemes/vibrant/assets/open-sans/OpenSans-Italic.WOFF') format('woff'),
+   =
+                url('https://mautic.f6.com.vn/themes/vibrant/assets/open-sa=
+ns/OpenSans-Italic.ttf')  format('truetype');=20
+              font-weight:=
+ 300;
+              font-style: italic;
+            }
+            @fo=
+nt-face {
+              font-family: 'Open Sans';
+              src: ur=
+l('https://mautic.f6.com.vn/themes/vibrant/assets/open-sans/OpenSans-SemiBo=
+ld.WOFF') format('woff'),
+                   url('https://mautic.f6.com.v=
+n/themes/vibrant/assets/open-sans/OpenSans-SemiBold.ttf')  format('truetype=
+');=20
+              font-weight: 700;
+            }
+            @font-=
+face {
+              font-family: 'Open Sans';
+              src: url('=
+https://mautic.f6.com.vn/themes/vibrant/assets/open-sans/OpenSans-SemiBoldI=
+talic.WOFF') format('woff'),
+                   url('https://mautic.f6.co=
+m.vn/themes/vibrant/assets/open-sans/OpenSans-SemiBoldItalic.ttf')  format(=
+'truetype');=20
+              font-weight: 700;
+              font-style:=
+ italic;
+            }
+        </style>
+<!--<![endif]-->
+          =
+                            </head>
+<body style=3D"margin: 0px; padding: =
+0px; background: rgb(240, 240, 240); overflow: visible;" class=3D"ui-sortab=
+le">
+<!--[if mso]>
+    <style type=3D"text/css">
+    body, table, td =
+{font-family: 'Open Sans', Verdana, Arial, sans-serif; !important;}
+    <=
+/style>
+    <![endif]-->
+<table width=3D"100%" height=3D"100%" cellpadd=
+ing=3D"0" cellspacing=3D"0" border=3D"0" align=3D"center">
+<tbody><tr>
+=
+<td width=3D"100%" valign=3D"top" align=3D"center">
+<center>
+<table bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" height=3D"100%" width=3D"100%=
+" data-section-wrapper=3D"1">
+<tbody><tr data-section=3D"1">
+<td align=
+=3D"center" height=3D"100%" valign=3D"top" width=3D"100%">
+<!--[if (gte m=
+so 9)|(IE)]>
+                                <table align=3D"center" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"660">
+             =
+                   <tr>
+                                <td align=3D"cent=
+er" valign=3D"top" width=3D"660">
+                                <![endi=
+f]-->
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" style=3D"max-width:660px;" bgcolor=3D"#f0f0f0">
+<tb=
+ody><tr>
+<td height=3D"10" style=3D"font-size: 10px; line-height: 10px;">=
+=C2=A0</td>
+</tr>
+<tr>
+<td align=3D"center" style=3D"font-family: 'Op=
+en Sans', Verdana, Arial, sans-serif; color:#b2b2b2; text-transform: upperc=
+ase; padding:0;" data-slot-container=3D"1" class=3D"ui-sortable">
+</td>=
+
+</tr>
+<tr>
+<td height=3D"10" style=3D"font-size: 10px; line-height: =
+10px;">=C2=A0</td>
+</tr>
+</tbody></table>
+<!--[if (gte mso 9)|(IE)]>=
+
+                                </td>
+                                =
+</tr>
+                                </table>
+                        =
+        <![endif]-->
+</td>
+</tr>
+</tbody></table>
+<table border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" height=3D"100%" width=3D"100%" data-=
+section-wrapper=3D"1">
+<tbody><tr data-section=3D"1">
+<td align=3D"cent=
+er" height=3D"100%" valign=3D"top" width=3D"100%">
+<!--[if (gte mso 9)|(I=
+E)]>
+                                <table align=3D"center" border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0" width=3D"660">
+                     =
+           <tr>
+                                <td align=3D"center" vali=
+gn=3D"top" width=3D"660">
+                                <![endif]-->
+=
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wi=
+dth=3D"100%" style=3D"max-width:660px;" bgcolor=3D"#f0f0f0">
+<tbody><tr>=
+
+<td align=3D"center" valign=3D"top" style=3D"background-repeat: no-repea=
+t; background-color: #f0f0f0; max-width:660px; padding: 0 15px;" bgcolor=3D=
+"#f0f0f0" class=3D"shrinker ui-sortable" data-slot-container=3D"1">
+</td>=
+
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<table bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" height=3D"100%" width=3D"100%=
+" data-section-wrapper=3D"1">
+<tbody><tr data-section=3D"1">
+<td align=
+=3D"center" height=3D"100%" valign=3D"top" width=3D"100%">
+<!--[if (gte m=
+so 9)|(IE)]>
+                                <table align=3D"center" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"660">
+             =
+                   <tr>
+                                <td align=3D"cent=
+er" valign=3D"top" width=3D"660">
+                                <![endi=
+f]-->
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" style=3D"max-width:660px;" bgcolor=3D"#f0f0f0">
+<tb=
+ody><tr>
+<td align=3D"center" style=3D"font-family: 'Open Sans', Verdana,=
+ Arial, sans-serif; background:#f0f0f0; color:#212121; padding: 0 15px;" cl=
+ass=3D"shrinker ui-sortable" data-slot-container=3D"1">
+<div data-slot=3D=
+"text"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"max-width:550px; background: #2c3e50; color: #ffffff" width=
+=3D"100%"><tbody><tr><td height=3D"45" style=3D"font-size: 45px; line-heigh=
+t: 45px;"><div data-empty=3D"true"><br /></div></td></tr><tr><td align=3D"c=
+enter" style=3D"padding: 0; text-align: center;" valign=3D"top"><img src=3D=
+"https://mautic.f6.com.vn/media/images/72a5070394f000dbe1c0bdedfc1b646d.png=
+" class=3D"fr-fic fr-dib" style=3D"width: 107px; height: 107px;" width=3D"1=
+07" height=3D"107" /><br /></td></tr><tr><td height=3D"20" style=3D"font-si=
+ze: 20px; line-height: 20px;"><div style=3D"text-align: center;"><br /></di=
+v></td></tr><tr><td align=3D"center" style=3D"padding: 0 30px; text-align: =
+center;" valign=3D"top"><h1 style=3D"text-align: center; font-family: 'Open=
+ Sans', Verdana, Arial, sans-serif; font-size:36px; line-height:36px; font-=
+weight:700; color:#ffffff; padding:0; margin:0;"><span style=3D"font-size: =
+24px;">Th=C6=B0 m=E1=BB=9Di tham d=E1=BB=B1 "B=E1=BB=AFa ti=E1=BB=87c Hallo=
+ween c=C3=B4ng ngh=E1=BB=87" ch=E1=BB=89 c=C3=B3 t=E1=BA=A1i Dino Tech</spa=
+n></h1><br /></td></tr><tr><td height=3D"15" style=3D"font-size: 15px; line=
+-height: 15px;">=C2=A0<br /></td></tr><tr><td align=3D"center" style=3D"pad=
+ding: 0 15px" valign=3D"top"><p style=3D"text-align: center; font-family: '=
+Open Sans', Verdana, Arial, sans-serif; font-size:16px; line-height:24px; f=
+ont-weight:400; color:#ffffff; padding:0; margin:0;"><img src=3D"https://ma=
+utic.f6.com.vn/media/images/b4182e95a2e8539e13c646100be65a87.jpeg" class=3D=
+"fr-fic fr-dib" style=3D"width: 512px; height: 512px;" width=3D"512" height=
+=3D"512" /></p></td></tr><tr><td align=3D"center" style=3D"padding: 0 30px;=
+ text-align: center;" valign=3D"top"><p open=3D"" style=3D"text-align: left=
+; font-family: "><br /></p><p open=3D"" style=3D"text-align: left; font-fam=
+ily: "><span style=3D"font-size: 12px;">Ch=C3=A0o ba m=E1=BA=B9 Duong Van T=
+uyen,</span></p><div data-empty=3D"true" style=3D"text-align: left;"><span =
+style=3D"font-size: 12px;"><br /></span></div><div data-empty=3D"true" styl=
+e=3D"text-align: left;"><span style=3D"font-size: 12px;">Nh=E1=BA=AFc =
+=C4=91=E1=BA=BFn Halloween l=C3=A0 ch=C3=BAng ta s=E1=BA=BD nh=E1=BB=9B =
+=C4=91=E1=BA=BFn c=C3=A1c b=E1=BB=AFa ti=E1=BB=87c h=C3=B3a trang vui nh=
+=E1=BB=99n v=C3=A0 =C4=91=E1=BA=A7y m=C3=A0u s=E1=BA=AFc, nh=E1=BB=AFng tr=
+=C3=B2 ch=C6=A1i ma qu=C3=A1i v=C3=A0 r=E1=BA=A5t nhi=E1=BB=81u ho=E1=BA=
+=A1t =C4=91=E1=BB=99ng v=C3=B4 c=C3=B9ng vui nh=E1=BB=99n. Tuy nhi=C3=AAn, =
+ba m=E1=BA=B9 =C4=91=C3=A3 bao gi=E1=BB=9D tr=E1=BA=A3i nghi=E1=BB=87m b=
+=E1=BB=AFa ti=E1=BB=87c Halloween c=C3=B4ng ngh=E1=BB=87 hay ch=C6=B0a?</sp=
+an></div><div data-empty=3D"true" style=3D"text-align: left;"><span style=
+=3D"font-size: 12px;"><br /></span></div><div style=3D"text-align: left;"><=
+span style=3D"font-size: 12px;"><strong>Ng=C3=A0y 23/10 n=C3=A0y, t=
+=E1=BA=A1i Dino Tech, m=E1=BB=99t b=E1=BB=AFa ti=E1=BB=87c Halloween c=
+=C3=B4ng ngh=E1=BB=87 =C4=91ang =C4=91=E1=BB=A3i ba m=E1=BA=B9 v=C3=A0 c=
+=C3=A1c con =C4=91=C3=B3 =E2=99=A5</strong></span></div><div data-empty=3D"=
+true" style=3D"text-align: left;"><span style=3D"font-size: 12px;"><br /></=
+span></div><div data-empty=3D"true" style=3D"text-align: left;"><span style=
+=3D"font-size: 12px;">T=E1=BA=A1i Workshop, ba m=E1=BA=B9 v=C3=A0 c=C3=
+=A1c con s=E1=BA=BD =C4=91=C6=B0=E1=BB=A3c tr=E1=BA=A3i nghi=E1=BB=87m "Hal=
+loween th=E1=BB=9Di c=C3=B4ng ngh=E1=BB=87" v=E1=BB=9Bi nh=E1=BB=AFng ho=
+=E1=BA=A1t =C4=91=E1=BB=99ng v=C3=B4 c=C3=B9ng h=E1=BA=A5p d=E1=BA=ABn nh=
+=C6=B0:</span></div><div data-empty=3D"true" style=3D"text-align: left;"><s=
+pan style=3D"font-size: 12px;">- T=C3=ACm hi=E1=BB=83u v=E1=BB=81 ngu=
+=E1=BB=93n g=E1=BB=91c c=E1=BB=A7a Halloween v=E1=BB=9Bi Scratch</span></di=
+v><div data-empty=3D"true" style=3D"text-align: left;"><span style=3D"font-=
+size: 12px;">- T=E1=BB=B1 s=C3=A1ng t=E1=BA=A1o qu=E1=BA=A3 b=C3=AD ng=
+=C3=B4 Halloween v=E1=BB=9Bi Tinkercad</span></div><div data-empty=3D"true"=
+ style=3D"text-align: left;"><span style=3D"font-size: 12px;"><br /></span>=
+</div><div data-empty=3D"true" style=3D"text-align: left;"><span style=3D"f=
+ont-size: 12px;">Ngo=C3=A0i ra, khi tham gia s=E1=BB=B1 ki=E1=BB=87n, r=
+=E1=BA=A5t nhi=E1=BB=81u <strong>ph=E1=BA=A7n qu=C3=A0 v=C3=B4 c=C3=B9ng h=
+=E1=BA=A5p d=E1=BA=ABn</strong> =C4=91ang =C4=91=E1=BB=A3i ba m=E1=BA=B9 v=
+=C3=A0 c=C3=A1c con =C4=91=C3=B3:<br />- Chu=E1=BB=97i b=C3=A0i gi=E1=BA=
+=A3ng L=C3=A0m quen v=E1=BB=9Bi l=E1=BA=ADp tr=C3=ACnh Scratch,<br />- Chu=
+=E1=BB=97i b=C3=A0i gi=E1=BA=A3ng L=C3=A0m quen v=E1=BB=9Bi l=E1=BA=ADp tr=
+=C3=ACnh Minecraft,<br />- Voucher gi=E1=BA=A3m gi=C3=A1 50% c=C3=A1c kh=
+=C3=B3a h=E1=BB=8Dc l=E1=BA=ADp tr=C3=ACnh<br />- Kh=C3=B3a h=E1=BB=8Dc l=
+=E1=BA=ADp tr=C3=ACnh mi=E1=BB=85n ph=C3=AD 4 bu=E1=BB=95i Th=C3=B4ng tin v=
+=E1=BB=81 s=E1=BB=B1 ki=E1=BB=87n:<br />Th=E1=BB=9Di gian: 14h Ch=E1=BB=
+=A7 nh=E1=BA=ADt ng=C3=A0y 23/10</span></div><div data-empty=3D"true" style=
+=3D"text-align: left;"><span style=3D"font-size: 12px;">=C4=90=E1=BB=8Ba =
+=C4=91i=E1=BB=83m: 26 Nguy=E1=BB=85n Th=E1=BB=8B =C4=90=E1=BB=8Bnh, Trung H=
+=C3=B2a, C=E1=BA=A7u Gi=E1=BA=A5y, HN<br />Link =C4=91.k=C3=BD: <a href=3D"=
+https://mautic.f6.com.vn/r/05997b692bef789f3ea7658ee?ct=3DYTo1OntzOjY6InNvd=
+XJjZSI7YToyOntpOjA7czoxNDoiY2FtcGFpZ24uZXZlbnQiO2k6MTtpOjgzODt9czo1OiJlbWFp=
+bCI7aToxMTY4O3M6NDoic3RhdCI7czoyMjoiNjM0ZTQ3OWMzOTc3NTAwNjgzODI1NyI7czo0OiJ=
+sZWFkIjtpOjM0MjY0ODtzOjc6ImNoYW5uZWwiO2E6MTp7czo1OiJlbWFpbCI7aToxMTY4O319&"=
+>https://s.imap.edu.vn/mxv8l</a><br /><br /></span><u><span style=3D"font-s=
+ize: 12px;">=C4=90=C4=83ng k=C3=BD tham gia Halloween c=C3=B4ng ngh=
+=E1=BB=87 c=C3=B9ng Dino Tech ngay ba m=E1=BA=B9 nh=C3=A9!</span><br /></u>=
+</div></td></tr><tr><td height=3D"37" style=3D"font-size: 37px; line-height=
+: 37px;"><br /></td></tr><tr><td align=3D"center"><table align=3D"center" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr><td><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr><td=
+ align=3D"left" bgcolor=3D"#00bf9a" class=3D"body-text" style=3D"-webkit-bo=
+rder-radius: 25px; -moz-border-radius: 25px; border-radius: 25px;mso-hide:a=
+ll;"><a href=3D"https://mautic.f6.com.vn/r/05997b692bef789f3ea7658ee?ct=3DY=
+To1OntzOjY6InNvdXJjZSI7YToyOntpOjA7czoxNDoiY2FtcGFpZ24uZXZlbnQiO2k6MTtpOjgz=
+ODt9czo1OiJlbWFpbCI7aToxMTY4O3M6NDoic3RhdCI7czoyMjoiNjM0ZTQ3OWMzOTc3NTAwNjg=
+zODI1NyI7czo0OiJsZWFkIjtpOjM0MjY0ODtzOjc6ImNoYW5uZWwiO2E6MTp7czo1OiJlbWFpbC=
+I7aToxMTY4O319&" rel=3D"noopener noreferrer" style=3D"font-size: 12px; font=
+-family: 'Open Sans', Verdana, Arial, sans-serif; color: #ffffff; text-deco=
+ration: none; text-decoration: none; border-radius: 25px; padding: 16px 25p=
+x; display: inline-block; text-transform:uppercase; font-weight: bold; lett=
+er-spacing: 1px;" target=3D"_blank">=C4=90=C4=82NG K=C3=9D NGAY</a><br /></=
+td><!--[if mso]>
+                                                        =
+                        <td align=3D"center" valign=3D"top" style=3D"text-a=
+lign: center;">
+                                                         =
+                         <v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:=
+vml" xmlns:w=3D"urn:schemas-microsoft-com=F0=9F=8F=A2word" href=3D"#" style=
+=3D"height:50px;v-text-anchor:middle;width:150px;" arcsize=3D"25px" strokec=
+olor=3D"#00bf9a" fillcolor=3D"#00bf9a">
+                                 =
+                                                   <w:anchorlock></w:anchor=
+lock>
+                                                                   =
+                 <center style=3D"text-transform: uppercase; color:#ffffff;=
+font-family:Helvetica, Arial,sans-serif;font-size:16px;">Click This</center=
+>
+                                                                       =
+           </v:roundrect>
+                                               =
+                                 </td>
+                                  =
+                                              <![endif]--></tr></tbody></ta=
+ble><br /></td></tr></tbody></table></td></tr><tr><td height=3D"45" style=
+=3D"font-size: 45px; line-height: 45px;">=C2=A0<br /></td></tr></tbody></ta=
+ble></div>
+</td>
+</tr>
+</tbody></table>
+<!--[if (gte mso 9)|(IE)]>=
+
+                                </td>
+                                =
+</tr>
+                                </table>
+                        =
+        <![endif]-->
+</td>
+</tr>
+</tbody></table>
+<table border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" height=3D"100%" width=3D"100%" data-=
+section-wrapper=3D"1">
+<tbody><tr data-section=3D"1">
+<td align=3D"cent=
+er" height=3D"100%" valign=3D"top" width=3D"100%">
+<!--[if (gte mso 9)|(I=
+E)]>
+                                <table align=3D"center" border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0" width=3D"660">
+                     =
+           <tr>
+                                <td align=3D"center" vali=
+gn=3D"top" width=3D"660">
+                                <![endif]-->
+=
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wi=
+dth=3D"100%" style=3D"max-width:660px;" bgcolor=3D"#f0f0f0">
+<tbody><tr>=
+
+<td align=3D"center" style=3D"font-family: 'Open Sans', Verdana, Arial, =
+sans-serif; background:#f0f0f0; color:#212121; padding: 0 15px;" class=3D"s=
+hrinker ui-sortable" data-slot-container=3D"1">
+</td>
+</tr>
+</tbody><=
+/table>
+<!--[if (gte mso 9)|(IE)]>
+                                </td=
+>
+                                </tr>
+                               =
+ </table>
+                                <![endif]-->
+</td>
+</tr>
+=
+</tbody></table>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+height=3D"100%" width=3D"100%" data-section-wrapper=3D"1">
+<tbody><tr dat=
+a-section=3D"1">
+<td align=3D"center" height=3D"100%" valign=3D"top" widt=
+h=3D"100%">
+<!--[if (gte mso 9)|(IE)]>
+                                =
+<table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"660">
+                                <tr>
+                     =
+           <td align=3D"center" valign=3D"top" width=3D"660">
+           =
+                     <![endif]-->
+<table align=3D"center" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"max-width:660px;"=
+ bgcolor=3D"#f0f0f0">
+<tbody><tr>
+<td align=3D"center" style=3D"font-fa=
+mily: 'Open Sans', Verdana, Arial, sans-serif; background:#f0f0f0; color:#f=
+fffff; padding: 0 15px;" class=3D"shrinker ui-sortable" data-slot-container=
+=3D"1">
+</td>
+</tr>
+</tbody></table>
+<!--[if (gte mso 9)|(IE)]>
+ =
+                               </td>
+                                </tr=
+>
+                                </table>
+                            =
+    <![endif]-->
+</td>
+</tr>
+</tbody></table>
+<table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" height=3D"100%" width=3D"100%" data-sect=
+ion-wrapper=3D"1">
+<tbody><tr data-section=3D"1">
+<td align=3D"center" =
+height=3D"100%" valign=3D"top" width=3D"100%">
+<!--[if (gte mso 9)|(IE)]>=
+
+                                <table align=3D"center" border=3D"0" cel=
+lspacing=3D"0" cellpadding=3D"0" width=3D"660">
+                         =
+       <tr>
+                                <td align=3D"center" valign=
+=3D"top" width=3D"660">
+                                <![endif]-->
+<t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"max-width:660px;" bgcolor=3D"#f0f0f0">
+<tbody><tr>
+=
+<td align=3D"center" style=3D"font-family: 'Open Sans', Verdana, Arial, san=
+s-serif; background:#f0f0f0; color:#ffffff; padding: 0 15px;" class=3D"shri=
+nker ui-sortable" data-slot-container=3D"1">
+</td>
+</tr>
+</tbody></ta=
+ble>
+<!--[if (gte mso 9)|(IE)]>
+                                </td>=
+
+                                </tr>
+                                =
+</table>
+                                <![endif]-->
+</td>
+</tr>
+<=
+/tbody></table>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" h=
+eight=3D"100%" width=3D"100%" data-section-wrapper=3D"1">
+<tbody><tr data=
+-section=3D"1">
+<td align=3D"center" height=3D"100%" valign=3D"top" width=
+=3D"100%">
+<!--[if (gte mso 9)|(IE)]>
+                                <=
+table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wid=
+th=3D"660">
+                                <tr>
+                      =
+          <td align=3D"center" valign=3D"top" width=3D"660">
+            =
+                    <![endif]-->
+<table align=3D"center" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"max-width:660px;" =
+bgcolor=3D"#f0f0f0">
+<tbody><tr>
+<td align=3D"center" style=3D"font-fam=
+ily: 'Open Sans', Verdana, Arial, sans-serif; background:#f0f0f0; color:#ff=
+ffff; padding: 0 15px;" class=3D"shrinker ui-sortable" data-slot-container=
+=3D"1">
+</td>
+</tr>
+</tbody></table>
+<!--[if (gte mso 9)|(IE)]>
+ =
+                               </td>
+                                </tr=
+>
+                                </table>
+                            =
+    <![endif]-->
+</td>
+</tr>
+</tbody></table>
+<table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" height=3D"100%" width=3D"100%" data-sect=
+ion-wrapper=3D"1">
+<tbody><tr data-section=3D"1">
+<td align=3D"center" =
+height=3D"100%" valign=3D"top" width=3D"100%">
+<!--[if (gte mso 9)|(IE)]>=
+
+                                <table align=3D"center" border=3D"0" cel=
+lspacing=3D"0" cellpadding=3D"0" width=3D"660">
+                         =
+       <tr>
+                                <td align=3D"center" valign=
+=3D"top" width=3D"660">
+                                <![endif]-->
+<t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"max-width:660px;" bgcolor=3D"#f0f0f0">
+<tbody><tr>
+=
+<td height=3D"15" style=3D"font-size: 15px; line-height: 15px;">=C2=A0</td>=
+
+</tr>
+<tr>
+<td align=3D"center" style=3D"font-family: 'Open Sans', V=
+erdana, Arial, sans-serif; color:#212121; text-transform: uppercase;" data-=
+slot-container=3D"1" class=3D"ui-sortable">
+</td>
+</tr>
+<tr>
+<td he=
+ight=3D"15" style=3D"font-size: 15px; line-height: 15px;">=C2=A0</td>
+</t=
+r>
+</tbody></table>
+<!--[if (gte mso 9)|(IE)]>
+                      =
+          </td>
+                                </tr>
+                 =
+               </table>
+                                <![endif]-->
+</=
+td>
+</tr>
+</tbody></table>
+<table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" height=3D"100%" width=3D"100%" data-section-wrapper=3D"1">
+=
+<tbody><tr data-section=3D"1">
+<td align=3D"center" height=3D"100%" valig=
+n=3D"top" width=3D"100%">
+<!--[if (gte mso 9)|(IE)]>
+                  =
+              <table align=3D"center" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" width=3D"660">
+                                <tr>
+       =
+                         <td align=3D"center" valign=3D"top" width=3D"660">=
+
+                                <![endif]-->
+<table align=3D"center" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"max=
+-width:660px;" bgcolor=3D"#f0f0f0">
+<tbody><tr>
+<td align=3D"center" he=
+ight=3D"100%" valign=3D"top" width=3D"100%" data-slot-container=3D"1" class=
+=3D"ui-sortable">
+</td>
+</tr>
+<tr>
+<td height=3D"40" style=3D"font-=
+size: 40px; line-height: 40px;">=C2=A0</td>
+</tr>
+</tbody></table>
+<!=
+--[if (gte mso 9)|(IE)]>
+                                </td>
+        =
+                        </tr>
+                                </table>
+=
+                                <![endif]-->
+</td>
+</tr>
+</tbody></ta=
+ble>
+<!--[if (gte mso 9)|(IE)]>
+                    </td>
+           =
+         </tr>
+                    </table>
+                    <![endi=
+f]-->
+</center>
+</td>
+</tr>
+</tbody></table>
+<div style=3D"displa=
+y:none; white-space:nowrap; font:15px courier; line-height:0;">
+</div>
+=
+<img height=3D"1" width=3D"1" src=3D"https://mautic.f6.com.vn/email/634e479=
+c39775006838257.gif" alt=3D"" /></body></html>
+
+--_=_swift_v4_1666074511_7fd4cf1e0b83419858dda0990e29bfa9_=_--
+

@@ -2,7 +2,6 @@ import os
 import csv
 from django.core.files.storage import default_storage
 from email.utils import parseaddr
-from django.http import HttpResponse,FileResponse
 from email.parser import Parser
 from dateutil.parser import parse
 from email.header import decode_header
@@ -15,8 +14,14 @@ import re
 import pandas as pd
 import numpy as np
 from pandas import DataFrame
-from urllib.parse import unquote
-import html
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
+import networkx as nx
+from django.shortcuts import render
+import json
+
 def select_folder():
     root = tk.Tk()
     root.withdraw()
@@ -78,11 +83,21 @@ def read_csv_file(csv_file_path):
         return data
     
 def get_list_from(data_detail):
-
     list_from = data_detail.groupby(['Sender_name', 'Sender_email']).size().reset_index()
     list_from.columns = ['sender_name', 'sender_email', 'counts']
     return list_from
 
+def get_list_to(data_detail):
+    list_from = data_detail.To.value_counts().reset_index()
+    list_from.columns = ['to', 'counts']
+    return list_from
+
+def get_list_from_and_to(data_detail):
+    sender_emails = data_detail['Sender_email'].unique()
+    to_emails = data_detail['To'].unique()
+    # Kết hợp và loại bỏ giá trị trùng nhau
+    unique_emails = set(sender_emails).union(set(to_emails))
+    return unique_emails
 
 def get_data_day_statistical(data_detail):
     data_day_statistical=pd.DataFrame()
@@ -110,17 +125,103 @@ def get_data_year_statistical(data_detail):
     year_statistical["counts"] = year_statistical["Year"].map(data_year_statistical["Year"].value_counts())
     year_statistical["counts"] = year_statistical["counts"].fillna(0)
     return year_statistical
+def wordcloud_view(data_detail):
+    # Chuỗi văn bản đầu vào
+    text = ' '.join(data_detail['Content'])
+    # Tạo Word Cloud
+    wordcloud = WordCloud(width=750, height=400, background_color='white').generate(text)
+    # Lưu Word Cloud vào một đối tượng BytesIO
+    image_stream = BytesIO()
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis('off')
+    plt.savefig(image_stream, format='png', bbox_inches='tight', pad_inches=0)
+    plt.close()
+    # Đọc dữ liệu từ đối tượng BytesIO và mã hóa base64
+    image_stream.seek(0)
+    image_data = base64.b64encode(image_stream.getvalue()).decode('utf-8')
+    return image_data
+
+def convert_graph_to_json(graph):
+    # Convert graph to dictionary representation
+    graph_data = nx.node_link_data(graph)
+    # Serialize the dictionary to JSON string
+    json_data = json.dumps(graph_data)
+    return json_data
+
+# def check_email_availability(email):
+#     # Tách tên miền từ địa chỉ email
+#     domain = email.split('@')[1]
+
+#     # Kiểm tra kết nối tới máy chủ SMTP của tên miền
+#     try:
+#         mx_records = sorted(socket.getaddrinfo(domain, 25, socket.AF_INET, socket.SOCK_STREAM),key=lambda x: x[-1])
+#     except socket.gaierror:
+#         return False
+#     # Lặp qua các máy chủ MX để kiểm tra kết nối
+#     for mx in mx_records:
+#         try:
+#             # Tạo kết nối tới máy chủ MX
+#             server = smtplib.SMTP()
+#             server.connect(mx[-1][0])
+#             server.helo()
+#             server.mail('')
+#             code, _ = server.rcpt(email)
+
+#             # Kiểm tra mã phản hồi từ máy chủ MX
+#             if code == 250:
+#                 server.quit()
+#                 return True
+#             server.quit()
+#         except smtplib.SMTPConnectError:
+#             pass
+#     return False
+
+def create_link_analysis(data_detail):
+    # Xác định danh sách các liên kết
+    links = data_detail[['Sender_email', 'To']].values.tolist()
+    # Đếm số lần xuất hiện của mỗi liên kết
+    link_counts = pd.DataFrame(links, columns=['Sender_email', 'To']).value_counts()
+    # Tạo đồ thị
+    G = nx.Graph()
+    # Thêm các nút (nodes) và cạnh (edges) vào đồ thị
+    for link in links:
+        sender_email, to = link
+        G.add_edge(sender_email, to)
+    return G,link_counts
+
+def find_links_by_emails(data_detail, email_list):
+    # Tạo một danh sách chứa tất cả các email trong email_list
+    all_emails = set(email_list)
+    # Tạo đồ thị và thêm các email trong danh sách này vào đồ thị là các nút
+    G = nx.Graph()
+    G.add_nodes_from(all_emails)
+
+    # Lọc ra các dòng có email trong danh sách email đã cho
+    filtered_data = data_detail[data_detail['Sender_email'].isin(email_list) | data_detail['To'].isin(email_list)]
+    # Xác định danh sách các liên kết chỉ giữa các email trong email_list
+    links = filtered_data[filtered_data['Sender_email'].isin(email_list) & filtered_data['To'].isin(email_list)][['Sender_email', 'To']].values.tolist()
+    # Đếm số lần xuất hiện của mỗi liên kết chỉ giữa các email trong email_list
+    link_counts = pd.DataFrame(links, columns=['Sender_email', 'To']).value_counts()
+    
+    # Thêm các liên kết chỉ giữa các email trong email_list vào đồ thị là các cạnh
+    for link in links:
+        sender_email, to = link
+        G.add_edge(sender_email, to)
+
+    return G, link_counts
+
+
 
 def convert_csv_to_dataframe(csv_file_path):
     data = pd.read_csv(csv_file_path)
     # Chuẩn hóa dữ liệu, dùng biến data_detail để lưu dữ liệu cần thiết
     arr_message_detail = []
     for item in data.message:
-        x=re.split(r'Message-ID: |\nDate: |\nFrom: |\nSender_name: |\nSender_email: |\nTo: |\nSubject: |\nMime-Version: |\nContent-Type: |\nContent-Transfer-Encoding: |\nCc: |\nBcc: |\n\n', item,maxsplit=13)
+        x=re.split(r'Message-ID: |\nDate: |\nFrom: |\nSender_name: |\nSender_email: |\nTo: |\nSubject: |\nMime-Version: |\nContent-Type: |\nContent-Transfer-Encoding: |\nCc: |\nBcc: |\nContent: |\n\n', item,maxsplit=14)
         del x[0]
-        del x[10]
+        del x[13]
         arr_message_detail.append(x)
-    data_detail = DataFrame(arr_message_detail, columns=['MassageID','Date','From','Sender_name','Sender_email','To','Subject','MimeVersion','ContentType','ContentTransferEncoding','Xcc','Xbcc'])
+    data_detail = DataFrame(arr_message_detail, columns=['MassageID','Date','From','Sender_name','Sender_email','To','Subject','MimeVersion','ContentType','ContentTransferEncoding','Xcc','Xbcc','Content'])
     data_detail.insert(loc=0, column="file",value=np.array(data.file))
     tmt=[]
     for item in data_detail['Date']:
@@ -128,7 +229,17 @@ def convert_csv_to_dataframe(csv_file_path):
     data_detail['Date']=tmt
     data_detail['Date']= pd.to_datetime(data_detail.Date)   
     return data_detail
-
+def extract_email(to_email):
+    if to_email is None:
+        return None
+    email_pattern = re.compile(r'[\w\.-]+@[\w\.-]+')  # Mẫu tìm kiếm địa chỉ email
+    match = email_pattern.search(to_email)
+    
+    if match:
+        return match.group()  # Trả về địa chỉ email tìm thấy
+    else:
+        return None  # Không tìm thấy địa chỉ email
+    
 def inforEmail(file_path):
     with open(file_path, 'rb') as eml_file:
         eml_data = eml_file.read()
@@ -146,9 +257,13 @@ def inforEmail(file_path):
         hex_view += '<tr>' + ''.join(row_cells) + '</tr>'
     hex_view += '</table>'
     message_header = eml_message.items()
+    delivered_to = eml_message['Delivered-To']
     to = eml_message['To']
+    if to is None and delivered_to is not None:
+        to = delivered_to
+    to = extract_email(to)
     if to is None:
-        to = ''
+        to=''
     cc = eml_message['CC']
     if cc is None:
         cc = ''
@@ -196,7 +311,6 @@ def clear_folder_in_media(folder_name):
 
 def convert_eml_to_csv(upload_path,export_path, folder_name):
     list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
-    data=[]
     # Tạo đường dẫn và tên file CSV
     csv_file_name =folder_name+'.csv'
     csv_file_path = os.path.join(export_path, csv_file_name)
@@ -234,7 +348,15 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
                 sender_name = decoded_name
             from_email = sender_name +" "+ "<" + sender_email + ">"
 
+            # to_email = eml_message['To']
+            # to_email = extract_email(to_email)
+            delivered_to = eml_message['Delivered-To']
             to_email = eml_message['To']
+            if to_email is None and delivered_to is not None:
+                to_email = delivered_to
+            to_email = extract_email(to_email)
+            if to_email is None:
+                to_email=''
             subject = decode_header(eml_message['subject'])
             subject_decoded = ''
             for part in subject:
@@ -256,7 +378,7 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
                     text_content = html2text.html2text(part_content)
                     # Thêm nội dung vào biến lưu trữ
                     email_content += text_content
-            csv_row = f'{"Message-ID"}: {message_id}\n{"Date"}: {date}\n{"From"}: {from_email}\n{"Sender_name"}: {sender_name}\n{"Sender_email"}: {sender_email}\n{"To"}: {to_email}\n{"Subject"}: {subject_decoded}\n{"Mime-Version"}: {mime_version}\n{"Content-Type"}: {content_type}\n{"Content-Transfer-Encoding"}: {content_encoding}\n{"Cc"}: {x_cc}\n{"Bcc"}: {x_bcc}\n\n{email_content}'
+            csv_row = f'{"Message-ID"}: {message_id}\n{"Date"}: {date}\n{"From"}: {from_email}\n{"Sender_name"}: {sender_name}\n{"Sender_email"}: {sender_email}\n{"To"}: {to_email}\n{"Subject"}: {subject_decoded}\n{"Mime-Version"}: {mime_version}\n{"Content-Type"}: {content_type}\n{"Content-Transfer-Encoding"}: {content_encoding}\n{"Cc"}: {x_cc}\n{"Bcc"}: {x_bcc}\n{"Content"}: {email_content}'
             # Định dạng thành chuỗi tương ứng
             writer.writerow([file_name, csv_row])   
     return  csv_file_path

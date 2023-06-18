@@ -7,21 +7,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="{%static 'app/bootstrap/css/bootstrap.min.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/all.min.css'%}" />
+    <link rel="stylesheet" href="{%static 'app/css/jquery.dataTables.min.css'%}" />
+    <link rel="stylesheet" href="{%static 'app/css/bootstrap-icons/font/bootstrap-icons.min.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/base.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/emaildatafile.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/inforEmaildatafile.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/export.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/dataframe_table.css'%}" />
-    <link rel="stylesheet" href="{%static 'app/css/jquery.dataTables.min.css'%}" />
+
     <script src="{%static 'app/js/chartjs.min.js'%}"></script>
-    <script href="{%static 'app/jquery/3.6.4/jquery.min.js'%}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+
+    <script src="{%static 'app/js/popper.min.js'%}"></script>
     <script src="{%static 'app/bootstrap/js/bootstrap.min.js'%}"></script>
     <script src="{%static 'app/js/all.min.js'%}"></script>
     <script src="{%static 'app/js/jquery-3.6.4.slim.min.js'%}"></script>
-    <script src="{%static 'app/js/base.js'%}"></script>
+    <script src="{%static 'app/jquery/3.6.4/jquery.min.js'%}"></script>
     <script src="{%static 'app/js/jquery.dataTables.min.js'%}"></script>
+    
+    <script src="{%static 'app/js/base.js'%}"></script>
+    <script src="{%static 'app/js/emailcsvfile/linkanalysis.js'%}"></script>
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -187,7 +191,9 @@
             </div>
         </nav>
     </div>
+
     <div class="content">
+
         {% block main-content%} {% endblock main-content%}
     </div>
     <div class="footer">

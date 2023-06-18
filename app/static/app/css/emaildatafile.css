@@ -17,22 +17,73 @@
     height: 30px;
     float: left;
 }
+#icon_select_all{
+    width: 21px;
+    height: 21px;
+    margin-top: 0px;
+    margin-right: 10px;
+}
 .box-title-file{
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.box-selectall-file{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 30px;
+    float: left;
+}
 .box-infor-file{
     margin-left: 10px;
     width: calc(100% - 30px - 10px);
     float: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .box-content-file{
     width: 100%;
     font-size: 13px;
 }
+.box-content-header{
+    margin-left: 10px;
+    width: calc(100% - 30px - 10px);
+    float: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-title-header{
+    width: calc(100% - 180px);
+    float: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: bold;
+}
+.box-action-header{
+    width: 22px;
+    text-align: right;
+    float: right;
+    cursor: pointer;
+    transition: color 0.3s;
+    color: #a4a7a7;
+}
+#box-emaildress-header{
+    border-bottom: 1px solid #979292;
+}
+
+.box-action-header:hover{
+    color: rgb(33, 120, 219);
+}
 .box-Compact-file{
-    width: calc(100% - 85px);
+    width: calc(100% - 22px);
     float: left;
     white-space: nowrap;
     text-overflow: ellipsis;
