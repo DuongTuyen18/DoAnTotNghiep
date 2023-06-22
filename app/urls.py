@@ -12,6 +12,7 @@ urlpatterns = [
     path('csvdatafile/dataframetable', views.dataframe_table, name="dataframe_table"),
     path('choosefile_csv/', views.choosefile_csv, name="choosefile_csv"),
     path('emaildatafile/choosefolder', views.choosefolder, name="choosefolder"),
+    path('emaildatafile/export/html', views.export_html, name="export_html"),
     path('emaildatafile/export/csv', views.export_csv, name="export_csv"),
     path('emaildatafile/export/save', views.save_export, name="save_export"),
     path('emaildatafile/inforemail/content/<str:filename>', views.inforemail_content, name="inforemail_content"),
@@ -20,5 +21,6 @@ urlpatterns = [
 
     path('clearfilefolders/', views.clearfilefolders, name="clearfilefolders"),
     path('', views.base, name="base"),
+    path('preview_html/<str:filename>', views.preview_html, name="preview_html"),
     path('home/', views.view_content, name="home"),
 ]

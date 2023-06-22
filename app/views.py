@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .utils import list_to_by_from, check_email_availability,find_links_by_emails,get_list_from_and_to,convert_graph_to_json,create_link_analysis,wordcloud_view,List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical,get_list_to
+from .utils import convert_eml_to_html, list_to_by_from, check_email_availability,find_links_by_emails,get_list_from_and_to,convert_graph_to_json,create_link_analysis,wordcloud_view,List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical,get_list_to
 import os
 import email
 from django.http import HttpResponse
@@ -8,6 +8,7 @@ from django.core.files.uploadhandler import FileUploadHandler
 from django.conf import settings
 from django.core.paginator import Paginator
 import json
+from django.http import FileResponse
 from django.http import JsonResponse
 
 folder_name = ''
@@ -51,8 +52,8 @@ def export_csv(request):
     global folder_name
     global path_file_export
     upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
-    export_path = os.path.join(settings.MEDIA_ROOT, 'export')
-    clear_folder_in_media('export')
+    export_path = os.path.join(settings.MEDIA_ROOT, 'export/csv')
+    clear_folder_in_media('export/csv')
     data=List_Infor_Email_Eml(upload_path)
     if not data:
         return redirect("base")
@@ -62,7 +63,32 @@ def export_csv(request):
         context = {'list_email':data,'folder_name':folder_name,'csv_infor':csv_infor}
         return render(request,'app/export/csv_file.html',context)
     
+def export_html(request):
+    global folder_name
+    global path_file_export
+    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    export_path = os.path.join(settings.MEDIA_ROOT, 'export/html')
+    clear_folder_in_media('export/html')
+    data=List_Infor_Email_Eml(upload_path)
+    if not data:
+        return redirect("base")
+    else:
+        path_file_export = convert_eml_to_html(upload_path,export_path,folder_name)
+        # csv_infor = read_csv_file(path_file_export)
+        html_files = os.listdir(export_path)
+        context = {'list_email':data,'folder_name':folder_name,'html_files':html_files}
+        return render(request,'app/export/html_file.html',context)
+    
+# def privew_html(request, filename):
+#     file_html_path = os.path.join(settings.MEDIA_ROOT, 'export/html/', filename)
+#     response = FileResponse(open(file_html_path, 'rb'), content_type='text/html')
+#     return response
 
+def preview_html(request, filename):
+    file_html_path = os.path.join(settings.MEDIA_ROOT, 'export/html/', filename)
+    with open(file_html_path, 'r', encoding='utf-8') as file:
+        html_content = file.read()
+    return render(request, 'app/export/html_preview.html', {'html_content': html_content})
 
 def save_export(request):
     global folder_name
@@ -201,8 +227,9 @@ def emaildatafile(request):
     
 def base(request):
     clear_folder_in_media('uploads')
-    clear_folder_in_media('export')
+    clear_folder_in_media('export/csv')
     clear_folder_in_media('csv_file')
+    clear_folder_in_media('export/html')
     return render(request,'app/base.html')
 
 def home(request):
@@ -275,6 +302,7 @@ def view_content(request):
     # return HttpResponse(email_content)
 def clearfilefolders(request):
     clear_folder_in_media('uploads')
-    clear_folder_in_media('export')
+    clear_folder_in_media('export/csv')
     clear_folder_in_media('csv_file')
+    clear_folder_in_media('export/html')
     return redirect("base")

@@ -1,0 +1,26 @@
+{% extends 'app/export/export.html' %}
+{%load static%}
+{% block content-right-content %}
+{% comment %} <table>
+    {% for row   in  csv_infor %}
+        <tr>
+            {% for value in row %}
+                <td>
+                    {{value}}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table> {% endcomment %}
+    <ul>
+        {% for file_name in html_files %}
+        <li><a href="/preview_html/{{ file_name }}"  target="_blank" >{{ file_name }}</a></li>
+        {% endfor %}
+    </ul>
+<script>
+    function openHtmlFile(file) {
+        var absoluteUrl ="privew_html/" + file;
+        window.open(absoluteUrl, '_blank');
+      }
+  </script>
+{% endblock content-right-content %}

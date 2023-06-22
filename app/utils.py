@@ -22,6 +22,8 @@ import networkx as nx
 from django.shortcuts import render
 import json
 import requests
+import email
+from bs4 import BeautifulSoup
 def check_email_availability(email):
     api_key = 'live_bfb97de3d118e4b8ac6010a039896ce86006f099602baebf48bf0604edbba589'
     url = f'https://api.kickbox.com/v2/verify?email={email}&apikey={api_key}'
@@ -36,11 +38,13 @@ def check_email_availability(email):
             return False
     else:
         return False
+    
 def select_folder():
     root = tk.Tk()
     root.withdraw()
     folder_path = filedialog.askdirectory()
     return folder_path
+
 def List_Infor_Email_Eml(folder_path):
     eml_files = [f for f in os.listdir(folder_path) if f.endswith('.eml')]
     data=[]
@@ -329,15 +333,6 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
             # Lấy thông tin từ EML
             message_id = eml_message['Message-ID']
             date = eml_message['Date']
-            # from_email = eml_message['From']
-            # sender_name, sender_email = parseaddr(from_email)
-            # if(sender_name == ""):
-            #     sender_name = sender_email
-            # decoded_name = decode_header(sender_name)[0][0]
-            # if isinstance(decoded_name, bytes):
-            #     sender_name = decoded_name.decode()
-            # else:
-            #     sender_name = decoded_name
 
             from_email = eml_message['From']
             sender_name, sender_email = parseaddr(from_email)
@@ -384,7 +379,39 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
             # Định dạng thành chuỗi tương ứng
             writer.writerow([file_name, csv_row])   
     return  csv_file_path
-    # Lưu file CSV vào thư mục đã chọn trên máy tính
 
-    # with open(csv_file_path, 'rb') as file:
-    #     shutil.copy(csv_file_path, "D:\\hoc tap\\")
+
+def convert_eml_to_html(upload_path,export_path, folder_name):
+    list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+    for file_name in list_eml_files:
+        eml_file_path = upload_path+ "\\"+ file_name
+        # Đọc file EML
+        with open(eml_file_path, 'r') as file:
+            eml_content = file.read()
+
+        # Phân tích cấu trúc EML
+        msg = email.message_from_string(eml_content)
+
+        # Trích xuất nội dung HTML từ EML
+        html_content = None
+        for part in msg.walk():
+            if part.get_content_type() == 'text/html':
+                html_content = part.get_payload(decode=True).decode('utf-8')
+                break
+        if html_content is None:
+            continue
+        else:
+            # Chuyển đổi các thẻ HTML không hợp lệ thành chuỗi hợp lệ
+            soup = BeautifulSoup(html_content, 'html.parser')
+            html_content_valid = str(soup)
+
+        # Tạo tên file HTML từ tên file EML
+        file_name_html = os.path.splitext(file_name)[0] + '.html'
+        
+        # Tạo đường dẫn đầy đủ cho file HTML đích
+        html_file_path = os.path.join(export_path, file_name_html)
+        
+        # Ghi nội dung HTML vào file HTML đích
+        with open(html_file_path, 'w', encoding='utf-8') as file:
+            file.write(html_content_valid)
+    return html_file_path
