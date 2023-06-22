@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .utils import find_links_by_emails,get_list_from_and_to,convert_graph_to_json,create_link_analysis,wordcloud_view,List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical,get_list_to
+from .utils import list_to_by_from, check_email_availability,find_links_by_emails,get_list_from_and_to,convert_graph_to_json,create_link_analysis,wordcloud_view,List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical,get_list_to
 import os
 import email
 from django.http import HttpResponse
@@ -13,6 +13,16 @@ from django.http import JsonResponse
 folder_name = ''
 filecsv_name = ''
 path_file_export = ''
+def check_email(request):
+    email = request.GET.get('sender_email')
+    print(email)
+    if email:
+        is_available = check_email_availability(email)
+        response = {'available': is_available}
+        return JsonResponse(response)
+    else:
+        response = {'error': 'Invalid email'}
+        return JsonResponse(response, status=400)
 def choosefolder(request):
     global folder_name
     if request.method == 'POST':
@@ -115,20 +125,18 @@ def link_analysis_choose_email(request):
     return JsonResponse(link_analysis_json, safe=False)
 
 
-def check_email_availability(request):
-    email = request.GET.get('email')
-    
-    if email:
-        try:
-            domain = email.split('@')[1]
-            dns.resolver.query(domain, 'MX')
-            response = {'exists': True}
-        except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer):
-            response = {'exists': False}
-    else:
-        response = {'exists': False}
-        
-    return JsonResponse(response)
+
+def get_list_to_by_from(request):
+    global filecsv_name
+    #folder_path = Path(folder_path)
+    csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+    path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    data_detail = convert_csv_to_dataframe(path_file_csv)
+    sender_email = request.GET.get('sender_email')
+    print("email: "+sender_email)
+    list_to = list_to_by_from(data_detail,sender_email)
+    print(list_to)
+    return JsonResponse({'list_to_by_from': list_to})
 
 def dashboard_csv(request):
     global filecsv_name

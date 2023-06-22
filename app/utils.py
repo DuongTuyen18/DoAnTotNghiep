@@ -21,7 +21,21 @@ import base64
 import networkx as nx
 from django.shortcuts import render
 import json
+import requests
+def check_email_availability(email):
+    api_key = 'live_bfb97de3d118e4b8ac6010a039896ce86006f099602baebf48bf0604edbba589'
+    url = f'https://api.kickbox.com/v2/verify?email={email}&apikey={api_key}'
 
+    response = requests.get(url)
+    data = response.json()
+
+    if response.status_code == 200:
+        if data['result'] == 'deliverable':
+            return True
+        else:
+            return False
+    else:
+        return False
 def select_folder():
     root = tk.Tk()
     root.withdraw()
@@ -81,7 +95,20 @@ def read_csv_file(csv_file_path):
             for row in reader:
                 data += ','.join(row) + '\n'
         return data
-    
+
+def list_to_by_from(data_detail,sender_email):
+    filtered_data = data_detail[data_detail['Sender_email'] == sender_email]
+    grouped_data = filtered_data.groupby(['Sender_email', 'To']).size().reset_index(name='Count')
+
+    result_list = []
+    for index, row in grouped_data.iterrows():
+        sender = row['Sender_email']
+        to = row['To']
+        count = row['Count']
+        result_list.append({'sender_email': sender, 'to': to, 'counts': count})
+    return result_list
+
+
 def get_list_from(data_detail):
     list_from = data_detail.groupby(['Sender_name', 'Sender_email']).size().reset_index()
     list_from.columns = ['sender_name', 'sender_email', 'counts']
@@ -125,6 +152,7 @@ def get_data_year_statistical(data_detail):
     year_statistical["counts"] = year_statistical["Year"].map(data_year_statistical["Year"].value_counts())
     year_statistical["counts"] = year_statistical["counts"].fillna(0)
     return year_statistical
+
 def wordcloud_view(data_detail):
     # Chuỗi văn bản đầu vào
     text = ' '.join(data_detail['Content'])
@@ -148,33 +176,6 @@ def convert_graph_to_json(graph):
     json_data = json.dumps(graph_data)
     return json_data
 
-# def check_email_availability(email):
-#     # Tách tên miền từ địa chỉ email
-#     domain = email.split('@')[1]
-
-#     # Kiểm tra kết nối tới máy chủ SMTP của tên miền
-#     try:
-#         mx_records = sorted(socket.getaddrinfo(domain, 25, socket.AF_INET, socket.SOCK_STREAM),key=lambda x: x[-1])
-#     except socket.gaierror:
-#         return False
-#     # Lặp qua các máy chủ MX để kiểm tra kết nối
-#     for mx in mx_records:
-#         try:
-#             # Tạo kết nối tới máy chủ MX
-#             server = smtplib.SMTP()
-#             server.connect(mx[-1][0])
-#             server.helo()
-#             server.mail('')
-#             code, _ = server.rcpt(email)
-
-#             # Kiểm tra mã phản hồi từ máy chủ MX
-#             if code == 250:
-#                 server.quit()
-#                 return True
-#             server.quit()
-#         except smtplib.SMTPConnectError:
-#             pass
-#     return False
 
 def create_link_analysis(data_detail):
     # Xác định danh sách các liên kết
@@ -229,6 +230,7 @@ def convert_csv_to_dataframe(csv_file_path):
     data_detail['Date']=tmt
     data_detail['Date']= pd.to_datetime(data_detail.Date)   
     return data_detail
+
 def extract_email(to_email):
     if to_email is None:
         return None

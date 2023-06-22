@@ -1,6 +1,49 @@
 {% extends 'app/emailcsvfile/csvdatafile.html' %} 
 
 {%load static%} {% block content-doasboard %}
+<div class="offcanvas offcanvas-bottom"  tabindex="-1" id="offcanvas_datatable_detail" data-bs-keyboard="false" data-bs-backdrop="false" style=" position: absolute;width: auto !important;height:55%">
+    <div class="offcanvas-header">
+        <h6 class="offcanvas-title  d-none d-sm-block" >Thông tin chi tiết </h6>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <hr style="margin:2px 0 !important" class="horizontal gray-light">
+
+    <div id="offcanvas-content" class="offcanvas-body px-0">
+      <div class="row" style="height: 100%; margin: 0px 0px !important;">
+        <div class="col-12 col-xl-4">
+          <div class="card-body p-3">
+            <ul class="list-group">
+              <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Tên file:</strong> &nbsp;<label id="dataframe_filename"></label></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Message-ID:</strong> &nbsp; <label id="dataframe_message_id"></label></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thời gian:</strong> &nbsp; <label id="dataframe_date"></label></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Tên người gửi:</strong> &nbsp; <label id="dataframe_sender_name"></label></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email gửi:</strong> &nbsp; <label id="dataframe_sender_email"></label></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email nhận:</strong> &nbsp; <label id="dataframe_to"></label></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12 col-xl-4">
+          <div class="card-body p-3">
+            <ul class="list-group">
+              <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Subject:</strong> &nbsp;<label id="dataframe_subject"></label></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mime-Version:</strong> &nbsp; <label id="dataframe_mime_version"></label></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Content-Type:</strong> &nbsp; <label id="dataframe_content_type"></label></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Content-Transfer-Encoding:</strong> &nbsp; <label id="dataframe_content_transfer-encoding"></label></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Cc:</strong> &nbsp; <label id="dataframe_cc"></label></li>
+              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Bcc:</strong> &nbsp; <label id="dataframe_bcc"></label></li>
+            </ul>
+          </div>
+        </div>
+        <div style="height: 100%;" class="col-12 col-xl-4">
+          <div style="height: 100%;" class="card-body p-3">
+            <h6 class="mb-0"><strong class="text-dark">Nội dung:</strong></h6>
+            <br>
+            <div id="dataframe_content" style="height: 100%;" class="ifram_dataframe_content" ></div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
 <div id="table-box">
     <h4>TABLE DATAFRAME</h4>
     <div id="table">
@@ -21,7 +64,7 @@
             </thead>
             <tbody>
                 {% for row in page_obj %}
-                <tr>
+                <tr data-bs-toggle='offcanvas' onclick="view_datafram_detail(`{{ row.file}}`,`{{ row.MassageID}}`,`{{ row.Date}}`,`{{ row.Sender_name}}`,`{{ row.Sender_email}}`,`{{ row.To}}`,`{{ row.Subject}}`,`{{ row.MimeVersion}}`,`{{ row.ContentType}}`,`{{ row.ContentTransferEncoding}}`,`{{ row.Xcc}}`,`{{ row.Xbcc}}`,`{{ row.Content}}`)" data-bs-target='#offcanvas_datatable_detail'>
                     <td>{{ row.file}}</td>
                     <td>{{ row.MassageID }}</td>
                     <td>{{ row.Date }}</td>
@@ -62,48 +105,24 @@
         </ul>
       </nav>
 </div>
+<script>
+  $(document).ready(function () {
 
-
-
-  {% comment %} <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="{% url 'dataframe_table' %}?page=1" class="page-link">&laquo; first</a>
-            <a href="{% url 'dataframe_table' %}?page={{ page_obj.previous_page_number }}" class="page-link">previous</a>
-        {% endif %}
-
-        <span class="current-page">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="{% url 'dataframe_table' %}?page={{ page_obj.next_page_number }}" class="page-link">next</a>
-            <a href="{% url 'dataframe_table' %}?page={{ page_obj.paginator.num_pages }}" class="page-link">last &raquo;</a>
-        {% endif %}
-    </span>
-</div> {% endcomment %}
-{% comment %} <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
-            <li class="page-item ">
-                <a class="page-link" href="{% url 'dataframe_table' %}?page={{ page_obj.previous_page_number }}"  tabindex="-1">Previous</a>
-            </li>
-        {% else %}
-        <li class="page-item disabled">
-            <a class="page-link"   tabindex="-1">Previous</a>
-        </li>
-        {% endif %}
-        <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
-        {% if page_obj.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="{% url 'dataframe_table' %}?page={{ page_obj.next_page_number }}">Next</a>
-            </li>
-        {% else %}
-            <li class="page-item disabled">
-                <a class="page-link">Next</a>
-            </li>
-        {% endif %}
-
-    </ul>
-  </nav> {% endcomment %}
+  });
+  function view_datafram_detail(file_name, MassageID, Date,Sender_name, Sender_email, To, Subject, MimeVersion, ContentType, ContentTransferEncoding, Xcc, Xbcc, Content){
+    $("#dataframe_filename").html(file_name);
+    $("#dataframe_message_id").html(MassageID);
+    $("#dataframe_date").html(Date);
+    $("#dataframe_sender_name").html(Sender_name);
+    $("#dataframe_sender_email").html(Sender_email);
+    $("#dataframe_to").html(To);
+    $("#dataframe_subject").html(Subject);
+    $("#dataframe_mime_version").html(MimeVersion);
+    $("#dataframe_content_type").html(ContentType);
+    $("#dataframe_content_transfer").html(ContentTransferEncoding);
+    $("#dataframe_cc").html(Xcc);
+    $("#dataframe_bcc").html(Xbcc);
+    $("#dataframe_content").html(Content);
+  }
+</script>
 {% endblock content-doasboard %}

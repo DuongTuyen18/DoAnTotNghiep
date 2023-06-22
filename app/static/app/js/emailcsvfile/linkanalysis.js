@@ -85,7 +85,7 @@ $(document).ready(function () {
               
               // Vẽ hình tròn cho mỗi node
               node.append("circle")
-                .attr("r", 15)
+                .attr("r", 10)
                 .style("fill", "blue");
               
               // Hiển thị tên của mỗi node
