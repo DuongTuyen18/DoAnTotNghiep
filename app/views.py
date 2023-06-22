@@ -68,14 +68,22 @@ def export_html(request):
     global path_file_export
     upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
     export_path = os.path.join(settings.MEDIA_ROOT, 'export/html')
+
     clear_folder_in_media('export/html')
+
+    # tạo folder lưu chữ các file html
+    html_folder_path = os.path.join(export_path , folder_name)
+    # Kiểm tra nếu thư mục chưa tồn tại
+    if not os.path.exists(html_folder_path):
+        # Tạo thư mục mới
+        os.makedirs(html_folder_path)
+
     data=List_Infor_Email_Eml(upload_path)
     if not data:
         return redirect("base")
     else:
-        path_file_export = convert_eml_to_html(upload_path,export_path,folder_name)
-        # csv_infor = read_csv_file(path_file_export)
-        html_files = os.listdir(export_path)
+        path_file_export = convert_eml_to_html(upload_path, html_folder_path)
+        html_files = os.listdir(html_folder_path)
         context = {'list_email':data,'folder_name':folder_name,'html_files':html_files}
         return render(request,'app/export/html_file.html',context)
     

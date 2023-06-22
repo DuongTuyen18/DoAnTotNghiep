@@ -381,7 +381,7 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
     return  csv_file_path
 
 
-def convert_eml_to_html(upload_path,export_path, folder_name):
+def convert_eml_to_html(upload_path,html_folder_path):
     list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
     for file_name in list_eml_files:
         eml_file_path = upload_path+ "\\"+ file_name
@@ -408,8 +408,10 @@ def convert_eml_to_html(upload_path,export_path, folder_name):
         # Tạo tên file HTML từ tên file EML
         file_name_html = os.path.splitext(file_name)[0] + '.html'
         
+
+
         # Tạo đường dẫn đầy đủ cho file HTML đích
-        html_file_path = os.path.join(export_path, file_name_html)
+        html_file_path = os.path.join(html_folder_path, file_name_html)
         
         # Ghi nội dung HTML vào file HTML đích
         with open(html_file_path, 'w', encoding='utf-8') as file:
