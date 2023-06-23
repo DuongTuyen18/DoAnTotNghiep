@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{%load static%}
+{% block main-content %}
+    <div class="header-content">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand">{{filecsv_name}}</a>
+                <form class="d-flex" role="search">
+                    <input id="search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button  id="search-button" class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+{% endblock main-content %}

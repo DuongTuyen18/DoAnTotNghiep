@@ -6,10 +6,39 @@
             <div class="container-fluid">
                 <a class="navbar-brand">{{filecsv_name}}</a>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input id="search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button  id="search-button" class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
+       
+            {% comment %} <div id="search-overlay"> <div id="search-results"></div> </div>
+            <script>
+                const searchButton = document.getElementById('search-button');
+                const searchInput = document.getElementById('search-input');
+                const searchResults = document.getElementById('search-results');
+            
+                searchButton.addEventListener('click', function() {
+                    const searchTerm = searchInput.value;
+                    const paragraphs = document.getElementsByTagName('p');
+                    let searchResultHTML = '';
+            
+                    for (let i = 0; i < paragraphs.length; i++) {
+                        const paragraphText = paragraphs[i].textContent;
+                        if (paragraphText.includes(searchTerm)) {
+                            searchResultHTML += '<p>${paragraphText}</p>';
+                        }
+                    }
+            
+                    if (searchResultHTML === '') {
+                        searchResultHTML = '<p>No results found for: ${searchTerm}</p>';
+                    } else {
+                        searchResultHTML = '<p>Results for: ${searchTerm}</p>'' + searchResultHTML;
+                    }
+            
+                    searchResults.innerHTML = searchResultHTML;
+                });
+            </script>
+      {% endcomment %}
         </nav>
     </div>
     <div style="position: relative;--bs-gutter-x: unset;" class="row row-content">
@@ -74,5 +103,5 @@
             {% block right-content%} {% endblock right-content%}
         </div>
     </div>
-
+    
 {% endblock main-content %}

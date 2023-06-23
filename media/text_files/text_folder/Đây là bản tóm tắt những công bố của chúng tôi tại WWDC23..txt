@@ -1,0 +1,80 @@
+
+        From: Apple <News@InsideApple.Apple.com>
+        To: nttrang13092000@gmail.com
+        Subject: Đây là bản tóm tắt những công bố của chúng tôi tại WWDC23.
+        Received On: Tue, 6 Jun 2023 06:34:42 +0000 (GMT)
+        
+        <pre>Apple WWDC23
+
+Giới thiệu MacBook Air 15 inch với chip M2, Mac Studio với M2 Max và M2 Ultra, cùng Mac Pro với M2 Ultra mới.
+
+Xem sự kiện
+https://c.apple.com/r?v=2&amp;a=LFGBuluglt%2BfjzVMkbjDFJNJ9G0%2BC71oAlJ6%2BDaFSjQgvx6Hpg%2Fzrp5Q0rwgRLJL851Dc2sBFj2DPjP5aIgPVmsKGehXpbFvIgiguSPJxhW6ADqJK2%2BkrEnTomoh%2BuQMd3%2F00769V4ae10pSNS%2F4raQWbMKo3nb9PNxqsOWa1I6otu7UMG%2FO03KsVRI3w3vdNzOArT0pwYlAvMxZfv6jtNZHKkqUO0%2BFoklgQkKtdsTFyDJw55eoXvTqdDUQUYbEIsOc7ha3zTNbzMnR7Om5Dcbh%2FwUUp1us40j9%2FP6L7b%2FWCf%2FFr0nMce3qFU%2B9EEcIk%2B2o5fqKw1sohE%2F2X243Qc8fYnVko9tE3s%2BSxe31r8kqArlxm0VoJ3QXFPzJFjCaDPLXJ9bWGnVxojsYdbV4Eob1r3AswLXs47SCQIW6MFk%3D
+
+MacBook Air 15”
+
+Máy tính xách tay được yêu thích nhất của chúng tôi nay có màn hình Liquid Retina 15 inch rộng rãi, thêm không gian cho những điều bạn yêu. Siêu mạnh mẽ với chip M2, cùng thời lượng pin lên đến 18 giờ.
+
+Theo dõi để biết khi có hàng
+
+Tìm hiểu thêm 
+https://c.apple.com/r?v=2&amp;a=LFGBuluglt%2BfjzVMkbjDFJNJ9G0%2BC71oAlJ6%2BDaFSjQgvx6Hpg%2Fzrp5Q0rwgRLJL851Dc2sBFj2DPjP5aIgPVmsKGehXpbFvIgiguSPJxhW6ADqJK2%2BkrEnTomoh%2BuQMd3%2F00769V4ae10pSNS%2F4raQWbMKo3nb9PNxqsOWa1I6otu7UMG%2FO03KsVRI3w3vdNzOArT0pwYlAvMxZfv6jtNZHKkqUO0%2BFoklgQkKtdsTFyDJw55eoXvTqdDUQUYbEIsOc7ha3zTNbzMnR7Om5Dcbh%2FwUUp1us40j9%2FP6L7b%2FWCf%2FFr0nMce3qFU%2B9EEcIk%2B2o5fqKw1sohE%2F2X243Qc8fYnVko9tE3s%2BSxe31r8kqArlxm0VoJ3QXFPzJFjCaDPLXJ9bWGnVxojsYdbV4EmJy1rXHHXwLsLcnQDxpYE4%3D
+
+Xem giá
+https://c.apple.com/r?v=2&amp;a=LFGBuluglt%2BfjzVMkbjDFJNJ9G0%2BC71oAlJ6%2BDaFSjQgvx6Hpg%2Fzrp5Q0rwgRLJL851Dc2sBFj2DPjP5aIgPVmsKGehXpbFvIgiguSPJxhW6ADqJK2%2BkrEnTomoh%2BuQMd3%2F00769V4ae10pSNS%2F4raQWbMKo3nb9PNxqsOWa1I6otu7UMG%2FO03KsVRI3w3vdNzOArT0pwYlAvMxZfv6jtNZHKkqUO0%2BFoklgQkKtdsTFyDJw55eoXvTqdDUQUYbEIsOc7ha3zTNbzMnR7Om5Dcbh%2FwUUp1us40j9%2FP6L7b%2FWCf%2FFr0nMce3qFU%2B9EEcIk%2B2o5fqKw1sohE%2F2X243Qc8fYnVko9tE3s%2BSxe31r8kqArlxm0VoJ3QXFPzJFjCaDPLXJ9bWGnVxojsYdbV4Eo7kk7qT4Bro7dSz84MtxGA%3D
+
+Mac Studio
+
+Sức mạnh thế hệ mới hiện diện trong M2 Max và M2 Ultra. Hiệu năng vượt trội cùng khả năng kết nối rộng mở trong một kiểu dáng nhỏ gọn, biến mọi không gian thành studio sáng tạo.
+
+Theo dõi để biết khi có hàng
+
+Tìm hiểu thêm 
+https://c.apple.com/r?v=2&amp;a=LFGBuluglt%2BfjzVMkbjDFJNJ9G0%2BC71oAlJ6%2BDaFSjQgvx6Hpg%2Fzrp5Q0rwgRLJL851Dc2sBFj2DPjP5aIgPVmsKGehXpbFvIgiguSPJxhW6ADqJK2%2BkrEnTomoh%2BuQMd3%2F00769V4ae10pSNS%2F4raQWbMKo3nb9PNxqsOWa1I6otu7UMG%2FO03KsVRI3w3vdNzOArT0pwYlAvMxZfv6jtNZHKkqUO0%2BFoklgQkKtdsTFyDJw55eoXvTqdDUQUYbEIsOc7ha3zTNbzMnR7Om5Dcbh%2FwUUp1us40j9%2FP6L7b%2FWCf%2FFr0nMce3qFU%2B9EEcIk%2B2o5fqKw1sohE%2F2X243Qc8fYnVko9tE3s%2BSxe31r8kqArlxm0VoJ3QXFPzJFjCaDPLXJ9bWGnVxojsYdbV4EnLxWYDVz64wgjOyURCFqno%3D
+
+Xem giá
+https://c.apple.com/r?v=2&amp;a=LFGBuluglt%2BfjzVMkbjDFJNJ9G0%2BC71oAlJ6%2BDaFSjQgvx6Hpg%2Fzrp5Q0rwgRLJL851Dc2sBFj2DPjP5aIgPVmsKGehXpbFvIgiguSPJxhW6ADqJK2%2BkrEnTomoh%2BuQMd3%2F00769V4ae10pSNS%2F4raQWbMKo3nb9PNxqsOWa1I6otu7UMG%2FO03KsVRI3w3vdNzOArT0pwYlAvMxZfv6jtNZHKkqUO0%2BFoklgQkKtdsTFyDJw55eoXvTqdDUQUYbEIsOc7ha3zTNbzMnR7Om5Dcbh%2FwUUp1us40j9%2FP6L7b%2FWCf%2FFr0nMce3qFU%2B9EEcIk%2B2o5fqKw1sohE%2F2X243Qc8fYnVko9tE3s%2BSxe31r8kqArlxm0VoJ3QXFPzJFjCaDPLXJ9bWGnVxojsYdbV4EvtJCaAnKegf4d3EBt3pBQ0%3D
+
+Mac Pro
+
+Sự kết hợp ấn tượng giữa hiệu năng của Apple silicon và khả năng mở rộng PCIe cho những luồng công việc chuyên dụng. Thêm vào đó, mọi cấu hình đều trang bị chip M2 Ultra cực đỉnh mới, chip mạnh mẽ và giàu năng lực nhất hiện có của chúng tôi.
+
+Theo dõi để biết khi có hàng 
+
+Tìm hiểu thêm 
+https://c.apple.com/r?v=2&amp;a=LFGBuluglt%2BfjzVMkbjDFJNJ9G0%2BC71oAlJ6%2BDaFSjQgvx6Hpg%2Fzrp5Q0rwgRLJL851Dc2sBFj2DPjP5aIgPVmsKGehXpbFvIgiguSPJxhW6ADqJK2%2BkrEnTomoh%2BuQMd3%2F00769V4ae10pSNS%2F4raQWbMKo3nb9PNxqsOWa1I6otu7UMG%2FO03KsVRI3w3vdNzOArT0pwYlAvMxZfv6jtNZHKkqUO0%2BFoklgQkKtdsTFyDJw55eoXvTqdDUQUYbEIsOc7ha3zTNbzMnR7Om5Dcbh%2FwUUp1us40j9%2FP6L7b%2FWCf%2FFr0nMce3qFU%2B9EEcIk%2B2o5fqKw1sohE%2F2X243Qc8fYnVko9tE3s%2BSxe31r8kqArlxm0VoJ3QXFPzJFjCaDPLXJ9bWGnVxojsYdbV4Elr%2BzuVW%2FZm1hLIho%2BpGh54%3D
+
+Xem giá
+https://c.apple.com/r?v=2&amp;a=LFGBuluglt%2BfjzVMkbjDFJNJ9G0%2BC71oAlJ6%2BDaFSjQgvx6Hpg%2Fzrp5Q0rwgRLJL851Dc2sBFj2DPjP5aIgPVmsKGehXpbFvIgiguSPJxhW6ADqJK2%2BkrEnTomoh%2BuQMd3%2F00769V4ae10pSNS%2F4raQWbMKo3nb9PNxqsOWa1I6otu7UMG%2FO03KsVRI3w3vdNzOArT0pwYlAvMxZfv6jtNZHKkqUO0%2BFoklgQkKtdsTFyDJw55eoXvTqdDUQUYbEIsOc7ha3zTNbzMnR7Om5Dcbh%2FwUUp1us40j9%2FP6L7b%2FWCf%2FFr0nMce3qFU%2B9EEcIk%2B2o5fqKw1sohE%2F2X243Qc8fYnVko9tE3s%2BSxe31r8kqArlxm0VoJ3QXFPzJFjCaDPLXJ9bWGnVxojsYdbV4EkWyBidKzjnkQSpVGSGZpLo%3D
+
+-------------------
+
+Find a Reseller
+https://c.apple.com/r?v=2&amp;a=LFGBuluglt%2BfjzVMkbjDFJNJ9G0%2BC71oAlJ6%2BDaFSjQgvx6Hpg%2Fzrp5Q0rwgRLJL851Dc2sBFj2DPjP5aIgPVmsKGehXpbFvIgiguSPJxhW6ADqJK2%2BkrEnTomoh%2BuQMd3%2F00769V4ae10pSNS%2F4raQWbMKo3nb9PNxqsOWa1I6otu7UMG%2FO03KsVRI3w3vdNzOArT0pwYlAvMxZfv6jtNZHKkqUO0%2BFoklgQkKtdsTFyDJw55eoXvTqdDUQUYbEIsOc7ha3zTNbzMnR7Om5Dcbh%2FwUUp1us40j9%2FP6L7b%2FWCf%2FFr0nMce3qFU%2B9EEcIk%2B2o5fqKw1sohE%2F2X243Qc8fYnVko9tE3s%2BSxe31r8kqArlxm0VoJ3QXFPzJFjCaDPLXJ9bWGnVxojsYdbV4EixGJg3x4DUp7DWyg991nXg%3D
+
+120-65-104
+
+-------------------
+
+-------------------
+
+TM and © 2023 Apple Inc. Tel: 120-65-104. All Rights Reserved.
+
+-------------------
+
+Privacy Policy
+https://c.apple.com/r?v=2&amp;a=o2CKfLM8dAL7lynfnyn7UIVVufPXVj0Qor2Sg85ZxwluJ1XGFnmpuhGwPlb%2Fsk0cO894CCraIsmPJNf9YnxrAguubuMZaw2i6N%2Fo2sq24za4u6cdDrynpR0bxMOkJUIuRQmtmL66bqaiPpvMUPJXVt6EgVMilGYcZ4JyVlmBAP0vp5G2n1t6VL5qKtc3VlBtxNHEzTiDnOxpM3UITjo1Wym7CwizApEZId9%2BMedRzjE%2Fw1KCeqFh2UdvVn827rccPPdtazNtEPc9ADfQiQwiTocfn0pp%2FB2mE2tz9O5AgjQ%3D
+
+My Apple ID
+https://c.apple.com/r?v=2&amp;a=o2CKfLM8dAL7lynfnyn7UIVVufPXVj0Qor2Sg85ZxwluJ1XGFnmpuhGwPlb%2Fsk0cO894CCraIsmPJNf9YnxrAguubuMZaw2i6N%2Fo2sq24za4u6cdDrynpR0bxMOkJUIuRQmtmL66bqaiPpvMUPJXVt6EgVMilGYcZ4JyVlmBAP0vp5G2n1t6VL5qKtc3VlBtxNHEzTiDnOxpM3UITjo1Wym7CwizApEZId9%2BMedRzjE%2Fw1KCeqFh2UdvVn827rccPPdtazNtEPc9ADfQiQwiTuQjSjxqwF%2Btj1hOvuyU5HI%3D
+
+Legal
+https://c.apple.com/r?v=2&amp;a=o2CKfLM8dAL7lynfnyn7UIVVufPXVj0Qor2Sg85ZxwluJ1XGFnmpuhGwPlb%2Fsk0cO894CCraIsmPJNf9YnxrAguubuMZaw2i6N%2Fo2sq24za4u6cdDrynpR0bxMOkJUIuRQmtmL66bqaiPpvMUPJXVt6EgVMilGYcZ4JyVlmBAP0vp5G2n1t6VL5qKtc3VlBtxNHEzTiDnOxpM3UITjo1Wym7CwizApEZId9%2BMedRzjE%2Fw1KCeqFh2UdvVn827rccPPdtazNtEPc9ADfQiQwiTvXIHhysbcHV1icSC1xrvAA%3D
+
+-------------------
+
+If you prefer not to receive commercial email from Apple, or if you’ve changed your email address, please click here.
+https://c.apple.com/r?v=2&amp;a=8ps6Ok0qKWiF37xoxStPOmTNGs51zlivdjtcXTFjpLnVfNVUW3O2%2Fg0FsgBl8SdvTx20IK997Wb6cow2ElFVnWDs7eDmnwXNMUyJ7Z6WZajQtUH4Nr6C%2FYPk04pDKANA0Z%2FuuXh8fRdXFtKFSCPcltGUa%2BTcWjeL%2BTFeuYf3TfYU1Ln1cbUQdsx1L5V0wvUE0gi8PU6b1MwFow3CrZGmeJVoGOArG0MA6YhFSd3F%2B27SAvdLgONPUT6ynDglwMp%2BJRUJKPi4kGtmC5u6fqQw6LCg%2Fkp8cinHl7f7cu0Ro5LfwzJzhuoewP4N752R2xBmWyps%2B%2FCrYKBguWpqXHWhC6HcLP%2BpmRRkQ2SfWD5Q5m503d27iFU1ZAn%2BmZgIq2zxQcc0fXEG4tAJWPNyQ7cmgPs3SPZV3y3Tpg6gsPaKFQt%2FLJolR93h73aOswboKajUHQYqFZ1TSs2lqw9x%2B7paJK76FWM2syagvDBETxUHdSkrLlN9wnA63AeTP9Bs%2B23%2BJ5rZACt2m9mFDfLbXSB8Ng%3D%3D
+
+-------------------</pre>
+    

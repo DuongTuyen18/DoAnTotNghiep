@@ -1,67 +1,67 @@
-Delivered-To: dvt18012000@gmail.com
-Received: by 2002:ab4:a12e:0:b0:200:c685:1d1f with SMTP id dm14csp2804287ecb;
+Delivered-To: nttrang13092000@gmail.com
+Received: by 2002:adf:fc09:0:0:0:0:0 with SMTP id i9csp1194969wrr;
         Tue, 14 Mar 2023 20:52:36 -0700 (PDT)
-X-Google-Smtp-Source: AK7set+fzoHci/6dW5ZHkUJkdN5Wz74qfIEo/AlPGqmb73BTp+oLB3j6BKy4QENdxXzTIGjMrpE+
-X-Received: by 2002:a9d:6a2:0:b0:69a:5407:e563 with SMTP id 31-20020a9d06a2000000b0069a5407e563mr211703otx.16.1678852356628;
+X-Google-Smtp-Source: AK7set8ac2PwRrtI22c4Afk4E76jNtIrG2c6owIE6NDrc0gSic5H+nmDjtQXIBwBdz47xnJ6ZD9e
+X-Received: by 2002:a9d:724b:0:b0:68b:e2bc:3f7 with SMTP id a11-20020a9d724b000000b0068be2bc03f7mr8131103otk.18.1678852356665;
         Tue, 14 Mar 2023 20:52:36 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; t=1678852356; cv=none;
         d=google.com; s=arc-20160816;
-        b=x4S+xe8iTqEUTSZuQMBi3RjrIdNxb4epsmbo7E57IecTxvOagJAxn/1fbN5BVUvkP9
-         S42Lo/+tNsjidZRQ6qxDJcq5Y+vxkPlBadS7Liu/35TbUoLrmx1FwsPl6xDcQFMBcpbX
-         rEr9KeRTLW6VDtvPxTFU1beVhiQeJ4kNDvnGpVuuicb1R/dzvGova+faI9zdfb7s/MNm
-         O0ygQvw3WQ41knqqEK2ROfHnj9K1ZsiV4nfte9OpQqZBoq9+k09rH7GtHQMNRqYkUPf/
-         AZCg35E9Z+UvXCAIAlHkTFB3V6lFnYDIeFFwF1mh7ha05CtVMVoB2BacUJOVay+vCy7l
-         ZqLA==
+        b=i55EyeL4ktA266U7zfLzfCGnIP+aDyV9f6K4PscNK0LaEZlAnWizcxGHX3l7IpMnp4
+         +1f2XI54jRi3dzYQSY4qzkuUshqMHhnHoRfbEqllzID5ZeR6RbOZCvcwhlA1xigLFeqM
+         1CzW80glh4QSy3oXse40WaepTA/06BlKeYcDFUY8gFtQ9keCNNmtnJl0TW+SJxnwjTkb
+         aqx+EtGeU1xMyDPciShACS+ervK3OYxurgxBqOQSpPfcVO5If9LlhWWK9IPCvaii7hjR
+         hGFx4AKrU5Jb4d2LndAn+YrFVxvJPrwHGBPx+8cACzMHhXXVqTI41/sB7EVLhkxpEtQG
+         3p4Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=cc:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=MDx6RQ3D0a9Zj8dTqtWrMdTv4agKga65gX9s9iu9DGs=;
-        b=UhgEj1EASBiDo0vcBX/0FT95uFeA6xV6NaC8yn7bpLUB14iPj6NXgR4xY1lrshneLV
-         wuhbybziAtxuJzIxLIJrL9lejHIgrLBTV8RTzMj7KwhFg+yRnowNUHToHiTk4vqKV3j3
-         H+M/yblqx5h47R+SDBaYPPY1VBauut1mjPFHhpWkg1eYXIpnKhQIZQU8w0ttVxjEMwvi
-         p3AnG6o0bgyQBcEHot3cGTxjhEJSP+pUBbHcZxLtK2cCNlJp++b89+Q5NAaW8bVCUa76
-         yPqS1sOsGIy9S4P0RCco2FQYtyYX5H9R8t1hhtYcVSxsxpkC3p7X2xnHgR2/FbnMKaQC
-         v7wA==
+        bh=9pZxYEVUAgjKRU9vw2LvXfbFQfZWUtUJFnYBF2/cN3s=;
+        b=oj8qqC14SK176pw6irCek/jSGN+9R/jO82FykjUQyMTmBJbPToYPf6nMn/HEMVHxkU
+         d4xSodZW28fq0CXKLkFbMD06fZSMWJ/MWxopBgOn7lWRowzmWqiOB07b7SWYyNyYwVgy
+         RzcCuj+cxQeuPBGPI65khFL1Q8Y7fUAQzDvjAnpaVEHOIPWDgM+OheWL9fCrvCxWkNFa
+         lHozPNe0Wed/huJR1Z8lnDdYfpLdq2gqCIS/dpM1VHGgr952tJL+KvUwNFaC7ba7lXSM
+         /Vev9lLGhZ2Sbz6BMTF8Nl9z2Cj1jWdL9/UF5W3TxeIB3+45+WRWhAgSarmTPwZfVXu2
+         E77A==
 ARC-Authentication-Results: i=1; mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=kWP20lxc;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=euZfYiCe;
        spf=pass (google.com: domain of info.etevn@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=info.etevn@gmail.com;
        dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 Return-Path: <info.etevn@gmail.com>
 Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
-        by mx.google.com with SMTPS id x29-20020a9d459d000000b00684e6cbb214sor698619ote.98.2023.03.14.20.52.36
-        for <dvt18012000@gmail.com>
+        by mx.google.com with SMTPS id x29-20020a9d459d000000b00684e6cbb214sor698618ote.98.2023.03.14.20.52.36
+        for <nttrang13092000@gmail.com>
         (Google Transport Security);
         Tue, 14 Mar 2023 20:52:36 -0700 (PDT)
 Received-SPF: pass (google.com: domain of info.etevn@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
 Authentication-Results: mx.google.com;
-       dkim=pass header.i=@gmail.com header.s=20210112 header.b=kWP20lxc;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=euZfYiCe;
        spf=pass (google.com: domain of info.etevn@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=info.etevn@gmail.com;
        dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112; t=1678852356;
         h=cc:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=MDx6RQ3D0a9Zj8dTqtWrMdTv4agKga65gX9s9iu9DGs=;
-        b=kWP20lxc1U9pCOGbMBewQfVW6vlVn3tmcZEJkRHfFb848ca3/ZYUDiUu3sGy/e+LkH
-         x8ow97GHI469sF74S9KWNRU3VZcIu0ckjnplXnZ54xuovcx36KtMXwK02RrQZL3ykA7h
-         jcDQLbIytInaxA6Cuqgh2ws/u3Vg5XICbinJLV7LMMC9T0thuS5XEneXBzMcOfQqdMff
-         iIouWAPt3t9QDJR1vN7Kg1IleZGLi4v+TNhjazpYbQ4naVq2uKF2HRhcetvRx/sjwMf6
-         uv07KGkLPY9YT3mMK0jmhtSRgMlStNSZpaPM4gpnTKLtTwcSmpdf/1oxm7mPUon2K9JS
-         N4tw==
+        bh=9pZxYEVUAgjKRU9vw2LvXfbFQfZWUtUJFnYBF2/cN3s=;
+        b=euZfYiCeQHbYuiayMaREhytPkzvnTiw4TGoulWOnEG+4BwVDTpzMXGYy9Tq/YkQD2A
+         nhPNLMOUZ8Kv30+qLtKxOpKk8T9jkVgIDqzBXqjGSznJusCKIUQv90VsAhviuYI3fScm
+         FrKms+rBdxjE7wXGCyem/Efuzpl+aVXH7/AgqTzx8bWJhlfdBJhB8tJJZxxRgsR4YaBV
+         +Cx96SsKojs+BADurklPmb05oXgLiqkIAxJqyEoIld8/9Q7LCnXkArnx1qUCusfUvFn5
+         uUdr3EebChumlT/51BulKUAVaXSDjShcYC1H1xbM7Ce0LT9K6V5EmXW/y7LTJcvl7MEE
+         FAEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112; t=1678852356;
         h=cc:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MDx6RQ3D0a9Zj8dTqtWrMdTv4agKga65gX9s9iu9DGs=;
-        b=dv4heZoCof61dWHa1+qQO2XLlJ6DOA1H9eRjr2HhvIWjw0+aMcKyt2GPTFGALyjty9
-         wQ2dYHK/34kRN6jOOdlmUddnG+h0GS/kAsvibJNgvJdO3oucJJ9X5lkIC/Th0xbt379K
-         +s5jDsSwVuHN/y37z8kzr6Ip0a9QJYwUL8FkhrbK1IKkkjeK4mWiSwMr6tpiE6T7F73d
-         5D26UTeW+MX3Pv7unERUW6o+gDtlS8XLAibWzg2WhCshog76IPfmlAcibvfvj58SUzOK
-         PDgF52Q2vnl9eVL4AkE/jRxDD2fglyWlHt1QcHMdJQ6BM08oDfweYE/pZcla91LuPqNP
-         MyGA==
-X-Gm-Message-State: AO0yUKUuybLViD/ylsw6jhr3n36ZWO396hfdprseo3eJiGlPvtFTGQCx
-	vODoN+yNW/f4NsAyjIh66fVTS547tI4XJGHnev0=
+        bh=9pZxYEVUAgjKRU9vw2LvXfbFQfZWUtUJFnYBF2/cN3s=;
+        b=wG1e/CRYBYOTws1S4bOWy4ZhgAFFjGqisYxZBmXVKCYY4q7knTn47cYFyyiwbZGNv9
+         AhHOunoJPui15wTMr8rPQHnD1Wh3KpO4XDX3hjCcKC1r3aiGGuSVOTNOIAf3IyCUWQJY
+         JedGwqWm9T324ZEcSfrvQoIm7PoAWaysQGnQCCqLubI5/EnHdDwtVu539ZKcsKZolSlZ
+         9hvqi3pqr6B4rwOVfa/joj8Qnax4Qfkl8Y2IgOMxif3K5yA5k2IGfi/oJopBRGEHVj+c
+         QvqQl+znNVBsR3YuddtwlBe/bIM1zNj6npgz7sFCrE8flBT4Ru1DL7RPgI/hqHupu3iu
+         gZMA==
+X-Gm-Message-State: AO0yUKVOF53neOyOWr+VKrI/xSnUyZo2URZH6N4wg2GL/rlg/U1HCWDs
+	3szswYCcW0OvqklNn40exrhzd5JISYIwMfgE9Rc=
 X-Received: by 2002:a9d:4b9a:0:b0:693:dce4:49fb with SMTP id
- k26-20020a9d4b9a000000b00693dce449fbmt14878887otf.1.1678852355847; Tue, 14
+ k26-20020a9d4b9a000000b00693dce449fbmt14878917otf.1.1678852355847; Tue, 14
  Mar 2023 20:52:35 -0700 (PDT)
 MIME-Version: 1.0
 From: ETE Info <info.etevn@gmail.com>
@@ -70,10 +70,10 @@ Message-ID: <CAL3xXaHgiVptPt26SZx8RoiT6KoTZgyiOhk1iw6-dovzBStfYw@mail.gmail.com>
 Subject: =?UTF-8?B?W0FQVElTXSBUaMO0bmcgYsOhbyBs4buLY2ggdGhpIENoaeG7gXUgbmfDoHkgMTkvMDMvMg==?=
 	=?UTF-8?B?MDIzIHThuqFpIFZlbnVlIMSQw7QgTmdoxKlh?=
 Cc: duonganhvu0512@gmail.com
-Content-Type: multipart/alternative; boundary="0000000000004e540905f6e846de"
-Bcc: dvt18012000@gmail.com
+Content-Type: multipart/alternative; boundary="0000000000004e6f3905f6e846d9"
+Bcc: nttrang13092000@gmail.com
 
---0000000000004e540905f6e846de
+--0000000000004e6f3905f6e846d9
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: base64
 
@@ -177,7 +177,7 @@ n4yOIFdlYnNpdGU6IGh0dHBzOi8vYXB0aXNldGUuY29tLw0K8J+TsSBIb3RsaW5lL1phbG86ICgr
 ODQpIDAzMi01MjEtNDE5MQ0K8J+TjSDEkOG7i2EgY2jhu4k6IE5ow6AgMzYgR2FsYXh5IDYsIEdh
 bGF4eSBW4bqhbiBQaMO6YywgU+G7kSA2OSDEkMaw4budbmcgVOG7kSBI4buvdSwgUGjGsOG7nW5n
 DQpW4bqhbiBQaMO6YyBRdeG6rW4gSMOgIMSQw7RuZywgSMOgIE7hu5lpLg0K
---0000000000004e540905f6e846de
+--0000000000004e6f3905f6e846d9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -617,4 +617,4 @@ ont-family:Calibri,Arial"><br>=F0=9F=93=B1 Hotline/Zalo: (+84) 032-521-4191=
 =C4=90=C3=B4ng, H=C3=A0 N=E1=BB=99i.</span></td></tr></tbody></table></div>=
 </div></div>
 
---0000000000004e540905f6e846de--
+--0000000000004e6f3905f6e846d9--
