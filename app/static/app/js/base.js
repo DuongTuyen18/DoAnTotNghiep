@@ -1,16 +1,4 @@
-// function handleCSVFile(event) {
-//   var file = event.target.files[0];
-//   if (file) {
-//     // Xử lý tệp CSV tại đây, ví dụ:
-//     var reader = new FileReader();
-//     reader.onload = function(e) {
-//       var contents = e.target.result;
-//       // Xử lý nội dung tệp CSV ở đây
-//       console.log(contents);
-//     };
-//     reader.readAsText(file);
-//   }
-// }
+
 $(document).ready(function () {
 
 
@@ -71,63 +59,12 @@ document.getElementById('Choosefile_csv').addEventListener('click', function (ev
   // Kích hoạt sự kiện click cho input để mở dialog chọn thư mục
   input.click();
 });
-// $('#ChooseFolderEML').on('click', function(event) {
-//   // Ngăn chặn hành động mặc định của thẻ a
-//   event.preventDefault();
-
-//   // Tạo input element và sử dụng thuộc tính webkitdirectory để cho phép chọn thư mục
-//   var input = $('<input type="file" webkitdirectory />');
-
-//   // Lắng nghe sự kiện onchange của input để lấy đường dẫn của thư mục đã chọn
-//   input.on('change', function(event) {
-//     // Lấy đường dẫn tuyệt đối của thư mục được chọn
-//     var folderPath = $(this).val();
-//     alert(folderPath);
-//     // Đưa đường dẫn vào trường input trong form
-//     $('#folderPathInput').val(folderPath);
-
-//     // Gửi form đi để xử lý đường dẫn thư mục đã chọn trong Django
-//     $('#chooseFolderForm').submit();
-//   });
-
-  // Kích hoạt sự kiện click cho input để mở dialog chọn thư mục
-//   input.click();
-// });
-// $('#ChooseFolderEML').on('click', function() {
-//   window.showDirectoryPicker().then(function(directory) {
-//     var folder_path = directory.name;
-//     $.ajax({
-//       url: '/choosefolder/',
-//       type: 'POST',
-//       data: {'folder': folder_path},
-//       dataType: 'json',
-//       success: function(response) {
-//         console.log('Đã chọn thư mục:', response.folder_path);
-//       },
-//       error: function(error) {
-//         console.error('Lỗi:', error);
-//       }
-//     });
-//   });
-// });
   $("#list-menu-top .nav-item").click(function () {
     // Xóa class 'active' từ tất cả các mục trong danh sách
     $("#list-menu-top .nav-item").removeClass("active");
     // Thêm class 'active' vào mục được click
     $(this).addClass("active");
   });
-  // $("#ChooseFolderEML").click(function () {
-  //   window.folderPath = null; // Khởi tạo biến lưu đường dẫn thư mục
-  //     window.showDirectoryPicker()
-  //       .then(function(directory) {
-  //         window.folderPath = directory; // Lưu đường dẫn thư mục vào biến
-  //         $('#folder').val(window.folderPath); // Hiển thị đường dẫn thư mục lên ô input
-  //         alert($('#folder').val());
-  //       })
-  //       .catch(function(error) {
-  //         console.error(error); // In ra lỗi nếu có
-  //       });
-  // });
   $(".list-file-email .item-file-email").click(function () {
     localStorage.setItem("activeTab", $(this).attr("id"));
     localStorage.setItem("activeTab_menucontent", "inforemail_content");

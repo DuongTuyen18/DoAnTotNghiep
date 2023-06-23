@@ -74,6 +74,7 @@
     height: calc(100vh - 57px - 80px);
     border-bottom: 1px solid rgba(58, 57, 57, 0.3);
     background-color: #f0f2f5 !important;
+    overflow: hidden;
 }
 
 .text_footer{

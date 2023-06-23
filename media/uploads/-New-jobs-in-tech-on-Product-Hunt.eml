@@ -1,0 +1,862 @@
+Delivered-To: nttrang13092000@gmail.com
+Received: by 2002:a5d:59c4:0:0:0:0:0 with SMTP id v4csp402970wry;
+        Thu, 9 Mar 2023 09:25:21 -0800 (PST)
+X-Google-Smtp-Source: AK7set9Deb/EsKn6rq5anYmr1Pd3jm/Dg2C39dQ06xevEONspsgBrTc41UActorH7IGaOqKxfY+F
+X-Received: by 2002:adf:cd8e:0:b0:2ca:6442:c817 with SMTP id q14-20020adfcd8e000000b002ca6442c817mr14567911wrj.57.1678382721307;
+        Thu, 09 Mar 2023 09:25:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1678382721; cv=none;
+        d=google.com; s=arc-20160816;
+        b=N0MfcwyIext8tzuGJBZFZdAPmVQKo509igPPkc4iEq6ivoNaPcR6m63LGM5flbNsHc
+         1BfdUVpOXhr0YNaKaQqyEJYuVpiFGW3JndlZz2gd8wOQfB/Xb56JJS8koPxBboMJu5d6
+         sazIntYekAJrR8MKnjrwtbXiYToPpB3A1Y7k9nePLmMuCzC19MXcSD65BzsDuwMbcOsQ
+         a0YIuLNZ+d1cOEb8KR4zu/4tTiIDDeXYI9OJ3fsLLVDEha/XXqW5PBWtcJZlZacDJBPw
+         cskoNQR3iV+2s1H1nu4bxGZM7FlTdz5htbi7BkbRzvtPeApxX+OdDgYc8/dkogrckkvQ
+         wmrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:list-unsubscribe-post:list-unsubscribe:date:subject:to
+         :from:mime-version:message-id:dkim-signature:dkim-signature;
+        bh=T7xXEgGtiIN3sgPpD8DNouR8O+BC24RaN/49Is5352g=;
+        b=I3Bk3Twe/9P4HjkUisinNY8cz7KUelNGkxs7cWfqTYgTyrmBKeG1fXGwfND69wwRev
+         sQYYeS4UTP/7C6SrU9RbDXwZULRxfM7s6BC+sgSMU71gpfQu/s6ZsHQWMJl0gCe/o0T6
+         i2w4qv3ZoPTHNdpKJlwq5KEfZu3gdcQl6p01fRQQm3e5rIrPtAGFgDzhlFzmZI8NQKVP
+         PP9cF4JQYXv39aQJ/oXfgJR0TOk0eOj1dnD7ce1QBtlNLLLUyLaczmCKWGGzXHvuKarA
+         pDTrGXdHDv1eC+6ebmd4++0JNASkD4sHs7JlLgvYRn0+kLy+S/p3WNch4VX9XlwuD3Rl
+         5aYA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@producthunt.com header.s=mailjet header.b="PjnNC/G6";
+       dkim=pass header.i=@bnc3.mailjet.com header.s=mailjet2 header.b=fvZeb3GN;
+       spf=pass (google.com: domain of 9706a6a3.eaaaa98qdzeaacgyggaaalc-ozmaaycrz8eaaaaaaam5wabkchaa@a637376.bnc3.mailjet.com designates 87.253.236.46 as permitted sender) smtp.mailfrom=9706a6a3.EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaA@a637376.bnc3.mailjet.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=producthunt.com
+Return-Path: <9706a6a3.EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaA@a637376.bnc3.mailjet.com>
+Received: from o46.p11.mailjet.com (o46.p11.mailjet.com. [87.253.236.46])
+        by mx.google.com with UTF8SMTPS id q16-20020adfea10000000b002c55f923339si16595157wrm.1018.2023.03.09.09.25.21
+        for <nttrang13092000@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Mar 2023 09:25:21 -0800 (PST)
+Received-SPF: pass (google.com: domain of 9706a6a3.eaaaa98qdzeaacgyggaaalc-ozmaaycrz8eaaaaaaam5wabkchaa@a637376.bnc3.mailjet.com designates 87.253.236.46 as permitted sender) client-ip=87.253.236.46;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@producthunt.com header.s=mailjet header.b="PjnNC/G6";
+       dkim=pass header.i=@bnc3.mailjet.com header.s=mailjet2 header.b=fvZeb3GN;
+       spf=pass (google.com: domain of 9706a6a3.eaaaa98qdzeaacgyggaaalc-ozmaaycrz8eaaaaaaam5wabkchaa@a637376.bnc3.mailjet.com designates 87.253.236.46 as permitted sender) smtp.mailfrom=9706a6a3.EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaA@a637376.bnc3.mailjet.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=producthunt.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; q=dns/txt;
+  d=producthunt.com; i=jobs@producthunt.com; s=mailjet; x=1678470120;
+  h=message-id:mime-version:from:from:to:to:subject:subject:date:date:list-unsubscribe:list-unsubscribe-post:
+  feedback-id:x-campaignid:x-csa-complaints:x-mj-mid:x-report-abuse-to:
+  content-type;
+  bh=Y/MbuzJcSUdI++Hm5P6vlJnbEvubCwkRpPyE/w5g6Is=;
+  b=PjnNC/G6TgPUebakopTVDUPhMbW5U06sPJMFi+hzsykBKO2icSQp4gI7o
+ WwtdVw85tl3zP85aTUVOlW24DFoOjXSxvxrK55WNahLo5TcnEvVLE+md0P/V
+ fja919HbeELPe+s8W58NbiiWOLDY3qK/WFf/fRKg1UCazA+YgnuWdY=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; q=dns/txt;
+  d=bnc3.mailjet.com; s=mailjet2; x=1678470120;
+  h=message-id:mime-version:from:from:to:to:subject:subject:date:date:list-unsubscribe:list-unsubscribe-post:
+  feedback-id:x-campaignid:x-csa-complaints:x-mj-mid:x-report-abuse-to:
+  content-type;
+  bh=Y/MbuzJcSUdI++Hm5P6vlJnbEvubCwkRpPyE/w5g6Is=;
+  b=fvZeb3GNqLm453RoifE4L5mYcrJ1KCB7O22Cod7dCHJvQoUMoHMW1tm1a
+ td9ntSSjCHGT2+TZEzRB62K52uCqkBQxd+BWduBMnhnE7QBi9xdgZ4fAvKy+
+ A7FHo8nt8vU++K3uTTPuC4XsySDiCO2W9C9RngjcHg0dDfqPQppVqg=
+Return-Path:
+	<9706a6a3.EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaA@a637376.bnc3.mailjet.com>
+Message-Id: <9706a6a3.EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaA@mailjet.com>
+MIME-Version: 1.0
+From: Jobs Digest <jobs@producthunt.com>
+To: nttrang13092000@gmail.com
+Subject: =?UTF-8?Q?=E2=9C=A8_New_jobs_in_tech_on_Product_?= =?UTF-8?Q?Hunt?=
+Date: Thu, 9 Mar 2023 17:25:20 +0000
+List-Unsubscribe:
+	<mailto:unsub-9706a6a3.n6l7.0l0zzuuxyllho@bnc3.mailjet.com>,
+	<https://n6l7.mjt.lu/unsub2?m=EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU&b=9706a6a3&e=be5faef0&x=ccgkilVLnUFab2efx0sunaZzEEEaiDnzUqIFnxMRbaQ>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Feedback-Id: 42.637376.382213:MJ
+X-CampaignID: Jobs Digest (Week 10):producthunt
+X-CSA-Complaints: csa-complaints@eco.de
+X-MJ-Mid:
+	EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU
+X-REPORT-ABUSE-TO: Message sent by Mailjet please report to
+	abuse@mailjet.com with a copy of the message
+Content-Type: multipart/alternative; boundary="=-jme6prRttlqcHR9FuAym"
+
+--=-jme6prRttlqcHR9FuAym
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Product Hunt ( https://www.producthunt.com )
+
+Thursday, March 9th
+
+Fresh jobs in tech
+
+infogr8 ( https://www.producthunt.com/jobs/infogr8-project-manager-edtech-p=
+od-2?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+is hiring a
+Project Manager, EdTech Pod ( https://www.producthunt.com/jobs/infogr8-proj=
+ect-manager-edtech-pod-2?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=
+=3Demail )
+
+London ( https://www.producthunt.com/jobs/infogr8-project-manager-edtech-po=
+d-2?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+
+Parallel ( https://www.producthunt.com/jobs/parallel-sales-development-repr=
+esentative?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+is hiring a
+Sales Development Representative ( https://www.producthunt.com/jobs/paralle=
+l-sales-development-representative?utm_campaign=3Djobs-digest-2023-03-09&ut=
+m_medium=3Demail )
+
+Miami, FL, USA ( https://www.producthunt.com/jobs/parallel-sales-developmen=
+t-representative?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+
+Givebutter ( https://www.producthunt.com/jobs/givebutter-product-manager-2?=
+utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+is hiring a
+Product Manager ( https://www.producthunt.com/jobs/givebutter-product-manag=
+er-2?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+
+United States ( https://www.producthunt.com/jobs/givebutter-product-manager=
+-2?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+
+Vidalytics ( https://www.producthunt.com/jobs/vidalytics-head-of-marketing-=
+execution?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+is hiring a
+Head of Marketing Execution ( https://www.producthunt.com/jobs/vidalytics-h=
+ead-of-marketing-execution?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=
+=3Demail )
+
+Remote ( https://www.producthunt.com/jobs/vidalytics-head-of-marketing-exec=
+ution?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+
+Impending, Inc. ( https://www.producthunt.com/jobs/impending-inc-ios-engine=
+er-studio-partner?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail =
+)
+is hiring an
+iOS Engineer > Studio partner ( https://www.producthunt.com/jobs/impending-=
+inc-ios-engineer-studio-partner?utm_campaign=3Djobs-digest-2023-03-09&utm_m=
+edium=3Demail )
+
+Austin, TX ( https://www.producthunt.com/jobs/impending-inc-ios-engineer-st=
+udio-partner?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+
+Net32 ( https://www.producthunt.com/jobs/net32-senior-product-manager-ecomm=
+erce?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+is hiring a
+Senior Product Manager - eCommerce ( https://www.producthunt.com/jobs/net32=
+-senior-product-manager-ecommerce?utm_campaign=3Djobs-digest-2023-03-09&utm=
+_medium=3Demail )
+
+Cary, North Carolina ( https://www.producthunt.com/jobs/net32-senior-produc=
+t-manager-ecommerce?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demai=
+l )
+
+unspun ( https://www.producthunt.com/jobs/unspun-ios-engineer?utm_campaign=
+=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+is hiring an
+iOS Engineer ( https://www.producthunt.com/jobs/unspun-ios-engineer?utm_cam=
+paign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+
+san francisco ca ( https://www.producthunt.com/jobs/unspun-ios-engineer?utm=
+_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+
+unspun ( https://www.producthunt.com/jobs/unspun-full-stack-software-engine=
+er?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+is hiring a
+full-stack software engineer ( https://www.producthunt.com/jobs/unspun-full=
+-stack-software-engineer?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=
+=3Demail )
+
+san francisco ca ( https://www.producthunt.com/jobs/unspun-full-stack-softw=
+are-engineer?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+
+Expensify ( https://www.producthunt.com/jobs/expensify-site-reliability-eng=
+ineer?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+is hiring a
+Site Reliability Engineer ( https://www.producthunt.com/jobs/expensify-site=
+-reliability-engineer?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Dem=
+ail )
+
+Expensify ( https://www.producthunt.com/jobs/expensify-mobile-full-stack-en=
+gineer?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3Demail )
+is hiring a
+Mobile Full Stack Engineer ( https://www.producthunt.com/jobs/expensify-mob=
+ile-full-stack-engineer?utm_campaign=3Djobs-digest-2023-03-09&utm_medium=3D=
+email )
+
+View all jobs ( https://www.producthunt.com/jobs )
+
+Hiring?
+
+Get in front of thousands talanted designers, engineers,
+marketers and makers.
+
+Submit your job listing ( https://www.producthunt.com/jobs/new )
+
+Want to unsubscribe? Click here ( https://www.producthunt.com/my/unsubscrib=
+e?email=3Dnttrang13092000%40gmail.com&kind=3Djobs_newsletter&token=3Dc1cf4c=
+8104d87de64a0ebfbf8861ce4763e2862a&valid_until=3D1680971119 ).
+
+If you have any questions, feedback, ideas or
+problems don't hesitate to contact us!
+
+Product Hunt Inc., 90 Gold St, FLR 3, San
+Francisco, CA 94133=
+
+--=-jme6prRttlqcHR9FuAym
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content=3D"text/html; charset=3DUTF-8" http-equiv=3D"Content-Type=
+">
+
+   =20
+  </head>
+
+  <body style=3D"color: #000; font-family: -apple-system, BlinkMacSystemFon=
+t, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI=
+ Emoji', 'Segoe UI Symbol'; line-height: 18px">
+<style type=3D"text/css">
+body {
+color: #000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", He=
+lvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe U=
+I Symbol"; line-height: 18px;
+}
+.preview-button:hover {
+cursor: pointer;
+}
+.inline-cta:hover {
+cursor: pointer;
+}
+</style>
+    <div>
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" he=
+ight=3D"100%" bgcolor=3D"#f9f9f9">
+    <tr>
+      <td>
+        <div class=3D"transactional-container" style=3D"margin: 0 auto; max=
+-width: 600px; padding: 20px 10px">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" height=3D"100%">
+            <tr>
+              <td>
+                <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wid=
+th=3D"100%">
+                  <tr>
+                    <td>
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/1/TZoUd1ULGtsQ=
+JkBpOD0iDg/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29t" class=3D"logo" title=3D"Pr=
+oduct Hunt" style=3D"color: #ff6154 !important; display: block; text-align:=
+ left !important; text-decoration: none">
+  <img alt=3D"" class=3D"logo--image" src=3D"https://ph-static.imgix.net/pr=
+oduct-hunt-logo-orange.png" style=3D"height: 33px; width: 33px">
+  <span class=3D"logo--name" style=3D"color: #ff6154; font-family: 'Helveti=
+ca Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 15px; f=
+ont-weight: 500; line-height: 33px; margin-left: 5px; vertical-align: top">=
+Product Hunt</span>
+</a>
+
+                    </td>
+                    <td class=3D"transactional-date" style=3D"color: #6f6f6=
+f; font-size: 13px; text-align: right" align=3D"right">
+                      Thursday, March 9th
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td height=3D"20"></td>
+            </tr>
+            <tr>
+              <td height=3D"20"></td>
+            </tr>
+            <tr>
+              <td>
+               =20
+  <div class=3D"transactional-box" style=3D"background: #fff; border-radius=
+: 3px; margin-bottom: 20px; padding: 20px">
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" bg=
+color=3D"#ffffff">
+      <tr>
+        <td colspan=3D"2" class=3D"transactional-box-title" style=3D"color:=
+ #000; font-size: 20px; font-weight: 600; line-height: 32px">Fresh jobs in =
+tech</td>
+      </tr>
+      <tr>
+        <td height=3D"20"></td>
+      </tr>
+      <tr>
+        <td height=3D"1" class=3D"transactional-box-separator" style=3D"bac=
+kground: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+      </tr>
+      <tr>
+        <td height=3D"20"></td>
+      </tr>
+    <tr>
+      <td class=3D"transactional-text" style=3D"font-size: 16px; line-heigh=
+t: 23px">
+       =20
+    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+bgcolor=3D"#ffffff">
+          <tr>
+            <td>
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+                <tr>
+                  <td width=3D"65">
+                    <img width=3D"52" height=3D"52" src=3D"https://ph-files=
+.imgix.net/3642e4fe-632a-4bcf-b1c8-5f7fe8644556.webp?auto=3Dformat&amp;h=3D=
+104&amp;w=3D104">
+                  </td>
+                  <td>
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/2/djEkXUwVyPwX94JqQsHQkA/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY2=
+9tL2pvYnMvaW5mb2dyOC1wcm9qZWN0LW1hbmFnZXItZWR0ZWNoLXBvZC0yP3V0bV9jYW1wYWlnb=
+j1qb2JzLWRpZ2VzdC0yMDIzLTAzLTA5JnV0bV9tZWRpdW09ZW1haWw" style=3D"color: #00=
+0 !important; font-size: 16px; font-weight: 600; line-height: 24px; text-de=
+coration: none">infogr8</a>
+                    is hiring a
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/3/isVdvzHcvkCvuGsrLZqrMQ/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY2=
+9tL2pvYnMvaW5mb2dyOC1wcm9qZWN0LW1hbmFnZXItZWR0ZWNoLXBvZC0yP3V0bV9jYW1wYWlnb=
+j1qb2JzLWRpZ2VzdC0yMDIzLTAzLTA5JnV0bV9tZWRpdW09ZW1haWw" style=3D"color: #00=
+0 !important; font-size: 16px; font-weight: 600; line-height: 24px; text-de=
+coration: none">Project Manager, EdTech Pod</a>
+                    <div class=3D"jobs-digest-job-locations">
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/4/EfZKRA-aqP4L=
+Lh_3JYiUMQ/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvaW5mb2dyOC1wcm9qZWN0=
+LW1hbmFnZXItZWR0ZWNoLXBvZC0yP3V0bV9jYW1wYWlnbj1qb2JzLWRpZ2VzdC0yMDIzLTAzLTA=
+5JnV0bV9tZWRpdW09ZW1haWw" style=3D"color: #6f6f6f !important; font-size: 11=
+px; font-weight: 400; text-decoration: none">London</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height=3D"15"></td>
+          </tr>
+          <tr>
+            <td height=3D"1" class=3D"transactional-box-separator" style=3D=
+"background: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+          </tr>
+          <tr>
+            <td height=3D"20"></td>
+          </tr>
+          <tr>
+            <td>
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+                <tr>
+                  <td width=3D"65">
+                    <img width=3D"52" height=3D"52" src=3D"https://ph-files=
+.imgix.net/6e322f93-c9f7-4aff-bb46-e2db93106508.jpeg?auto=3Dformat&amp;h=3D=
+104&amp;w=3D104">
+                  </td>
+                  <td>
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/5/iCDtDnchBCUmRJmd_JIsEg/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY2=
+9tL2pvYnMvcGFyYWxsZWwtc2FsZXMtZGV2ZWxvcG1lbnQtcmVwcmVzZW50YXRpdmU_dXRtX2Nhb=
+XBhaWduPWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"col=
+or: #000 !important; font-size: 16px; font-weight: 600; line-height: 24px; =
+text-decoration: none">Parallel</a>
+                    is hiring a
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/6/ijxPKAbPwHWKwVlXOObI0w/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY2=
+9tL2pvYnMvcGFyYWxsZWwtc2FsZXMtZGV2ZWxvcG1lbnQtcmVwcmVzZW50YXRpdmU_dXRtX2Nhb=
+XBhaWduPWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"col=
+or: #000 !important; font-size: 16px; font-weight: 600; line-height: 24px; =
+text-decoration: none">Sales Development Representative</a>
+                    <div class=3D"jobs-digest-job-locations">
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/7/3gvrT0amOz1m=
+dq3F3XEShw/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvcGFyYWxsZWwtc2FsZXMt=
+ZGV2ZWxvcG1lbnQtcmVwcmVzZW50YXRpdmU_dXRtX2NhbXBhaWduPWpvYnMtZGlnZXN0LTIwMjM=
+tMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color: #6f6f6f !important; font-s=
+ize: 11px; font-weight: 400; text-decoration: none">Miami, FL, USA</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height=3D"15"></td>
+          </tr>
+          <tr>
+            <td height=3D"1" class=3D"transactional-box-separator" style=3D=
+"background: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+          </tr>
+          <tr>
+            <td height=3D"20"></td>
+          </tr>
+          <tr>
+            <td>
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+                <tr>
+                  <td width=3D"65">
+                    <img width=3D"52" height=3D"52" src=3D"https://ph-files=
+.imgix.net/7882cef9-e3ce-447f-a42c-691228d184bb.png?auto=3Dformat&amp;h=3D1=
+04&amp;w=3D104">
+                  </td>
+                  <td>
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/8/fiYOyh-jGrKwocTnjYdRSA/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY2=
+9tL2pvYnMvZ2l2ZWJ1dHRlci1wcm9kdWN0LW1hbmFnZXItMj91dG1fY2FtcGFpZ249am9icy1ka=
+Wdlc3QtMjAyMy0wMy0wOSZ1dG1fbWVkaXVtPWVtYWls" style=3D"color: #000 !importan=
+t; font-size: 16px; font-weight: 600; line-height: 24px; text-decoration: n=
+one">Givebutter</a>
+                    is hiring a
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/9/-XrBM_GhAN75AZuenHfiiA/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY2=
+9tL2pvYnMvZ2l2ZWJ1dHRlci1wcm9kdWN0LW1hbmFnZXItMj91dG1fY2FtcGFpZ249am9icy1ka=
+Wdlc3QtMjAyMy0wMy0wOSZ1dG1fbWVkaXVtPWVtYWls" style=3D"color: #000 !importan=
+t; font-size: 16px; font-weight: 600; line-height: 24px; text-decoration: n=
+one">Product Manager</a>
+                    <div class=3D"jobs-digest-job-locations">
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/10/wFbwpV0SeEK=
+XTKRcw18K2A/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvZ2l2ZWJ1dHRlci1wcm9=
+kdWN0LW1hbmFnZXItMj91dG1fY2FtcGFpZ249am9icy1kaWdlc3QtMjAyMy0wMy0wOSZ1dG1fbW=
+VkaXVtPWVtYWls" style=3D"color: #6f6f6f !important; font-size: 11px; font-w=
+eight: 400; text-decoration: none">United States</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height=3D"15"></td>
+          </tr>
+          <tr>
+            <td height=3D"1" class=3D"transactional-box-separator" style=3D=
+"background: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+          </tr>
+          <tr>
+            <td height=3D"20"></td>
+          </tr>
+          <tr>
+            <td>
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+                <tr>
+                  <td width=3D"65">
+                    <img width=3D"52" height=3D"52" src=3D"https://ph-files=
+.imgix.net/e8150cff-5664-44cc-953b-87fb27e3484c.jpeg?auto=3Dformat&amp;h=3D=
+104&amp;w=3D104">
+                  </td>
+                  <td>
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/11/0bDbSQxGu4cBAbKijHG03A/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvdmlkYWx5dGljcy1oZWFkLW9mLW1hcmtldGluZy1leGVjdXRpb24_dXRtX2NhbXBh=
+aWduPWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color:=
+ #000 !important; font-size: 16px; font-weight: 600; line-height: 24px; tex=
+t-decoration: none">Vidalytics</a>
+                    is hiring a
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/12/Yw15nxhAx5Vu4_4ky7zYFw/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvdmlkYWx5dGljcy1oZWFkLW9mLW1hcmtldGluZy1leGVjdXRpb24_dXRtX2NhbXBh=
+aWduPWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color:=
+ #000 !important; font-size: 16px; font-weight: 600; line-height: 24px; tex=
+t-decoration: none">Head of Marketing Execution</a>
+                    <div class=3D"jobs-digest-job-locations">
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/13/CIMZcQwhooN=
+bkoINhfQajQ/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvdmlkYWx5dGljcy1oZWF=
+kLW9mLW1hcmtldGluZy1leGVjdXRpb24_dXRtX2NhbXBhaWduPWpvYnMtZGlnZXN0LTIwMjMtMD=
+MtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color: #6f6f6f !important; font-size=
+: 11px; font-weight: 400; text-decoration: none">Remote</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height=3D"15"></td>
+          </tr>
+          <tr>
+            <td height=3D"1" class=3D"transactional-box-separator" style=3D=
+"background: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+          </tr>
+          <tr>
+            <td height=3D"20"></td>
+          </tr>
+          <tr>
+            <td>
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+                <tr>
+                  <td width=3D"65">
+                    <img width=3D"52" height=3D"52" src=3D"https://ph-files=
+.imgix.net/81def728-b3b0-40d6-957a-bca0f717f688.png?auto=3Dformat&amp;h=3D1=
+04&amp;w=3D104">
+                  </td>
+                  <td>
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/14/CH-SEbbSBS2qLG399ffWaA/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvaW1wZW5kaW5nLWluYy1pb3MtZW5naW5lZXItc3R1ZGlvLXBhcnRuZXI_dXRtX2Nh=
+bXBhaWduPWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"co=
+lor: #000 !important; font-size: 16px; font-weight: 600; line-height: 24px;=
+ text-decoration: none">Impending, Inc.</a>
+                    is hiring an
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/15/5Oi9zQb3q16N4sPKsuLg2Q/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvaW1wZW5kaW5nLWluYy1pb3MtZW5naW5lZXItc3R1ZGlvLXBhcnRuZXI_dXRtX2Nh=
+bXBhaWduPWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"co=
+lor: #000 !important; font-size: 16px; font-weight: 600; line-height: 24px;=
+ text-decoration: none">iOS Engineer &gt; Studio partner</a>
+                    <div class=3D"jobs-digest-job-locations">
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/16/x4NoTNjTl_l=
+cZz26WfHp0w/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvaW1wZW5kaW5nLWluYy1=
+pb3MtZW5naW5lZXItc3R1ZGlvLXBhcnRuZXI_dXRtX2NhbXBhaWduPWpvYnMtZGlnZXN0LTIwMj=
+MtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color: #6f6f6f !important; font-=
+size: 11px; font-weight: 400; text-decoration: none">Austin, TX</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height=3D"15"></td>
+          </tr>
+          <tr>
+            <td height=3D"1" class=3D"transactional-box-separator" style=3D=
+"background: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+          </tr>
+          <tr>
+            <td height=3D"20"></td>
+          </tr>
+          <tr>
+            <td>
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+                <tr>
+                  <td width=3D"65">
+                    <img width=3D"52" height=3D"52" src=3D"https://ph-files=
+.imgix.net/20857291-2923-46e5-a9f4-e9170f174bbc.png?auto=3Dformat&amp;h=3D1=
+04&amp;w=3D104">
+                  </td>
+                  <td>
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/17/Cvy4AuNRNVy2e7fRYmxMVQ/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvbmV0MzItc2VuaW9yLXByb2R1Y3QtbWFuYWdlci1lY29tbWVyY2U_dXRtX2NhbXBh=
+aWduPWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color:=
+ #000 !important; font-size: 16px; font-weight: 600; line-height: 24px; tex=
+t-decoration: none">Net32</a>
+                    is hiring a
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/18/RzOaoIaX2zZovQ3bdUaF4w/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvbmV0MzItc2VuaW9yLXByb2R1Y3QtbWFuYWdlci1lY29tbWVyY2U_dXRtX2NhbXBh=
+aWduPWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color:=
+ #000 !important; font-size: 16px; font-weight: 600; line-height: 24px; tex=
+t-decoration: none">Senior Product Manager - eCommerce</a>
+                    <div class=3D"jobs-digest-job-locations">
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/19/4EngNihvaLv=
+eddit2kG-Gw/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvbmV0MzItc2VuaW9yLXB=
+yb2R1Y3QtbWFuYWdlci1lY29tbWVyY2U_dXRtX2NhbXBhaWduPWpvYnMtZGlnZXN0LTIwMjMtMD=
+MtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color: #6f6f6f !important; font-size=
+: 11px; font-weight: 400; text-decoration: none">Cary, North Carolina</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height=3D"15"></td>
+          </tr>
+          <tr>
+            <td height=3D"1" class=3D"transactional-box-separator" style=3D=
+"background: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+          </tr>
+          <tr>
+            <td height=3D"20"></td>
+          </tr>
+          <tr>
+            <td>
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+                <tr>
+                  <td width=3D"65">
+                    <img width=3D"52" height=3D"52" src=3D"https://ph-files=
+.imgix.net/f4ab5e2f-eeb5-4573-8fb8-894987fc2a75.png?auto=3Dformat&amp;h=3D1=
+04&amp;w=3D104">
+                  </td>
+                  <td>
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/20/Byl4MlxRZfqR7ryJdp5Nyg/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvdW5zcHVuLWlvcy1lbmdpbmVlcj91dG1fY2FtcGFpZ249am9icy1kaWdlc3QtMjAy=
+My0wMy0wOSZ1dG1fbWVkaXVtPWVtYWls" style=3D"color: #000 !important; font-siz=
+e: 16px; font-weight: 600; line-height: 24px; text-decoration: none">unspun=
+</a>
+                    is hiring an
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/21/fhZsoxeMq1qOT_3JE-iwjQ/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvdW5zcHVuLWlvcy1lbmdpbmVlcj91dG1fY2FtcGFpZ249am9icy1kaWdlc3QtMjAy=
+My0wMy0wOSZ1dG1fbWVkaXVtPWVtYWls" style=3D"color: #000 !important; font-siz=
+e: 16px; font-weight: 600; line-height: 24px; text-decoration: none">iOS En=
+gineer</a>
+                    <div class=3D"jobs-digest-job-locations">
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/22/EBjE7sbrtKj=
+e-KsMOjezEQ/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvdW5zcHVuLWlvcy1lbmd=
+pbmVlcj91dG1fY2FtcGFpZ249am9icy1kaWdlc3QtMjAyMy0wMy0wOSZ1dG1fbWVkaXVtPWVtYW=
+ls" style=3D"color: #6f6f6f !important; font-size: 11px; font-weight: 400; =
+text-decoration: none">san francisco ca</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height=3D"15"></td>
+          </tr>
+          <tr>
+            <td height=3D"1" class=3D"transactional-box-separator" style=3D=
+"background: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+          </tr>
+          <tr>
+            <td height=3D"20"></td>
+          </tr>
+          <tr>
+            <td>
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+                <tr>
+                  <td width=3D"65">
+                    <img width=3D"52" height=3D"52" src=3D"https://ph-files=
+.imgix.net/e8593b2e-1395-4aca-a76b-af94eebc6fb6.png?auto=3Dformat&amp;h=3D1=
+04&amp;w=3D104">
+                  </td>
+                  <td>
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/23/CUE7uMOOxTkoOLzImgk_ng/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvdW5zcHVuLWZ1bGwtc3RhY2stc29mdHdhcmUtZW5naW5lZXI_dXRtX2NhbXBhaWdu=
+PWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color: #00=
+0 !important; font-size: 16px; font-weight: 600; line-height: 24px; text-de=
+coration: none">unspun</a>
+                    is hiring a
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/24/kXsWUuA0D0mef3zIzUXB8w/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvdW5zcHVuLWZ1bGwtc3RhY2stc29mdHdhcmUtZW5naW5lZXI_dXRtX2NhbXBhaWdu=
+PWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color: #00=
+0 !important; font-size: 16px; font-weight: 600; line-height: 24px; text-de=
+coration: none">full-stack software engineer</a>
+                    <div class=3D"jobs-digest-job-locations">
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/25/HUF0FU39FPC=
+JVnvyIzVHjQ/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvdW5zcHVuLWZ1bGwtc3R=
+hY2stc29mdHdhcmUtZW5naW5lZXI_dXRtX2NhbXBhaWduPWpvYnMtZGlnZXN0LTIwMjMtMDMtMD=
+kmdXRtX21lZGl1bT1lbWFpbA" style=3D"color: #6f6f6f !important; font-size: 11=
+px; font-weight: 400; text-decoration: none">san francisco ca</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height=3D"15"></td>
+          </tr>
+          <tr>
+            <td height=3D"1" class=3D"transactional-box-separator" style=3D=
+"background: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+          </tr>
+          <tr>
+            <td height=3D"20"></td>
+          </tr>
+          <tr>
+            <td>
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+                <tr>
+                  <td width=3D"65">
+                    <img width=3D"52" height=3D"52" src=3D"https://ph-files=
+.imgix.net/1d90ece6-b5cc-4d8b-ab96-01ed7dbc77ae.png?auto=3Dformat&amp;h=3D1=
+04&amp;w=3D104">
+                  </td>
+                  <td>
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/26/L8_OP6pwenw9EPzW2uBBiA/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvZXhwZW5zaWZ5LXNpdGUtcmVsaWFiaWxpdHktZW5naW5lZXI_dXRtX2NhbXBhaWdu=
+PWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color: #00=
+0 !important; font-size: 16px; font-weight: 600; line-height: 24px; text-de=
+coration: none">Expensify</a>
+                    is hiring a
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/27/NXBHS25HO1V822oNSQV1BA/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvZXhwZW5zaWZ5LXNpdGUtcmVsaWFiaWxpdHktZW5naW5lZXI_dXRtX2NhbXBhaWdu=
+PWpvYnMtZGlnZXN0LTIwMjMtMDMtMDkmdXRtX21lZGl1bT1lbWFpbA" style=3D"color: #00=
+0 !important; font-size: 16px; font-weight: 600; line-height: 24px; text-de=
+coration: none">Site Reliability Engineer</a>
+                    <div class=3D"jobs-digest-job-locations">
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/28/6lLX04tpBmm=
+eITVSDLfU9Q/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvZXhwZW5zaWZ5LXNpdGU=
+tcmVsaWFiaWxpdHktZW5naW5lZXI_dXRtX2NhbXBhaWduPWpvYnMtZGlnZXN0LTIwMjMtMDMtMD=
+kmdXRtX21lZGl1bT1lbWFpbA" style=3D"color: #6f6f6f !important; font-size: 11=
+px; font-weight: 400; text-decoration: none"></a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height=3D"15"></td>
+          </tr>
+          <tr>
+            <td height=3D"1" class=3D"transactional-box-separator" style=3D=
+"background: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+          </tr>
+          <tr>
+            <td height=3D"20"></td>
+          </tr>
+          <tr>
+            <td>
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+                <tr>
+                  <td width=3D"65">
+                    <img width=3D"52" height=3D"52" src=3D"https://ph-files=
+.imgix.net/45ae94d8-6f62-47dc-a0cd-5d43da94505b.png?auto=3Dformat&amp;h=3D1=
+04&amp;w=3D104">
+                  </td>
+                  <td>
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/29/mjEF9ocZNh3AwusG8aPuVA/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvZXhwZW5zaWZ5LW1vYmlsZS1mdWxsLXN0YWNrLWVuZ2luZWVyP3V0bV9jYW1wYWln=
+bj1qb2JzLWRpZ2VzdC0yMDIzLTAzLTA5JnV0bV9tZWRpdW09ZW1haWw" style=3D"color: #0=
+00 !important; font-size: 16px; font-weight: 600; line-height: 24px; text-d=
+ecoration: none">Expensify</a>
+                    is hiring a
+                    <a class=3D"jobs-digest-job-title" href=3D"http://n6l7.=
+mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCm=
+doMohYZtlgAF1QU/30/RbHoLpPsRu1zYLxyck3Eaw/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY=
+29tL2pvYnMvZXhwZW5zaWZ5LW1vYmlsZS1mdWxsLXN0YWNrLWVuZ2luZWVyP3V0bV9jYW1wYWln=
+bj1qb2JzLWRpZ2VzdC0yMDIzLTAzLTA5JnV0bV9tZWRpdW09ZW1haWw" style=3D"color: #0=
+00 !important; font-size: 16px; font-weight: 600; line-height: 24px; text-d=
+ecoration: none">Mobile Full Stack Engineer</a>
+                    <div class=3D"jobs-digest-job-locations">
+                      <a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggA=
+AALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/31/dBxqQ16QvXW=
+fkh29V9N5zA/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvZXhwZW5zaWZ5LW1vYml=
+sZS1mdWxsLXN0YWNrLWVuZ2luZWVyP3V0bV9jYW1wYWlnbj1qb2JzLWRpZ2VzdC0yMDIzLTAzLT=
+A5JnV0bV9tZWRpdW09ZW1haWw" style=3D"color: #6f6f6f !important; font-size: 1=
+1px; font-weight: 400; text-decoration: none"></a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td height=3D"15"></td>
+          </tr>
+          <tr>
+            <td height=3D"1" class=3D"transactional-box-separator" style=3D=
+"background: #e8e8e8; height: 1px" bgcolor=3D"#e8e8e8"></td>
+          </tr>
+          <tr>
+            <td height=3D"20"></td>
+          </tr>
+    </table>
+    <div class=3D"transactional-cta m-center" style=3D"margin: 20px 0; text=
+-align: center" align=3D"center"><a class=3D"button" target=3D"_blank" rel=
+=3D"noopener" href=3D"http://n6l7.mjt.lu/lnk/EAAAA98QDZEAAcgyggAAALC-ozMAAY=
+CrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/32/C961ZKZMpEMLgi-frRIp7g=
+/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnM" style=3D"background: #ff6154;=
+ border-radius: 3px; color: #fff !important; font-size: 14px; font-weight: =
+400; padding: 11px 10px; text-align: center; text-decoration: none; white-s=
+pace: nowrap">View all jobs</a></div>
+
+      </td>
+    </tr>
+  </table>
+</div>
+  <div class=3D"job-digest-upsell" style=3D"color: #6f6f6f; font-size: 13px=
+; text-align: center" align=3D"center">
+    <p style=3D"margin: 0"><strong style=3D"color: #000">Hiring?</strong></=
+p>
+    <p style=3D"margin: 5px 0 0">Get in front of thousands talanted designe=
+rs, engineers, marketers and makers.</p>
+    <p style=3D"margin: 5px 0 0"><a href=3D"http://n6l7.mjt.lu/lnk/EAAAA98Q=
+DZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/33/=
+2Vc9JLqAOfqfL740u2L0uQ/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL2pvYnMvbmV3" st=
+yle=3D"color: #ff6154 !important; text-decoration: none">Submit your job li=
+sting</a></p>
+  </div>
+
+  <div class=3D"job-digest-unsubscribe" style=3D"color: #6f6f6f; font-size:=
+ 13px; text-align: center" align=3D"center">
+    <p>
+      Want to unsubscribe? Click <b><a href=3D"http://n6l7.mjt.lu/lnk/EAAAA=
+98QDZEAAcgyggAAALC-ozMAAYCrZ8EAAAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/=
+34/32vAosD_yX9fFyedalnivg/aHR0cHM6Ly93d3cucHJvZHVjdGh1bnQuY29tL215L3Vuc3Vic=
+2NyaWJlP2VtYWlsPW50dHJhbmcxMzA5MjAwMCU0MGdtYWlsLmNvbSZraW5kPWpvYnNfbmV3c2xl=
+dHRlciZ0b2tlbj1jMWNmNGM4MTA0ZDg3ZGU2NGEwZWJmYmY4ODYxY2U0NzYzZTI4NjJhJnZhbGl=
+kX3VudGlsPTE2ODA5NzExMTk" style=3D"color: #ff6154 !important; text-decorati=
+on: none">here</a></b>.
+    </p>
+  </div>
+
+                <div class=3D"footer" style=3D"color: #6f6f6f; font-size: 1=
+2px; margin: 54px auto auto; text-align: center; width: 510px" align=3D"cen=
+ter">
+ =20
+                  <p>If you have any questions, feedback, ideas or problems=
+ don't hesitate to contact us!</p>
+                  <p>Product Hunt Inc., 90 Gold St, FLR 3, San Francisco, C=
+A 94133</p>
+
+</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+ =20
+<br/><img src=3D"http://n6l7.mjt.lu/oo/EAAAA98QDZEAAcgyggAAALC-ozMAAYCrZ8EA=
+AAAAAAm5wABkChaAQXZqigbrTlCmdoMohYZtlgAF1QU/c1801fcb/e.gif" height=3D"1" wi=
+dth=3D"1" alt=3D"" border=3D"0" style=3D"height:1px;width:1px;border:0;"/>
+</body>
+</html>
+=
+
+--=-jme6prRttlqcHR9FuAym--

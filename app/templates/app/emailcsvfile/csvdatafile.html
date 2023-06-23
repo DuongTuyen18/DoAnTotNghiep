@@ -1,6 +1,7 @@
 {% extends 'app/base.html' %}
 {%load static%}
 {% block main-content %}
+
     <div class="header-content">
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
@@ -65,8 +66,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-truncate">
-                            <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Orders</span>
+                        <a href={% url 'link_analysis' %} class="nav-link text-truncate">
+                            <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Link Analysis</span>
                         </a>
                     </li>
                     <li class="dropdown">
@@ -96,11 +97,12 @@
                 </ul>
             </div>
         </div>
+
         <div class="content-doasboard">
             <button class="btn float-end btn-menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
                 <i class="bi bi-arrow-right-square-fill fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
             </button>
-            {% block right-content%} {% endblock right-content%}
+            {% block content-doasboard%} {% endblock content-doasboard%}
         </div>
     </div>
     

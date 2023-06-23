@@ -1,15 +1,15 @@
 {% extends 'app/emailcsvfile/csvdatafile.html' %} 
 
-{%load static%} {% block right-content %}
+{%load static%} {% block content-doasboard %}
 <div style="height: 50px" class="header-content">
     <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
       <div style="height: 100%; padding: 0px" class="container-fluid">
-        <a id="name-export" class="navbar-brand">CSV Export Options</a>
+        <a id="name-export" class="navbar-brand">Files CSV Options</a>
       </div>
     </nav>
   </div>
   
-  <div  class="content-right-content-export">
-    <textarea  readonly  style="height:99%; width:100%;resize: none;border:none;outline: none;">{{csv_infor}} </textarea>
+  <div  class="content-emailcsvfile">
+    <textarea  readonly  style="padding-left:20px; height:99%; width:100%;resize: none;border:none;outline: none;">{{csv_infor}} </textarea>
   </div>
-{% endblock right-content %}
+{% endblock content-doasboard %}

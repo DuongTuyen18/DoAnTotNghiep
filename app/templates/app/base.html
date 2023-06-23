@@ -7,21 +7,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="{%static 'app/bootstrap/css/bootstrap.min.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/all.min.css'%}" />
+    <link rel="stylesheet" href="{%static 'app/css/jquery.dataTables.min.css'%}" />
+    <link rel="stylesheet" href="{%static 'app/css/bootstrap-icons/font/bootstrap-icons.min.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/base.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/emaildatafile.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/inforEmaildatafile.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/export.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/dataframe_table.css'%}" />
-    <link rel="stylesheet" href="{%static 'app/css/jquery.dataTables.min.css'%}" />
+
     <script src="{%static 'app/js/chartjs.min.js'%}"></script>
-    <script href="{%static 'app/jquery/3.6.4/jquery.min.js'%}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+
+    <script src="{%static 'app/js/popper.min.js'%}"></script>
     <script src="{%static 'app/bootstrap/js/bootstrap.min.js'%}"></script>
     <script src="{%static 'app/js/all.min.js'%}"></script>
     <script src="{%static 'app/js/jquery-3.6.4.slim.min.js'%}"></script>
-    <script src="{%static 'app/js/base.js'%}"></script>
+    <script src="{%static 'app/jquery/3.6.4/jquery.min.js'%}"></script>
     <script src="{%static 'app/js/jquery.dataTables.min.js'%}"></script>
+    
+    <script src="{%static 'app/js/base.js'%}"></script>
+    <script src="{%static 'app/js/emailcsvfile/linkanalysis.js'%}"></script>
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -161,10 +165,15 @@
                                             {% comment %} <button type="button" class="btn">PDF</button> {% endcomment %}
                                             <a type="button" class="col-6 col-sm-6 list_export export_pdf" href={% url 'export_pdf' %} >PDF</a>
                                         </div>
+<<<<<<< HEAD
                                         <div class="col-6 col-sm-6 list_export">
                                             {% comment %} <button type="button" class="btn">HTML</button> {% endcomment %}
                                             <a type="button" class="col-6 col-sm-6 list_export export_html" href={% url 'export_html' %} >HTML</a>
                                         </div>
+=======
+
+                                        <a type="button" class="col-6 col-sm-6 list_export export_html" href={% url 'export_html' %} >HTML</a>
+>>>>>>> 53a6da94dd4f15560221dcbf58e6e04500558761
                                         <div class="w-100 d-none d-md-block"></div>
                                         <a type="button" class="col-6 col-sm-6 list_export export_txt" href={% url 'export_text' %} >TEXT</a>
                                         <a type="button" class="col-6 col-sm-6 list_export export_csv" href={% url 'export_csv' %} >CSV</a>
@@ -172,6 +181,7 @@
                                 </div>
                             </ul>
                         </li>
+                        
                         <li class="nav-item dropdown disable" id="li-extract">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-sign-out-alt fa-lg icon-extract"></i>&nbsp;Extract
@@ -189,7 +199,9 @@
             </div>
         </nav>
     </div>
+
     <div class="content">
+
         {% block main-content%} {% endblock main-content%}
     </div>
     <div class="footer">

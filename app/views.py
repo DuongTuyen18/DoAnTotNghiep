@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .utils import List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical,convert_eml_files_to_pdf,read_pdf,convert_eml_files_to_html,convert_eml_files_to_text
+from .utils import List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical
 import os
 import email
 from django.http import HttpResponse
@@ -8,13 +8,20 @@ from django.core.files.uploadhandler import FileUploadHandler
 from django.conf import settings
 from django.core.paginator import Paginator
 import json
-from django.http import FileResponse
-import zipfile
-
 
 folder_name = ''
 filecsv_name = ''
 path_file_export = ''
+def check_email(request):
+    email = request.GET.get('sender_email')
+    print(email)
+    if email:
+        is_available = check_email_availability(email)
+        response = {'available': is_available}
+        return JsonResponse(response)
+    else:
+        response = {'error': 'Invalid email'}
+        return JsonResponse(response, status=400)
 def choosefolder(request):
     global folder_name
     if request.method == 'POST':
@@ -43,8 +50,8 @@ def export_csv(request):
     global folder_name
     global path_file_export
     upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
-    export_path = os.path.join(settings.MEDIA_ROOT, 'export')
-    clear_folder_in_media('export')
+    export_path = os.path.join(settings.MEDIA_ROOT, 'export/csv')
+    clear_folder_in_media('export/csv')
     data=List_Infor_Email_Eml(upload_path)
     if not data:
         return redirect("base")
@@ -53,7 +60,7 @@ def export_csv(request):
         csv_infor = read_csv_file(path_file_export)
         context = {'list_email':data,'folder_name':folder_name,'csv_infor':csv_infor}
         return render(request,'app/export/csv_file.html',context)
-
+    
 
 
 def export_pdf(request):
@@ -236,6 +243,47 @@ def choosefile_csv(request):
         return redirect('csvdatafile')
     
 
+def link_analysis(request):
+    global filecsv_name
+    #folder_path = Path(folder_path)
+    csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+    path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    data_detail = convert_csv_to_dataframe(path_file_csv)
+    list_form_and_to = get_list_from_and_to(data_detail)
+    context = {'filecsv_name':filecsv_name,'list_form_and_to':list_form_and_to}
+    return render(request,'app/emailcsvfile/link_analysis.html',context)
+
+def link_analysis_choose_email(request):
+    global filecsv_name
+    #folder_path = Path(folder_path)
+    csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+    path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    data_detail = convert_csv_to_dataframe(path_file_csv)
+    list_email = request.GET.getlist('list_email[]')
+    link_analysis_data, link_counts = find_links_by_emails(data_detail,list_email)
+    link_analysis_json = convert_graph_to_json(link_analysis_data)
+    # # Chuyển đổi kết quả thành định dạng JSON
+    # result = {
+    #     'graph': link_analysis_data,  # Đây là đồ thị, có thể không thể chuyển thành JSON trực tiếp
+    #     'link_counts': link_counts.to_dict()
+    # }
+    # json_result = json.dumps(result)
+    # Trả về kết quả dưới dạng JSON
+    return JsonResponse(link_analysis_json, safe=False)
+
+
+
+def get_list_to_by_from(request):
+    global filecsv_name
+    #folder_path = Path(folder_path)
+    csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+    path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    data_detail = convert_csv_to_dataframe(path_file_csv)
+    sender_email = request.GET.get('sender_email')
+    print("email: "+sender_email)
+    list_to = list_to_by_from(data_detail,sender_email)
+    print(list_to)
+    return JsonResponse({'list_to_by_from': list_to})
 
 def dashboard_csv(request):
     global filecsv_name
@@ -247,11 +295,17 @@ def dashboard_csv(request):
     data_month_dtatistical = get_data_month_statistical(data_detail)
     data_year_dtatistical = get_data_year_statistical(data_detail)
     data_list_from = get_list_from(data_detail)
+    data_list_to = get_list_to(data_detail)
     data_day_statistical_json = json.dumps(data_day_statistical.to_dict('records'))
     data_month_statistical_json = json.dumps(data_month_dtatistical.to_dict('records'))
     data_year_statistical_json = json.dumps(data_year_dtatistical.to_dict('records'))
     data_list_from_json = json.dumps(data_list_from.to_dict('records'))
-    context = {'filecsv_name':filecsv_name,'data_day_statistical_json':data_day_statistical_json,'data_month_statistical_json':data_month_statistical_json,'data_year_statistical_json':data_year_statistical_json,'data_list_from_json':data_list_from_json}
+    data_list_to_json = json.dumps(data_list_to.to_dict('records'))
+    image_data = wordcloud_view(data_detail)
+    # image_data_link_analysis = create_link_analysis(data_detail)
+    link_analysis_data, link_counts = create_link_analysis(data_detail)
+    link_analysis_json = convert_graph_to_json(link_analysis_data)
+    context = {'filecsv_name':filecsv_name,'data_day_statistical_json':data_day_statistical_json,'data_month_statistical_json':data_month_statistical_json,'data_year_statistical_json':data_year_statistical_json,'data_list_from_json':data_list_from_json,'data_list_to_json':data_list_to_json,'image_data':image_data,'link_analysis_json':link_analysis_json }
     return render(request,'app/emailcsvfile/home.html',context)
 
 def dataframe_table(request):
@@ -263,7 +317,7 @@ def dataframe_table(request):
     # Chuyển đổi DataFrame thành danh sách dict
     data_list = data_detail.to_dict('records')
     
-    paginator = Paginator(data_list, 12)  # mỗi trang có tối đa 10 phần tử
+    paginator = Paginator(data_list, 10)  # mỗi trang có tối đa 10 phần tử
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {'filecsv_name':filecsv_name,'page_obj': page_obj}
@@ -294,8 +348,9 @@ def emaildatafile(request):
     
 def base(request):
     clear_folder_in_media('uploads')
-    clear_folder_in_media('export')
+    clear_folder_in_media('export/csv')
     clear_folder_in_media('csv_file')
+    clear_folder_in_media('export/html')
     return render(request,'app/base.html')
 
 def home(request):
@@ -368,6 +423,7 @@ def view_content(request):
     # return HttpResponse(email_content)
 def clearfilefolders(request):
     clear_folder_in_media('uploads')
-    clear_folder_in_media('export')
+    clear_folder_in_media('export/csv')
     clear_folder_in_media('csv_file')
+    clear_folder_in_media('export/html')
     return redirect("base")

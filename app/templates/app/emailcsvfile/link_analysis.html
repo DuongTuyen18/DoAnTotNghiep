@@ -1,0 +1,55 @@
+{% extends 'app/emailcsvfile/csvdatafile.html' %} 
+
+{%load static%} {% block content-doasboard %}
+
+<link rel="stylesheet" href="{%static 'app/css/emailcsvfile.css'%}" />
+<div style="height: 50px" class="header-content">
+  <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
+    <div style="height: 100%; padding: 0px" class="container-fluid">
+      <a id="name-export" class="navbar-brand">Link Analysis Options</a>
+    </div>
+  </nav>
+</div>
+ <div style="--bs-gutter-x: unset;" class="row content-emailcsvfile">
+    <div style="padding: 0px;" class="col-md-3 col-left">
+        <div class="left-content-linkanalysic">
+          <div class="list-group  list-file-email">
+            <div id="left-content-header-email-linkanalysis">
+              <a id="box-emaildress-header"  class="list-group-item item-file-email ">
+                <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+                <div class="box-content-header">
+                  <div class="box-title-header">Địa chỉ email</div> 
+                  <div class="box-selectall-file">
+                    <input class="form-check-input" type="checkbox" id="icon_select_all">
+                    <label class="form-check-label" for="icon_select_all">
+                      Select all
+                    </label>
+                  </div>
+                  <div id="box-action-header" class="box-action-header">
+                      <i class="fa fa-check-square fa-lg"></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div id="left-content-list-email-linkanalysis">
+              {% for  email in  list_form_and_to%}
+              <a id="box-emaildress{{ forloop.counter }}"  class="list-group-item item-file-email ">
+                <div class="box-icon-file">
+                  <input class="form-check-input" type="checkbox">
+                </div>
+                <div class="box-infor-file">
+                  {{email}}
+                </div>
+              </a>
+              {% endfor %}
+            </div>
+
+          </div>
+        </div>
+    </div>
+    <div style="padding: 0px;"  class="col-md-9 col-right">
+        <div id="canvas_link" class="right-content-linkanalysic"></div>
+    </div>
+</div> 
+<script src="https://d3js.org/d3.v7.min.js"></script>
+{% endblock content-doasboard %}
