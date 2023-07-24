@@ -14,7 +14,17 @@ urlpatterns = [
     path('emaildatafile/choosefolder', views.choosefolder, name="choosefolder"),
     path('emaildatafile/export/html', views.export_html, name="export_html"),
     path('emaildatafile/export/csv', views.export_csv, name="export_csv"),
-    path('emaildatafile/export/save', views.save_export, name="save_export"),
+    path('emaildatafile/export/save_csv', views.save_export_csv, name="save_export_csv"),
+    path('emaildatafile/export/save_html', views.save_export_html, name="save_export_html"),
+    
+    path('emaildatafile/export/save_extract_email_address', views.save_extract_email_address, name="save_extract_email_address"),
+    path('emaildatafile/extract/email_address', views.extract_email_address, name="extract_email_address"),
+    path('emaildatafile/extract/action_extract_email_address', views.action_extract_email_address, name="action_extract_email_address"),
+
+    path('emaildatafile/export/save_extract_phone_number', views.save_extract_phone_number, name="save_extract_phone_number"),
+    path('emaildatafile/extract/phone_number', views.extract_phone_number, name="extract_phone_number"),
+    path('emaildatafile/extract/action_extract_phone_number', views.action_extract_phone_number, name="action_extract_phone_number"),
+
     path('emaildatafile/inforemail/content/<str:filename>', views.inforemail_content, name="inforemail_content"),
     path('emaildatafile/inforemail/massageheader/<path:filename>', views.inforemail_massageheader, name="inforemail_massageheader"),
     path('emaildatafile/inforemail/hexview/<path:filename>', views.inforemail_hexview, name="inforemail_hexview"),

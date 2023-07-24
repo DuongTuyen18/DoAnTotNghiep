@@ -1,15 +1,39 @@
-{% extends 'app/emailcsvfile/csvdatafile.html' %} 
+{% extends 'app/emailcsvfile/csvdatafile.html' %}
+{%load static%} 
+{% block content-csvdatafile %}
 
-{%load static%} {% block content-doasboard %}
 <div style="height: 50px" class="header-content">
-    <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
-      <div style="height: 100%; padding: 0px" class="container-fluid">
-        <a id="name-export" class="navbar-brand">Files CSV Options</a>
+  <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
+    <div style="height: 100%; padding: 0px" class="container-fluid">
+      <a id="name-export" class="navbar-brand">{{filecsv_name}}/Files CSV Options</a>
+    </div>
+  </nav>
+</div>
+
+<div class="row content-emailcsvfile">
+  <div style="padding: 0px; overflow: hidden" class="col-md-4 col-left">
+      <div class="left-content-csvfile">
+        <div class="row" style="height: 100%; margin: 0px 0px !important;">
+
+          <div class="col-12 col-xl-12">
+            <div class="card-body p-3">
+              <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Tổng số email:</strong> &nbsp;<label id="total_email">{{total_emails}}</label></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Tổng số email rác:</strong> &nbsp;<label id="total_spam_email">{{spam_count}}</label></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email gửi thư nhiều nhất:</strong> &nbsp; <label id="from_email_max">{% for email_max in from_emails_max %}{{email_max}}{% if not forloop.last %}; {% endif %} {% endfor %}<strong>( {{from_max_count}} lần )</strong></label></li>
+                <li class="list-group-item border-0 ps-0 text-sm "><strong class="text-dark">Email nhận thư nhiều nhất:</strong> &nbsp; <label id="to_email_max">{% for email_max in to_emails_max %}{{email_max}}{% if not forloop.last %}; {% endif %} {% endfor %}<strong>( {{to_max_count}} lần )</strong></label></li>
+                <li class="list-group-item border-0 ps-0 text-sm "><strong class="text-dark">Danh sách email gửi thư:</strong> &nbsp; <label class="word-wrap" id="list_from_emai">{{list_sender_email}}</label></li>
+                <li class="list-group-item border-0 ps-0 text-sm "><strong class="text-dark">Danh sách email nhận thư:</strong> &nbsp; <label class="word-wrap" id="list_to_emai">{{list_to_email}}</label></li>
+              </ul>
+            </div>
+          </div>
+        </div> 
       </div>
-    </nav>
   </div>
-  
-  <div  class="content-emailcsvfile">
-    <textarea  readonly  style="padding-left:20px; height:99%; width:100%;resize: none;border:none;outline: none;">{{csv_infor}} </textarea>
+  <div style="padding: 0px; overflow: hidden"  class="col-md-8 col-right">
+    <textarea id="text_csvfile" readonly >{{csv_infor}}</textarea>
   </div>
-{% endblock content-doasboard %}
+
+</div>
+
+{% endblock content-csvdatafile %}

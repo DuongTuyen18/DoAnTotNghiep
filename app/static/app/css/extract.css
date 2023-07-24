@@ -1,0 +1,39 @@
+.content-right-content-extract {
+    display: flex;
+    height: calc(100% - 50px);
+    overflow: auto;
+    background-color: #fff !important;
+}
+
+.extract-left-content {
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid rgba(58, 57, 57, 0.3);
+}
+
+.extract-right-content {
+    flex: 1;
+    padding: 10px;
+    border-left: 1px solid rgba(58, 57, 57, 0.3);
+}
+
+.padding-bottom{
+    padding-bottom: 10px;
+}
+
+.padding-top{
+    padding-bottom: 10px;
+}
+
+#list-email-address-extract{
+    margin-left: 0px;
+    border: 1px solid rgba(58, 57, 57, 0.3); 
+    height: calc(100% - 90px);
+    overflow: auto;
+}
+#list-phone-number-extract{
+    margin-left: 0px;
+    border: 1px solid rgba(58, 57, 57, 0.3); 
+    height: calc(100% - 250px);
+    overflow: auto;
+}

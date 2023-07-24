@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="{%static 'app/css/emaildatafile.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/inforEmaildatafile.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/export.css'%}" />
+    <link rel="stylesheet" href="{%static 'app/css/extract.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/dataframe_table.css'%}" />
-
+    <link rel="stylesheet" href="{%static 'app/css/emailcsvfile.css'%}" />
     <script src="{%static 'app/js/chartjs.min.js'%}"></script>
 
     <script src="{%static 'app/js/popper.min.js'%}"></script>
@@ -23,9 +24,15 @@
     <script src="{%static 'app/js/jquery-3.6.4.slim.min.js'%}"></script>
     <script src="{%static 'app/jquery/3.6.4/jquery.min.js'%}"></script>
     <script src="{%static 'app/js/jquery.dataTables.min.js'%}"></script>
+    <script src="/static/app/js/d3.v7.min.js"></script>
     
+
     <script src="{%static 'app/js/base.js'%}"></script>
     <script src="{%static 'app/js/emailcsvfile/linkanalysis.js'%}"></script>
+
+    <script>
+        var personImageUrl = "{% static 'app/images/svg/person-32.png' %}";
+    </script>
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -179,9 +186,9 @@
                                 <i class="fas fa-sign-out-alt fa-lg icon-extract"></i>&nbsp;Extract
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Email Adresses</a></li>
+                                <li><a class="dropdown-item" href={% url 'extract_email_address' %}>Email Adresses</a></li>
                                 <li><a class="dropdown-item" href="#">Attachments</a></li>
-                                <li><a class="dropdown-item" href="#">Phone Numbers</a></li>
+                                <li><a class="dropdown-item" href={% url 'extract_phone_number' %}>Phone Numbers</a></li>
                                 <li> <a class="dropdown-item" href="#">Associated Email & Phone Numbers</a> </li>
                                 <li><a class="dropdown-item" href="#">Contact Photos</a></li>
                             </ul>

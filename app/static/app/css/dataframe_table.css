@@ -3,24 +3,19 @@
 #table_dataframe{
     table-layout: fixed;
     width: 100%;
+    margin-bottom: 14px;
 }
 
 #table_dataframe td{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
 }
 
-.page_table{
-    margin-top: 15px;
-}
+
 #table-box{
-    margin-top: 60px;
-    padding: 0px 20px;
-    height: calc(100% - 60px);
-}
-#table{
-    height: calc(100% - 110px);
+    padding: 0px 20px 0px 20px;
     overflow: auto;
 }
 /* ------------------------ */
@@ -30,4 +25,33 @@
     overflow: auto;
     max-width: 100%;
     word-wrap: break-word;
+}
+
+.fff_color{
+    background-color: #fff !important;
+}
+
+.box-date{
+    display: flex;
+    width: 300px;
+    margin: 0px 10px;
+}
+
+.label-date{
+    width: 100px;
+    margin: 0px 10px;
+    padding: 6px 0px;
+}
+
+.input-date{
+    width: 200px;
+}
+
+.input-group-text:hover{
+    background-color: rgb(238, 238, 241) !important;
+}
+
+#group_icon_btn_search{
+    margin-left: 5px;
+    display: flex;
 }

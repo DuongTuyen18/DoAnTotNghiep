@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .utils import convert_eml_to_html, list_to_by_from, check_email_availability,find_links_by_emails,get_list_from_and_to,convert_graph_to_json,create_link_analysis,wordcloud_view,List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical,get_list_to
+from .utils import count_spam_emails, list_from_extract_phone_number, list_bcc_extract_email_address, list_cc_extract_email_address, list_to_extract_email_address, list_from_extract_email_address, convert_eml_to_html, list_to_by_from, check_email_availability,find_links_by_emails,get_list_from_and_to,convert_graph_to_json,create_link_analysis,wordcloud_view,List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical,get_list_to
 import os
+import zipfile
 import email
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -8,9 +9,9 @@ from django.core.files.uploadhandler import FileUploadHandler
 from django.conf import settings
 from django.core.paginator import Paginator
 import json
-from django.http import FileResponse
 from django.http import JsonResponse
-
+import pandas as pd
+import networkx as nx
 folder_name = ''
 filecsv_name = ''
 path_file_export = ''
@@ -87,18 +88,17 @@ def export_html(request):
         context = {'list_email':data,'folder_name':folder_name,'html_files':html_files}
         return render(request,'app/export/html_file.html',context)
     
-# def privew_html(request, filename):
-#     file_html_path = os.path.join(settings.MEDIA_ROOT, 'export/html/', filename)
-#     response = FileResponse(open(file_html_path, 'rb'), content_type='text/html')
-#     return response
 
 def preview_html(request, filename):
-    file_html_path = os.path.join(settings.MEDIA_ROOT, 'export/html/', filename)
-    with open(file_html_path, 'r', encoding='utf-8') as file:
+    global folder_name
+    html_folder_path = os.path.join(settings.MEDIA_ROOT, 'export\\html\\', folder_name)
+    html_file_path = os.path.join(html_folder_path, filename)
+
+    with open(html_file_path, 'r', encoding='utf-8') as file:
         html_content = file.read()
     return render(request, 'app/export/html_preview.html', {'html_content': html_content})
 
-def save_export(request):
+def save_export_csv(request):
     global folder_name
     global path_file_export
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
@@ -112,7 +112,35 @@ def save_export(request):
                 response['Content-Disposition'] = 'attachment; filename="'+folder_name+'.csv"'
                 return response
         return HttpResponse('File not found.', status=404)
-    
+
+def save_export_html(request):
+    global folder_name
+    global path_file_export
+    export_path = path_file_export  # Đường dẫn đến thư mục chứa các file .html
+    zip_filename = folder_name + '.zip'  # Tên file ZIP đính kèm
+
+    # Kiểm tra xem thư mục nguồn có tồn tại không
+    if os.path.exists(export_path):
+        # Tạo file ZIP để lưu trữ thư mục
+        zip_filepath = os.path.join(settings.MEDIA_ROOT, zip_filename)
+        with zipfile.ZipFile(zip_filepath, 'w') as zip_file:
+            # Lặp qua từng file trong thư mục nguồn và thêm vào file ZIP
+            for root, _, files in os.walk(export_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    zip_file.write(file_path, os.path.relpath(file_path, export_path))
+
+        # Đọc file ZIP và trả về response để người dùng tải về
+        with open(zip_filepath, 'rb') as zip_file:
+            response = HttpResponse(zip_file, content_type='application/zip')
+            response['Content-Disposition'] = 'attachment; filename="' + zip_filename + '"'
+        
+        # Xóa file ZIP sau khi đã trả về response
+        os.remove(zip_filepath)
+        
+        return response
+    else:
+        return HttpResponse('Source folder not found.', status=404)
 
 def choosefile_csv(request):
     global filecsv_name
@@ -148,14 +176,11 @@ def link_analysis_choose_email(request):
     data_detail = convert_csv_to_dataframe(path_file_csv)
     list_email = request.GET.getlist('list_email[]')
     link_analysis_data, link_counts = find_links_by_emails(data_detail,list_email)
+    link_analysis_data_int = nx.Graph()
+    for u, v, attr in link_analysis_data.edges(data=True):
+        attr['count'] = int(attr['count'])
+        link_analysis_data_int.add_edge(u, v, **attr)
     link_analysis_json = convert_graph_to_json(link_analysis_data)
-    # # Chuyển đổi kết quả thành định dạng JSON
-    # result = {
-    #     'graph': link_analysis_data,  # Đây là đồ thị, có thể không thể chuyển thành JSON trực tiếp
-    #     'link_counts': link_counts.to_dict()
-    # }
-    # json_result = json.dumps(result)
-    # Trả về kết quả dưới dạng JSON
     return JsonResponse(link_analysis_json, safe=False)
 
 
@@ -200,17 +225,39 @@ def dataframe_table(request):
     #folder_path = Path(folder_path)
     csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
     path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    keyword_search = request.GET.get('keyword_search')
+    # Lấy giá trị từ ô nhập liệu "from-date"
+    from_date = request.GET.get('from_date')
+    to_date = request.GET.get('to_date')
     data_detail = convert_csv_to_dataframe(path_file_csv)
+    if keyword_search:
+        # Tạo điều kiện lọc cho các cột "From", "To", "Subject", và "Content"
+        condition = (
+            data_detail['file'].str.contains(keyword_search, case=False, na=False) |
+            data_detail['From'].str.contains(keyword_search, case=False, na=False) |
+            data_detail['To'].str.contains(keyword_search, case=False, na=False) |
+            data_detail['Subject'].str.contains(keyword_search, case=False, na=False) |
+            data_detail['Content'].str.contains(keyword_search, case=False, na=False)
+        )
+        # Lọc dữ liệu theo điều kiện
+        data_detail = data_detail[condition]
+    if from_date and to_date:
+        # Chuyển giá trị từ ô nhập liệu "from-date" và "to-date" thành kiểu datetime
+        from_date = pd.to_datetime(from_date)
+        to_date = pd.to_datetime(to_date)
+        # Lọc các dòng có cột "Date" nằm trong khoảng từ "from-date" đến "to-date"
+        data_detail = data_detail[(data_detail['Date'] >= from_date) & (data_detail['Date'] <= to_date)]
+
+
     # Chuyển đổi DataFrame thành danh sách dict
     data_list = data_detail.to_dict('records')
     
-    paginator = Paginator(data_list, 10)  # mỗi trang có tối đa 10 phần tử
+    paginator = Paginator(data_list, 12)  # mỗi trang có tối đa 12 phần tử
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {'filecsv_name':filecsv_name,'page_obj': page_obj}
     return render(request, 'app/emailcsvfile/dataframe_table.html', context)
-    # csv_table = convert_csv_to_dataframe(path_file_csv)
-    # context = {'filecsv_name':filecsv_name,'csv_table':csv_table}
+
 
 def csvdatafile(request):
     global filecsv_name
@@ -218,7 +265,35 @@ def csvdatafile(request):
     csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
     path_file_csv = os.path.join(csv_file_path, filecsv_name) 
     csv_infor = read_csv_file(path_file_csv)
-    context = {'filecsv_name':filecsv_name,'csv_infor':csv_infor}
+    data_detail = convert_csv_to_dataframe(path_file_csv)
+    # Lấy ra tổng số email trong DataFrame
+    total_emails = data_detail.shape[0]
+     # Đếm số lượng email thư rác
+    spam_count = count_spam_emails(data_detail)
+
+    # Lấy tất cả các email gửi thư có số lần gửi nhiều nhất
+    from_max_count = data_detail['From'].value_counts().max()
+    from_emails_max = data_detail['From'].value_counts().index[data_detail['From'].value_counts() == from_max_count].tolist()
+    # Lấy tất cả các email nhận thư có số lần nhận nhiều nhất
+    to_max_count = data_detail['To'].value_counts().max()
+    to_emails_max = data_detail['To'].value_counts().index[data_detail['To'].value_counts() == to_max_count].tolist()
+    
+    # Lấy danh sách email gửi thư cách nhau bằng dấu ", "
+    list_sender_email = ", ".join(data_detail['Sender_email'].unique())
+    # Lấy danh sách email nhận thư cách nhau bằng dấu ", "
+    list_to_email = ", ".join(data_detail['To'].unique())
+    context = {
+        'filecsv_name':filecsv_name,
+        'csv_infor':csv_infor,
+        'spam_count':spam_count,
+        'total_emails':total_emails,
+        'from_emails_max':from_emails_max,
+        'from_max_count':from_max_count,
+        'to_emails_max':to_emails_max,
+        'to_max_count': to_max_count,
+        'list_sender_email': list_sender_email,
+        'list_to_email': list_to_email
+        }
     return render(request,'app/emailcsvfile/csv_file.html',context)
 
 
@@ -233,12 +308,6 @@ def emaildatafile(request):
         context = {'list_email':data,'folder_name':folder_name}
         return render(request,'app/emaildatafile.html',context)
     
-def base(request):
-    clear_folder_in_media('uploads')
-    clear_folder_in_media('export/csv')
-    clear_folder_in_media('csv_file')
-    clear_folder_in_media('export/html')
-    return render(request,'app/base.html')
 
 def home(request):
     return render(request,'app/home.html')
@@ -297,7 +366,136 @@ def read_files_in_folder(request):
         header_string = "<br>".join([f"{k}: {v}" for k, v in headers])
         
         return HttpResponse(header_string)
+    
+def extract_email_address(request):
+    global folder_name
+    global path_file_export
+    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(upload_path)
+    if not data:
+        return redirect("base")
+    else:
+        context = {'list_email':data,'folder_name':folder_name}
+        return render(request,'app/extract/email_address.html',context)
+    
+def extract_phone_number(request):
+    global folder_name
+    global path_file_export
+    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(upload_path)
+    if not data:
+        return redirect("base")
+    else:
+        context = {'list_email':data,'folder_name':folder_name}
+        return render(request,'app/extract/phone_number.html',context)
 
+def save_extract_email_address(request):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    path_file_extract = os.path.join(settings.MEDIA_ROOT, 'extract/emailaddress.txt')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base")
+    else:   
+        if os.path.exists(path_file_extract):
+            with open(path_file_extract, 'rb') as file:
+                response = HttpResponse(file.read(), content_type='text')
+                response['Content-Disposition'] = 'attachment; filename="'+folder_name+'_email_address.txt"'
+                return response
+        return HttpResponse('File not found.', status=404)
+    
+def save_extract_phone_number(request):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    path_file_extract = os.path.join(settings.MEDIA_ROOT, 'extract/phonenumber.txt')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base")
+    else:   
+        if os.path.exists(path_file_extract):
+            with open(path_file_extract, 'rb') as file:
+                response = HttpResponse(file.read(), content_type='text')
+                response['Content-Disposition'] = 'attachment; filename="'+folder_name+'_phone_number.txt"'
+                return response
+        return HttpResponse('File not found.', status=404)
+    
+def action_extract_email_address(request):
+    select_from = request.GET.get('select_from')
+    select_to = request.GET.get('select_to')
+    select_cc = request.GET.get('select_cc')
+    select_bcc = request.GET.get('select_bcc')
+    
+    global folder_name
+    global path_file_export
+    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data = List_Infor_Email_Eml(upload_path)
+    
+    email_addresses_from = []  # Danh sách chứa địa chỉ email "From"
+    email_addresses_to = []
+    email_addresses_cc = []  
+    email_addresses_bcc = []
+    email_addresses = []
+    if data:
+        if(select_from == "true"):
+            email_addresses_from = list_from_extract_email_address(upload_path)
+        if(select_to == "true"):
+            email_addresses_to = list_to_extract_email_address(upload_path)
+        if(select_cc == "true"):
+            email_addresses_cc = list_cc_extract_email_address(upload_path)
+        if(select_bcc == "true"):
+            email_addresses_bcc = list_bcc_extract_email_address(upload_path)
+    # Tạo một set để lưu trữ các địa chỉ email duy nhất
+    unique_email_addresses = set(email_addresses_from + email_addresses_to + email_addresses_cc + email_addresses_bcc)
+
+    # Chuyển đổi set thành danh sách
+    email_addresses = list(unique_email_addresses)
+
+    extract_path = os.path.join(settings.MEDIA_ROOT, 'extract')
+    extract_file_path = os.path.join(extract_path, 'emailaddress.txt')
+    # Kiểm tra nếu thư mục chưa tồn tại
+    if not os.path.exists(extract_path):
+        # Tạo thư mục mới
+        os.makedirs(extract_path)
+    # Ghi danh sách email vào file
+    with open(extract_file_path, 'w') as file:
+        for email in email_addresses:
+            file.write(email + '\n')
+
+    # Chuyển đổi danh sách thành chuỗi JSON
+    json_data = json.dumps(email_addresses)
+    # Trả về JsonResponse
+    return JsonResponse(json_data, safe=False)
+
+def action_extract_phone_number(request):
+    global folder_name
+    global path_file_export
+    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data = List_Infor_Email_Eml(upload_path)
+    phone_number =[]
+
+    if data:
+        phone_number = list_from_extract_phone_number(upload_path)
+    # Tạo một set để lưu trữ các địa chỉ email duy nhất
+    unique_phone_number = set(phone_number)
+
+    # Chuyển đổi set thành danh sách
+    list_phone_number = list(unique_phone_number)
+
+    extract_path = os.path.join(settings.MEDIA_ROOT, 'extract')
+    extract_file_path = os.path.join(extract_path, 'phonenumber.txt')
+    # Kiểm tra nếu thư mục chưa tồn tại
+    if not os.path.exists(extract_path):
+        # Tạo thư mục mới
+        os.makedirs(extract_path)
+    # Ghi danh sách email vào file
+    with open(extract_file_path, 'w') as file:
+        for phone in list_phone_number:
+            file.write(phone + '\n')
+
+    # Chuyển đổi danh sách thành chuỗi JSON
+    json_data = json.dumps(list_phone_number)
+    # Trả về JsonResponse
+    return JsonResponse(json_data, safe=False)
 
 def view_content(request):
     if request.method == 'POST':
@@ -307,10 +505,20 @@ def view_content(request):
             # Xử lý đường dẫn của thư mục ở đây
             return HttpResponse(f'Đã chọn thư mục: {folder}')
     return render(request, 'app/home.html')
-    # return HttpResponse(email_content)
+
 def clearfilefolders(request):
     clear_folder_in_media('uploads')
     clear_folder_in_media('export/csv')
     clear_folder_in_media('csv_file')
     clear_folder_in_media('export/html')
+    clear_folder_in_media('extract')
+
     return redirect("base")
+
+def base(request):
+    clear_folder_in_media('uploads')
+    clear_folder_in_media('export/csv')
+    clear_folder_in_media('csv_file')
+    clear_folder_in_media('export/html')
+    clear_folder_in_media('extract')
+    return render(request,'app/base.html')

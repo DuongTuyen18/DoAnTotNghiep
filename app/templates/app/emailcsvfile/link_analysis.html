@@ -1,12 +1,12 @@
 {% extends 'app/emailcsvfile/csvdatafile.html' %} 
 
-{%load static%} {% block content-doasboard %}
+{%load static%} {% block content-csvdatafile %}
 
-<link rel="stylesheet" href="{%static 'app/css/emailcsvfile.css'%}" />
+
 <div style="height: 50px" class="header-content">
   <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
     <div style="height: 100%; padding: 0px" class="container-fluid">
-      <a id="name-export" class="navbar-brand">Link Analysis Options</a>
+      <a id="name-export" class="navbar-brand">{{filecsv_name}}/Link Analysis Options</a>
     </div>
   </nav>
 </div>
@@ -51,5 +51,5 @@
         <div id="canvas_link" class="right-content-linkanalysic"></div>
     </div>
 </div> 
-<script src="https://d3js.org/d3.v7.min.js"></script>
-{% endblock content-doasboard %}
+
+{% endblock content-csvdatafile %}

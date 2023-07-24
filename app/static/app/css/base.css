@@ -108,7 +108,17 @@
 #box-save{
     padding: 0px;
     height:100%;
-    width: 80px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3d7ec1;
+}
+
+.box-extract{
+    padding: 0px;
+    height:100%;
+    width: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,5 +137,9 @@
     background-color: rgba(226, 226, 226, 0.884);
 }
 #box-save:hover {
+    background-color: rgba(226, 226, 226, 0.884);
+}
+
+.box-extract:hover {
     background-color: rgba(226, 226, 226, 0.884);
 }

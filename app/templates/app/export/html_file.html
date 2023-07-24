@@ -1,26 +1,47 @@
+
 {% extends 'app/export/export.html' %}
 {%load static%}
-{% block content-right-content %}
-{% comment %} <table>
-    {% for row   in  csv_infor %}
-        <tr>
-            {% for value in row %}
-                <td>
-                    {{value}}
-                </td>
-            {% endfor %}
-        </tr>
-    {% endfor %}
-</table> {% endcomment %}
-    <ul>
+{% block right-content %}
+<script src="{%static 'app/js/export_js/export.js'%}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<div style="height: 50px" class="header-content">
+  <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
+    <div style="height: 100%; padding: 0px" class="container-fluid">
+      <a id="name-export" class="navbar-brand">HTML Export Options</a>
+      <div id="box-save-close">
+        <a href="{% url 'save_export_html' %}" style="text-decoration: none;" id="box-save" type="button">
+          <i class="fas fa-save fa-2x"></i>
+          <span style="padding-left: 5px;" id="Save-text-export">Save</span>
+        </a>
+        <a href="{% url 'emaildatafile' %}" id="box-close" type="button">
+          <i class="far fa-window-close fa-lg"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="content-right-content-export">
+        <div style="padding:10px" class="list-group">
         {% for file_name in html_files %}
-        <li><a href="/preview_html/{{ file_name }}"  target="_blank" >{{ file_name }}</a></li>
+        
+        
+          <div class="list-group-item list-group-item-action" aria-current="true">
+            <div class="d-flex justify-content-between">
+              <span  class="mb-1"><i style="margin-right: 10px" class="far fa-file-code fa-lg"></i>{{file_name}}</span>
+              <small><a href="/preview_html/{{ file_name }}"  target="_blank" >Xem trước</a></small>
+            </div>
+          </div>
+        
         {% endfor %}
-    </ul>
+      </div>
+
+
+</div>
 <script>
     function openHtmlFile(file) {
         var absoluteUrl ="privew_html/" + file;
         window.open(absoluteUrl, '_blank');
       }
-  </script>
-{% endblock content-right-content %}
+</script>
+{% endblock right-content %}

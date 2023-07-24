@@ -11,3 +11,27 @@
     border-right: 1px solid rgba(58, 57, 57, 0.3);
     overflow: auto;
 }
+.left-content-csvfile{
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid rgba(58, 57, 57, 0.3);
+    overflow: auto;
+}
+
+.row-content-emailcsvfile{
+    width: 100%;
+    height: calc(100%);
+}
+
+#text_csvfile{
+    padding-left: 20px;
+    height: 100%;
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+}
+.word-wrap{
+    word-wrap: break-word;
+    width: 100%;
+}

@@ -2,18 +2,7 @@
 {%load static%}
 {% block main-content %}
 
-    <div class="header-content">
-        <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand">{{filecsv_name}}</a>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </nav>
-    </div>
-    <div style="position: relative;--bs-gutter-x: unset;" class="row row-content">
+    <div style="position: relative;--bs-gutter-x: unset;" class="row row-content-emailcsvfile">
         <div class="offcanvas offcanvas-start w-25" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false" style="position: absolute;width: 15%!important;">
             <div class="offcanvas-header">
                 <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Menu</h6>
@@ -33,7 +22,7 @@
                     </li>
                     <li>
                         <a href={% url 'dataframe_table' %} class="nav-link text-truncate">
-                            <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline">DataFaram Table</span>
+                            <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline">DataFrame Table</span>
                         </a>
                     </li>
                     <li>
@@ -69,11 +58,11 @@
             </div>
         </div>
 
-        <div class="content-doasboard">
+        <div class="content-csvdatafile">
             <button class="btn float-end btn-menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
                 <i class="bi bi-arrow-right-square-fill fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
             </button>
-            {% block content-doasboard%} {% endblock content-doasboard%}
+            {% block content-csvdatafile%} {% endblock content-csvdatafile%}
         </div>
     </div>
 

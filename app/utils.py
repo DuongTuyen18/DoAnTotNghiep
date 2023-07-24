@@ -176,6 +176,7 @@ def wordcloud_view(data_detail):
 def convert_graph_to_json(graph):
     # Convert graph to dictionary representation
     graph_data = nx.node_link_data(graph)
+    # Add link_counts to the graph_data dictionary
     # Serialize the dictionary to JSON string
     json_data = json.dumps(graph_data)
     return json_data
@@ -211,10 +212,41 @@ def find_links_by_emails(data_detail, email_list):
     # Thêm các liên kết chỉ giữa các email trong email_list vào đồ thị là các cạnh
     for link in links:
         sender_email, to = link
+        count = link_counts[(link_counts.index.get_level_values('Sender_email') == sender_email) & (link_counts.index.get_level_values('To') == to)].values[0]
+        print(f"Sender_email: {sender_email}, To: {to}, Count: {count}")
         G.add_edge(sender_email, to)
-
+        G.edges[sender_email, to]['count'] = count
     return G, link_counts
 
+def is_spam_email(email):
+    # Các quy tắc đơn giản để phát hiện email thư rác
+    # Các quy tắc này có thể không hoạt động tốt với mọi loại email thư rác và email hợp lệ
+    spam_keywords = ['lottery', 'win', 'free', 'promotion', 'prize', 'money', 'discount', 'urgent', 'viagra']
+    spam_threshold = 2  # Ngưỡng số lượng từ thư rác xuất hiện trong nội dung email
+
+    # Chuyển đổi nội dung email thành chữ thường để so sánh dễ dàng hơn
+    email = email.lower()
+
+    # Đếm số lượng từ thư rác xuất hiện trong nội dung email
+    spam_count = sum(keyword in email for keyword in spam_keywords)
+
+    # Kiểm tra xem số lượng từ thư rác có vượt qua ngưỡng hay không
+    return spam_count >= spam_threshold
+
+def count_spam_emails(data_frame):
+    # Biến đếm số lượng email thư rác
+    spam_count = 0
+
+    # Lặp qua từng dòng trong DataFrame
+    for index, row in data_frame.iterrows():
+        # Lấy nội dung email từ cột 'email_content'
+        email_content = row['Content']
+
+        # Kiểm tra xem email có phải là thư rác hay không
+        if is_spam_email(email_content):
+            spam_count += 1
+
+    return spam_count
 
 
 def convert_csv_to_dataframe(csv_file_path):
@@ -314,6 +346,122 @@ def clear_folder_in_media(folder_name):
     shutil.rmtree(folder_path)
     # Tạo lại thư mục folder_name trống
     os.mkdir(folder_path)
+
+def list_from_extract_email_address(upload_path):
+    list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+    email_addresses = set() # Sử dụng set để loại bỏ các địa chỉ email trùng nhau
+    for file_name in list_eml_files:
+        eml_file_path = os.path.join(upload_path, file_name)
+        # Đọc file EML
+        with open(eml_file_path, 'rb') as file:
+            eml_data = file.read()
+        eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
+        from_email = eml_message['From']
+        sender_name, sender_email = parseaddr(from_email)
+        if sender_name == "":
+            sender_name = sender_email
+        decoded_name = decode_header(sender_name)[0][0]
+        if isinstance(decoded_name, bytes):
+            sender_name = decoded_name.decode()
+        else:
+            sender_name = decoded_name
+        from_email = sender_name + " <" + sender_email + ">"
+        # Thêm địa chỉ email vào set
+        email_addresses.add(sender_email)
+    
+    # Chuyển đổi set thành danh sách
+    email_addresses_list = list(email_addresses)
+    return email_addresses_list
+
+
+
+def list_to_extract_email_address(upload_path):
+    list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+    email_addresses = set()  # Sử dụng set để loại bỏ các địa chỉ email trùng nhau
+    for file_name in list_eml_files:
+        eml_file_path = os.path.join(upload_path, file_name)
+        # Đọc file EML
+        with open(eml_file_path, 'rb') as file:
+            eml_data = file.read()
+        eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
+        delivered_to = eml_message['Delivered-To']
+        to_email = eml_message['To']
+        if to_email is None and delivered_to is not None:
+            to_email = delivered_to
+        to_email = extract_email(to_email)
+        if to_email is None:
+            to_email=''
+        # Thêm địa chỉ email vào set
+        email_addresses.add(to_email)
+    # Chuyển đổi set thành danh sách
+    email_addresses_list = list(email_addresses)
+    return email_addresses_list
+
+def list_cc_extract_email_address(upload_path):
+    list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+    email_addresses = set() # Sử dụng set để loại bỏ các địa chỉ email trùng nhau
+    for file_name in list_eml_files:
+        eml_file_path = os.path.join(upload_path, file_name)
+        # Đọc file EML
+        with open(eml_file_path, 'rb') as file:
+            eml_data = file.read()
+        eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
+        x_cc = eml_message.get('Cc', '')
+        # Thêm địa chỉ email vào set
+        if(x_cc!=''):
+            email_addresses.add(x_cc)
+    # Chuyển đổi set thành danh sách
+    email_addresses_list = list(email_addresses)
+    return email_addresses_list
+
+def list_bcc_extract_email_address(upload_path):
+    list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+    email_addresses = set()  # Sử dụng set để loại bỏ các địa chỉ email trùng nhau
+    for file_name in list_eml_files:
+        eml_file_path = os.path.join(upload_path, file_name)
+        # Đọc file EML
+        with open(eml_file_path, 'rb') as file:
+            eml_data = file.read()
+        eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
+        x_bcc = eml_message.get('Bcc', '')
+        # Thêm địa chỉ email vào set
+        if(x_bcc!=''):
+            email_addresses.add(x_bcc)
+    # Chuyển đổi set thành danh sách
+    email_addresses_list = list(email_addresses)
+    return email_addresses_list
+
+import re
+
+def list_from_extract_phone_number(upload_path):
+    list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+    phone_numbers = set()
+    phone_number_patterns = [
+        r'\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b',  # XXX-XXX-XXXX hoặc XXX.XXX.XXXX hoặc XXX XXX XXXX
+        r'\b\(\d{3}\)\s?\d{3}[-.\s]?\d{4}\b',  # (XXX) XXX-XXXX hoặc (XXX)XXX-XXXX hoặc (XXX) XXX.XXXX
+        r'\b\+\d{1,3}\s?\d{2,3}[-.\s]?\d{3,4}[-.\s]?\d{4}\b',  # +XXX XXX-XXXX hoặc +XXX-XXX-XXXX hoặc +XXX XXX.XXXX hoặc +XXX.XXX.XXXX
+        # Thêm các định dạng khác tùy vào quy chuẩn số điện thoại của bạn
+    ]
+
+    for file_name in list_eml_files:
+        eml_file_path = os.path.join(upload_path, file_name)
+        # Đọc file EML
+        with open(eml_file_path, 'rb') as file:
+            eml_data = file.read()
+        eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
+   
+        # Tìm các số điện thoại trong nội dung EML
+        for part in eml_message.walk():
+            if part.get_content_type() == 'text/plain' or part.get_content_type() == 'text/html':
+                content = part.get_payload(decode=True).decode('utf-8', errors='ignore')
+                # Sử dụng regular expression để tìm các số điện thoại trong nội dung
+                for phone_number_pattern in phone_number_patterns:
+                    phone_numbers_found = re.findall(phone_number_pattern, content)
+                    phone_numbers.update(phone_numbers_found)
+    
+    # Chuyển đổi set thành danh sách
+    phone_number_list = list(phone_numbers)
+    return phone_number_list
 
 def convert_eml_to_csv(upload_path,export_path, folder_name):
     list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
@@ -416,4 +564,4 @@ def convert_eml_to_html(upload_path,html_folder_path):
         # Ghi nội dung HTML vào file HTML đích
         with open(html_file_path, 'w', encoding='utf-8') as file:
             file.write(html_content_valid)
-    return html_file_path
+    return html_folder_path
