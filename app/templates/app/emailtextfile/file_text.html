@@ -1,0 +1,21 @@
+{% extends 'app/emailtextfile/export_text.html' %}
+{%load static%}
+{% block content-right-content %}
+{% comment %} <table>
+    {% for row   in  csv_infor %}
+        <tr>
+            {% for value in row %}
+                <td>
+                    {{value}}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table> {% endcomment %}
+<div class="list-group list-file-email">
+    {% for text_file in text_files %}
+                <li><a href="{{ text_info }}/{{ text_file }}" target="_blank">{{ text_file }}</a></li>
+    {% endfor %}
+</div>
+
+{% endblock content-right-content %}

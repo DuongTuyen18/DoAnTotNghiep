@@ -1,0 +1,34 @@
+
+        From: Apple <no_reply@email.apple.com>
+        To: nttrang13092000@gmail.com
+        Subject: Lỗi Thanh Toán
+        Received On: Tue, 6 Jun 2023 09:35:04 +0000 (GMT)
+        
+        <pre>Lỗi Thanh Toán
+-----------------------------------------------------------
+
+Xin chào Nông Thị Trang,
+
+
+Khoản phí cho gói đăng ký của bạn đã bị từ chối bởi phương thức thanh toán. Để tránh mất quyền truy cập dịch vụ, hãy cập nhật phương thức thanh toán của bạn.
+
+Sửa thông tin thanh toán
+
+https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/editAddress?mt=8&amp;mtPageRef=BE-EML
+https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions?mt=8
+
+Trân trọng,
+Apple
+
+Để được trợ giúp về các đăng ký và mục mua, hãy truy cập Hỗ Trợ Apple.
+https://support.apple.com/en-vn/billing
+
+
+Apple tôn trọng Quyền Riêng Tư của bạn.
+Bạn có thể xem thông tin liên quan đến thông tin cá nhân của mình tại https://www.apple.com/legal/privacy/vn/.
+
+
+Điều khoản Thương mại: https://www.apple.com/legal/internet-services/itunes/vn/terms.html#SALE
+
+Tóm tắt về ID Apple: https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/accountSummary?mt=8</pre>
+    

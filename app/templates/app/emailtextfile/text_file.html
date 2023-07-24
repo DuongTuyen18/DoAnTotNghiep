@@ -1,0 +1,15 @@
+{% extends 'app/emailtextfile/textdatafile.html' %} 
+
+{%load static%} {% block right-content %}
+<div style="height: 50px" class="header-content">
+    <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
+      <div style="height: 100%; padding: 0px" class="container-fluid">
+        <a id="name-export" class="navbar-brand">TEXT Export Options</a>
+      </div>
+    </nav>
+  </div>
+  
+  <div  class="content-right-content-export">
+    <textarea  readonly  style="height:99%; width:100%;resize: none;border:none;outline: none;">{{text_infor}} </textarea>
+  </div>
+{% endblock right-content %}

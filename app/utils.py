@@ -14,31 +14,33 @@ import re
 import pandas as pd
 import numpy as np
 from pandas import DataFrame
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
-from io import BytesIO
-import base64
-import networkx as nx
-from django.shortcuts import render
-import json
-import requests
+from urllib.parse import unquote
+import html
 import email
+import pdfkit 
+import tempfile
+import PyPDF2
+from pdfminer.high_level import extract_text
+from email import message_from_file
+import fitz
+from email.policy import default
+from email import message_from_bytes 
+from email import message_from_string
+from pdfdocument.document import PDFDocument
+from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.pdfgen import canvas
+from io import BytesIO
+from fpdf import FPDF
+from email.message import EmailMessage
+from email.header import decode_header
+from html import escape
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 from bs4 import BeautifulSoup
-def check_email_availability(email):
-    api_key = 'live_bfb97de3d118e4b8ac6010a039896ce86006f099602baebf48bf0604edbba589'
-    url = f'https://api.kickbox.com/v2/verify?email={email}&apikey={api_key}'
+import eml_parser
+from eml_parser import EMLParser
 
-    response = requests.get(url)
-    data = response.json()
-
-    if response.status_code == 200:
-        if data['result'] == 'deliverable':
-            return True
-        else:
-            return False
-    else:
-        return False
-    
 def select_folder():
     root = tk.Tk()
     root.withdraw()
@@ -99,20 +101,11 @@ def read_csv_file(csv_file_path):
             for row in reader:
                 data += ','.join(row) + '\n'
         return data
-
-def list_to_by_from(data_detail,sender_email):
-    filtered_data = data_detail[data_detail['Sender_email'] == sender_email]
-    grouped_data = filtered_data.groupby(['Sender_email', 'To']).size().reset_index(name='Count')
-
-    result_list = []
-    for index, row in grouped_data.iterrows():
-        sender = row['Sender_email']
-        to = row['To']
-        count = row['Count']
-        result_list.append({'sender_email': sender, 'to': to, 'counts': count})
-    return result_list
-
-
+    
+def read_pdf(file_path):
+    text = extract_text(file_path)
+    print(text)
+    
 def get_list_from(data_detail):
     list_from = data_detail.groupby(['Sender_name', 'Sender_email']).size().reset_index()
     list_from.columns = ['sender_name', 'sender_email', 'counts']
@@ -527,6 +520,194 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
             # Định dạng thành chuỗi tương ứng
             writer.writerow([file_name, csv_row])   
     return  csv_file_path
+
+
+    # with open(csv_file_path, 'rb') as file:
+    #     shutil.copy(csv_file_path, "D:\\hoc tap\\")
+
+def decode_subject(subject):
+    decoded_subject = ''
+    for part, encoding in decode_header(subject):
+        if isinstance(part, bytes):
+            if encoding is None:
+                decoded_subject += part.decode('utf-8')
+            else:
+                decoded_subject += part.decode(encoding)
+        else:
+            decoded_subject += part
+    return decoded_subject
+
+
+
+def decode_subject(subject):
+    decoded_subject = ''
+    for part, encoding in decode_header(subject):
+        if isinstance(part, bytes):
+            if encoding is None:
+                decoded_subject += part.decode('utf-8')
+            else:
+                decoded_subject += part.decode(encoding)
+        else:
+            decoded_subject += part
+    return decoded_subject
+
+def convert_eml_to_pdf(eml_file, pdf_file):
+    with open(eml_file, 'r', encoding='utf-8') as file:
+        eml_parser = EMLParser(eml_file)
+        eml_data = eml_parser.decode_email()
+
+    # Tạo tệp PDF mới
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="converted.pdf"'
+
+    # Tạo canvas PDF
+    p = canvas.Canvas(response, pagesize=letter)
+
+    # Ghi nội dung EML lên canvas PDF
+    p.drawString(100, 700, 'From: ' + eml_data['header']['from'])
+    p.drawString(100, 680, 'To: ' + eml_data['header']['to'])
+    # Ghi thêm thông tin khác từ eml_data vào canvas PDF theo yêu cầu
+
+    # Lưu và hoàn thành tệp PDF
+    p.showPage()
+    p.save()
+
+    return response
+
+
+def convert_eml_files_to_pdf(upload_path, export_path, folder_name):
+    # Create a list of EML files in the folder
+    list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+
+    pdf_folder_path = os.path.join(export_path, folder_name)
+
+    # Create the folder if it doesn't exist
+    os.makedirs(pdf_folder_path, exist_ok=True)
+
+    # Iterate through the list of EML files and convert each to PDF
+    for eml_file in list_eml_files:
+        eml_file_path = os.path.join(upload_path, eml_file)
+        pdf_file_name = eml_file.replace('.eml', '.pdf')
+        pdf_file_path = os.path.join(pdf_folder_path, pdf_file_name)
+        convert_eml_to_pdf(eml_file_path, pdf_file_path)
+
+    return pdf_folder_path
+
+def decode_content(part):
+    if part.get_content_charset():
+        return part.get_payload(decode=True).decode(part.get_content_charset())
+    else:
+        return part.get_payload()
+
+def convert_eml_to_html(eml_file, html_file):
+    with open(eml_file, 'r', encoding='utf-8') as file:
+        eml_content = file.read()
+
+    msg = email.message_from_string(eml_content)
+
+    # Extract From, To, Subject, Received On
+    sender = msg.get('From')
+    recipient = msg.get('To')
+    subject = msg.get('Subject')
+    received_on = msg.get('Date')
+
+    # Extract HTML content from the body
+    html_content = ''
+    for part in msg.walk():
+        content_type = part.get_content_type()
+        if content_type == 'text/html':
+            html_content = decode_content(part)
+            break
+
+    # Build the HTML content
+    html_content = f'''
+        <p><strong>From:</strong> {sender}</p>
+        <p><strong>To:</strong> {recipient}</p>
+        <p><strong>Subject:</strong> {subject}</p>
+        <p><strong>Received On:</strong> {received_on}</p>
+        <hr />
+        <div>{html_content}</div>
+    '''
+
+    with open(html_file, 'w', encoding='utf-8') as file:
+        file.write(html_content)
+
+def convert_eml_files_to_html(upload_path, export_path, folder_name):
+    # Tạo một danh sách các tệp EML trong thư mục
+    list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+
+    html_folder_path = os.path.join(export_path, folder_name)
+    if not os.path.exists(html_folder_path):
+        os.makedirs(html_folder_path)           
+
+    # Lặp qua danh sách tệp EML và chuyển đổi thành tệp HTML
+    for eml_file in list_eml_files:
+        eml_file_path = os.path.join(upload_path, eml_file)
+        html_file_name = eml_file.replace('.eml', '.html')
+        html_file_path = os.path.join(html_folder_path, html_file_name)
+        convert_eml_to_html(eml_file_path, html_file_path)
+
+    return html_folder_path
+
+def convert_eml_to_text(eml_file, txt_file):
+    with open(eml_file, 'r', encoding='utf-8') as file:
+        eml_content = file.read()
+
+    msg = email.message_from_string(eml_content)
+
+    # Extract From, To, Subject, Received On
+    sender = msg.get('From')
+   
+    recipient = msg.get('To')
+    
+    subject = msg.get('Subject')
+    subject = decode_subject(subject)  # Decode the subject
+
+    received_on = msg.get('Date')
+    
+    # Extract HTML or plain text content from the body
+    txt_content = ''
+    for part in msg.walk():
+        content_type = part.get_content_type()
+        if content_type == 'text/html':
+            txt_content = decode_content(part)
+            break
+        elif content_type == 'text/plain':
+            plain_text_content = decode_content(part)
+            txt_content = f'<pre>{escape(plain_text_content)}</pre>'
+            break
+
+    # Build the HTML content
+    txt_content = f'''
+        From: {sender}
+        To: {recipient}
+        Subject: {subject}
+        Received On: {received_on}
+        
+        {txt_content}
+    '''
+
+    with open(txt_file, 'w', encoding='utf-8') as file:
+        file.write(txt_content)
+
+
+def convert_eml_files_to_text(upload_path, export_path, folder_name):
+    # Tạo một danh sách các tệp EML trong thư mục
+    list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+
+    text_folder_path = os.path.join(export_path, folder_name)
+
+    # Tạo thư mục nếu nó chưa tồn tại
+    os.makedirs(text_folder_path, exist_ok=True)
+
+    # Lặp qua danh sách tệp EML và chuyển đổi thành tệp văn bản
+    for eml_file in list_eml_files:
+        eml_file_path = os.path.join(upload_path, eml_file)
+        text_file_name = eml_file.replace('.eml', '.txt')
+        text_file_path = os.path.join(text_folder_path, text_file_name)
+        convert_eml_to_text(eml_file_path, text_file_path)
+
+    return text_folder_path
 
 
 def convert_eml_to_html(upload_path,html_folder_path):

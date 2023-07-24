@@ -1,0 +1,21 @@
+{% extends 'app/emailpdffile/export_pdf.html' %}
+{%load static%}
+{% block content-right-content %}
+{% comment %} <table>
+    {% for row   in  csv_infor %}
+        <tr>
+            {% for value in row %}
+                <td>
+                    {{value}}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table> {% endcomment %}
+<div class="list-group list-file-email">
+    {% for pdf_file in pdf_files %}
+    <a href="{{ pdf_infor }}/{{ pdf_file }}" target="_blank">{{ pdf_file }} </a><br>
+    {% endfor %}
+</div>
+
+{% endblock content-right-content %}

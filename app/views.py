@@ -64,22 +64,16 @@ def export_csv(request):
         context = {'list_email':data,'folder_name':folder_name,'csv_infor':csv_infor}
         return render(request,'app/export/csv_file.html',context)
     
-def export_html(request):
+
+
+def export_pdf(request):
     global folder_name
     global path_file_export
     upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
-    export_path = os.path.join(settings.MEDIA_ROOT, 'export/html')
-
-    clear_folder_in_media('export/html')
-
-    # tạo folder lưu chữ các file html
-    html_folder_path = os.path.join(export_path , folder_name)
-    # Kiểm tra nếu thư mục chưa tồn tại
-    if not os.path.exists(html_folder_path):
-        # Tạo thư mục mới
-        os.makedirs(html_folder_path)
-
-    data=List_Infor_Email_Eml(upload_path)
+    export_path = os.path.join(settings.MEDIA_ROOT, 'pdf_files')
+    clear_folder_in_media('export')
+    clear_folder_in_media('pdf_files')
+    data = List_Infor_Email_Eml(upload_path)
     if not data:
         return redirect("base")
     else:
@@ -141,6 +135,102 @@ def save_export_html(request):
         return response
     else:
         return HttpResponse('Source folder not found.', status=404)
+    
+def export_html(request):
+    global folder_name
+    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    export_path = os.path.join(settings.MEDIA_ROOT, 'html_files')
+    clear_folder_in_media('export')
+    clear_folder_in_media('html_files')
+    data = List_Infor_Email_Eml(upload_path)
+    if not data:
+        return redirect("base")
+    else:
+        folder_name = "html_folder"  # Tên thư mục đích
+        path_file_export = convert_eml_files_to_html(upload_path, export_path, folder_name)
+        html_infor = path_file_export
+
+        # Lấy danh sách các tệp HTML
+        html_files = [f for f in os.listdir(html_infor) if f.endswith('.html')]
+
+        # Tạo đường dẫn đến thư mục HTML
+        html_folder = os.path.join(settings.MEDIA_URL, 'html_files', folder_name)
+
+        context = {'list_email': data, 'folder_name': folder_name, 'html_infor': html_folder, 'html_files': html_files}
+        return render(request, 'app/emailhtmlfile/file_html.html', context)
+
+def download_html_folder(request):
+    # Đường dẫn đến thư mục chứa các file HTML
+    html_folder_path = os.path.join(settings.MEDIA_ROOT, 'html_files', folder_name)
+
+    # Tạo một tệp tin nén để lưu các file HTML
+    zip_file_path = os.path.join(settings.MEDIA_ROOT, 'html_files', 'html_folder.zip')
+
+    # Nén thư mục html_folder thành tệp tin nén
+    with zipfile.ZipFile(zip_file_path, 'w') as zip_file:
+        for root, dirs, files in os.walk(html_folder_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                zip_file.write(file_path, file)
+
+    # Đọc nội dung tệp tin nén
+    with open(zip_file_path, 'rb') as zip_file:
+        response = HttpResponse(zip_file.read(), content_type='application/zip')
+        response['Content-Disposition'] = 'attachment; filename="html_folder.zip"'
+
+    # Xóa tệp tin nén sau khi đã tải xuống
+    os.remove(zip_file_path)
+
+    return response
+
+def export_text(request):
+    global folder_name
+    media_path = os.path.join(settings.MEDIA_ROOT, 'text_files')
+    os.makedirs(media_path, exist_ok=True)
+    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    export_path = os.path.join(settings.MEDIA_ROOT, 'text_files')
+    clear_folder_in_media('export')
+    clear_folder_in_media('text_files')
+    data = List_Infor_Email_Eml(upload_path)
+    if not data:
+        return redirect("base")
+    else:
+        folder_name = "text_folder"  # Tên thư mục đích
+        path_file_export = convert_eml_files_to_text(upload_path, export_path, folder_name)
+        text_info = path_file_export
+
+        # Lấy danh sách các tệp văn bản
+        text_files = [f for f in os.listdir(text_info) if f.endswith('.txt')]
+
+        # Tạo đường dẫn đến thư mục văn bản
+        text_folder = os.path.join(settings.MEDIA_URL, 'text_files', folder_name)
+
+        context = {'list_email': data, 'folder_name': folder_name, 'text_info': text_folder, 'text_files': text_files}
+        return render(request, 'app/emailtextfile/file_text.html', context)
+
+def download_text_folder(request):
+    # Đường dẫn đến thư mục chứa các file văn bản (txt)
+    text_folder_path = os.path.join(settings.MEDIA_ROOT, 'text_files', folder_name)
+
+    # Tạo một tệp tin nén để lưu các file văn bản
+    zip_file_path = os.path.join(settings.MEDIA_ROOT, 'text_files', 'text_folder.zip')
+
+    # Nén thư mục text_folder thành tệp tin nén
+    with zipfile.ZipFile(zip_file_path, 'w') as zip_file:
+        for root, dirs, files in os.walk(text_folder_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                zip_file.write(file_path, file)
+
+    # Đọc nội dung tệp tin nén
+    with open(zip_file_path, 'rb') as zip_file:
+        response = HttpResponse(zip_file.read(), content_type='application/zip')
+        response['Content-Disposition'] = 'attachment; filename="text_folder.zip"'
+
+    # Xóa tệp tin nén sau khi đã tải xuống
+    os.remove(zip_file_path)
+
+    return response
 
 def choosefile_csv(request):
     global filecsv_name
