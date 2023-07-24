@@ -1,0 +1,498 @@
+Delivered-To: dvt18012000@gmail.com
+Received: by 2002:a19:40d5:0:0:0:0:0 with SMTP id n204csp197621lfa;
+        Wed, 11 Nov 2020 23:49:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwtfAumpVJh4UftVNiN7jYpQcFV0wWU97b8QSTzYtpIZcvTkb3bNXuw6LZCGDesWga0DwHf
+X-Received: by 2002:a37:ba82:: with SMTP id k124mr25858855qkf.25.1605167386741;
+        Wed, 11 Nov 2020 23:49:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1605167386; cv=none;
+        d=google.com; s=arc-20160816;
+        b=FlDyyUFcDqN3QJfv6tx5BxH6lfa3iXPAZ/lHBH8LcpWRPb/Z3v7PwCMhsr2TGsL0xl
+         bRC1y5Igmzjlvc+acLPcjuC7jbN39e3Yeju335J1altsdiTwIqA0HNd2Q3ssEOUhusc/
+         IQStxQvL+hyWi4H1GI+xXy3r89U1/DsuQhZlu4awrnzzXbG6TbbedBjWZJG0xrPxhlUv
+         LLlP3jPUB9asI1g8HXKRT/H54lRzhf4LMUE3nv6gC8TfC7+CNJhV9EjtZlDzG3FabF2A
+         rcGTZpdJ0AXed0mydfOs0AxdBFOhRWB9bk8vCiVbEaJcV9PAqeumsJBPVRzHQwieZauo
+         UXaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:feedback-id:message-id:list-id:reply-to
+         :mime-version:date:subject:to:from:dkim-signature;
+        bh=6/PJfGcXRRs1PnHLL4V08HSfgiLvPfMu93VwyxTKuU4=;
+        b=GwGB1DaI2Y1BGwSHBjdmaTYSLR8k36FQN88kizwKPtsDRrtAkCi9gfHFJy2yTAFj+N
+         4pN5G7IfZYdPicWlo1cVGeqwhQFA48g+3kSDliiALkNkczqEp3Qo2YnfYtOhgo/Y6z6w
+         7l0FRG6n+6IyK2367Yam41vlCyMPHKcq88vKo5UPy5TI+hjlHkBo0TDLU2kcOjGj0Pwg
+         BzvyC79ezXaleFakzOmNc7cB9sxh2aU+4mExxMaZVWfOPDjUZcQCWhVFvTcsuxwmqiFw
+         tsFXb1SM44OcjoQnrxzS6Kxp7elVui97Aw0ZEzSytfLCFc8vOD898Wk07Cf2DRWz3p9x
+         yAsQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mail.onedrive.com header.s=200608 header.b=oZiU9dpq;
+       spf=pass (google.com: domain of bounce-30_html-348200164-387495-7231722-464329@bounce.microsoftemails.com designates 136.147.186.38 as permitted sender) smtp.mailfrom=bounce-30_HTML-348200164-387495-7231722-464329@bounce.microsoftemails.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=mail.onedrive.com
+Return-Path: <bounce-30_HTML-348200164-387495-7231722-464329@bounce.microsoftemails.com>
+Received: from mta38.email2.microsoft.com (mta38.email2.microsoft.com. [136.147.186.38])
+        by mx.google.com with ESMTPS id c22si2458453qtj.37.2020.11.11.23.49.46
+        for <dvt18012000@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 11 Nov 2020 23:49:46 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounce-30_html-348200164-387495-7231722-464329@bounce.microsoftemails.com designates 136.147.186.38 as permitted sender) client-ip=136.147.186.38;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mail.onedrive.com header.s=200608 header.b=oZiU9dpq;
+       spf=pass (google.com: domain of bounce-30_html-348200164-387495-7231722-464329@bounce.microsoftemails.com designates 136.147.186.38 as permitted sender) smtp.mailfrom=bounce-30_HTML-348200164-387495-7231722-464329@bounce.microsoftemails.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=mail.onedrive.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=200608; d=mail.onedrive.com;
+ h=From:To:Subject:Date:MIME-Version:Reply-To:List-ID:X-CSA-Complaints:
+ Message-ID:Content-Type:Content-Transfer-Encoding; i=email@mail.onedrive.com;
+ bh=6/PJfGcXRRs1PnHLL4V08HSfgiLvPfMu93VwyxTKuU4=;
+ b=oZiU9dpq70d9H9krwiboVhG94WSQNYV9IBYVDQOTC0LBSsfMnMJN2eyjO92T2WqbPd4lz/gx0uq0
+   jlh9IkmfPHew7yPmZTuHamUE8pqeV1D7e05WtXsAQainqHRP+4QmQ1B3zhrrTwD+VB4i7qrFkwqL
+   OMuGA8LAuzowK9mFvwY=
+Received: by mta38.email2.microsoft.com id hljkhk2fmd4k for <dvt18012000@gmail.com>; Thu, 12 Nov 2020 07:49:46 +0000 (envelope-from <bounce-30_HTML-348200164-387495-7231722-464329@bounce.microsoftemails.com>)
+From: "Microsoft OneDrive" <email@mail.onedrive.com>
+To: <dvt18012000@gmail.com>
+Subject: Your Office files are safe with OneDrive
+Date: Thu, 12 Nov 2020 01:49:46 -0600
+MIME-Version: 1.0
+Reply-To: "No Reply OneDrive" <reply-febb177872600d78-30_HTML-348200164-7231722-464329@mail.onedrive.com>
+List-ID: <7227042.xt.local>
+X-CSA-Complaints: whitelist-complaints@eco.de
+X-SFMC-Stack: 7
+x-job: 7231722_387495
+Message-ID: <4ca97517-dec0-4543-ac09-6606bf4a33c6@atl1s07mta2710.xt.local>
+Feedback-ID: 7231722:387495:136.147.186.38:sfmktgcld
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+<!DOCTYPE html>
+<html lang="en-us" mcdisabled-xmlns="http://www.w3.org/1999/xhtml" mcdisabled-xmlns:v="urn:schemas-microsoft-com:vml" mcdisabled-xmlns:o="urn:schemas-microsoft-com:office:office"><head>
+	
+   <!--[if gte mso 9]><style type="text/css">sup { font-size: 100% !important; } li {text-align:-webkit-match-parent; display:list-item;text-indent: -1em;}</style><![endif]-->
+	<!--[if gte mso 9]> <xml> <o:OfficeDocumentSettings> <o:AllowPNG/> <o:PixelsPerInch>96</o:PixelsPerInch> </o:OfficeDocumentSettings> </xml> 
+<style type="text/css"> @font-face{font-family:'wf_segoe-ui_normal';src:url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.eot');src:url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.eot?#iefix') format('embedded-opentype'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.woff') format('woff'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.ttf') format('truetype'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.svg#web')
+ format('svg');font-weight:normal;font-style:normal;}@font-face{font-family:'wf_segoe-ui_light';src:url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.eot');src:url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.eot?#iefix') format('embedded-opentype'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.woff') format('woff'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.ttf') format('truetype'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.svg#web')
+ format('svg');font-weight:normal;font-style:normal;}@font-face{font-family:'wf_segoe-ui_semibold';src:url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.eot');src:url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.eot?#iefix') format('embedded-opentype'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.woff') format('woff'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.ttf') format('truetype'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.svg#web') format('svg');font-weight:normal;font-style:normal }@font-face{font-family:'wf_segoe-ui_semilight';src:url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semilight/latest.ttf')
+ format('truetype');font-weight:normal;font-style:normal }</style><![endif]-->
+	<!--[if !mso]><!-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" style="-webkit-font-smoothing:antialiased;">
+	<!--<![endif]-->
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta content="telephone=no" name="format-detection">
+	<meta name="viewport" content="width=device-width viewport-fit=cover">
+	<title>OneDrive</title>
+	<meta name="x-apple-disable-message-reformatting">
+	
+	<style type="text/css" >
+	html { width: 100%; min-width: 100%; overflow-x: hidden; padding: 0px; margin: 0px; } li {text-align:-webkit-match-parent; display:list-item;} body { width: 100% !important; min-width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #ffffff; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; } img { line-height: 100%; outline: none; text-decoration: none; border: none; height: auto; -ms-interpolation-mode: bicubic; } p { margin: 0 0 !important; } table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; } body, table, td, a { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; } .ReadMsgBody, .ExternalClass { width: 100%; background-color: #ffffff; } .fullWidth { width:
+ 500px; } .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; } .ExternalClass a:visited, .ExternalClass span.ecxMsoHyperlinkFollowed { color: inherit; } div[style*="margin:16px 0"] { margin: 0 !important; } .phonefix, .phonefix a, .phonefix span a { color: #000000 !important; text-decoration: none; } .phonefix2 a, .phonefix2 span a { color: #717171 !important; text-decoration: none; } span.aBn { border: none; } button { display: block !important; } a { text-decoration: none; } a:visited { color: #0062b3 !important; } a > div { display: block !important; } a.fixLinkBlack:visited, .ExternalClass a.fixLinkBlack:visited { text-decoration: none !important; color: #100d0d !important; } a.fixLinkWhite:visited,
+ .ExternalClass a.fixLinkWhite:visited { text-decoration: none !important; color: #ffffff !important; } a.fixLinkBlue:visited, .ExternalClass a.fixLinkBlue:visited { color: #0078d7 !important; } a.fixLinkDarkBLue, .ExternalClass a.fixLinkDarkBLue:visited { color: #0078d7 !important; }, a.fixLinkGreen, .ExternalClass a.fixLinkGreen:visited { color: #008272 !important; } a[x-apple-data-detectors] { text-decoration: none !important; color: inherit !important; } #outlook a { padding: 0; text-decoration: none !important; } span.MsoHyperlink { mso-style-priority: 99; color: inherit; } span.MsoHyperlinkFollowed { mso-style-priority: 99; color: inherit; } .yshortcuts a { border-bottom: none !important; } span.MsoHyperlink { mso-style-priority: 99 !important; color: inherit !important; }
+ span.MsoHyperlinkFollowed { mso-style-priority: 99 !important; color: inherit !important; } body.theme-main { font-family: SegoeUI, "Segoe UI", Segoe, "Helvetica Neue", "Helvetica","Arial","sans-serif"; font-size: 16px; line-height: 20px; background: #333; font-weight: 400; }
+	a.fixLinkOrange:visited, .ExternalClass a.fixLinkOrange:visited { text-decoration: none !important; color: #dc3e15 !important; }
+	@media screen { @font-face { font-family: "SegoeUI"; src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/latest.ttf") format("truetype"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/latest.svg#web") format("svg"); } @font-face { font-family: "SegoeUI"; font-weight: 100; src: local("Segoe UI Light"), local("Segoe WP Light"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/light/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/light/latest.woff")
+ format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.svg#web") format("svg"); } @font-face { font-family: "SegoeUI"; font-weight: 200; src: local("Segoe UI Semilight"), local("Segoe WP Light"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/light/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/light/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.svg#web") format("svg"); } @font-face { font-family: "SegoeUI"; font-weight: 500; src: local("Segoe UI"), local("Segoe"),
+ local("Segoe WP"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/latest.ttf") format("truetype"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/latest.svg#web") format("svg"); } @font-face { font-family: "SegoeUI"; font-weight: 700; src: local("Segoe UI bold"), local("Segoe bold"), local("Segoe WP bold"), url("//i.s-microsoft.com/fonts/segoeui/west-european/bold/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoeui/west-european/bold/latest.woff") format("woff"),
+ url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/bold/latest.ttf") format("truetype"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/bold/latest.svg#web") format("svg"); } }
+	@media only screen and (max-width:599px) { .ul-margin-20 {margin: 0.1vw !important;} .padding-top-00 { padding-top: 0vw !important; } .padding-top-04 { padding-top: 0.6vw !important; } .padding-top-08 { padding-top: 1.3vw !important; } .padding-top-12 { padding-top: 1.9vw !important; } .padding-top-16 { padding-top: 2.4vw !important; } .padding-top-20 { padding-top: 3.1vw !important; } .padding-top-24 { padding-top: 3.8vw !important; } .padding-top-28 { padding-top: 4.4vw !important; } .padding-top-32 { padding-top: 5vw !important; } .padding-top-36 { padding-top: 5.7vw !important; } .padding-top-40 { padding-top: 6.3vw !important; } .padding-top-44 { padding-top: 6.9vw !important; } .padding-top-48 { padding-top: 7.5vw !important; } .padding-top-52 { padding-top: 8.1vw !important; }
+ .padding-top-56 { padding-top: 8.7vw !important; } .padding-top-60 { padding-top: 9.4vw !important; } .padding-top-64 { padding-top: 10.2vw !important; } .padding-top-68 { padding-top: 10.8vw !important; } .padding-top-72 { padding-top: 11.4vw !important; } .padding-top-76 { padding-top: 12vw !important; } .padding-top-80 { padding-top: 12.6vw !important; } .padding-top-84 { padding-top: 13.3vw !important; } .padding-top-88 { padding-top: 13.9vw !important; } .padding-top-92 { padding-top: 14.5vw !important; }  .padding-right-00 { padding-right: 0vw !important; } .padding-right-04 { padding-right: 0.6vw !important; } .padding-right-08 { padding-right: 1.3vw !important; } .padding-right-12 { padding-right: 1.9vw !important; } .padding-right-16 { padding-right: 2.4vw !important; }
+ .padding-right-20 { padding-right: 3.1vw !important; } .padding-right-24 { padding-right: 3.8vw !important; } .padding-right-28 { padding-right: 4.4vw !important; } .padding-right-32 { padding-right: 5vw !important; } .padding-right-36 { padding-right: 5.7vw !important; } .padding-right-40 { padding-right: 6.3vw !important; } .padding-right-44 { padding-right: 6.9vw !important; } .padding-right-48 { padding-right: 7.5vw !important; } .padding-right-52 { padding-right: 8.1vw !important; } .padding-right-56 { padding-right: 8.7vw !important; } .padding-right-60 { padding-right: 9.4vw !important; } .padding-right-64 { padding-right: 10.2vw !important; } .padding-right-68 { padding-right: 10.8vw !important; } .padding-right-72 { padding-right: 11.4vw !important; } .padding-right-76 {
+ padding-right: 12vw !important; } .padding-right-80 { padding-right: 12.6vw !important; } .padding-right-84 { padding-right: 13.3vw !important; } .padding-right-88 { padding-right: 13.9vw !important; } .padding-right-92 { padding-right: 14.5vw !important; }  .padding-bottom-00 { padding-bottom: 0vw !important; } .padding-bottom-04 { padding-bottom: 0.6vw !important; } .padding-bottom-08 { padding-bottom: 1.3vw !important; } .padding-bottom-12 { padding-bottom: 1.9vw !important; } .padding-bottom-16 { padding-bottom: 2.4vw !important; } .padding-bottom-20 { padding-bottom: 3.1vw !important; } .padding-bottom-24 { padding-bottom: 3.8vw !important; } .padding-bottom-27 { padding-bottom: 4.4vw !important; } .padding-bottom-32 { padding-bottom: 5vw !important; } .padding-bottom-36 {
+ padding-bottom: 5.7vw !important; } .padding-bottom-40 { padding-bottom: 6.3vw !important; } .padding-bottom-44 { padding-bottom: 6.9vw !important; } .padding-bottom-48 { padding-bottom: 7.5vw !important; } .padding-bottom-52 { padding-bottom: 8.1vw !important; } .padding-bottom-56 { padding-bottom: 8.7vw !important; } .padding-bottom-60 { padding-bottom: 9.4vw !important; } .padding-bottom-64 { padding-bottom: 10.2vw !important; } .padding-bottom-68 { padding-bottom: 10.8vw !important; } .padding-bottom-72 { padding-bottom: 11.4vw !important; } .padding-bottom-76 { padding-bottom: 12vw !important; } .padding-bottom-80 { padding-bottom: 12.6vw !important; } .padding-bottom-84 { padding-bottom: 13.3vw !important; } .padding-bottom-88 { padding-bottom: 13.9vw !important; }
+ .padding-bottom-92 { padding-bottom: 14.5vw !important; }  .padding-left-00 { padding-left: 0vw !important; } .padding-left-04 { padding-left: 0.6vw !important; } .padding-left-08 { padding-left: 1.3vw !important; } .padding-left-12 { padding-left: 1.9vw !important; } .padding-left-16 { padding-left: 2.4vw !important; } .padding-left-20 { padding-left: 3.1vw !important; } .padding-left-24 { padding-left: 3.8vw !important; } .padding-left-28 { padding-left: 4.4vw !important; } .padding-left-32 { padding-left: 5vw !important; } .padding-left-36 { padding-left: 5.7vw !important; } .padding-left-40 { padding-left: 6.3vw !important; } .padding-left-44 { padding-left: 6.9vw !important; } .padding-left-48 { padding-left: 7.5vw !important; } .padding-left-52 { padding-left: 8.1vw !important; }
+ .padding-left-56 { padding-left: 8.7vw !important; } .padding-left-60 { padding-left: 9.4vw !important; } .padding-left-64 { padding-left: 10.2vw !important; } .padding-left-68 { padding-left: 10.8vw !important; } .padding-left-72 { padding-left: 11.4vw !important; } .padding-left-76 { padding-left: 12vw !important; } .padding-left-80 { padding-left: 12.6vw !important; } .padding-left-84 { padding-left: 13.3vw !important; } .padding-left-88 { padding-left: 13.9vw !important; } .padding-left-92 { padding-left: 14.5vw !important; }  .height-20 { height: 3.4vw!important; } .height-15 { height: 4.3vw !important; } .height-30 { height: 5.1vw !important; } .height-35 { height: 5.9vw !important; } .height-40 { height: 6.8vw !important; } .height-45 { height: 7.6vw !important; } .height-50 {
+ height: 8.4vw !important; } .height-55 { height: 9.3vw !important; } .height-60 { height: 10.1vw !important; } .height-65 { height: 11vw !important; } .height-70 { height: 11.8vw !important; } .height-75 { height: 12.6vw !important; } .height-80 { height: 13.5vw !important; } .height-85 { height: 14.3vw !important; } .height-90 { height: 15.1vw !important; } .height-95 { height: 16vw !important; } .height-100 { height: 16.8vw !important; } .height-125 { height: 21vw !important; } .height-150 { height: 25.1vw !important; } .height-175 { height: 29.3vw !important; } .height-200 { height: 33.5vw !important; } .font-size-12 { font-size: 2.2vw !important; } .font-size-14 { font-size: 2.4vw !important; } .font-size-16 { font-size: 2.6vw !important; } .font-size-18 { font-size: 3.0vw
+ !important; } .font-size-20 { font-size: 3.3vw !important; } .font-size-22 { font-size: 3.6vw !important; } .font-size-24 { font-size: 4.0vw !important; } .font-size-26 { font-size: 4.3vw !important; } .font-size-28 { font-size: 4.6vw !important; } .font-size-30 { font-size: 4.9vw !important; } .font-size-32 { font-size: 5.2vw !important; } .font-size-34 { font-size: 5.5vw !important; } .font-size-36 { font-size: 5.9vw !important; } .font-size-38 { font-size: 6.2vw !important; } .font-size-40 { font-size: 6.5vw !important; } .font-size-42 { font-size: 6.8vw !important; } .font-size-44 { font-size: 7.1vw !important; } .font-size-46 { font-size: 7.3vw !important; } .font-size-48 { font-size: 7.7vw !important; } .font-size-50 { font-size: 8.0vw !important; } .font-size-88 { font-size:
+ 14.0vw !important; } .line-height-12 { line-height: 2.0vw !important; } .line-height-16 { line-height: 2.6vw !important; } .line-height-20 { line-height: 3.3vw !important; } .line-height-24 { line-height: 4vw !important; } .line-height-28 { line-height: 4.4vw !important; } .line-height-32 { line-height: 5vw !important; } .line-height-36 { line-height: 5.7vw !important; } .line-height-40 { line-height: 6.3vw !important; } .line-height-44 { line-height: 6.9vw !important; } .line-height-48 { line-height: 7.5vw !important; } .line-height-52 { line-height: 8.1vw !important; } .line-height-56 { line-height: 8.7vw !important; } .line-height-92 { line-height: 14.3vw !important; } .responsive-table { width: 100% !important; min-width: 320px !important; max-width: 599px !important; }
+ .responsive-img { width: 100% !important; max-width: 599px !important; display: block !important; height: auto !important; } .responsive-logo { width: 28.4vw !important; max-width: 142px !important; display: block !important; height: auto !important; } .responsive-logo-footer { width: 100% !important; max-width: 158px !important; display: block !important; height: auto !important; } .responsive-line { width: 46px !important; height: 164px !important; vertical-align: middle !important; } .responsive-icon { width: 100% !important; max-width: 250px !important; display: block !important; height: auto !important; } .responsive-star { width: 18.7px !important; height: 18.7px !important; } responsive-image-size-01 { max-width: 112px !important; height: 112px !important; } .image-icon-01 {
+ width: 46px !important; height: 46px !important; } .auto-height { height: 100% !important; } .cta-button-width-100 { width: 15.6vw !important; } .cta-button-width-110 { width: 17.2vw !important; } .cta-button-width-120 { width: 18.7vw !important; } .cta-button-width-130 { width: 20.3vw !important; } .cta-button-width-140 { width: 21.8vw !important; } .cta-button-width-150 { width: 23.4vw !important; } .cta-button-width-160 { width: 25vw !important; } .cta-button-width-170 { width: 26.5vw !important; } .cta-button-width-180 { width: 28.1vw !important; } .cta-button-width-190 { width: 29.7vw !important; } .cta-button-width-200 { width: 31.2vw !important; } .cta-button-width-210 { width: 32.8vw !important; } .cta-button-width-220 { width: 34.3vw !important; } .cta-button-width-230 { width:
+ 35.9vw !important; } .cta-button-width-240 { width: 37.5vw !important; } .cta-button-width-250 { width: 39vw !important; } .cta-button-width-260 { width: 40.6vw !important; } .cta-button-width-270 { width: 42.2vw !important; } .cta-button-width-280 { width: 43.7vw !important; } .cta-button-width-290 { width: 45.3vw !important; } .cta-button-width-300 { width: 46.8vw !important; } .cta-button-width-310 { width: 48.4vw !important; } .cta-button-width-320 { width: 50vw !important; } .cta-button-width-330 { width: 51.6vw !important; } .cta-button-width-340 { width: 53.1vw !important; } .cta-button-width-350 { width: 54.6vw !important; } .cta-button-width-360 { width: 56vw !important; } .cta-button-width-370 { width: 57.6vw !important; } .cta-button-width-380 { width: 58.9vw !important; }
+ .cta-button-width-400 { width: 62.5vw !important; } .cta-button-width-420 { width: 65.6vw !important; } .cta-button-width-440 { width: 68.7vw !important; } .responsive-arrow-01 { width: 1.3vw !important; height: 2vw !important; vertical-align: 0vw !important; } .responsive-ls { letter-spacing: 9.3px !important; } .social-icon-size-01 { height: 22.5px !important; width: 22.5px !important; } .cta-text{font-size:1.9vw !important;} .height-offer{height:29vw;} }
+	@media only screen and (max-width:499px) { .responsive-logo-footer { width: 100% !important; max-width: 130px !important; display: block !important; height: auto !important; } .responsive-line { width: 38px !important; height: 137px !important; vertical-align: middle !important; } .responsive-star { width: 15.6px !important; height: 15.6px !important; } .responsive-image-size-01 { max-width: 73px !important; height: 73px !important; } .image-icon-01 { width: 39px !important; height: 39px !important; } .responsive-img.offic-img{width:40px!important; height:40px!important;}.part-heading {
+    height: auto!important;} .responsive-image.responsive-product-image{width:50px!important;}}
+	@media only screen and (max-width:415px) { .fullsize-mobile{width:100%!important; display:inline;} .responsive-logo { width: 29.4vw !important; max-width: 142px !important; display: block !important; height: auto !important; } .responsive-logo-footer { width: 100% !important; max-width: 110px !important; display: block !important; height: auto !important; } .responsive-line { width: 31px !important; height: 114px !important; vertical-align: middle !important; } .responsive-star { width: 13px !important; height: 13px !important; } .responsive-image-size-01 { max-width: 58px !important; height: 58px !important; } .image-icon-01 { width: 32px !important; height: 32px !important; } .responsive-arrow-01 { width: 1.4vw !important; height: 2.1vw !important; vertical-align: 0vw !important; }
+ .responsive-ls { letter-spacing: 6.5px !important; } .social-icon-size-01 { height: 15.5px !important; width: 15.5px !important; }  .line-height-12 { line-height: 2.4vw !important; } .line-height-16 { line-height: 2.9vw !important; } .line-height-20 { line-height: 3.6vw !important; } .line-height-24 { line-height: 4.3vw !important; } .line-height-28 { line-height: 4.9vw !important; } .line-height-32 { line-height: 5.5vw !important; } .line-height-36 { line-height: 6.2vw !important; } .line-height-40 { line-height: 6.8vw !important; } .line-height-44 { line-height: 7.5vw !important; } .line-height-48 { line-height: 8vw !important; } .line-height-52 { line-height: 8.6vw !important; } .line-height-56 { line-height: 9.2vw !important; } .line-height-92 { line-height: 14.8vw !important; }
+ .cta-button-width-100 { width: 28vw !important; } .cta-button-width-110 { width: 29.6vw !important; } .cta-button-width-120 { width: 31.1vw !important; } .cta-button-width-130 { width: 32.7vw !important; } .cta-button-width-140 { width: 34.2vw !important; } .cta-button-width-150 { width: 35.8vw !important; } .cta-button-width-160 { width: 37.4vw !important; } .cta-button-width-170 { width: 38.9vw !important; } .cta-button-width-180 { width: 40.5vw !important; } .cta-button-width-190 { width: 42.1vw !important; } .cta-button-width-200 { width: 43.6vw !important; } .cta-button-width-210 { width: 45.2vw !important; } .cta-button-width-220 { width: 46.7vw !important; } .cta-button-width-230 { width: 48.3vw !important; } .cta-button-width-240 { width: 49.9vw !important; }
+ .cta-button-width-250 { width: 51.4vw !important; } .cta-button-width-260 { width: 53vw !important; } .cta-button-width-270 { width: 54.6vw !important; } .cta-button-width-280 { width: 56.1vw !important; } .cta-button-width-290 { width: 57.7vw !important; } .cta-button-width-300 { width: 59.2vw !important; } .cta-button-width-310 { width: 60.8vw !important; } .cta-button-width-320 { width: 62.4vw !important; } .cta-button-width-330 { width: 64vw !important; } .cta-button-width-340 { width: 65.5vw !important; } .cta-button-width-350 { width: 67vw !important; } .cta-button-width-360 { width: 68.4vw !important; } .cta-button-width-370 { width: 70vw !important; } .cta-button-width-380 { width: 71.3vw !important; } .cta-button-width-400 { width: 74.9vw !important; } .cta-button-width-420 {
+ width: 78vw !important; } .cta-button-width-440 { width: 81.1vw !important; } .cta-text {font-size:2.5vw !important;} }
+	.cta-link:visited {color: #d83b01 !important;}
+	</style>
+</head>
+<body style="padding:0;env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation" style="font-family:'Segoe UI';padding:0px 0px 0px 0px;">
+	<tr>
+		<td align="center" style="background-color:#ffffff;">
+		<table border="0" cellpadding="0" cellspacing="0" width="640" style="min-width:640px;width:640px; max-width:640px; padding:0px 0px 0px 0px;" class="responsive-table" role="presentation">
+			<tr>
+				<td align="center" style="background-color:#ffffff;">
+					<!-- 1A_Header_MSFT_OFFICE365 -->
+					<table cellpadding="0" cellspacing="0" border="0" width="640" role="presentation" class="responsive-table">
+						<tr>
+							<td align="center">
+								<!-- middleHeadText -->
+								<table cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation">
+									<tr>
+										
+									
+										<td  align="center" style="font-size:14px;line-height: 19px;padding: 7px 20px 0px 20px; font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;" class="padding-top-08 padding-right-20 padding-left-20"><a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789d1b62005206c3da4f1b13d58d5bafafcbf6bce145c2a312760ab23e65bc5e8b6de6ae4f4d4f564f09019e6c2796abd28ab5608c1dbf426efb" style="color:#505050; text-decoration:underline;" target="_blank" ><span style="color:#505050; text-decoration:underline; font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;">See my files in OneDrive</span></a>&nbsp;|&nbsp;<a href="https://view.mail.onedrive.com/?qs=49ebc94cbd97c65cfc04ba80666d2ec6d8a5b6421f92efeed85b23ba823701e7bcbca4d239454b3b8795de9d20a356e88ec7d1213480597b0c2941d21a293f0672dd8416d95ba88818a7b4e90cba2018" style="color:#505050; text-decoration:underline;" target="_blank" >
+<span style="color:#505050; text-decoration:underline; font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;">View in browser</span></a>
+								</td>
+										
+									</tr>
+								</table><!-- end middleHeadText -->
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<!-- headLogo -->
+								<table cellpadding="0" cellspacing="0" border="0" width="640" role="presentation">
+									<tr>
+										<td align="left" style="background-color:#ffffff;padding: 16px 0px 16px 16px;" 
+									class="padding-top-16 padding-bottom-16 padding-left-40">
+											<a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789df8347680a72d5c96146eab5fd52ab299d5320bf890c9de3179e23ade566e2a4607f6009916c34a4e946a3f98ee7860195ac2ad33cf021d66"  target="_blank">
+												<img src="http://image.engage.windows.com/lib/fe831372726d0d7870/m/2/MSFT_logo_c_C-Gray.png" alt="Microsoft webpage" border="0" width="100" style="display:block;width:100px;" class="responsive-logo" />
+											</a>
+										</td>
+										<td align="right" style="background-color:#ffffff;padding: 16px 16px 16px 0px;" class="padding-top-16  padding-bottom-16 padding-right-40">
+											<a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789dac5c3c4b462ae34412a5bd0dce352a2bf286a2202c7158be9d43bfa04c1b3fbda98721e8b904eda56d4d62e5c1a3837cbac077bc822a572c"  target="_blank">
+												<img src="https://image.mail.onedrive.com/lib/fe9713727665037f77/m/1/OneDrive_logo_Header.png" alt="OneDrive Logo" border="0" width="115" style="display:block;width:115px;" class="responsive-logo" />
+											</a>
+										</td>
+									</tr>
+								</table><!-- end headLogo -->
+							</td>
+						</tr>
+					</table><!-- end 1A_Header_MSFT_OFFICE365 -->
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="background-color:#ffffff;">
+					<!-- Full_Image_First_640x360 -->
+					<table cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation">
+						
+						<!-- title -->
+						<tr>
+							<td  align="center" style="font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size: 32px; font-weight: 500; line-height: 38px; color: #000000; padding:20px 20px 30px 20px;" class=" padding-top-18 padding-right-20 padding-bottom-28 padding-left-20"><h1 style="font-size: 32px; font-weight: 500; line-height: 38px; color: #000000; margin:0; padding:0;" class="font-size-32 line-height-36">Your Office files are safe with OneDrive</h1>	
+							</td>
+						</tr><!-- end title -->
+						<!-- text -->
+						<tr>
+							<td  align="center" style="font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;font-size:16px; font-weight:400; line-height:24px; color:#000000;padding:0px 45px 20px 45px;" class="padding-right-40 padding-bottom-40 padding-left-40">
+							You may have recently used Word, Excel or PowerPoint and your files were saved to OneDrive cloud storage. Your files are backed up and accessible from OneDrive on your <a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789de49c018d9f367e26eaaf000606c16427a3297d2d1d7fd6d74e658ed042cc5f270b7afad702d321ad099aedc31489d4622beac3b20c572b47" target="_blank"  style="color:#0078d7; text-decoration:underline;" class="">desktop</a>, <a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789d6775812c4d90bafa0c7654262bfbdf4fe4eb55ee2a6d10c12398d2a36441bfadbb4b0d5948b2d790d3ea3e213ff0dee2b5725d6383393147" target="_blank"  style="color:#0078d7; text-decoration:underline;" class="">mobile device</a> or <a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789dce89a3c217472725742d2648032c7a0a9460dec9ed24065779384bc7fb07cd9aa95afa4007a8ad8423fe87f9fd7f72ac6078c79f5380ccfc" target="_blank"  style="color:#0078d7; text-decoration:underline;" class="">browser
+</a>. OneDrive comes with 5 GB of free storage or more with a paid subscription.
+							</td>
+						</tr><!-- end text -->
+						<!-- button -->
+<tr>
+				    <td align="center" style="padding: 15px 0px 20px 0px;" class="mobile-view-full">  
+                                  <table  cellpadding="0" border="0" align="center" cellspacing="0">
+                                    <tr>
+                                      <td style="padding-bottom:0px !important; margin-bottom:0px !important; " cellpadding="0" border="0" align="center" cellspacing="0"><a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789dd2aedefb7c05c26d29b60dbd761847be8fd5b2f6f3b481afe036b4f8d2ee553919c5a025d9503710b624deaa5639ba4bf45153aa4463bf50"  target="_blank" style="line-height: 19px;font-weight: 500;font-size: 16px; text-align:center; font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; display:inline-block; color: #ffffff; " class="fixLinkWhite"><p class="fixLinkWhite CTAbtn" style="line-height: 19px;font-weight: 500;font-size: 16px; color: #ffffff; padding: 10px 0px 10px 0px; background-color: #0078d7; border: 1px solid  #0078d7; display:inline-block;">&nbsp;&nbsp;See my files&nbsp;&nbsp;</p>
+                                                    </a>
+                                                </td>
+                                              </tr> </table>
+                                         
+                                         </td>
+								</tr><!-- end button -->
+						<!-- end button -->
+					</table><!-- end Full_Image_First_640x360 -->         
+				</td>
+			</tr>
+				<tr style="background-color:#F9F8F8;" >
+					<td align="center"><!-- MODULE 4 GOES HERE -->
+					<table cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation">
+								<tr>
+							<td align="center" style="" class="">
+							<img src="https://image.mail.onedrive.com/lib/fe9713727665037f77/m/1/1128-OneDrive+X+OneDrive-Welcome.PNG" width="660"  alt="OneDrive X OneDrive_Welcome"  border="0" style="display:block;width:660px;" class="" />
+								
+							</td>
+						</tr>	
+					<tr><td>
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation">
+						
+							<tr>
+								<td  valign="top" style="padding:10px 97px 0px 97px;" class="padding-bottom-20 padding-top-10 padding-left-27 padding-right-27">
+									
+								<!--extra left sec add-->
+								<table cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation">
+							
+							
+						<!-- end image -->
+								<tr>
+                                        <!-- Bullet image -->
+                                        <td  valign="top" style="padding:27px 0px 0px 0px; max-width:20px;" class="padding-right-0 padding-left-0 padding-bottom-16 " width="20px">
+                                        </td>
+                                        <!-- Headline -->
+                                        <td  valign="top" style="font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:20px; font-weight:500; color:#000000;padding:0px 0px 27px 0px;" class="font-size-28 line-height-24 padding-bottom-16">Why should I keep saving my files to OneDrive?                                
+                                        </td>
+                                    </tr>
+								<tr>
+								        <!-- Bullet image -->
+                                  <td width="20px" align="left" valign="middle" style="padding:0px 0px 0px 0px; width: 20px; max-width:20px;" class="padding-right-0 ">
+                                            
+                                        </td>
+                                        <!-- Headline -->
+                                        <td >  
+								
+<!--bullet section-->										
+                                   <table  width="100%" cellspacing="0" cellpadding="0" role="presentation">
+								
+                                    <tr style="padding:0px 0px 0px 0px;">
+                                        <!-- Bullet image -->
+                                      
+										  <td  valign="top" width="50" height="40" style="padding:0px 0px 27px 0px; width:50px; height:40px; vertical-align:top; font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:22px; font-weight:400; line-height:28px" class="padding-right-0 padding-left-0"><img src="https://image.mail.onedrive.com/lib/fe9713727665037f77/m/1/icon_number_one.png" width="18" alt="" border="0" style="width:18px;display:inline-block;" class="" /> 
+                                        </td>
+                                        <!-- Headline -->
+                                        <td  valign="top" style="vertical-align:top; font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:400; color:#000000;padding:0px 0px 27px 0px; vertical-align:top;" class="font-size-16 line-height-44 padding-bottom-27"><p style="font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:20px; font-weight:500; color:#0078d7;padding:0px 0px 0px 0px;line-height:28px;">Your files are backed up </p><p style="font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:400; color:#000000;padding:0px 0px 0px 0px;">If you lose your device, you won't lose your files and photos when they're saved in OneDrive.</p></td>
+										
+                                    </tr>
+									 <tr>
+                                        <!-- Bullet image -->
+                                         <td  valign="top" width="50" height="40" style="padding:0px 0px 27px 0px; width:50px; height:40px; vertical-align:top; font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:22px; font-weight:400; line-height:28px" class="padding-right-0 padding-left-0">
+                                            <img src="https://image.mail.onedrive.com/lib/fe9713727665037f77/m/1/icon_number_two.png" width="18" alt="" border="0" style="width:18px; display:inline-block;" class="" />
+                                        </td>
+                                        <!-- Headline -->
+                                         <td  valign="top" style="vertical-align:top; font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:400; color:#000000;padding:0px 0px 27px 0px; vertical-align:top;" class="font-size-16 line-height-44 padding-bottom-27">                                         
+                                            <p style="font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:20px; font-weight:500; color:#0078d7;padding:0px 0px 0px 0px;line-height:28px; ">Anywhere access</p> 
+                                             <p style="font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:400; color:#000000;padding:0px 0px 8px 0px;">You can create, access and edit your files from all your devices, virtually anywhere you happen to be.</p>											  
+                                        </td>
+                                    </tr>
+									 <tr>
+                                        <!-- Bullet image -->
+                                          <td  valign="top" width="50" height="40" style="padding:0px 0px 27px 0px; width:50px; height:40px; vertical-align:top; font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:22px; font-weight:400; line-height:28px" class="padding-right-0 padding-left-0">
+                                            <img src="https://image.mail.onedrive.com/lib/fe9713727665037f77/m/1/icon_number_three.png" width="18" alt="" border="0" style="width:18px; display:inline-block;" class="" />
+                                        </td>
+                                        <!-- Headline -->
+                                          <td  valign="top" style="vertical-align:top; font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:400; color:#000000;padding:0px 0px 27px 0px; vertical-align:top;" class="font-size-16 line-height-44 padding-bottom-27"><p style="font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:20px; font-weight:500; color:#0078d7;padding:0px 0px 0px 0px;line-height:28px;">Share and collaborate</p><p style="font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:400; color:#000000;padding:0px 0px 8px 0px;">You can share files and photos with anyone. They don't need an account to view, edit or collaborate on the file. </p></td>
+                                    </tr>
+									</table>
+									<!--end bullet section-->
+									
+									</td>
+                                    </tr>
+									</table>
+									
+									<!--extra left sec end-->								   
+								</td>
+								
+							</tr>
+						</table>
+					</td></tr>
+					<!--button sec-->
+							
+			
+	<tr>
+				    <td  align="center" style="padding: 20px 0px 40px 0px;" class="mobile-view-full">
+                      <table  cellpadding="0" border="0" align="center" cellspacing="0">
+                        <tr>
+                          <td  style="padding-bottom:0px !important; margin-bottom:0px !important; " cellpadding="0" border="0" align="center" cellspacing="0"><a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789d72b719cf6d459151bd499ebba521e028a07ef8c923fb57a24101941437e36c2d208f0869233ef77aa3080ccd0204fae78176d3a11ccd5a5b"  target="_blank" style="line-height: 19px;font-weight: 500;font-size: 16px; text-align:center; font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; display:inline-block; color: #ffffff; " class="fixLinkWhite"><p class="fixLinkWhite CTAbtn" style="line-height: 19px;font-weight: 500;font-size: 16px; color: #ffffff; padding: 10px 0px 10px 0px; background-color: #0078d7;border: 1px solid  #0078d7; display:inline-block;">&nbsp;&nbsp;Learn more&nbsp;&nbsp;</p></a>
+                                                </td>
+                                              </tr> </table>
+                                         </td>
+								</tr>
+					</table>
+					</td>
+				</tr>	
+				<tr style="background-color:#ffffff;">
+					<td align="center" ><!-- MODULE 4 GOES HERE -->
+					 <a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789dd1f794aa53adca7f741c0a3fda3b2f00dbd24799edc3f7ad2ba112cfab2ea23a9be58f41bea28ea779ba9f1686705511a1fd9d480b6a9641"  target="_blank" >
+					<table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" role="presentation">
+						<tr>
+						<td align="center" valign="middle" style="font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:20px; font-weight:500; line-height:26px; color:#000000;padding:40px 15px 0px 10px; vertical-align:middle" class="font-size-20 line-height-26 padding-right-16  padding-left-08 padding-top-40">Don't have Microsoft 365?</td>
+							</tr>
+						<tr>
+					<td>
+					<table  cellpadding="0" cellspacing="0" border="0" role="presentation" align="center" width="100%">
+					
+							<tr>
+					<td  valign="top" width="25" style="vertical-align:top; width:25px; padding:8px 0px 20px 30px; " class="padding-bottom-20 padding-left-30 padding-top-08">
+					<img src="https://image.mail.onedrive.com/lib/fe9713727665037f77/m/1/PremiumGemV1_2x.png" width="28"  border="0" style="display:block;width:28px; " class="" />
+					</td>
+							<td  valign="middle" style="font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:20px; font-weight:500; line-height:26px; color:#000000;padding:8px 15px 20px 10px; vertical-align:middle" class="font-size-20 line-height-26 padding-right-16 padding-bottom-20 padding-left-08 padding-top-08">
+							Get 1 TB and more by going premium with Microsoft 365 
+							</td>
+							</tr>
+							</table>
+							</td>
+						</tr>
+					<tr><td>
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation">
+						
+							<tr>
+								<td width='50%' valign="top" style="padding:10px 20px 10px 15px;" class='padding-bottom-20 padding-top-10 padding-right-60 '>
+									
+								<!--extra left sec add-->
+								<table cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation">
+								<tr>
+                                        <!-- Bullet image -->
+                                        <td align="left" valign="top" style="padding:0px 0px 8px 0px; max-width:20px;" class="padding-right-0 padding-left-0 padding-bottom-16" width="20px">
+                                        </td>
+                                        <!-- Headline -->
+                                        <td  valign="top" style="font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:500; color:#000000;padding:0px 0px 16px 0px;" class="font-size-20 line-height-24 padding-bottom-16">                        
+                                              Premium OneDrive features:                                  
+                                        </td>
+                                    </tr>
+								<tr>
+								
+                                        <!-- Bullet image -->
+                                  <td width="20px" align="left" valign="middle" style="padding:0px 0px 0px 0px; width: 20px; max-width:20px;" class="padding-right-0 ">
+                                            
+                                        </td>
+                                        <!-- Headline -->
+                                        <td align="left">
+										 
+								<!--bullet section-->										
+                                   <table width="100%" cellspacing="0" cellpadding="0">
+								
+                                    <tr>
+                                       	<!-- Bullet image -->
+                                        <td align="left" valign="top" style="padding:0px 0px 0px 0px; width: 26px;" class="padding-right-0" width="26px">
+                                            <img src="https://image.mail.onedrive.com/lib/fe9713727665037f77/m/1/CheckMark_2x.png" width="18" height="20" alt="" border="0" style="display:block;width:18px;height:20px;" class="" />
+                                        </td>
+                                        <!-- Headline -->
+                                        <td  align="left" valign="top" style="font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:400; color:#000000;padding:0px 0px 8px 0px;" class="font-size-16 line-height-24 padding-bottom-8">
+										<strong>1 TB</strong> (1000 GB)                                  
+                                        </td>
+                                    </tr>
+									 <tr>
+                                        <!-- Bullet image -->
+                                        <td  align="left" valign="top" style="padding:0px 0px 0px 0px; width: 26px" class="padding-right-0 padding-left-0">
+                                            <img src="https://image.mail.onedrive.com/lib/fe9713727665037f77/m/1/CheckMark_2x.png" width="18" height="20" alt="" border="0" style="display:block;width:18px;height:20px;" class="" />
+                                        </td>
+                                        <!-- Headline -->
+                                        <td align="left" valign="top" style="font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:400; color:#000000;padding:0px 0px 8px 0px;" class="font-size-16 line-height-24 padding-bottom-8">                                       
+                                               Advanced security                                    
+                                        </td>
+                                    </tr>
+									 <tr>
+                                        <!-- Bullet image -->
+                                       <td  align="left" valign="top" style="padding:0px 0px 0px 0px; width: 26px" class="padding-right-0 padding-left-0">
+                                            <img src="https://image.mail.onedrive.com/lib/fe9713727665037f77/m/1/CheckMark_2x.png" width="16" height="20" alt="" border="0" style="display:block;width:18px;height:20px;" class="" />
+                                        </td>
+                                        <!-- Headline -->
+                                        <td align="left" valign="top" style="font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:400; color:#000000;padding:0px 0px 8px 0px;" class="font-size-16 line-height-24 padding-bottom-8">                                       
+                                             Productivity tools                                      
+                                        </td>
+                                    </tr>
+									</table>
+									<!--end bullet section-->
+									 
+											 
+									</td>
+                                    </tr>
+									</table>
+									
+									<!--extra left sec end-->								   
+								</td>
+								
+								 
+								
+								<td align="right" valign="top" style="padding:10px 20px 10px 20px;"  class="padding-right-12 padding-left-20 padding-bottom-20  padding-right-80  padding-top-10">
+									
+									<table cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation">
+										
+								<tr>
+                                       
+                                        <td align="left" valign="middle" style="font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-size:16px; font-weight:500; color:#000000;padding:0px 0px 16px 0px;" class="font-size-20 line-height-24 padding-bottom-16">                                       
+                                              Premium versions of:                                   
+                                        </td>
+                                    </tr>
+									<tr>
+                                       
+                                        <td align="left" valign="middle" style="padding:0px 0px 0px 0px; " class="padding-right-0 padding-left-0">
+									<img src="https://image.mail.onedrive.com/lib/fe9713727665037f77/m/1/M365Icons.png" alt="M365 Icons" width="249" style="max-width:249px!important;" class="responsive-img" /> 
+                                        </td>
+                                    </tr>	
+										
+									</table>
+								</td><!-- end image -->
+								
+								
+							</tr>
+						</table>
+					</td></tr>
+					<!--button sec-->
+							<tr>
+								    <td  align="center" style="padding: 20px 0px 40px 0px;" class="mobile-view-full">
+                                   
+                                             <table   cellpadding="0" border="0" align="center" cellspacing="0">
+                                              <tr>
+                                                <td  style="padding-bottom:0px !important; margin-bottom:0px !important; " cellpadding="0" border="0" align="center" cellspacing="0" >
+                                                    <a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789d7cede5591a5cf37d11e97fe565836c7f5b78eb787170089088268c75c64e3b055dc7ec70df5a68aec411c9db1f3e4300c5df9ba72935de7a"  target="_blank" style="line-height: 19px;font-weight: 500;font-size: 16px; text-align:center; font-family: 'Segoe UI Semibold', wf_segoe-ui_semibold, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; display:inline-block; color: #ffffff; " class="fixLinkWhite"><p class="fixLinkWhite CTAbtn" style="line-height: 19px;font-weight: 500;font-size: 16px; color: #ffffff; padding: 10px 0px 10px 0px; background-color: #107C0F;border: 1px solid  #107C0F; display:inline-block;">&nbsp;&nbsp;Go premium&nbsp;&nbsp;</p>
+                                                    </a>
+                                                </td>
+                                              </tr> </table>
+                                         
+                                         </td>
+								</tr>
+<!--end-->
+					</table>
+					</a>
+					</td>
+				</tr>
+			   <tr>
+				<td align="center" style="background-color:#ffffff;">
+				
+				<!-- 3_Footer -->
+				<table align="center" cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation" style="background-color: #f4f4f4;">
+							<tr>
+								<td bgcolor="#F0F0F0" style="padding:30px 20px 0px 20px;" class="padding-top-32 padding-left-20 padding-bottom-00 padding-right-20">
+									<table align="center" cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation" style="background-color: #F0F0F0;">
+										<tr>
+										<td >
+										  <table  cellpadding="0" role="presentation" border="0" cellspacing="0">
+													<tr>
+														<td  valign="middle" style="background-color:  #F0F0F0;padding:0px 15px 20px 0px;" class="padding-right-16">
+															<a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789d23408a38b6b36f635a5c719aeb8f84ea000dba7458b49dec8eebc239a430906e4413cd4d8fd623f81a021ff1f9c0e1da45420f98509ab302"  style="text-decoration:none;" target="_blank">
+																<img src="https://asgcdn.azureedge.net/office-email-templates/Social_Facebook_Icon_40x36.png" width="24" height="24" alt="Office365 on Facebook" style="display:block" border="0" class="social-icon-size-01" />
+															</a>
+														</td>
+														<td  valign="middle" style="background-color: #F0F0F0;padding:0px 15px 20px 0px;" class="padding-right-16">
+															<a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789d422303df04334e33069ea641aa82fc2cf9ee21a9a25302cb2f1b465042a01e59274fab4bdac172f94c108a207bfa0c49ea58940dd5584540"  style="text-decoration:none;" target="_blank">
+																<img src="https://asgcdn.azureedge.net/office-email-templates/Social_Twitter_Icon_40x36.png" width="24" height="24" alt="Office365 on Twitter" style="display:block" border="0" class="social-icon-size-01" />
+															</a>
+														</td>
+													</tr>
+											</table>
+										</td>
+									</tr>
+											<tr>
+											<td  width="100%" style="font-size:14px;line-height: 19px; padding: 0px 20px 10px 0px;color:#505050;font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-weight:400;" class="padding-right-20 padding-bottom-30 padding-left-20">
+											To help you get the most out of OneDrive, Microsoft will provide personalized recommendations based on your usage. Microsoft does not use your file contents in order to provide these recommendations.</td>
+											</tr>
+											<tr>
+											<td  width="100%" style="font-size:14px;line-height: 19px; padding: 0px 20px 10px 0px;color:#505050;font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-weight:400;" class="padding-right-20 padding-bottom-30 padding-left-20">
+											This email was sent from an unmonitored mailbox. </td>
+											</tr>
+											<tr>
+											<td  width="100%" style="font-size:14px;line-height: 19px; padding: 0px 20px 10px 0px;color:#505050;font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-weight:400;" class="padding-right-20 padding-bottom-30 padding-left-20"><p>You are receiving this email because you have a Microsoft OneDrive account.</p>
+                                            <p>Copyright 2020 Microsoft Corporation</p>
+											<a  target="_blank" href="https://click.mail.onedrive.com/?qs=75bea46b23e9789d8d38080c810e94f553485808c7c8aeb73deba288570d613ce4e6a4ea32eb835eb55b6247257ce4250c5adc117b4e564050c689bfe89f5123" style="color:#505050; text-decoration:underline;"><strong style="font-weight:400; color:#505050; text-decoration:underline;">Privacy Statement</strong></a>
+											
+											</td>
+											</tr>	
+										<tr>
+											<td  width="100%" style="font-size:14px;line-height: 19px; padding: 0px 20px 10px 0px;color:#505050;font-family: 'Segoe UI', wf_segoe-ui_light, 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif; font-weight:400;" class="padding-right-20 padding-bottom-30 padding-left-20">
+											Microsoft Corporation, One Microsoft Way, Redmond, WA 98052 USA</td>
+											</tr>
+										
+									</table>
+								</td>
+							</tr>
+							<tr>
+											<td  style="background-color: #F0F0F0;padding: 10px 40px 30px 20px;" class="padding-top-15 padding-right-40 padding-bottom-48 padding-left-20">
+												<a href="https://click.mail.onedrive.com/?qs=75bea46b23e9789d1f4a25a2d4c0a3ba4c71d977905026e53ca3657dfbe662cf60e1ac482785b7ed840a50c41a10c4e89858fd66fdd36aafc1fdfebdfb39c0ff"  target="_blank"> <img src="http://image.engage.windows.com/lib/fe831372726d0d7870/m/2/MSFT_logo_c_C-Gray.png" width="100" alt="Microsoft Homepage" border="0" style="display:block;"> </a>
+											</td>
+										</tr>
+						</table>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+<img src="https://click.mail.onedrive.com/open.aspx?ffcb10-febb177872600d78-fe0916727065047d72147276-fe9713727665037f77-ff9c1770-fe3317747d66047d741274-fec3107671670674&d=70148" width="1" height="1"></custom>
+</body>
+</html>
+
+ 
