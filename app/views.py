@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .utils import count_spam_emails, list_from_extract_phone_number, list_bcc_extract_email_address, list_cc_extract_email_address, list_to_extract_email_address, list_from_extract_email_address, convert_eml_to_html, list_to_by_from, check_email_availability,find_links_by_emails,get_list_from_and_to,convert_graph_to_json,create_link_analysis,wordcloud_view,List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical,get_list_to
+from .utils import list_from_by_to,find_most_sent_emails, find_most_received_emails, count_emails_received_by_email, count_emails_sent_by_email, count_spam_emails, list_from_extract_phone_number, list_bcc_extract_email_address, list_cc_extract_email_address, list_to_extract_email_address, list_from_extract_email_address, convert_eml_to_html, list_to_by_from, check_email_availability,find_links_by_emails,get_list_from_and_to,convert_graph_to_json,create_link_analysis,wordcloud_view,List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical,get_list_to
 import os
 import zipfile
 import email
@@ -166,6 +166,52 @@ def link_analysis(request):
     list_form_and_to = get_list_from_and_to(data_detail)
     context = {'filecsv_name':filecsv_name,'list_form_and_to':list_form_and_to}
     return render(request,'app/emailcsvfile/link_analysis.html',context)
+
+    
+def persons(request):
+    global filecsv_name
+    #folder_path = Path(folder_path)
+    csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+    path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    data_detail = convert_csv_to_dataframe(path_file_csv)
+    keyword_search = request.GET.get('keyword_search')
+    if keyword_search:
+        list_form_and_to = get_list_from_and_to(data_detail, keyword_search=keyword_search)
+    else:
+        list_form_and_to = get_list_from_and_to(data_detail)
+    context = {'filecsv_name':filecsv_name,'list_form_and_to':list_form_and_to}
+    return render(request,'app/emailcsvfile/persons/persons.html',context)
+
+def person_detail(request, email):
+    global filecsv_name
+    #folder_path = Path(folder_path)
+    csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+    path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    data_detail = convert_csv_to_dataframe(path_file_csv)
+    list_form_and_to = get_list_from_and_to(data_detail)
+    count_emails_sent = count_emails_sent_by_email(data_detail, email)
+    count_emails_received = count_emails_received_by_email(data_detail, email)
+    # lấy ra danh sách email mà email truyền vào gửi nhiều thư đến nhất
+    list_most_received_emails, most_received_count = find_most_received_emails(data_detail, email)
+     # lấy ra danh sách email mà gửi nhiều thư đến email truyền vào nhất
+    list_most_sent_emails, most_sent_count = find_most_sent_emails(data_detail, email)
+    # Lấy ra danh sách các email nhận thư từ email truyền vào
+    list_received = list_to_by_from(data_detail,email)
+    list_sent =list_from_by_to(data_detail,email)
+    context = {
+        'filecsv_name': filecsv_name,
+        'list_form_and_to': list_form_and_to, 
+        'email': email, 
+        'count_emails_sent' : count_emails_sent,
+        'count_emails_received': count_emails_received,
+        'list_most_received_emails': list_most_received_emails,
+        'most_received_count': most_received_count,
+        'list_most_sent_emails': list_most_sent_emails,
+        'most_sent_count': most_sent_count,
+        'list_received' : list_received,
+        'list_sent': list_sent
+        }
+    return render(request,'app/emailcsvfile/persons/person_detail.html',context)
 
 def link_analysis_choose_email(request):
     global filecsv_name

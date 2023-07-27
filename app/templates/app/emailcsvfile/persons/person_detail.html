@@ -1,0 +1,52 @@
+{% extends 'app/emailcsvfile/persons/persons.html' %} 
+{%load static%} 
+{% block person_detail %}
+
+    <div class="navbar-right-content" id="list-menu-right-content-person">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link"  href="{%url 'person_detail' email %}" id="person_infor_nav">Thông tin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'person_detail' email %}" id="person_list_to_nav">Thư đã gửi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'person_detail' email %}" id="person_list_from_nav">Thư đã nhận</a>
+            </li>
+        </ul>
+    </div>
+    <div id="content-right-content-person">
+        <div class="row" style="height: 100%; margin: 0px 0px !important;">
+            <div class="col-12 col-xl-12">
+              <div class="card-body p-3">
+                <ul class="list-group">
+                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Tổng số thư đã gửi:</strong> &nbsp;<label id="total_email">{{count_emails_sent}} thư</label></li>
+                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Tổng số thư đã nhận:</strong> &nbsp;<label id="total_spam_email">{{count_emails_received}} thư</label></li>
+                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email nhận nhiều thư từ "{{email}}" nhất:</strong> &nbsp;{% if list_most_received_emails %}<label class="word-wrap" id="from_email_max">{% for most_received_emails in list_most_received_emails %}"{{most_received_emails}}": {{most_received_count}} lần{% if not forloop.last %}<br>{% endif %} {% endfor %}</label>{% else %}Không có email nào{% endif %} </li>
+                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email gửi nhiều thư đến "{{email}}" nhất:</strong> &nbsp;{% if list_most_sent_emails%}<label class="word-wrap" id="to_email_max">{% for most_sent_emails in list_most_sent_emails %}"{{most_sent_emails}}": {{most_sent_count}} lần{% if not forloop.last %}<br>{% endif %} {% endfor %}</label>{% else %}Không có email nào.{% endif %}</li>
+                  <li class="list-group-item border-0 ps-0 text-sm "><strong class="text-dark">Danh sách email gửi thư đến @dvt:</strong> &nbsp; <label  id="list_from_emai">Chưa làm</label></li>
+                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Danh sách email gửi thư đến "{{email}}":</strong> &nbsp;{% if list_sent%}<label class="word-wrap" id="to_email_max">{% for sent in list_sent %}"{{sent.sender_email}}": {{sent.counts}} lần{% if not forloop.last %}<br>{% endif %} {% endfor %}</label>{% else %}Không có email nào.{% endif %}</li>
+
+                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Danh sách email nhận thư từ "{{email}}":</strong> &nbsp;{% if list_received%}<label class="word-wrap" id="to_email_max">{% for received in list_received %}"{{received.to}}": {{received.counts}} lần{% if not forloop.last %}<br>{% endif %} {% endfor %}</label>{% else %}Không có email nào.{% endif %}</li>
+                
+                </ul>
+              </div>
+            </div>
+          </div> 
+    </div>
+<script>
+    var activeTab = localStorage.getItem("activeTab");
+    var activeTab_menucontent_person = localStorage.getItem('activeTab_menucontent_person');
+    
+    // Kiểm tra nếu có giá trị, thêm class "active" vào thẻ a tương ứng
+    if (activeTab) {
+      $("a[data-email='"+activeTab + "']").addClass("active");
+    }
+    if (activeTab_menucontent_person) {
+      $('#list-menu-right-content .nav-item a').removeClass('active');
+      $('#' + activeTab_menucontent_person).addClass('active');
+    }
+
+
+</script>
+{% endblock person_detail %}

@@ -102,7 +102,6 @@ def read_csv_file(csv_file_path):
 def list_to_by_from(data_detail,sender_email):
     filtered_data = data_detail[data_detail['Sender_email'] == sender_email]
     grouped_data = filtered_data.groupby(['Sender_email', 'To']).size().reset_index(name='Count')
-
     result_list = []
     for index, row in grouped_data.iterrows():
         sender = row['Sender_email']
@@ -111,6 +110,16 @@ def list_to_by_from(data_detail,sender_email):
         result_list.append({'sender_email': sender, 'to': to, 'counts': count})
     return result_list
 
+def list_from_by_to(data_detail,received_emails):
+    filtered_data = data_detail[data_detail['To'] == received_emails]
+    grouped_data = filtered_data.groupby(['Sender_email', 'To']).size().reset_index(name='Count')
+    result_list = []
+    for index, row in grouped_data.iterrows():
+        sender = row['Sender_email']
+        to = row['To']
+        count = row['Count']
+        result_list.append({'sender_email': sender, 'to': to, 'counts': count})
+    return result_list
 
 def get_list_from(data_detail):
     list_from = data_detail.groupby(['Sender_name', 'Sender_email']).size().reset_index()
@@ -122,12 +131,45 @@ def get_list_to(data_detail):
     list_from.columns = ['to', 'counts']
     return list_from
 
-def get_list_from_and_to(data_detail):
+def get_list_from_and_to(data_detail, keyword_search=None):
     sender_emails = data_detail['Sender_email'].unique()
     to_emails = data_detail['To'].unique()
+    # Nếu có từ khóa tìm kiếm, lọc danh sách các email chứa từ khóa
+    if keyword_search:
+        sender_emails = [email for email in sender_emails if keyword_search.lower() in email.lower()]
+        to_emails = [email for email in to_emails if keyword_search.lower() in email.lower()]
+
     # Kết hợp và loại bỏ giá trị trùng nhau
     unique_emails = set(sender_emails).union(set(to_emails))
     return unique_emails
+
+def count_emails_sent_by_email(data_detail, email):
+    return data_detail[data_detail['Sender_email'] == email].shape[0]
+
+def count_emails_received_by_email(data_detail, email):
+    return data_detail[data_detail['To'] == email].shape[0]
+
+def find_most_received_emails(data_detail, email):
+    # Lọc các dòng có giá trị cột "From" bằng với email
+    sent_emails = data_detail[data_detail['Sender_email'] == email]
+    # Tính số lần thư gửi đến tương ứng với từng email
+    received_counts = sent_emails['To'].value_counts()
+    # Lấy số lần gửi đến lớn nhất
+    most_received_count = received_counts.max()
+    # Lọc danh sách các email có số lần gửi đến bằng với số lần gửi đến lớn nhất
+    most_received_emails = received_counts[received_counts == most_received_count].index.tolist()
+    return most_received_emails, most_received_count
+
+def find_most_sent_emails(data_detail, email):
+    # Lọc các dòng có giá trị cột "To" bằng với email
+    sent_emails = data_detail[data_detail['To'] == email]
+    # Tính số lần thư được nhận tương ứng với từng email
+    sent_counts = sent_emails['Sender_email'].value_counts()
+    # Lấy số lần được nhận lớn nhất
+    most_sent_count = sent_counts.max()
+    # Lọc danh sách các email có số lần được nhận bằng với số lần được nhận lớn nhất
+    most_sent_emails = sent_counts[sent_counts == most_sent_count].index.tolist()
+    return most_sent_emails, most_sent_count
 
 def get_data_day_statistical(data_detail):
     data_day_statistical=pd.DataFrame()

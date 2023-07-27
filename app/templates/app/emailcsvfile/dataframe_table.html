@@ -156,11 +156,7 @@
       </thead>
       <tbody>
         {% for row in page_obj %}
-        <tr
-          data-bs-toggle="offcanvas"
-          onclick="view_datafram_detail(`{{ row.file}}`,`{{ row.MassageID}}`,`{{ row.Date}}`,`{{ row.Sender_name}}`,`{{ row.Sender_email}}`,`{{ row.To}}`,`{{ row.Subject}}`,`{{ row.MimeVersion}}`,`{{ row.ContentType}}`,`{{ row.ContentTransferEncoding}}`,`{{ row.Xcc}}`,`{{ row.Xbcc}}`,`{{ row.Content}}`)"
-          data-bs-target="#offcanvas_datatable_detail"
-        >
+        <tr data-bs-toggle="offcanvas" onclick="view_datafram_detail(`{{ row.file}}`,`{{ row.MassageID}}`,`{{ row.Date}}`,`{{ row.Sender_name}}`,`{{ row.Sender_email}}`,`{{ row.To}}`,`{{ row.Subject}}`,`{{ row.MimeVersion}}`,`{{ row.ContentType}}`,`{{ row.ContentTransferEncoding}}`,`{{ row.Xcc}}`,`{{ row.Xbcc}}`,`{{ row.Content}}`)" data-bs-target="#offcanvas_datatable_detail">
           <td>{{ row.file}}</td>
           <td>{{ row.MassageID }}</td>
           <td>{{ row.Date }}</td>

@@ -1,0 +1,85 @@
+{% extends 'app/emailcsvfile/csvdatafile.html' %} 
+{%load static%} 
+{% block content-csvdatafile %}
+
+<div style="height: 50px" class="header-content">
+  <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
+    <div style="height: 100%; padding: 0px" class="container-fluid">
+      <a id="name-export" class="navbar-brand">{{filecsv_name}}/Persons</a>
+    </div>
+  </nav>
+</div>
+<div style="--bs-gutter-x: unset" class="row content-emailcsvfile">
+  <div style="padding: 0px" class="col-md-3 col-left">
+    <div class="left-content-linkanalysic">
+      <div class="list-group list-file-email">
+        <div id="left-content-header-email-linkanalysis">
+          <a id="box-emaildress-header" class="list-group-item item-file-email">
+            <i class="fas fa-users fa-lg" aria-hidden="true"></i>
+            <div class="box-content-header">
+              <div class="box-title-header">Danh sách email</div>
+              <form id="from_search_person" action="{% url 'persons' %}" method="get" class="d-flex" >
+                <div class="input-group rounded box-search-header">
+                  <input type="search" name="keyword_search" id="input_search_persons" placeholder="Nhập tìm kiếm!"/>
+                  <div class="rounded" id="group_icon_btn_search">
+                    <span type="submit" class="input-group-text border-0 fff_color icon_30" onclick="submitForm()" >
+                      <i class="fas fa-search"></i>
+                    </span>
+                    <span type="submit" class="input-group-text border-0 fff_color icon_30" onclick="refresh_search()">
+                        <i class="fas fa-sync-alt"></i>    
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </a>
+        </div>
+        <div id="left-content-list-email-person">
+          {% for email in list_form_and_to%}
+          <a href="{%url 'person_detail' email%}" data-email = "{{email}}" id="box-emaildress{{ forloop.counter }}" class="list-group-item item-file-email list-group-item-action" >
+            <div class="box-icon-file">
+              <i class="far fa-user"></i>
+            </div>
+            <div class="box-infor-file">{{email}}</div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 0px" class="col-md-9 col-right">
+    <div class="right-content-linkanalysic">{% block person_detail%} {% endblock person_detail%}</div>
+    
+  </div>
+</div>
+<script>
+        $(document).ready(function () {
+            // Lấy giá trị đã lưu trong localStorage nếu có
+
+              // Xử lý sự kiện bên person
+            $("#list-menu-right-content-person .nav-item .nav-link").click(function () {
+              debugger;
+              localStorage.setItem("activeTab_menucontent_person", $(this).attr("id"));
+              console.log(localStorage.getItem("activeTab_menucontent_person"));
+            });
+            // Xử lý sự kiện click cho tất cả các thẻ a trong #left-content-list-email-person
+            $("#left-content-list-email-person .item-file-email").click(function () {
+              // Lưu giá trị vào localStorage
+              debugger;
+              localStorage.setItem("activeTab", $(this).attr("data-email"));
+              localStorage.setItem("activeTab_menucontent_person", "person_infor_nav");
+            });
+
+    });
+        function submitForm() {
+            $("#from_search_person").submit();
+        } 
+
+        function refresh_search() {
+            var url = "{% url 'persons' %}";
+            window.location.href = url;
+        }
+
+
+</script>
+{% endblock content-csvdatafile %}

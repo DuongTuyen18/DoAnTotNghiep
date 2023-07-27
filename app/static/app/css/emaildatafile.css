@@ -32,7 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 150px;
+    width: 170px;
     height: 30px;
     float: left;
 }
@@ -56,11 +56,10 @@
     text-overflow: ellipsis;
     overflow: hidden;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 .box-title-header{
-    width: calc(100% - 180px);
+    width: calc(100% - 200px);
     float: left;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -68,7 +67,7 @@
     font-weight: bold;
 }
 .box-action-header{
-    width: 22px;
+    width: 30px;
     text-align: right;
     float: right;
     cursor: pointer;
@@ -105,6 +104,7 @@
 .right-content{
     width: 100%;
     height: 100%;
+    background-color: #fff !important;
 }
 .left-content{
     width: 100%;
@@ -150,4 +150,21 @@
 
 .col-right{
     height: 100%;
+}
+.box-search-header{
+    width: 200px !important;
+}
+
+#input_search_persons{
+    width: 135px !important;
+    border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
+}
+
+#group_icon_btn_search{
+    width: 60px !important;
+}
+
+.icon_30{
+    width: 30px;
+    justify-content: center;
 }
