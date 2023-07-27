@@ -567,3 +567,4 @@ def base(request):
     clear_folder_in_media('export/html')
     clear_folder_in_media('extract')
     return render(request,'app/base.html')
+    #aa
