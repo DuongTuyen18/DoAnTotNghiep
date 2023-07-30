@@ -1,0 +1,228 @@
+Delivered-To: nguyenuyen0509.tn@gmail.com
+Received: by 2002:a05:6a10:82a5:b0:49a:1fac:8057 with SMTP id d5csp1253491pxf;
+        Wed, 3 May 2023 04:49:13 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6dgnyKSsCij2+ZA18pfsyOC7oqoLnM2VRRS1Hliw5WW1DXywpRNxihcKEMXlr7A6a9kM0p
+X-Received: by 2002:a05:6902:1028:b0:b98:787b:2024 with SMTP id x8-20020a056902102800b00b98787b2024mr22407699ybt.6.1683114553558;
+        Wed, 03 May 2023 04:49:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1683114553; cv=none;
+        d=google.com; s=arc-20160816;
+        b=PfZl8gBR7geKv/7KXNRgrJWmjtdQpF6bhX0taLTLz3VnWGNSsrpt52V4gMWUhZyS2f
+         Ohq2iseLv4R6coP805+iblHv6LqBmdgGRM1Nk7DlZJ+W2hfsjlZdj4+qsBjsmEYdnykB
+         moqP87SFn5YmAKc5Uc9Vuh1maemtOTEblWsuUxQiEtLJDwwkJg+uoHz+vBN3tHz5vO1H
+         CWATcHboOqMUx2enCUM1nhpNlSqVwSxRKM/m/CicqZesvqostSLqrFYIwny1L2kR0CBF
+         xGszZ7cFvdsE5qQmVIuydANDDk78BK/hz/nHgrWF0xKOkPngsBNeRBPU6mQmExtt/a6B
+         frkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:reply-to:to:from:subject:mime-version:date:sender
+         :dkim-signature:dkim-signature;
+        bh=MSb1r275ZmjZZlQHvtJ/90nEOYwhVsSUBEIaooQ6DA0=;
+        b=MjoUHNbMDmqi+i8G4jTFsy9kGEy+mMNYEqUgXE9kdct66ai05Mzfc0CS0vUiQMJR/N
+         WlkZG26NScCjdS4s17zZ78e8zivnj024Jhtzs3De+kJLIngiefTROCLLEypJB5z4M1uM
+         x6FyL2BY13RjetxJVY+dP8gjpzy29Ueep8didDbllkRCnpTt7YpA9F1Tnwn1A/A18Ric
+         4UwwpZ7oRwCt9mLlyicZWBWPfvsIxDNpzZhLK0jr/FjmjkfIyPSfb58RCicYHwRIJIPS
+         wSoTtmrvm1GmyPfO/GO+Kc49pEi4cDsD1eBHFsCSM76+KHEdJjpiYskr9Zk+9ZnsHzO2
+         3R2w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mg.upwork.com header.s=k1 header.b=mqOE2Q7e;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=FnrRpwM0;
+       spf=pass (google.com: domain of bounce+11ad8e.010a37-nguyenuyen0509.tn=gmail.com@mg.upwork.com designates 192.237.158.54 as permitted sender) smtp.mailfrom="bounce+11ad8e.010a37-nguyenuyen0509.tn=gmail.com@mg.upwork.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=upwork.com
+Return-Path: <bounce+11ad8e.010a37-nguyenuyen0509.tn=gmail.com@mg.upwork.com>
+Received: from mail1.static.mg.upwork.com (mail1.static.mg.upwork.com. [192.237.158.54])
+        by mx.google.com with UTF8SMTPS id y69-20020a253248000000b00b9dd3b784eesi9607880yby.703.2023.05.03.04.49.13
+        for <nguyenuyen0509.tn@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 May 2023 04:49:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce+11ad8e.010a37-nguyenuyen0509.tn=gmail.com@mg.upwork.com designates 192.237.158.54 as permitted sender) client-ip=192.237.158.54;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mg.upwork.com header.s=k1 header.b=mqOE2Q7e;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=FnrRpwM0;
+       spf=pass (google.com: domain of bounce+11ad8e.010a37-nguyenuyen0509.tn=gmail.com@mg.upwork.com designates 192.237.158.54 as permitted sender) smtp.mailfrom="bounce+11ad8e.010a37-nguyenuyen0509.tn=gmail.com@mg.upwork.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=upwork.com
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.upwork.com;
+ q=dns/txt; s=k1; t=1683114553; x=1683121753; h=Message-Id: Reply-To: To: To:
+ From: From: Subject: Subject: Content-Type: Mime-Version: Date: Sender:
+ Sender: X-Feedback-Id; bh=MSb1r275ZmjZZlQHvtJ/90nEOYwhVsSUBEIaooQ6DA0=;
+ b=mqOE2Q7ebJgyRx+ICZDnBzIjXVyFOZNuomG2cvOCUjq1eI55whEfpBDgTWEnIU+eCRZEBGCNFIs8mIPckWxnXhZxL7kF5ehIkFEcAwipGUaYqMRQ/KDjYZzV+tEEyB0qfkPD3U/SFG9FBMv2YgOe6S9oiB13Xb+2VrhDmCOdKyI=
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mailgun.org;
+ q=dns/txt; s=mg; t=1683114553; x=1683121753; h=Message-Id: Reply-To: To: To:
+ From: From: Subject: Subject: Content-Type: Mime-Version: Date: Sender:
+ Sender: X-Feedback-Id; bh=MSb1r275ZmjZZlQHvtJ/90nEOYwhVsSUBEIaooQ6DA0=;
+ b=FnrRpwM0x/znbaLUrLrf26W7vrLgr/Lc4wRTTZ2h0VJYyg/Zx+jcDVdVqi4Ol1hrtNR3OxjolC6anMsCtbUb04VHqu3Ex4/uY1rDKKmmHs1tFhCXRgJEfbfR40nBU/9Bdk3LNyLWwkDupFWUs+KTbm2vTntsRFrtbXvxNaou6ug=
+X-Feedback-Id: postmaster@mg.upwork.com:template:bpa/modify_upm:550b37b963badc4cf8629b40:mailgun
+X-Mailgun-Sending-Ip: 192.237.158.54
+X-Mailgun-Sid: WyIwZTM5MCIsIm5ndXllbnV5ZW4wNTA5LnRuQGdtYWlsLmNvbSIsIjAxMGEzNyJd
+Received: from <unknown> (<unknown> []) by 63a3a3d771dc with HTTP id
+ 64524a397ce302952ff7397b; Wed, 03 May 2023 11:49:13 GMT
+Sender: donotreply=upwork.com@mg.upwork.com
+Date: Wed, 03 May 2023 11:49:13 +0000
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="82e2763d48a8d54d8323c67a87c735ef875c9ec12bebfa51c047b43a70a8"
+Subject: Payment method was added to Nguyen Uyen
+From: Upwork Notification <donotreply@upwork.com>
+To: Nguyen Uyen <nguyenuyen0509.tn@gmail.com>
+X-Mailgun-Tag: template:bpa/modify_upm
+X-Mailgun-Drop-Message: false
+Reply-To: Upwork Notification <donotreply@upwork.com>
+X-Mailgun-Variables: {"x-eo-mailgun-id": "1653728413536337920"}
+Message-Id: <20230503114913.b39be9d8cb3a8a29@mg.upwork.com>
+
+--82e2763d48a8d54d8323c67a87c735ef875c9ec12bebfa51c047b43a70a8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+
+
+Hi Nguyen,
+
+Payment method Bank Transfer: xxxx-2001 was recently added
+to Financial Account Nguyen Uyen: https://www.upwork.com/nx/payments/712448=
+01/disbursement-methods?frkscc=3DpA6mRNAnF3VG.
+
+Please contact Upwork Support: https://support.upwork.com?frkscc=3DIYomU8lK=
+aS6S if you did not authorize this change.
+
+Thanks,
+The Upwork Team
+
+Unsubscribe: https://www.upwork.com/ab/notification-settings/?utm_source=3D=
+bpa%2Fmodify_upm&frkscc=3D010tTdt62JDZ
+Privacy Policy: https://www.upwork.com/legal/privacy?frkscc=3D9ehaXKEVsvgG
+Contact Support: https://support.upwork.com/home?frkscc=3DOksrDySEQAil
+655 Montgomery Street, Suite 490, Dpt 17022, San Francisco, CA 94111
+=C2=A9 2023 Upwork Inc.
+
+--82e2763d48a8d54d8323c67a87c735ef875c9ec12bebfa51c047b43a70a8
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> <html lang=
+=3D"en" xml:lang=3D"en">
+<head> <meta charset=3D"utf-8" /> <meta name=3D"x-apple-disable-message-ref=
+ormatting"> <meta name=3D"viewport" content=3D"width=3Ddevice-width, initia=
+l-scale=3D1" /> <link href=3D"https://fonts.googleapis.com/css?family=3DHel=
+vetica:400,700" rel=3D"stylesheet"> <title> Payment method was added to Ngu=
+yen Uyen
+</title> <style type=3D"text/css"> body { background-color: #F2F2F2; color:=
+ #001E00; font-family: Helvetica, Arial, sans-serif !important; margin: 0; =
+} table { line-height: inherit; font-size: inherit; } img { border-style: n=
+one; } .p-0-top { padding-top: 0 !important; } .p-30-left { padding-left: 3=
+0px !important; } .p-30-right { padding-right: 30px !important; } .p-10-lef=
+t { padding-left: 10px !important; } .p-10-right { padding-right: 10px !imp=
+ortant; } .card-box.next { margin-top: 40px; } .paragraph { margin-top: 20p=
+x; } .paragraph.is-small { margin-top: 10px; } .full-width-divider { margin=
+-left: -20px; margin-right: -20px; } .parent-full-width { margin: 0 -20px; =
+} a { text-decoration: none; color: inherit; } a[x-apple-data-detectors] { =
+color: inherit !important; text-decoration: none !important; font-size: inh=
+erit !important; font-family: inherit !important; font-weight: inherit !imp=
+ortant; line-height: inherit !important; } .row { overflow: hidden; } .addr=
+ess-link a { color: #65735B !important; text-decoration: none !important; }=
+ .mso-hidden { display: block; } @media (min-width: 600px) { .p-30-left-md =
+{ padding-left: 30px !important; } .p-30-right-md { padding-right: 30px !im=
+portant; } .p-20-left-md { padding-left: 20px !important; } .p-20-right-md =
+{ padding-right: 20px !important; } .p-10-left-md { padding-left: 10px !imp=
+ortant; } .p-10-right-md { padding-right: 10px !important; } .p-0-top-md { =
+padding-top: 0 !important; } .card-box.first { margin-top: 30px; } .card-ro=
+w { padding-left: 30px !important; padding-right: 30px !important; } .card-=
+row-banner { padding-left: 50px !important; padding-right: 50px !important;=
+ } .split-details-row > span:last-child { float: right; } .banner { padding=
+: 55px 58px 66px 50px !important; } .full-width-divider { margin-left: -30p=
+x; margin-right: -30px; } .p-xl-left-md { padding-left: 80px; } .m-0-top-md=
+ { margin-top: 0 !important; } .d-md-none { display: block !important; } .d=
+-md-inline-bl { display: inline-block !important; } .parent-full-width { ma=
+rgin: 0 !important; } .button-holder { max-width: 280px !important; } .col-=
+md-9 { width: 66%; float: left; } .col-md-6 { width: 50%; float: left; } .c=
+ol-md-3 { width: 34%; float: left; } .align-right-desktop { text-align: rig=
+ht; } .desktop-hidden { display: none; } .desktop-visible { display: block;=
+ } } @media (max-width: 599px) { .m--xs-left-sm { margin-left: -5px; } .m--=
+xs-right-sm { margin-right: -5px; } .d-md-none { display: none !important; =
+} .p-0-left-md { padding-left: 0 !important; } .p-0-right-md { padding-righ=
+t: 0 !important; } .w100percent { width: 100% !important; min-width: 100% !=
+important; height: auto !important; } .mobile-display { display: block !imp=
+ortant; width: auto !important; height: auto !important; overflow: visible =
+!important; visibility: visible !important; float: none !important; max-hei=
+ght: inherit !important; line-height: normal !important; } .mobile-hidden {=
+ display: none; } .mobile-visible { display: block; } .ac { text-align: cen=
+ter !important; } .dn { display: none !important; } .db { display: block !i=
+mportant; } .plr0 { padding-left: 0px !important; padding-right: 0px !impor=
+tant; } .plr20{ padding-left: 20px !important; padding-right: 20px !importa=
+nt; } .pt0{ padding-top: 0px !important; } .pt10{ padding-top:10px !importa=
+nt; } .pt20{ padding-top:20px !important; } .pt30{ padding-top: 30px !impor=
+tant; } .pb0{ padding-bottom: 0px !important; } .pb10{ padding-bottom: 10px=
+ !important; } .pb20{ padding-bottom: 10px !important; } .pb30{ padding-bot=
+tom: 10px !important; } .split-details-row > span:first-child:after { conte=
+nt: "\a"; white-space: pre; } } </style> <!--[if (mso)|(IE)]> <xml:namespac=
+e ns=3D"urn:schemas-microsoft-com:vml" prefix=3D"v" /> <style>v\: * { behav=
+ior: url(#default#VML); display: inline-block }</style> <!<![endif]--> <!--=
+[if (gte mso 9)|(IE)]> <style> .mso-hidden { display: none; } .parent-full-=
+width { margin: 0 !important; } .d-md-none { display: block !important; flo=
+at: right; margin-left: 10px; } </style> <![endif]-->
+</head> <body> <!--[if mso]> <style type=3D"text/css"> body, table, td, str=
+ong, h1, h2, h3, h4, h5, b {font-family: Arial, Helvetica, sans-serif !impo=
+rtant;} </style> <![endif]--> <div style=3D"display: none;"></div> <table b=
+gcolor=3D"#F2F2F2" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"> <tbody> <tr> <!--[if (gte mso 9)|(IE)]> <td><table cellspacing=
+=3D"0" cellpadding=3D"0" width=3D"600" border=3D"0" align=3D"center"><tr> <=
+![endif]--> <td> <div style=3D"max-width: 600px; margin: 0 auto; font-size:=
+ 16px; line-height: 24px;"> <table border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"100%"> <tbody> <tr> <td> <table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" class=3D"card-box first" width=3D"100%"> <tbody> <=
+tr> <td> <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"c=
+ard-box" width=3D"100%"> <tbody> <tr> <td style=3D"background-color: white;=
+ padding-top: 30px; padding-bottom: 30px;" class=3D"card"> <table border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"> <tbody> <tr> <td al=
+ign=3D"left" style=3D"padding-top: 0; padding-bottom: 20px; padding-left:30=
+px"> <a href=3D"https://www.upwork.com?frkscc=3DJCKoK7PUJ0cW"> <img src=3D"=
+https://www.upwork.com/s/emails/upwork-logo@2x.png" alt=3D"Upwork" width=3D=
+"104" height=3D"30" style=3D" vertical-align: middle; "
+> </a> </td> </tr> <tr> <td class=3D"card-row" style=3D"font-family: Helvet=
+ica, Arial, sans-serif; font-size: 16px; line-height: 24px; word-break: bre=
+ak-word; padding-left: 20px; padding-right: 20px; padding-top: 20px; margin=
+-left: px; margin-right: px; "> Hi Nguyen, </td> </tr> <tr> <td class=3D"ca=
+rd-row" style=3D"font-family: Helvetica, Arial, sans-serif; font-size: 16px=
+; line-height: 24px; word-break: break-word; padding-left: 20px; padding-ri=
+ght: 20px; padding-top: 20px; margin-left: px; margin-right: px; "> Payment=
+ method Bank Transfer: xxxx-2001 was recently added
+to Financial Account <a href=3D"https://www.upwork.com/nx/payments/71244801=
+/disbursement-methods?frkscc=3DYSDrXkS3G7LN" target=3D"_blank" style=3D"col=
+or: #14A800; text-decoration: underline; word-break: break-word;">Nguyen Uy=
+en</a>. </td> </tr> <tr> <td class=3D"card-row" style=3D"font-family: Helve=
+tica, Arial, sans-serif; font-size: 16px; line-height: 24px; word-break: br=
+eak-word; padding-left: 20px; padding-right: 20px; padding-top: 20px; margi=
+n-left: px; margin-right: px; "> Please contact <a href=3D"https://support.=
+upwork.com?frkscc=3DXMesArfiHwLy" target=3D"_blank" style=3D"color: #14A800=
+; text-decoration: underline; word-break: break-word;">Upwork Support</a> i=
+f you did not authorize this change. </td> </tr> <tr> <td class=3D"card-row=
+" style=3D"font-family: Helvetica, Arial, sans-serif; font-size: 16px; line=
+-height: 24px; word-break: break-word; padding-left: 20px; padding-right: 2=
+0px; padding-top: 30px; margin-left: px; margin-right: px; "> <div style=3D=
+"padding-top: 10px;">Thanks,<br>The Upwork Team</div> </td> </tr> </tbody> =
+</table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> =
+</tr> </tbody> </table> <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%"> <tbody> <tr> <td align=3D"center" width=3D"100%" sty=
+le=3D"color: #65735B; font-size: 12px; line-height: 24px; padding-bottom: 3=
+0px; padding-top: 30px;"> <a href=3D"https://www.upwork.com/ab/notification=
+-settings/?utm_source=3Dbpa%2Fmodify_upm&amp;frkscc=3Dk9HfnXanwlj8" style=
+=3D"color: #65735B; text-decoration: underline;">Unsubscribe</a> &nbsp; | &=
+nbsp; <a href=3D"https://www.upwork.com/legal/privacy/?frkscc=3Dd6ghZsC4dbR=
+h" style=3D"color: #65735B; text-decoration: underline;">Privacy Policy</a>=
+ &nbsp; | &nbsp; <a href=3D"https://support.upwork.com/home?frkscc=3D612NIp=
+goorkI" style=3D"color: #65735B; text-decoration: underline;">Contact Suppo=
+rt</a> <div style=3D"font-family: Helvetica, Arial, sans-serif; word-break:=
+ normal;
+" class=3D"address-link">
+655 Montgomery Street, Suite 490, Dpt 17022, San Francisco, CA 94111
+</div> <div style=3D"font-family: Helvetica, Arial, sans-serif; word-break:=
+ normal;
+" >
+&copy; 2023 Upwork Inc.
+</div> </td> </tr> </tbody> </table> </div> </td> <!--[if (gte mso 9)|(IE)]=
+> </tr></table></td> <![endif]--> </tr> </tbody> </table>
+<img width=3D"1px" height=3D"1px" alt=3D"" src=3D"http://email.mg.upwork.co=
+m/o/eJwcizFuhDAQAF-DO9Cul7W9hYs0-Ua0YENQzmCdbCX3-4grppqZFAFByZsc0QVCnJnJfEd=
+cJSXnAwmmTbdAgA4UrFfHm2Q2R7RgCRjuR5CmhWTJksK6kAa1MsxQ9qnX3-v5M61XMc947v2Vzx=
+tgkKmdwwx70ePx9i22XOpDWx7oY6k62M9ypWN7ffVazN-Yr_Fu936OR4romLwNMxKTI_Ji4T8AA=
+P__6k07_w"></body>
+</html>
+--82e2763d48a8d54d8323c67a87c735ef875c9ec12bebfa51c047b43a70a8--

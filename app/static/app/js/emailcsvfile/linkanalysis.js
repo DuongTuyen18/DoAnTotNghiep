@@ -29,8 +29,6 @@ $(document).ready(function () {
                 list_email: list_email
               },
             success: function(response) {
-               
-
                 var linkAnalysisData = JSON.parse(response);
                 $("#canvas_link").html('');
                 var width = $("#canvas_link").width();

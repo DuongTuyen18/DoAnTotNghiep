@@ -1,0 +1,456 @@
+Delivered-To: dvt18012000@gmail.com
+Received: by 2002:a05:6a20:7da6:b0:51:f882:4eda with SMTP id v38csp3571544pzj;
+        Mon, 13 Sep 2021 02:27:41 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwLX+q59BQ5g96gqYa5WI5vVwNaeMh/R4ka1txT4q1Po8QACXzie5/Qkz+4O9TDLP4NWlQV
+X-Received: by 2002:a25:4ac6:: with SMTP id x189mr13828770yba.527.1631525261562;
+        Mon, 13 Sep 2021 02:27:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1631525261; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LiDQa+0h1NN+wW0MTF3SaE9TnZcwNy3qNbhwfqybl0BsYD4XBO26Qv+N4srjypV/Ts
+         McY4Aqwf5TeqaiCxRM67Ke5PfhscNL9APqL9K13curD7Vn4FM8E33YG9we50BBVNaCj3
+         M4ZCyIpjkGnUartCKcj3nqBB0y7P23UCYxsy6XM92Hv8wVCIU7s3ZXSGw9rOuGQJYEDc
+         WsvCeTryYwpyHeBLOjpWLVFyGDDIDSo/oeiefiROjDYWc6UJv1ntpOYhyFmuBtvdhuVP
+         dcj8oGS/Binf798afwF7+t9ko8fu7fA/Grd4SRFesk1Er+jbDyaDIs4PnnvZ9l25uxZL
+         0Wvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:subject:from:to:list-unsubscribe:message-id:date
+         :dkim-signature:dkim-signature;
+        bh=N9WeHG4TjpZePVzErb0GdmAaFh/LUFistlbncjpzU98=;
+        b=aaaQ/yIjRbGqVyMOFp7awNIPdlUx4EKcS/BeLXldbIZoPg9Eli1j3pXbwONzKxB1/7
+         Gb65gvynCb+gMgHVnZVFRWBjFzZAmzbw7SYbeU9ircj3MlBj7q5NACoYREPwF0y0T6d3
+         6ExHzAC0GNJcFOHY+pEVwIMd51rqso+NcmdKwVA7zeGEYJwStrWdm7iQrdbrlbo9qQgb
+         FkL4LcgRSQcuo8pJULOfB4DxeTBvXavdtwsd6IZ8TvjjMaOW1XL86h8Fx6UZrDj4mtCD
+         szR2K79TgFyHhhmDoF6/enDvcq5MLXAi9C1UyeWe36X58XE8bftX1QcgwrRX9pD7/Eyi
+         uulg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@cio29586.rapidapi.com header.s=mailo header.b=k35QcgSB;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=dUxOMvo6;
+       spf=pass (google.com: domain of postmaster@cio29586.rapidapi.com designates 161.38.193.5 as permitted sender) smtp.mailfrom=postmaster@cio29586.rapidapi.com
+Return-Path: <postmaster@cio29586.rapidapi.com>
+Received: from m193-5.mailgun.net (m193-5.mailgun.net. [161.38.193.5])
+        by mx.google.com with UTF8SMTPS id v186si7147393ybb.340.2021.09.13.02.27.39
+        for <dvt18012000@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Sep 2021 02:27:41 -0700 (PDT)
+Received-SPF: pass (google.com: domain of postmaster@cio29586.rapidapi.com designates 161.38.193.5 as permitted sender) client-ip=161.38.193.5;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@cio29586.rapidapi.com header.s=mailo header.b=k35QcgSB;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=dUxOMvo6;
+       spf=pass (google.com: domain of postmaster@cio29586.rapidapi.com designates 161.38.193.5 as permitted sender) smtp.mailfrom=postmaster@cio29586.rapidapi.com
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=cio29586.rapidapi.com;
+ q=dns/txt; s=mailo; t=1631525261; h=Content-Type: Mime-Version:
+ Subject: From: To: List-Unsubscribe: Message-Id: Date: X-Feedback-Id;
+ bh=N9WeHG4TjpZePVzErb0GdmAaFh/LUFistlbncjpzU98=; b=k35QcgSBaNWQyK2gl4QHF0bIPNiy6d7yUvsRk7fqfrsHbZrpdSq345F7OqJd80/oEVuBkLwh
+ O1F8NvWCPplj6f0x+RW/te4aDZn8KxbonQfH3/f/anYmcZN1FRQx8TxMD7XFnXlYEV613PE4
+ uBFmv47EC2nIPE6jsD7FuGDh/og=
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mailgun.org; q=dns/txt; s=mg;
+ t=1631525261; h=Content-Type: Mime-Version: Subject: From: To:
+ List-Unsubscribe: Message-Id: Date: X-Feedback-Id;
+ bh=N9WeHG4TjpZePVzErb0GdmAaFh/LUFistlbncjpzU98=; b=dUxOMvo6ZqslSVdngt9a1b2VPBlqkTaQZMtPnL7ivz85LcP376a7X1oMab7UF5aIO8mT8KUH
+ YLaTTgAU06vMtZ8ZwC63qQeKzDtfQWxGFuIlCjc0tvqlEs9KkvLvTOhfICG+I4kP3YA7Rr3x
+ 9nkwLY0g5C2rmO6nT7n6CBi7X4U=
+X-Feedback-Id: 5de9a7453d51f0d4cb31ccb9:mailgun
+X-Mailgun-Sending-Ip: 161.38.193.5
+X-Mailgun-Sid: WyJkYzdhYSIsICJkdnQxODAxMjAwMEBnbWFpbC5jb20iLCAiOTQ4MDVhIl0=
+Received: by luna.mailgun.net with HTTP; Mon, 13 Sep 2021 09:27:22 +0000
+Date: Mon, 13 Sep 2021 09:27:22 +0000
+Message-Id: <20210913092722.1.E544AF50DE322F93@cio29586.rapidapi.com>
+X-Mailgun-Variables: {"email_id": "dgPLfMt8AQABe957Dm3AAaTPS4v5Ll8r"}
+X-Mailer: Customer.io (dgPLfMt8AQABe957Dm3AAaTPS4v5Ll8r;
+ +https://whatis.customeriomail.com)
+X-Report-Abuse-To: badactor@customer.io
+List-Unsubscribe: <mailto:32.MRTVATDGJV2DQQKRIFBGKOJVG5CG2M2BIFQVIUCTGR3DKTDMHBZA====@unsubscribe2.customer.io>,
+ <https://mail.rapidapi.com/unsubscribe/dgPLfMt8AQABe957Dm3AAaTPS4v5Ll8r>
+X-Mailgun-Track-Opens: false
+X-Mailgun-Track-Clicks: false
+X-Mailgun-Native-Send: true
+X-Mailgun-Dkim: true
+To: dvt18012000@gmail.com
+From: Team RapidAPI <support@rapidapi.com>
+Subject: You've tested the Skyscanner Flight Search API... now what?
+Mime-Version: 1.0
+Content-Type: multipart/alternative; boundary="8dbfea91a453433ca48a77b892ab6718"
+
+--8dbfea91a453433ca48a77b892ab6718
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Mime-Version: 1.0
+
+( https://rapidapi.com/ )
+
+--------------------------
+Hey dvt18012000@gmail.com,
+--------------------------
+
+We saw that you tested the Skyscanner Flight Search API. Did you get the re=
+sponse data you were expecting?
+
+Here are a few tips to get the most from this API (and others like it on Ra=
+pidAPI!):
+---------------------------------------------------------------------------=
+---------
+
+* Review the API's available documentation ( https://rapidapi.com/skyscanne=
+r/api/skyscanner-flight-search/details ) to help get your closer to product=
+ion use
+
+* Understand the API's subscription plans and rate limits ( https://rapidap=
+i.com/skyscanner/api/skyscanner-flight-search/pricing )
+
+* Check out easy-to-use code snippets and client libraries ( https://rapida=
+pi.com/skyscanner/api/skyscanner-flight-search ) for Java, Node.js, PHP, Py=
+thon, and more!
+
+* Read up on the latest developer discussions ( https://rapidapi.com/skysca=
+nner/api/skyscanner-flight-search/discussions )
+
+* View more APIs ( https://rapidapi.com/search/Skyscanner%20Flight%20Search=
+/related ) that are similar to Skyscanner Flight Search
+
+If you have specific questions or issues about the API, we encourage you to=
+ contact the API Provider (Tom Dror ( https://rapidapi.com/skyscanner/api/s=
+kyscanner-flight-search/details )), or post a new topic ( https://rapidapi.=
+com/skyscanner/api/skyscanner-flight-search/discussions ) in their discussi=
+ons!
+
+Thank you,
+
+The RapidAPI Team
+
+Was this email helpful?
+=F0=9F=91=8D ( https://rapidapi.com?email_feedback=3Dup ) or =F0=9F=91=8E (=
+ https://rapidapi.com?email_feedback=3Ddown )
+
+RapidAPI HQ: 2 Shaw Alley, Floor 4, San Francisco, CA 94105
+
+Unsubscribe ( http://track.customer.io/unsubscribe/dgPLfMt8AQABe957Dm3AAaTP=
+S4v5Ll8r )
+--8dbfea91a453433ca48a77b892ab6718
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+Mime-Version: 1.0
+
+<!DOCTYPE html><html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+    <style>
+      @import url(http://fonts.googleapis.com/css?family=3DLato);
+      @media(max-width: 980px) {
+        html {
+          .graphic-text {
+              font-size: 16px;
+          }
+         =20
+        }
+      }
+      body {
+        font-family: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', 'Sans-=
+Serif';
+        color: rgb(67, 80, 88);
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      a {
+        color: rgb(26,159,255);
+        text-decoration: none;
+        letter-spacing: 0.1px;
+        font-family: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', 'Sans-=
+Serif';
+      }
+     =20
+      h1 {
+        color: rgb(0,134,229);
+        font-weight: 500;
+      }
+     =20
+      h2 {
+        color: rgb(38,45,51);
+      }
+     =20
+      h3 {
+        color: rgb(38,45,51);
+      }
+     =20
+      p {
+        line-height: 23px;
+        font-size: 14px;
+      }
+     =20
+      ul {
+          font-size: 14px;
+      }
+     =20
+      ol {
+          font-size: 14px;
+      }
+     =20
+      .cta-button-old {
+        padding-left: 15px;
+        padding-right: 15px;
+        line-height: 45px;
+        background-color: #6bbf4a;
+        border: 1px solid;
+        font-size: 15px;
+        border-radius: 5px;
+        color: #fff;
+      }
+     =20
+      .cta-button {
+        padding: 15px;
+        line-height: 23px;
+        background-color: rgb(0,159,255);=20
+        border: 1px solid rgb(0,129,228);
+        border: 1px solid;
+        font-size: 15px;
+        border-radius: 5px;
+        color: #fff;
+      }
+     =20
+      .main {
+        border: 1px solid rgb(225,228,230);
+      }
+     =20
+      .middle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+     =20
+      .cta-button a {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+      }
+   =20
+      .container {
+        max-width: 740px;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+        height: 100%;
+      }
+
+      .header {
+        vertical-align: middle;
+        margin-bottom: 30px;
+      }
+
+      .graphic {
+        padding-top: 28px;
+        text-align: center;
+        vertical-align: middle;
+        position: relative;
+        width: 740px;
+      }
+     =20
+      .graphic-text {
+          color: rgb(0,134,230);
+          width: 100%;
+          float: left;
+          font-weight: 400;
+          font-size: 28px;
+          margin-bottom: 28px;
+          text-size-adjust: auto;
+      }
+
+      .content {
+        text-align: left;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 55px;
+        padding-bottom: 50px;
+        position: relative;
+        margin: 0 auto;
+      }
+
+      .feedback {
+        border-top: 1px solid rgb(225,228,230);;
+        background-color: rgb(245,246,247);
+        text-align: left;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-size: 14px;
+      }
+     =20
+      .footer {
+        text-align: left;
+        font-size: 13px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+      }
+     =20
+      .mashape-hq {
+          position: relative;
+          float: left;
+          max-width: 60%;
+      }
+
+    </style>
+    <link href=3D"http://fonts.googleapis.com/css?family=3DLato" rel=3D"sty=
+lesheet" type=3D"text/css"/>
+  </head>
+  <body style=3D"font-family: &#39;Lato&#39;, &#39;Helvetica Neue&#39;, &#3=
+9;Helvetica&#39;, &#39;Arial&#39;, &#39;Sans-Serif&#39;; color: rgb(67, 80,=
+ 88); font-size: 14px; font-weight: 500;">
+    <table class=3D"container" style=3D"width: 100%; max-width: 740px; posi=
+tion: relative; text-align: center; height: 100%; margin: 0 auto;">
+      <tbody><tr>
+      <td>
+          <div class=3D"header" style=3D"vertical-align: middle; margin-bot=
+tom: 30px;">
+            <a href=3D"https://mail.rapidapi.com/e/c/eyJlbWFpbF9pZCI6ImRnUE=
+xmTXQ4QVFBQmU5NTdEbTNBQWFUUFM0djVMbDhyIiwiaHJlZiI6Imh0dHBzOi8vcmFwaWRhcGkuY=
+29tLyIsImludGVybmFsIjoiY2I3YzZhZTZhNjAxYzdiMmMzMDEiLCJsaW5rX2lkIjozODI5NzAx=
+NH0/43a878042b49f32c193bcde884a3fd9d05dd3605e70d8baf531783228314bdb1" style=
+=3D"color: rgb(26,159,255); text-decoration: none; letter-spacing: 0.1px; f=
+ont-family: &#39;Lato&#39;, &#39;Helvetica Neue&#39;, &#39;Helvetica&#39;, =
+&#39;Arial&#39;, &#39;Sans-Serif&#39;;"><img title=3D"RapidAPI Logo" src=3D=
+"http://blog.rapidapi.com/wp-content/uploads/2016/10/RapidAP-Iogo-blue.png"=
+ width=3D"175"/></a>
+          </div>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <div class=3D"main" style=3D"border: 1px solid rgb(225,228,230);">
+         <div class=3D"content" style=3D"text-align: left; position: relati=
+ve; margin: 0 auto; padding: 55px 50px 50px;" align=3D"left">
+
+<h2 style=3D"color: rgb(38,45,51);">Hey dvt18012000@gmail.com,</h2>
+
+<p style=3D"line-height: 23px; font-size: 14px;">We saw that you tested the=
+ Skyscanner Flight Search API.  Did you get the response data you were expe=
+cting?</p>
+
+<h3 style=3D"color: rgb(38,45,51);">Here are a few tips to get the most fro=
+m this API (and others like it on RapidAPI!):</h3>
+<ol style=3D"font-size: 14px;">
+    <li>Review the API&#39;s <a href=3D"https://mail.rapidapi.com/e/c/eyJlb=
+WFpbF9pZCI6ImRnUExmTXQ4QVFBQmU5NTdEbTNBQWFUUFM0djVMbDhyIiwiaHJlZiI6Imh0dHBz=
+Oi8vcmFwaWRhcGkuY29tL3NreXNjYW5uZXIvYXBpL3NreXNjYW5uZXItZmxpZ2h0LXNlYXJjaC9=
+kZXRhaWxzIiwiaW50ZXJuYWwiOiJjYjdjNmFlNmE2MDFjN2IyYzMwMSIsImxpbmtfaWQiOjM4Mj=
+k3NDA5fQ/c923586935c070ec0789f88831f6cea4b7c467cb6add4b15089528ab0c5d9c91" =
+target=3D"_blank" style=3D"color: rgb(26,159,255); text-decoration: none; l=
+etter-spacing: 0.1px; font-family: &#39;Lato&#39;, &#39;Helvetica Neue&#39;=
+, &#39;Helvetica&#39;, &#39;Arial&#39;, &#39;Sans-Serif&#39;;">available do=
+cumentation</a> to help get your closer to production use</li>
+<br/>
+   =20
+    <li>Understand the API&#39;s <a href=3D"https://mail.rapidapi.com/e/c/e=
+yJlbWFpbF9pZCI6ImRnUExmTXQ4QVFBQmU5NTdEbTNBQWFUUFM0djVMbDhyIiwiaHJlZiI6Imh0=
+dHBzOi8vcmFwaWRhcGkuY29tL3NreXNjYW5uZXIvYXBpL3NreXNjYW5uZXItZmxpZ2h0LXNlYXJ=
+jaC9wcmljaW5nIiwiaW50ZXJuYWwiOiJjYjdjNmFlNmE2MDFjN2IyYzMwMSIsImxpbmtfaWQiOj=
+EyOTQyMDh9/4df0975e00b23212d08f055ca0f8e1759b45eba0a7ddd61451405a1d35b59021=
+" target=3D"_blank" style=3D"color: rgb(26,159,255); text-decoration: none;=
+ letter-spacing: 0.1px; font-family: &#39;Lato&#39;, &#39;Helvetica Neue&#3=
+9;, &#39;Helvetica&#39;, &#39;Arial&#39;, &#39;Sans-Serif&#39;;">subscripti=
+on plans and rate limits</a>
+</li>
+<br/>
+   =20
+    <li>Check out <a href=3D"https://mail.rapidapi.com/e/c/eyJlbWFpbF9pZCI6=
+ImRnUExmTXQ4QVFBQmU5NTdEbTNBQWFUUFM0djVMbDhyIiwiaHJlZiI6Imh0dHBzOi8vcmFwaWR=
+hcGkuY29tL3NreXNjYW5uZXIvYXBpL3NreXNjYW5uZXItZmxpZ2h0LXNlYXJjaCIsImludGVybm=
+FsIjoiY2I3YzZhZTZhNjAxYzdiMmMzMDEiLCJsaW5rX2lkIjoxMjk0MjA3fQ/b0128329bab9ea=
+932fc22f16d80c4f12ad1b6ac486f7cb4ab356f457fc5b8fc7" target=3D"_blank" style=
+=3D"color: rgb(26,159,255); text-decoration: none; letter-spacing: 0.1px; f=
+ont-family: &#39;Lato&#39;, &#39;Helvetica Neue&#39;, &#39;Helvetica&#39;, =
+&#39;Arial&#39;, &#39;Sans-Serif&#39;;">easy-to-use code snippets and clien=
+t libraries</a> for Java, Node.js, PHP, Python, and more!</li>
+<br/>
+    <li>Read up on the latest <a href=3D"https://mail.rapidapi.com/e/c/eyJl=
+bWFpbF9pZCI6ImRnUExmTXQ4QVFBQmU5NTdEbTNBQWFUUFM0djVMbDhyIiwiaHJlZiI6Imh0dHB=
+zOi8vcmFwaWRhcGkuY29tL3NreXNjYW5uZXIvYXBpL3NreXNjYW5uZXItZmxpZ2h0LXNlYXJjaC=
+9kaXNjdXNzaW9ucyIsImludGVybmFsIjoiY2I3YzZhZTZhNjAxYzdiMmMzMDEiLCJsaW5rX2lkI=
+jozODI5NzA4Nn0/6ba7bc6291c224f57214f9c397e8a146a27af177c02899a13ddd5b48694b=
+57af" target=3D"_blank" style=3D"color: rgb(26,159,255); text-decoration: n=
+one; letter-spacing: 0.1px; font-family: &#39;Lato&#39;, &#39;Helvetica Neu=
+e&#39;, &#39;Helvetica&#39;, &#39;Arial&#39;, &#39;Sans-Serif&#39;;">develo=
+per discussions</a>
+</li>
+<br/>
+    <li>
+<a href=3D"https://mail.rapidapi.com/e/c/eyJlbWFpbF9pZCI6ImRnUExmTXQ4QVFBQm=
+U5NTdEbTNBQWFUUFM0djVMbDhyIiwiaHJlZiI6Imh0dHBzOi8vcmFwaWRhcGkuY29tL3NlYXJja=
+C9Ta3lzY2FubmVyJTIwRmxpZ2h0JTIwU2VhcmNoL3JlbGF0ZWQiLCJpbnRlcm5hbCI6ImNiN2M2=
+YWU2YTYwMWM3YjJjMzAxIiwibGlua19pZCI6MzgyOTc0MTB9/9fc61dc095ab2653405e66cede=
+0ba6f04b4767840a0b69601ea76f4ae2703e9f" target=3D"_blank" style=3D"color: r=
+gb(26,159,255); text-decoration: none; letter-spacing: 0.1px; font-family: =
+&#39;Lato&#39;, &#39;Helvetica Neue&#39;, &#39;Helvetica&#39;, &#39;Arial&#=
+39;, &#39;Sans-Serif&#39;;">View more APIs</a> that are similar to Skyscann=
+er Flight Search</li>
+</ol>
+
+<p style=3D"line-height: 23px; font-size: 14px;">If you have specific quest=
+ions or issues about the API, we encourage you to contact the API Provider =
+(<a href=3D"https://mail.rapidapi.com/e/c/eyJlbWFpbF9pZCI6ImRnUExmTXQ4QVFBQ=
+mU5NTdEbTNBQWFUUFM0djVMbDhyIiwiaHJlZiI6Imh0dHBzOi8vcmFwaWRhcGkuY29tL3NreXNj=
+YW5uZXIvYXBpL3NreXNjYW5uZXItZmxpZ2h0LXNlYXJjaC9kZXRhaWxzIiwiaW50ZXJuYWwiOiJ=
+jYjdjNmFlNmE2MDFjN2IyYzMwMSIsImxpbmtfaWQiOjM4Mjk3NDA5fQ/c923586935c070ec078=
+9f88831f6cea4b7c467cb6add4b15089528ab0c5d9c91" target=3D"_blank" style=3D"c=
+olor: rgb(26,159,255); text-decoration: none; letter-spacing: 0.1px; font-f=
+amily: &#39;Lato&#39;, &#39;Helvetica Neue&#39;, &#39;Helvetica&#39;, &#39;=
+Arial&#39;, &#39;Sans-Serif&#39;;">Tom Dror</a>), or <a href=3D"https://mai=
+l.rapidapi.com/e/c/eyJlbWFpbF9pZCI6ImRnUExmTXQ4QVFBQmU5NTdEbTNBQWFUUFM0djVM=
+bDhyIiwiaHJlZiI6Imh0dHBzOi8vcmFwaWRhcGkuY29tL3NreXNjYW5uZXIvYXBpL3NreXNjYW5=
+uZXItZmxpZ2h0LXNlYXJjaC9kaXNjdXNzaW9ucyIsImludGVybmFsIjoiY2I3YzZhZTZhNjAxYz=
+diMmMzMDEiLCJsaW5rX2lkIjozODI5NzA4Nn0/6ba7bc6291c224f57214f9c397e8a146a27af=
+177c02899a13ddd5b48694b57af" target=3D"_blank" style=3D"color: rgb(26,159,2=
+55); text-decoration: none; letter-spacing: 0.1px; font-family: &#39;Lato&#=
+39;, &#39;Helvetica Neue&#39;, &#39;Helvetica&#39;, &#39;Arial&#39;, &#39;S=
+ans-Serif&#39;;">post a new topic</a> in their discussions!</p>
+
+<p style=3D"line-height: 23px; font-size: 14px;">Thank you,
+<br/>The RapidAPI Team</p>
+<br/>
+<center><span style=3D"color: rgb(161,167,172); text-align: center; font-si=
+ze: small;">Was this email helpful?</span></center>
+<center><span style=3D"color: rgb(161,167,172); text-align: center; font-si=
+ze: small;"><a href=3D"https://mail.rapidapi.com/e/c/eyJlbWFpbF9pZCI6ImRnUE=
+xmTXQ4QVFBQmU5NTdEbTNBQWFUUFM0djVMbDhyIiwiaHJlZiI6Imh0dHBzOi8vcmFwaWRhcGkuY=
+29tP2VtYWlsX2ZlZWRiYWNrPXVwIiwiaW50ZXJuYWwiOiJjYjdjNmFlNmE2MDFjN2IyYzMwMSIs=
+ImxpbmtfaWQiOjM4Mjk3NDExfQ/dc78523f94f9a40da63b87582d8ca6bb7f5b7ceeb551783c=
+3faf52dd5367ce47" target=3D"_blank" style=3D"color: rgb(26,159,255); text-d=
+ecoration: none; letter-spacing: 0.1px; font-family: &#39;Lato&#39;, &#39;H=
+elvetica Neue&#39;, &#39;Helvetica&#39;, &#39;Arial&#39;, &#39;Sans-Serif&#=
+39;;">=F0=9F=91=8D</a> or <a href=3D"https://mail.rapidapi.com/e/c/eyJlbWFp=
+bF9pZCI6ImRnUExmTXQ4QVFBQmU5NTdEbTNBQWFUUFM0djVMbDhyIiwiaHJlZiI6Imh0dHBzOi8=
+vcmFwaWRhcGkuY29tP2VtYWlsX2ZlZWRiYWNrPWRvd24iLCJpbnRlcm5hbCI6ImNiN2M2YWU2YT=
+YwMWM3YjJjMzAxIiwibGlua19pZCI6MzgyOTc0MTJ9/bbc8a9d633336e238283eba6646cfa14=
+a13884c258ad0d9a7c62e0bbb3037c64" target=3D"_blank" style=3D"color: rgb(26,=
+159,255); text-decoration: none; letter-spacing: 0.1px; font-family: &#39;L=
+ato&#39;, &#39;Helvetica Neue&#39;, &#39;Helvetica&#39;, &#39;Arial&#39;, &=
+#39;Sans-Serif&#39;;">=F0=9F=91=8E</a></span></center>
+</div>
+               =20
+      </div>
+      </td>
+</tr>
+      <tr>
+      <td>
+          <div class=3D"footer" style=3D"text-align: left; font-size: 13px;=
+ padding-top: 25px; padding-bottom: 25px;" align=3D"left">
+            <div class=3D"mashape-hq" style=3D"position: relative; float: l=
+eft; max-width: 60%;">
+                <span style=3D"font-weight: bold; color: rgb(121,125,128);"=
+>RapidAPI HQ: </span>
+                <span style=3D"color: rgb(161,167,172);">2 Shaw Alley, Floo=
+r 4, San Francisco, CA 94105</span>
+            </div>
+            <a href=3D"https://mail.rapidapi.com/unsubscribe/dgPLfMt8AQABe9=
+57Dm3AAaTPS4v5Ll8r" style=3D"color: rgb(161,167,172); text-decoration: unde=
+rline; float: right; letter-spacing: 0.1px; font-family: &#39;Lato&#39;, &#=
+39;Helvetica Neue&#39;, &#39;Helvetica&#39;, &#39;Arial&#39;, &#39;Sans-Ser=
+if&#39;;">Unsubscribe</a>
+          </div>     =20
+      </td>
+      </tr>
+    </tbody></table>
+ =20
+
+<img src=3D"https://mail.rapidapi.com/e/o/eyJlbWFpbF9pZCI6ImRnUExmTXQ4QVFBQ=
+mU5NTdEbTNBQWFUUFM0djVMbDhyIn0=3D" style=3D"height: 1px !important; max-hei=
+ght: 1px !important; max-width: 1px !important; width: 1px !important"/></b=
+ody></html>
+--8dbfea91a453433ca48a77b892ab6718--

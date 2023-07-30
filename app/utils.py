@@ -18,7 +18,6 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 import networkx as nx
-from django.shortcuts import render
 import json
 import requests
 import email
@@ -26,10 +25,8 @@ from bs4 import BeautifulSoup
 def check_email_availability(email):
     api_key = 'live_bfb97de3d118e4b8ac6010a039896ce86006f099602baebf48bf0604edbba589'
     url = f'https://api.kickbox.com/v2/verify?email={email}&apikey={api_key}'
-
     response = requests.get(url)
     data = response.json()
-
     if response.status_code == 200:
         if data['result'] == 'deliverable':
             return True
@@ -138,7 +135,6 @@ def get_list_from_and_to(data_detail, keyword_search=None):
     if keyword_search:
         sender_emails = [email for email in sender_emails if keyword_search.lower() in email.lower()]
         to_emails = [email for email in to_emails if keyword_search.lower() in email.lower()]
-
     # Kết hợp và loại bỏ giá trị trùng nhau
     unique_emails = set(sender_emails).union(set(to_emails))
     return unique_emails
@@ -242,14 +238,12 @@ def find_links_by_emails(data_detail, email_list):
     # Tạo đồ thị và thêm các email trong danh sách này vào đồ thị là các nút
     G = nx.Graph()
     G.add_nodes_from(all_emails)
-
     # Lọc ra các dòng có email trong danh sách email đã cho
     filtered_data = data_detail[data_detail['Sender_email'].isin(email_list) | data_detail['To'].isin(email_list)]
     # Xác định danh sách các liên kết chỉ giữa các email trong email_list
     links = filtered_data[filtered_data['Sender_email'].isin(email_list) & filtered_data['To'].isin(email_list)][['Sender_email', 'To']].values.tolist()
     # Đếm số lần xuất hiện của mỗi liên kết chỉ giữa các email trong email_list
     link_counts = pd.DataFrame(links, columns=['Sender_email', 'To']).value_counts()
-    
     # Thêm các liên kết chỉ giữa các email trong email_list vào đồ thị là các cạnh
     for link in links:
         sender_email, to = link
@@ -264,29 +258,23 @@ def is_spam_email(email):
     # Các quy tắc này có thể không hoạt động tốt với mọi loại email thư rác và email hợp lệ
     spam_keywords = ['lottery', 'win', 'free', 'promotion', 'prize', 'money', 'discount', 'urgent', 'viagra']
     spam_threshold = 2  # Ngưỡng số lượng từ thư rác xuất hiện trong nội dung email
-
     # Chuyển đổi nội dung email thành chữ thường để so sánh dễ dàng hơn
     email = email.lower()
-
     # Đếm số lượng từ thư rác xuất hiện trong nội dung email
     spam_count = sum(keyword in email for keyword in spam_keywords)
-
     # Kiểm tra xem số lượng từ thư rác có vượt qua ngưỡng hay không
     return spam_count >= spam_threshold
 
 def count_spam_emails(data_frame):
     # Biến đếm số lượng email thư rác
     spam_count = 0
-
     # Lặp qua từng dòng trong DataFrame
     for index, row in data_frame.iterrows():
         # Lấy nội dung email từ cột 'email_content'
         email_content = row['Content']
-
         # Kiểm tra xem email có phải là thư rác hay không
         if is_spam_email(email_content):
             spam_count += 1
-
     return spam_count
 
 
@@ -303,7 +291,9 @@ def convert_csv_to_dataframe(csv_file_path):
     data_detail.insert(loc=0, column="file",value=np.array(data.file))
     tmt=[]
     for item in data_detail['Date']:
-        tmt.append(item[:-12])
+       parsed_date = parse(item)
+       formatted_date = parsed_date.strftime("%a, %d %b %Y %H:%M:%S")
+       tmt.append(pd.to_datetime(formatted_date))
     data_detail['Date']=tmt
     data_detail['Date']= pd.to_datetime(data_detail.Date)   
     return data_detail
@@ -313,7 +303,6 @@ def extract_email(to_email):
         return None
     email_pattern = re.compile(r'[\w\.-]+@[\w\.-]+')  # Mẫu tìm kiếm địa chỉ email
     match = email_pattern.search(to_email)
-    
     if match:
         return match.group()  # Trả về địa chỉ email tìm thấy
     else:
@@ -324,7 +313,6 @@ def inforEmail(file_path):
         eml_data = eml_file.read()
     eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
     hex_data = ''.join(['{:02x}'.format(byte) for byte in eml_data])
-
     # Hiển thị hex view theo yêu cầu
     hex_view = '<table  id="table_hexview">'
     hex_view += '<thead><tr><th></th><th>00</th><th>01</th><th>02</th><th>03</th><th>04</th><th>05</th><th>06</th><th>07</th><th>08</th><th>09</th><th>0a</th><th>0b</th><th>0c</th><th>0d</th><th>0e</th><th>0f</th></tr></thead>'
@@ -372,7 +360,6 @@ def inforEmail(file_path):
         # if content_type == 'text/plain' or content_type == 'text/html':
         # HIỆN TẠI CHỈ DÙNG TEXT/HTML
         if content_type == 'text/html':
-
             if charset:
                 email_content += part.get_payload(decode=True).decode(charset)
             else:
@@ -413,8 +400,6 @@ def list_from_extract_email_address(upload_path):
     # Chuyển đổi set thành danh sách
     email_addresses_list = list(email_addresses)
     return email_addresses_list
-
-
 
 def list_to_extract_email_address(upload_path):
     list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
@@ -490,7 +475,6 @@ def list_from_extract_phone_number(upload_path):
         with open(eml_file_path, 'rb') as file:
             eml_data = file.read()
         eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
-   
         # Tìm các số điện thoại trong nội dung EML
         for part in eml_message.walk():
             if part.get_content_type() == 'text/plain' or part.get_content_type() == 'text/html':
@@ -499,7 +483,6 @@ def list_from_extract_phone_number(upload_path):
                 for phone_number_pattern in phone_number_patterns:
                     phone_numbers_found = re.findall(phone_number_pattern, content)
                     phone_numbers.update(phone_numbers_found)
-    
     # Chuyển đổi set thành danh sách
     phone_number_list = list(phone_numbers)
     return phone_number_list
@@ -522,7 +505,6 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
             # Lấy thông tin từ EML
             message_id = eml_message['Message-ID']
             date = eml_message['Date']
-
             from_email = eml_message['From']
             sender_name, sender_email = parseaddr(from_email)
             if(sender_name == ""):
@@ -533,7 +515,6 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
             else:
                 sender_name = decoded_name
             from_email = sender_name +" "+ "<" + sender_email + ">"
-
             # to_email = eml_message['To']
             # to_email = extract_email(to_email)
             delivered_to = eml_message['Delivered-To']
@@ -559,7 +540,7 @@ def convert_eml_to_csv(upload_path,export_path, folder_name):
             for part in eml_message.walk():
                 if part.get_content_type() in ["text/plain", "text/html"]:
                     # Lấy nội dung của phần tử
-                    part_content = part.get_payload(decode=True).decode('utf-8')
+                    part_content = part.get_payload(decode=True).decode('utf-8',errors='ignore')
                     # Chuyển đổi nội dung HTML thành văn bản thuần túy
                     text_content = html2text.html2text(part_content)
                     # Thêm nội dung vào biến lưu trữ
@@ -575,7 +556,7 @@ def convert_eml_to_html(upload_path,html_folder_path):
     for file_name in list_eml_files:
         eml_file_path = upload_path+ "\\"+ file_name
         # Đọc file EML
-        with open(eml_file_path, 'r') as file:
+        with open(eml_file_path, 'r', encoding='utf-8') as file:
             eml_content = file.read()
         # Phân tích cấu trúc EML
         msg = email.message_from_string(eml_content)
@@ -583,7 +564,10 @@ def convert_eml_to_html(upload_path,html_folder_path):
         html_content = None
         for part in msg.walk():
             if part.get_content_type() == 'text/html':
-                html_content = part.get_payload(decode=True).decode('utf-8')
+                try:
+                    html_content = part.get_payload(decode=True).decode('utf-8')
+                except UnicodeDecodeError:
+                    html_content = part.get_payload(decode=True).decode('latin-1')
                 break
         if html_content is None:
             continue
@@ -591,12 +575,10 @@ def convert_eml_to_html(upload_path,html_folder_path):
             # Chuyển đổi các thẻ HTML không hợp lệ thành chuỗi hợp lệ
             soup = BeautifulSoup(html_content, 'html.parser')
             html_content_valid = str(soup)
-
         # Tạo tên file HTML từ tên file EML
         file_name_html = os.path.splitext(file_name)[0] + '.html'
         # Tạo đường dẫn đầy đủ cho file HTML đích
         html_file_path = os.path.join(html_folder_path, file_name_html)
-        
         # Ghi nội dung HTML vào file HTML đích
         with open(html_file_path, 'w', encoding='utf-8') as file:
             file.write(html_content_valid)

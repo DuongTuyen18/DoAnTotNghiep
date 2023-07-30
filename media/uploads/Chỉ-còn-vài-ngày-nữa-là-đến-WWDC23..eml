@@ -1,0 +1,479 @@
+Delivered-To: nttrang13092000@gmail.com
+Received: by 2002:adf:fd83:0:0:0:0:0 with SMTP id d3csp1547993wrr;
+        Tue, 30 May 2023 23:41:29 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6dz7v5lLkqr2TwDulRivk5dsFjCvuqL/pXRA4mCEF/tRLj5WFeux3l0bbTUQw6TBEq5yE5
+X-Received: by 2002:a17:906:fe08:b0:973:d8c4:a4df with SMTP id wy8-20020a170906fe0800b00973d8c4a4dfmr4001615ejb.52.1685515288926;
+        Tue, 30 May 2023 23:41:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1685515288; cv=none;
+        d=google.com; s=arc-20160816;
+        b=is6EsXZLSmo4JEiGYvxoZVhc/KQGHHgW2TQKgrwu3rz0RZIpHQ47WArjTIZVW1BRtW
+         a+Tl2gcyNQB+eI/+GV9MfE6YxYcIGdiJqenI0n6EoGQoW8SU0HabwvgkMNxK7ZfnX015
+         21ppbuaxZCI67jRh/tae+kozJcztgGD5IBc4Py8seK0KU1UIIAtygMAhXNhYS/vMZrRh
+         Cxq9tQowZ9BcoM1/suZ0SWcxAVox4EnCmZhuNm2Rddd7onsGBNSczySyc+7OKdCErVWp
+         29FG5ghYLS3nuU1we415ajPBE/BEdsgduaZBYocG0qly0w16gi6MohE0RmwIj6whMDPr
+         twFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:mime-version:subject:message-id:to:from:date
+         :dkim-signature;
+        bh=/EH0DGppAblBtN4daks7VXiB6fSCiU7YXj+uDv6uq9I=;
+        b=QaHog9Ynz5OPlzLlus/l63t4petbRjzJhBkT2m7jD3pnieRl/Tlm+4eHiGNhdUhG6J
+         ifsZpGxN7t/Q+hJKW+EClF1zGO5GaLrqFMkgXrV56MzH9T48TUrVswPjE1d4IGqOKN3C
+         Wy4QvBR2BO4yhQthk04xIkryIxERsB73c6rsb62Smi3FmuY+y6+1YzxF3NO2xnRAsOXt
+         JFjth4gxgp8OayFzCLSlXlGT5RGetSieawPBtjBEqK1p9ZA2VLxQTG7MXmbGrZxGGB3d
+         uZyMQfkuhnYvlu2oIZf4w2xsXLVoy0fG/9E8+LGvTvrh7c/bhMlF1/OBQViFeI+Eph0B
+         VtaA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@insideapple.apple.com header.s=insideapple0517 header.b=w3en2EeF;
+       spf=pass (google.com: domain of n_i_bounces@insideapple.apple.com designates 17.32.227.77 as permitted sender) smtp.mailfrom=n_i_bounces@insideapple.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=insideapple.apple.com
+Return-Path: <n_i_bounces@insideapple.apple.com>
+Received: from mdn-epsmtap-mkt-lsndr04102.apple.com (mdn-epsmtap-mkt-lsndr04102.apple.com. [17.32.227.77])
+        by mx.google.com with ESMTPS id r4-20020a170906c28400b009604e90e38fsi9569634ejz.1005.2023.05.30.23.41.28
+        for <nttrang13092000@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 May 2023 23:41:28 -0700 (PDT)
+Received-SPF: pass (google.com: domain of n_i_bounces@insideapple.apple.com designates 17.32.227.77 as permitted sender) client-ip=17.32.227.77;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@insideapple.apple.com header.s=insideapple0517 header.b=w3en2EeF;
+       spf=pass (google.com: domain of n_i_bounces@insideapple.apple.com designates 17.32.227.77 as permitted sender) smtp.mailfrom=n_i_bounces@insideapple.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=insideapple.apple.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=insideapple.apple.com; s=insideapple0517; t=1685515216;
+	bh=/EH0DGppAblBtN4daks7VXiB6fSCiU7YXj+uDv6uq9I=;
+	h=Date:From:To:Message-ID:Subject:Content-Type;
+	b=w3en2EeFXF0PcHuH46RnwEJmQrdrEzhiUSGasDZQkBUV1eszUmhe841oZOhlAP98D
+	 iRxXgvk9n9L8YPxXOnk+W9jcPzFlnahSIZ3TgoAps2j0Sw+p4vub4sqFfu9RyWCgah
+	 S+2BBMj+Pf5ViRfQukwsMdgFoS3c+usA7/0rMJZ241yP2SmkOEv+9FVDDdZcpi4ab3
+	 zhD1IlFEPhuAtpGIORIAGBMRHpq0kzaKvaTMhCcZWQbATRTPklS9Zu3AK4ukFAx/Du
+	 DKS/xHjYy0FGFvX3DXbWEZseIxERaDWYNmVgUvSQSA6HmdkBiG2/2VBiL5Da+cff0t
+	 TYIU6SzWGpPKw==
+Date: Wed, 31 May 2023 06:40:16 +0000 (GMT)
+From: Apple <News@InsideApple.Apple.com>
+To: nttrang13092000@gmail.com
+Message-ID: <750704162.57483882.1685515216209@InsideApple.Apple.com>
+Subject: =?UTF-8?Q?Ch=E1=BB=89_c=C3=B2n_v=C3=A0i_ng=C3=A0y_?=
+ =?UTF-8?Q?n=E1=BB=AFa_l=C3=A0_=C4=91=E1=BA=BFn_WWDC23.?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_57483880_2806174.1685515216209"
+X-Attach-Flag: N
+X-Sent-To: nttrang13092000@gmail.com,2,8w%2BvXLoOe%2FyPdV0vFeToERXXwSQbkO5QvIMKRHZCC%2FxFwkTxoA5Vvct4tWZWzkhf6k1cCcAtZ0FPbF27MjGozHrHbTmO67ARU9FAOnyacaBF%2F3%2Fb8uVFsbG3AGCldZVl2lqQz26q%2FZbpkRsHcjrBybxj0sm5S1aIFYcmkUFTLVzMaIE%2BrzLGXc5OlAFP25229kQyZ27SkghT4CR448lzxfkZppgP0Dv1Stw9yQEPNHruquV0s0dn3lxrncKMYXWu4Uq2I6SBw%2BIAKsXB9kFNnQ%3D%3D
+X-TXN_ID: ff91bf66-00f0-4a13-8eb1-6cbf6e32f9b5
+X-DKIM_SIGN_REQUIRED: YES
+x-evs: BYPASS
+X-EmailType-Id: 181667
+X-Business-Group: CEP
+X-Broadcast-Id: 181667
+X-MSG-ID: M00000~c00840~r0002~573771
+X-MSG-LINK: cf14ea68871e82bb875970091e2b632c
+List-Unsubscribe: <https://mynews.apple.com/subscriptions?v=2&la=vi_VN&a=8w%2BvXLoOe%2FyPdV0vFeToERXXwSQbkO5QvIMKRHZCC%2FxFwkTxoA5Vvct4tWZWzkhf6k1cCcAtZ0FPbF27MjGozHrHbTmO67ARU9FAOnyacaBF%2F3%2Fb8uVFsbG3AGCldZVl2lqQz26q%2FZbpkRsHcjrBybxj0sm5S1aIFYcmkUFTLVzMaIE%2BrzLGXc5OlAFP25229kQyZ27SkghT4CR448lzxfkZppgP0Dv1Stw9yQEPNHruquV0s0dn3lxrncKMYXWu4Uq2I6SBw%2BIAKsXB9kFNnQ%3D%3D>
+X-BTPH: Reg
+X-mp: d
+
+------=_Part_57483880_2806174.1685515216209
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+M=E1=BB=99t v=C5=A9 tr=E1=BB=A5 l=E1=BA=ADp tr=C3=ACnh m=E1=BB=9Bi.
+
+WWDC23 c=E1=BB=A7a Apple
+
+6-10 th=C3=A1ng S=C3=A1u
+
+S=E1=BB=B1 ki=E1=BB=87n =C4=91=C3=A3 g=E1=BA=A7n k=E1=BB=81. H=C3=A3y c=C3=
+=B9ng ch=C3=BAng t=C3=B4i =C4=91=C3=B3n xem Apple Keynote =C4=91=C6=B0=E1=
+=BB=A3c ph=C3=A1t s=C3=B3ng t=E1=BB=AB Apple Park v=C3=A0o l=C3=BAc 00:00 s=
+=C3=A1ng ng=C3=A0y 6 th=C3=A1ng 6.
+
+Ng=C3=A0y 6 th=C3=A1ng S=C3=A1u n=C4=83m 2023 00:00 s=C3=A1ng.
+
+Th=C3=AAm s=E1=BB=B1 ki=E1=BB=87n v=C3=A0o l=E1=BB=8Bch
+https://www.apple.com/vn/apple-events/home/assets/event/event.ics
+
+-------------------
+
+TM v=C3=A0 =C2=A9 2023 Apple Inc. S=E1=BB=91 =C4=91i=E1=BB=87n tho=E1=BA=A1=
+i: 1800-1192 B=E1=BA=A3o L=C6=B0u M=E1=BB=8Di Quy=E1=BB=81n.
+
+-------------------
+
+Ch=C3=ADnh S=C3=A1ch Quy=E1=BB=81n Ri=C3=AAng T=C6=B0
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UIVVufPXVj0Qor2Sg85Zxwl=
+uJ1XGFnmpuhGwPlb%2Fsk0cO894CCraIsmPJNf9YnxrAguubuMZaw2i6N%2Fo2sq24za4u6cdDr=
+ynpR0bxMOkJUIuPVtNoS4jYABpoZeN1mdm8w1Du%2BtnE0iW98QlaOJVhBBkPGyIpTFmnF%2BSG=
+yTUb4jI%2FRTrvqkhPDWGqHFDi0UgVgDHM2oWSbLHDKBlmnwY%2F4iybWDN%2FOvBCw7eet9knU=
+n2%2FpWLdYeKHtDqCjubwWPKdZxONee00P7dSTEndBCUmhQ%3D
+
+ID Apple C=E1=BB=A7a T=C3=B4i
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UIVVufPXVj0Qor2Sg85Zxwl=
+uJ1XGFnmpuhGwPlb%2Fsk0cO894CCraIsmPJNf9YnxrAguubuMZaw2i6N%2Fo2sq24za4u6cdDr=
+ynpR0bxMOkJUIuPVtNoS4jYABpoZeN1mdm8w1Du%2BtnE0iW98QlaOJVhBBkPGyIpTFmnF%2BSG=
+yTUb4jI%2FRTrvqkhPDWGqHFDi0UgVgDHM2oWSbLHDKBlmnwY%2F4iybWDN%2FOvBCw7eet9knU=
+n2%2FpWLdYeKHtDqCjubwWPKdYMHDyCZ5rYhI7rWVQ%2FIam0%3D
+
+Ph=C3=A1p L=C3=BD
+https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UIVVufPXVj0Qor2Sg85Zxwl=
+uJ1XGFnmpuhGwPlb%2Fsk0cO894CCraIsmPJNf9YnxrAguubuMZaw2i6N%2Fo2sq24za4u6cdDr=
+ynpR0bxMOkJUIuPVtNoS4jYABpoZeN1mdm8w1Du%2BtnE0iW98QlaOJVhBBkPGyIpTFmnF%2BSG=
+yTUb4jI%2FRTrvqkhPDWGqHFDi0UgVgDHM2oWSbLHDKBlmnwY%2F4iybWDN%2FOvBCw7eet9knU=
+n2%2FpWLdYeKHtDqCjubwWPKddHys9UXDLVuWSNpQChCaVw%3D
+
+-------------------
+
+N=E1=BA=BFu b=E1=BA=A1n kh=C3=B4ng mu=E1=BB=91n nh=E1=BA=ADn email qu=E1=BA=
+=A3ng c=C3=A1o t=E1=BB=AB Apple ho=E1=BA=B7c b=E1=BA=A1n =C4=91=C3=A3 thay =
+=C4=91=E1=BB=95i =C4=91=E1=BB=8Ba ch=E1=BB=89 email c=E1=BB=A7a m=C3=ACnh, =
+vui l=C3=B2ng nh=E1=BA=A5p v=C3=A0o =C4=91=C3=A2y.
+https://c.apple.com/r?v=3D2&a=3D8ps6Ok0qKWiF37xoxStPOmTNGs51zlivdjtcXTFjpLn=
+VfNVUW3O2%2Fg0FsgBl8SdvTx20IK997Wb6cow2ElFVnWDs7eDmnwXNMUyJ7Z6WZajQtUH4Nr6C=
+%2FYPk04pDKANA0Z%2FuuXh8fRdXFtKFSCPcltGUa%2BTcWjeL%2BTFeuYf3TfYU1Ln1cbUQdsx=
+1L5V0wvUE0gi8PU6b1MwFow3CrZGmeJVoGOArG0MA6YhFSd3F%2B27SAvdLgONPUT6ynDglwMp%=
+2BJRUJKPi4kGtmC5u6fqQw6LCg%2Fkp8cinHl7f7cu0Ro5LfwzJzhuoewP4N752R2xBmFaa4LFe=
+nAvLa52%2FHX8vQLnmWDgVEaoZMeKnqOwxx76eFkVh6tpHPUzdvNxF6Isq1cOWhkcYADHS2hN7S=
+6JOhi03NN2a9EK0JcDITjTYsim8c1paeUQmnxMpZW%2BWJaYwkGy7ZZi4kPncUauciqVBmCaAg8=
+Nql2HUacNju68hUM1YhcqOsf10lPwnYzhAt2Fpo
+
+-------------------
+------=_Part_57483880_2806174.1685515216209
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Disposition: inline
+
+<!DOCTYPE html> <html> <head> <title></title> <meta content=3D"width=3Ddevi=
+ce-width,initial-scale=3D1" name=3D"viewport"> <meta content=3D"text/html;c=
+harset=3Dutf-8" http-equiv=3D"content-type"> <meta content=3D"date=3Dno" na=
+me=3D"format-detection"> <meta content=3D"address=3Dno" name=3D"format-dete=
+ction"> <meta content=3D"email=3Dno" name=3D"format-detection"> <style type=
+=3D"text/css">@media only screen and (max-device-width:2732px){.m22 a[href^=
+=3D"tel:"]{color:inherit!important}}</style> <style type=3D"text/css">@medi=
+a only screen and (max-device-width:568px){.m0{display:none!important}.m1{d=
+isplay:block!important;width:100%!important;height:inherit!important;overfl=
+ow:visible!important}.m19,.m40{padding:0!important}.m40 table.m22{width:100=
+%!important;max-width:414px!important;padding-top:0!important}.m41{padding:=
+0 6.25%!important}.m40 table.m42{width:100%!important;max-width:362px!impor=
+tant;padding-top:0!important}.m19 p{font-size:12px!important;line-height:39=
+px!important;padding:0!important}.m19 span.m21{font-size:0;line-height:0;di=
+splay:block}.m43,.m43 p{line-height:20px!important}.m22 a[href^=3D"tel:"],.=
+m44 .m45 p .m23 a,.m44 .m45 p .m24 a,.m44 .m45 p a[href^=3D"tel:"],.m44 .m4=
+5.m46 p.m47 .m23 a,.m44 .m45.m46 p.m47 .m24 a{color:inherit!important}.m44 =
+.m22,.m44 .m42,.m44.m48{background-color:#000!important}.m44 .m43,.m44 .m45=
+,.m44 .m45 p{text-align:center!important}.m44 .m19{border-top:none!importan=
+t}.m44 .m19 span.m21{border-top:1px solid #424245}.m44 .m19.m49{border-bott=
+om:0!important}.m44 .m43 .m21,.m44 .m45,.m44 .m45 p{color:#86868b!important=
+}.m44 .m43 p,.m44 .m43 p a,.m44 .m45 p a{color:#d2d2d7!important}}</style> =
+<style type=3D"text/css">.m0,.m1,td{font-size:17px;font-weight:400;line-hei=
+ght:25px;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',=
+'Helvetica Neue',Helvetica,Arial,sans-serif,'SF Pro Icons'}.m1,.m1 div{box-=
+sizing:border-box}.m1 .m2,img{max-width:100%}.m3{white-space:nowrap}.m0,.m1=
+,.m4,a,p,td{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe U=
+I','Helvetica Neue',Helvetica,Arial,sans-serif,'SF Pro Icons'}*{-webkit-fon=
+t-smoothing:antialiased;text-rendering:optimizelegibility}.m0,.m1{width:100=
+%!important}table{border-spacing:0}b{font-weight:600}.m1{display:none;margi=
+n:0 auto;max-width:100%;width:100%}img{display:block}.m1 .m2 .m5{max-width:=
+414px;margin:0 auto}.m1 .m6{font-size:0;line-height:0;margin:0 auto}.m1 .m7=
+,.m1 .m8{font-size:17px;line-height:25px}.m10,.m9 img{display:inline-block}=
+.m11,.m2{margin:0 auto}.m12{text-align:center}.m12 img,img.m12{margin-left:=
+auto;margin-right:auto}.m13{text-align:left}.m13 img{margin-left:0;margin-r=
+ight:auto}.m14 a,.m15 a{border:0;outline:0}.m15 .m6{font-size:12px;line-hei=
+ght:16px}.m0,.m1,.m16{background-color:#000}.m16,.m16 h1,.m16 h1 a,.m16 h1 =
+a:hover,.m16 h1 a:visited,.m16 h2,.m16 h2 a,.m16 h2 a:hover,.m16 h2 a:visit=
+ed,.m16 h3,.m16 h3 a,.m16 h3 a:hover,.m16 h3 a:visited,.m16 h4,.m16 h4 a,.m=
+16 h4 a:hover,.m16 h4 a:visited{color:#f5f5f7}.m16{border-color:#000}.m16 a=
+,.m16 a:hover,.m16 a:visited{color:#2997ff}.m16.m14,.m16.m15{color:#6e6e73;=
+background-color:#1d1d1f}.m16.m14 .m9,.m16.m14 a,.m16.m14 a.m9,.m16.m15 .m9=
+,.m16.m15 a,.m16.m15 a.m9{color:#a1a1a6}.m17 .m16{color:#86868b;background-=
+color:#1d1d1f}.m17 .m16 .m9,.m17 .m16 a,.m17 .m16 a.m9,.m17 .m16 a:hover,.m=
+17 .m16 a:visited,.m18 .m19 a{color:#d2d2d7}.m16 .m20,.m16 .m20 td,.m16 .m2=
+0>div,.m16 td.m20{border-color:#424245;color:#424245}.m9+.m21,a img{display=
+:inline-block}.m4 a,.m4 a:link,a,p a,p a:link{cursor:pointer}.m1 .m8 p+*{ma=
+rgin-top:9px!important}a,a:link{text-decoration:none;word-spacing:0!importa=
+nt}a:focus,a:hover,a:link:focus,a:link:hover{text-decoration:underline!impo=
+rtant}a:link[x-apple-data-detectors],a[x-apple-data-detectors]{text-decorat=
+ion:none!important}a:link[x-apple-data-detectors]:hover,a[x-apple-data-dete=
+ctors]:hover{text-decoration:underline!important}a.m9,a:link.m9{text-decora=
+tion:none}a[x-apple-data-detectors],a[x-apple-data-detectors]:hover,a[x-app=
+le-data-detectors]:link{color:inherit;text-decoration:underline}p a,p a:lin=
+k{text-decoration:underline}p a.m23,p a:link.m23{text-decoration:none!impor=
+tant}p a.m23:focus,p a.m23:hover,p a:link.m23:focus,p a:link.m23:hover{text=
+-decoration:underline!important}p .m24,p .m24 a{color:white!important;text-=
+decoration:none!important}img.m13{margin-right:auto;margin-left:0}a img{bor=
+der:0;outline:0}.m25{vertical-align:top}.m26{vertical-align:bottom}.m4,p{fo=
+nt-size:17px;font-weight:400;line-height:25px;margin:0}.m9.m20>div{border-t=
+op-style:solid;border-top-width:1px}.m27{line-height:inherit}a>span{letter-=
+spacing:inherit}.m9+.m21{font-size:12px;padding:0 4px}.m9.m20>div{height:0;=
+line-height:0}.m15 .m9{display:inline}.m28{line-height:0;vertical-align:-4p=
+x}.m29,.m29>p{font-size:32px;line-height:36px}.m30 .m31 .m32{overflow:hidde=
+n;width:100%;margin:0;background-image:url(https://www.apple.com/vn/dm/23/M=
+06729/i/m_hero_2x.jpg)!important;background-size:414px 301px;background-pos=
+ition:center top;background-repeat:no-repeat;max-width:414px;height:301px}.=
+m29{padding-top:6px;padding-bottom:9px;font-weight:600}.m29 a{font-size:32p=
+x}.m29>p{font-weight:600}.m33,.m33>p{font-size:17px;line-height:21px;font-w=
+eight:600}.m34 img{border-radius:10px}.m33{padding-top:3px;padding-bottom:2=
+px}.m33 a{font-size:17px}.m35,.m35>p{font-size:14px;line-height:17px}.m35{c=
+olor:#fff;font-weight:400;max-width:356px;padding:12px 11px 39px}.m35 a,.m3=
+6 a{color:#fff;font-size:14px}.m35>p{font-weight:400}.m36,.m36>p,.m37{font-=
+size:14px;font-weight:400;line-height:20px}.m38{padding-bottom:4px}.m36{col=
+or:#fff;padding-top:3px;padding-bottom:2px}.m37{padding-top:10px;padding-bo=
+ttom:28px}.m37 img{width:20px;height:18px}.m39{height:1px;line-height:1px;w=
+idth:320px}body{background-color:#000!important}</style> <!--[if gte mso 9]=
+><style type=3D"text/css">a,b,span,sup,table,td,tr{line-height:normal!impor=
+tant;mso-line-height-rule:exactly}sup{font-size:100%!important}h1,h2,h3,h4,=
+h5,h6{line-height:inherit!important;font-family:'Segoe UI SemiBold','Segoe =
+UI',Arial,sans-serif!important;font-weight:400!important;mso-line-height-ru=
+le:exactly;mso-text-raise:2px}.m27 sup,.outBold sup,h1 sup,h2 sup,h3 sup,h4=
+ sup,h5 sup,h6 sup{font-size:90%!important}b,strong{line-height:inherit!imp=
+ortant;font-family:'Segoe UI SemiBold','Segoe UI',Arial,sans-serif!importan=
+t;font-weight:400!important;mso-line-height-rule:exactly}.outBold{font-fami=
+ly:'Segoe UI',Arial,sans-serif!important;font-weight:600!important}.m27{fon=
+t-family:'Segoe UI SemiBold','Segoe UI',Arial,sans-serif!important;font-wei=
+ght:400!important;line-height:inherit!important;mso-text-raise:2px}.outBold=
+{overflow:visible;line-height:inherit!important;mso-line-height-rule:exactl=
+y;mso-text-raise:2px}.fallback{display:block!important}.animated{display:no=
+ne!important}li{margin-bottom:9px}ol{margin-left:0!important}</style><xml><=
+o:officedocumentsettings><o:allowpng><o:pixelsperinch>96</o:pixelsperinch><=
+/o:officedocumentsettings></xml><![endif]--> <!--[if gte mso 15]><style typ=
+e=3D"text/css">h1,h2,h3,h4,h5,h6{mso-text-raise:2px}</style><![endif]--> <!=
+--[if mso 15]><style type=3D"text/css">h1{mso-text-raise:4px}</style><![end=
+if]--> </head> <body style=3D"margin:0;padding:0"> <div style=3D"display:no=
+ne;max-height:0;overflow:hidden"> M=E1=BB=99t v=C5=A9 tr=E1=BB=A5 l=E1=BA=
+=ADp tr=C3=ACnh m=E1=BB=9Bi. WWDC23, 6-10 th=C3=A1ng S=C3=A1u. </div> <!-- =
+Adding spaces to prevent email copy from being visible --> <div style=3D"di=
+splay:none;max-height:0;overflow:hidden">=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C </div> <div class=3D"m1" style=
+=3D"display:none;width:0;height:0;overflow:hidden"> <div class=3D"m2 m16"> =
+<div class=3D"m5"> <div class=3D"m6"> <div class=3D"m12 m7"> <div class=3D"=
+m30"> <div class=3D"m31"> <div class=3D"m12 m32"> </div> </div> </div> <div=
+ class=3D"m12 m8 m29"> <p class=3D"m4"> M=E1=BB=99t v=C5=A9 tr=E1=BB=A5 l=
+=E1=BA=ADp tr=C3=ACnh m=E1=BB=9Bi. </p> </div> <div class=3D"m34"> <div cla=
+ss=3D"m12"> <img alt=3D"WWDC23 c&#7911;a Apple" height=3D"32" src=3D"https:=
+//www.apple.com/vn/dm/23/M06729/i/m_logo_wwdc_2x.png" width=3D"133" class=
+=3D"m25"> </div> </div> <div class=3D"m12 m8 m33"> <p class=3D"m4"> <span c=
+lass=3D"m24">6-10 th=C3=A1ng S=C3=A1u</span> </p> </div> <div class=3D"m12 =
+m8 m11 m35"> <p class=3D"m4"> S=E1=BB=B1 ki=E1=BB=87n =C4=91=C3=A3 g=E1=BA=
+=A7n k=E1=BB=81. H=C3=A3y c=C3=B9ng ch=C3=BAng t=C3=B4i<br> =C4=91=C3=B3n x=
+em Apple Keynote =C4=91=C6=B0=E1=BB=A3c ph=C3=A1t s=C3=B3ng<br> t=E1=BB=AB =
+Apple Park v=C3=A0o l=C3=BAc <span class=3D"m24">00:00 s=C3=A1ng ng=C3=A0y =
+6 th=C3=A1ng 6.</span><br> Xem ch=C6=B0=C6=A1ng tr=C3=ACnh tr=E1=BB=B1c tuy=
+=E1=BA=BFn t=E1=BA=A1i <span class=3D"m24">apple.com.</span> </p> </div> <d=
+iv class=3D"m38"> <div class=3D"m12"> <img alt=3D" " height=3D"37" src=3D"h=
+ttps://www.apple.com/vn/dm/23/M06729/i/m_icon_calendar_app_2x.png" width=3D=
+"37" class=3D"m25"> </div> </div> <div class=3D"m12 m8 m36"> <p class=3D"m4=
+"> <span class=3D"m24">Ng=C3=A0y 6 th=C3=A1ng S=C3=A1u n=C4=83m 2023<br> 00=
+:00 s=C3=A1ng.</span> </p> </div> <div class=3D"m12 m11 m37"> <a href=3D"ht=
+tps://www.apple.com/vn/apple-events/home/assets/event/event.ics" class=3D"m=
+9" data-cid-disabled=3D"true">Th=C3=AAm s=E1=BB=B1 ki=E1=BB=87n v=C3=A0o <s=
+pan class=3D"m3">l=E1=BB=8Bch<span class=3D"m28"><img alt=3D" " height=3D"1=
+8" src=3D"https://www.apple.com/vn/dm/23/M06729/i/14_download_2997ff_2x.png=
+" width=3D"20" style=3D"display:inline;margin:0"></span></span></a> </div> =
+<div class=3D"m39"> </div> </div> </div> </div> </div> </div> <table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"1=
+00%" align=3D"center"> <tr> <td> <div class=3D"m0"> <table border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%" align=
+=3D"center"> <tr> <td style=3D"text-align:center" align=3D"center"> <table =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" widt=
+h=3D"100%" align=3D"center"> <tr class=3D"m2"> <td class=3D"m16" style=3D"b=
+ackground-color:#000" align=3D"center"> <table border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" role=3D"presentation" width=3D"736" align=3D"center"> =
+<tr class=3D"m6"> <td> <table border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" width=3D"100%" align=3D"center"> <tr> <td class=
+=3D"m7" width=3D"100%"> <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"100%" class=3D"m7" style=3D"text-alig=
+n:center"> <tr> <td class=3D"m13" style=3D"text-align:left;vertical-align:t=
+op;font-size:0;margin:0;line-height:0" align=3D"left"><picture><source medi=
+a=3D"(max-device-width: 568px)" srcset=3D"data:"><img alt=3D" " height=3D"4=
+60" src=3D"https://www.apple.com/vn/dm/23/M06729/i/hero_2x.jpg" width=3D"73=
+6" class=3D"m13" border=3D"0" style=3D"display:block"></picture></td> </tr>=
+ <tr> <td class=3D"m8" style=3D"text-align:center;padding:0 0 16px"> <p cla=
+ss=3D"m27" style=3D"color:#fff;font-size:45px;font-weight:600;line-height:5=
+0px;margin:0 auto"> M=E1=BB=99t v=C5=A9 tr=E1=BB=A5 l=E1=BA=ADp tr=C3=ACnh =
+m=E1=BB=9Bi. </p> </td> </tr> <tr> <td class=3D"m12" style=3D"text-align:ce=
+nter;vertical-align:top;font-size:0;margin:0;line-height:0" align=3D"center=
+"><picture><source media=3D"(max-device-width: 568px)" srcset=3D"data:"><im=
+g alt=3D"WWDC23 c&#7911;a Apple" height=3D"47" src=3D"https://www.apple.com=
+/vn/dm/23/M06729/i/logo_wwdc_2x.png" width=3D"192" class=3D"m12" border=3D"=
+0" style=3D"display:block;border-radius:10px"></picture></td> </tr> <tr> <t=
+d class=3D"m8" style=3D"text-align:center;padding:0 0 2px"> <p class=3D"m27=
+" style=3D"color:#fff;font-size:21px;font-weight:600;line-height:26px;margi=
+n:0 auto"> <span class=3D"m24">6-10 th=C3=A1ng S=C3=A1u</span> </p> </td> <=
+/tr> <tr> <td class=3D"m8" style=3D"text-align:center;padding:22px 70px 52p=
+x"> <p style=3D"color:#fff;font-size:17px;font-weight:400;line-height:23px;=
+margin:0 auto"> S=E1=BB=B1 ki=E1=BB=87n =C4=91=C3=A3 g=E1=BA=A7n k=E1=BB=81=
+. H=C3=A3y c=C3=B9ng ch=C3=BAng t=C3=B4i =C4=91=C3=B3n xem Apple Keynote<br=
+> =C4=91=C6=B0=E1=BB=A3c ph=C3=A1t s=C3=B3ng t=E1=BB=AB Apple Park v=C3=A0o=
+ l=C3=BAc <span class=3D"m24">00:00 s=C3=A1ng ng=C3=A0y 6 th=C3=A1ng 6.</sp=
+an><br> Xem ch=C6=B0=C6=A1ng tr=C3=ACnh tr=E1=BB=B1c tuy=E1=BA=BFn t=E1=BA=
+=A1i=C2=A0<span class=3D"m24">apple.com.</span> </p> </td> </tr> <tr> <td c=
+lass=3D"m12" style=3D"padding-bottom:8px;text-align:center;font-size:0;marg=
+in:0;line-height:0" align=3D"center"><picture><source media=3D"(max-device-=
+width: 568px)" srcset=3D"data:"><img alt=3D" " height=3D"39" src=3D"https:/=
+/www.apple.com/vn/dm/23/M06729/i/icon_calendar_app_2x.png" width=3D"39" cla=
+ss=3D"m12" border=3D"0" style=3D"display:block"></picture></td> </tr> <tr> =
+<td class=3D"m8" style=3D"text-align:center;padding:0"> <p style=3D"color:#=
+fff;font-size:14px;font-weight:400;line-height:20px;margin:0 auto"> <span c=
+lass=3D"m24">Ng=C3=A0y 6 th=C3=A1ng S=C3=A1u n=C4=83m 2023<br> 00:00 s=C3=
+=A1ng.</span> </p> </td> </tr> <tr> <td style=3D"padding-top:12px;padding-b=
+ottom:42px;text-align:center;font-size:14px;line-height:20px"><a href=3D"ht=
+tps://www.apple.com/vn/apple-events/home/assets/event/event.ics" style=3D"f=
+ont-size:14px;font-weight:400;line-height:20px;color:#2997ff" class=3D"m4 m=
+9" data-cid-disabled=3D"true">Th=C3=AAm s=E1=BB=B1 ki=E1=BB=87n v=C3=A0o <s=
+pan style=3D"white-space:nowrap">l=E1=BB=8Bch<span style=3D"line-height:0;v=
+ertical-align:-4px"><img alt=3D" " height=3D"18" src=3D"https://www.apple.c=
+om/vn/dm/23/M06729/i/14_download_2997ff_2x.png" width=3D"20" style=3D"font-=
+size:0;display:inline-block;margin:0" border=3D"0"></span></span></a></td> =
+</tr> </table> </td> </tr> </table> </td> </tr> </table> </td> </tr> </tabl=
+e> </td> </tr> </table> </div> </td> </tr> <tr> <td> <table border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%" clas=
+s=3D"m18 m44 m48" bgcolor=3D"#000" style=3D"background-color:#000"> <tr cla=
+ss=3D"m2"> <td class=3D"m40"> <table border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" role=3D"presentation" width=3D"712" align=3D"center" bgcolor=3D"=
+#000" class=3D"m22" style=3D"background-color:#000"> <tr> <td class=3D"m41"=
+ style=3D"padding:0 20px"> <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" role=3D"presentation" width=3D"660" align=3D"center" bgcolor=3D"#00=
+0" class=3D"m42"> <tr> <td class=3D"m19 m49" style=3D"font-size:14px;line-h=
+eight:18px;border-top-width:0" align=3D"center"></td> </tr> <tr> <td class=
+=3D"m45 m46" style=3D"padding:10px 0 9px;text-align:center"> <p class=3D"m4=
+7" style=3D"font-size:12px;line-height:16px;color:#86868b"> TM v=C3=A0 =C2=
+=A9 2023 Apple Inc. <span style=3D"white-space:nowrap">S=E1=BB=91 =C4=91i=
+=E1=BB=87n tho=E1=BA=A1i: 1800-1192</span> B=E1=BA=A3o=C2=A0L=C6=B0u=C2=A0M=
+=E1=BB=8Di=C2=A0Quy=E1=BB=81n. </p> </td> </tr> <tr> <td class=3D"m43" styl=
+e=3D"padding:0 0 9px;font-size:12px;line-height:16px;color:#d2d2d7;text-ali=
+gn:center"> <p style=3D"color:#d2d2d7;margin:0 auto;font-size:12px;line-hei=
+ght:16px"> <a href=3D"https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7U=
+IVVufPXVj0Qor2Sg85ZxwluJ1XGFnmpuhGwPlb%2Fsk0cO894CCraIsmPJNf9YnxrAhtYh%2F1%=
+2F%2FC2%2BeyOE8GXRq8uR9ZFByoCaVluxi69jRKbpAbJrM7WusuI7vXFT1j9ub0VUeFls9xUQA=
+GPyoGa%2FJAMWGQs48VdjBJM1cer6h9f4f3jVAZIOvMf6SG60R4%2Fv%2FrXERG98527tN7hTxP=
+3dwM%2FBszDQsRH37decF6ME%2FpRjcNe0WDlw7zGhSDM%2FmWW6dFxSF9OA8uFe0gq9MyEYn7g=
+%3D" style=3D"border:0;outline:0;text-decoration:none;color:#d2d2d7">Ch=C3=
+=ADnh=C2=A0S=C3=A1ch=C2=A0Quy=E1=BB=81n=C2=A0Ri=C3=AAng=C2=A0T=C6=B0</a> =
+=C2=A0=C2=A0=C2=A0<span class=3D"m21" style=3D"color:#86868b">|</span>=C2=
+=A0=C2=A0 <a href=3D"https://c.apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UI=
+VVufPXVj0Qor2Sg85ZxwluJ1XGFnmpuhGwPlb%2Fsk0cO894CCraIsmPJNf9YnxrAhtYh%2F1%2=
+F%2FC2%2BeyOE8GXRq8uR9ZFByoCaVluxi69jRKbpAbJrM7WusuI7vXFT1j9ub0VUeFls9xUQAG=
+PyoGa%2FJAMWGQs48VdjBJM1cer6h9f4f3jVAZIOvMf6SG60R4%2Fv%2FrXERG98527tN7hTxP3=
+dwM%2FBszDQsRH37decF6ME%2FpRjcNe0WDlw7zGhSDM%2FmWW6dD9myE2QTPets1emWi9DrdM%=
+3D" style=3D"border:0;outline:0;text-decoration:none;color:#d2d2d7">ID=C2=
+=A0Apple=C2=A0C=E1=BB=A7a=C2=A0T=C3=B4i</a> =C2=A0=C2=A0=C2=A0<span class=
+=3D"m21" style=3D"color:#86868b">|</span>=C2=A0=C2=A0 <a href=3D"https://c.=
+apple.com/r?v=3D2&a=3Do2CKfLM8dAL7lynfnyn7UIVVufPXVj0Qor2Sg85ZxwluJ1XGFnmpu=
+hGwPlb%2Fsk0cO894CCraIsmPJNf9YnxrAhtYh%2F1%2F%2FC2%2BeyOE8GXRq8uR9ZFByoCaVl=
+uxi69jRKbpAbJrM7WusuI7vXFT1j9ub0VUeFls9xUQAGPyoGa%2FJAMWGQs48VdjBJM1cer6h9f=
+4f3jVAZIOvMf6SG60R4%2Fv%2FrXERG98527tN7hTxP3dwM%2FBszDQsRH37decF6ME%2FpRjcN=
+e0WDlw7zGhSDM%2FmWW6dL0wNH2yycflJmcDOjYqxoA%3D" style=3D"border:0;outline:0=
+;text-decoration:none;color:#d2d2d7">Ph=C3=A1p L=C3=BD</a> </p> </td> </tr>=
+ <tr> <td class=3D"m45" style=3D"padding:0 0 25px;text-align:center"> <p st=
+yle=3D"font-size:12px;line-height:16px;color:#86868b"> N=E1=BA=BFu b=E1=BA=
+=A1n kh=C3=B4ng mu=E1=BB=91n nh=E1=BA=ADn email qu=E1=BA=A3ng c=C3=A1o t=E1=
+=BB=AB Apple ho=E1=BA=B7c b=E1=BA=A1n =C4=91=C3=A3 thay =C4=91=E1=BB=95i =
+=C4=91=E1=BB=8Ba ch=E1=BB=89 email c=E1=BB=A7a m=C3=ACnh, vui l=C3=B2ng nh=
+=E1=BA=A5p v=C3=A0o=C2=A0<a href=3D"https://c.apple.com/r?v=3D2&a=3D8ps6Ok0=
+qKWiF37xoxStPOmTNGs51zlivdjtcXTFjpLnVfNVUW3O2%2Fg0FsgBl8SdvTx20IK997Wb6cow2=
+ElFVnWDs7eDmnwXNMUyJ7Z6WZajQtUH4Nr6C%2FYPk04pDKANA0Z%2FuuXh8fRdXFtKFSCPcltG=
+Ua%2BTcWjeL%2BTFeuYf3TfYU1Ln1cbUQdsx1L5V0wvUE0gi8PU6b1MwFow3CrZGmeDA7XQCmhx=
+HBSRd0X4KqaxwfTzl9ARP0btMCtaHbm%2B1mnn%2BFoUIvMhyTwdMA6KD%2FnKRRwEzGIqb72qg=
+biQXrqsqZP6FIRO9tvktE63xVeTHf7%2FDutALsvFNfBecT3mtCdEfhLK0U8gj3f0gkp3AWEm8m=
+2pN9jSbQn4lj9BeKUp7YEfRFTFelkOn%2FARpU7ZoKzISmtvu%2FtgLpBHnqAibbtcNxDoXipK1=
+BtUP5q%2FL99fH1Mn2nHNv6Y2zalyvAq8JILslWlGOjHnxaS8UuQOhvVWH2zZdVvWGTTbofuGLC=
+ucZ2d%2FNO0vo%2BL3EaoD7ffm8QOg%3D%3D" style=3D"border:0;outline:0;color:#d2=
+d2d7">=C4=91=C3=A2y</a>. </p> </td> </tr> </table> </td> </tr> </table> </t=
+d> </tr> </table> </td> </tr> </table> </body> </html>
+------=_Part_57483880_2806174.1685515216209--

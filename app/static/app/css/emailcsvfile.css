@@ -9,6 +9,8 @@
     width: 100%;
     height: 100%;
     border-right: 1px solid rgba(58, 57, 57, 0.3);
+}
+#left-content-list-email-linkanalysis, #left-content-list-email-person{
     overflow: auto;
 }
 .left-content-csvfile{

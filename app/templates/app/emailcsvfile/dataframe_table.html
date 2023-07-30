@@ -128,12 +128,12 @@
               <span type="submit" class="input-group-text border-0 fff_color"  onclick="submitForm()">
                 <i class="fas fa-search"></i>
               </span>
-              <a class="input-group-text border-0 fff_color" href={% url 'dataframe_table' %}>
-                  <i class="fas fa-sync-alt"></i>
-              </a>
               <span class="input-group-text border-0 fff_color" >
                 <i class="fas fa-filter"></i>
               </span>
+              <a class="input-group-text border-0 fff_color" href={% url 'dataframe_table' %}>
+                <i class="fas fa-sync-alt"></i>
+            </a>
             </div>
           </div>
         </form>
@@ -175,10 +175,13 @@
       <ul class="pagination justify-content-end">
         {% if page_obj.has_previous %}
         <li class="page-item">
-          {% if request.GET.keyword_search and request.GET.from_date  and request.GET.to_date  %}
-          <a class="page-link" href="{% url 'dataframe_table' %}?from_date={{ request.GET.from_date }}&to_date={{ request.GET.to_date }}&keyword_search={{ request.GET.keyword_search }}&page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+          {% if request.GET.from_date  and request.GET.to_date  %}
+            {% if request.GET.keyword_search %}
+              <a class="page-link" href="{% url 'dataframe_table' %}?from_date={{ request.GET.from_date }}&to_date={{ request.GET.to_date }}&keyword_search={{ request.GET.keyword_search }}&page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+            {% else %}
+              <a class="page-link" href="{% url 'dataframe_table' %}?from_date={{ request.GET.from_date }}&to_date={{ request.GET.to_date }}&keyword_search=&page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+            {% endif %}
           {% else %}
-            <!-- Trường hợp không có keyword_search trong URL -->
             <a class="page-link" href="{% url 'dataframe_table' %}?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
           {% endif %}
         </li>
@@ -192,8 +195,12 @@
         </li>
         {% if page_obj.has_next %}
         <li class="page-item">
-          {% if request.GET.keyword_search and request.GET.from_date  and request.GET.to_date %}
-            <a class="page-link" href="{% url 'dataframe_table' %}?from_date={{ request.GET.from_date }}&to_date={{ request.GET.to_date }}&keyword_search={{ request.GET.keyword_search }}&page={{ page_obj.next_page_number }}" >Next</a >
+          {% if request.GET.from_date  and request.GET.to_date %}
+            {% if request.GET.keyword_search%}
+              <a class="page-link" href="{% url 'dataframe_table' %}?from_date={{ request.GET.from_date }}&to_date={{ request.GET.to_date }}&keyword_search={{ request.GET.keyword_search }}&page={{ page_obj.next_page_number }}" >Next</a >
+            {% else %}
+              <a class="page-link" href="{% url 'dataframe_table' %}?from_date={{ request.GET.from_date }}&to_date={{ request.GET.to_date }}&keyword_search=&page={{ page_obj.next_page_number }}" >Next</a >
+            {% endif %}
           {% else %}
             <a class="page-link" href="{% url 'dataframe_table' %}?page={{ page_obj.next_page_number }}" >Next</a >
           {% endif %}
@@ -207,7 +214,6 @@
     </nav>
   </div>
 </div>
-
 <script>
   $(document).ready(function () {});
   function submitForm() {

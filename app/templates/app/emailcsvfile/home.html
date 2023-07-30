@@ -417,9 +417,9 @@
   var simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(edges).id(function(d) { return d.id; }).distance(120)) // Thay đổi giá trị distance
     .force("charge", d3.forceManyBody().strength(-2000))
-    .force("center", d3.forceCenter(width / 2, height/2))
-    .force("x", d3.forceX(width / 2).strength(0.1)) // Giới hạn vị trí x của các node trong khung
-    .force("y", d3.forceY(height / 2 ).strength(0.2)); // Giới hạn vị trí y của các node trong khung
+    .force("center", d3.forceCenter((width / 2)-120, height/2))
+    .force("x", d3.forceX((width / 2)).strength(0.2)) // Giới hạn vị trí x của các node trong khung
+    .force("y", d3.forceY(height / 2 ).strength(0.4)); // Giới hạn vị trí y của các node trong khung
 
 
   window.addEventListener('resize', function() {
