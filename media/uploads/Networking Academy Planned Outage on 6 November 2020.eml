@@ -1,0 +1,673 @@
+Delivered-To: dvt18012000@gmail.com
+Received: by 2002:a19:e205:0:0:0:0:0 with SMTP id z5csp1024475lfg;
+        Tue, 6 Oct 2020 15:10:48 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwJxJzQVsxXU4fTguNiv14fq9m8agyDP/e7eNQYoDZ9ROzdYkTyLk9AFa0JShQsIwmDdbha
+X-Received: by 2002:a17:902:7d8d:b029:d3:95b9:68ed with SMTP id a13-20020a1709027d8db02900d395b968edmr63796plm.28.1602022248102;
+        Tue, 06 Oct 2020 15:10:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1602022248; cv=none;
+        d=google.com; s=arc-20160816;
+        b=fL54yejLOJqe2kT4EP7/KaisHgEDNAJmRL5lQicz6Zt2VGmzkET9GoQqQ1ejCyVPuz
+         tj/8j+SGDr5+9aas/8qnyDjQCbAule2T9Ai5DF4h+AMe2m78wf/vfkmsHiV4GXUabmMW
+         HdhhXnR3CZfeYwEhabFzE7dBBg1B7yQh6+mFE4U3bcwwU/40Z2t9F7UiTa6mJysEkp9P
+         7zmR8wGaS1X5aT6xFr2/oJORGH55wEUmPePhZ5n4z7UxmpDN6N+KtyRQpLoZ0HTvJnvJ
+         JjP5xlsWBjNDRsF7AHPQAyPXRcssTjWB46Qq4edsouIQc1z7qwiERpNewJT0pSuf6d7B
+         j8sQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:subject:message-id:to:reply-to:from:date
+         :dkim-signature;
+        bh=Ens4zQ1rhO3N+/P4e5UGAqRZEjbfajRWySf+OAisphQ=;
+        b=k0+w7JkCumKKBMUQMbcHX2JubIev2Fyz9XT/WkKPni0Q3C9JQnC5qRAYVGimhMjxhV
+         yxnqEuc0rlqhAogrGD4MuyTt5Uz1Ha9g/UMCdzemU+E2jJSDNxaKCLW+G3p6nThb381d
+         BWp/9gnv3mZH0SX7OFtln8PsPvL6wOJdfJPYyzZiXP9ql0rkZf5cIVOZLq383eXb4RGi
+         Zi4Ps4NwfEGOJwMbH57TnC8iSmDKQqjG7nQ+bhyHQ759YqqdeJ/JI4PDqYtH5U5vx+TY
+         ieKmJ3g4arVbN4sa3J5eKAfN6kkCazzFGvF14W1dBMKwDfKHuVFFWj4Ph0CpCsVjV1nZ
+         uYSQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mktdns.com header.s=m1 header.b=OFIOxUYR;
+       spf=pass (google.com: domain of 059-vfz-834.0.69436.0.0.17871.9.186014134@em-sj-77.mktomail.com designates 199.15.215.34 as permitted sender) smtp.mailfrom=059-VFZ-834.0.69436.0.0.17871.9.186014134@em-sj-77.mktomail.com;
+       dmarc=fail (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=cisco.com
+Return-Path: <059-VFZ-834.0.69436.0.0.17871.9.186014134@em-sj-77.mktomail.com>
+Received: from dragonfly.mktdns.com (dragonfly.mktdns.com. [199.15.215.34])
+        by mx.google.com with ESMTPS id u2si126672pfc.291.2020.10.06.15.10.47
+        for <dvt18012000@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 06 Oct 2020 15:10:48 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 059-vfz-834.0.69436.0.0.17871.9.186014134@em-sj-77.mktomail.com designates 199.15.215.34 as permitted sender) client-ip=199.15.215.34;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mktdns.com header.s=m1 header.b=OFIOxUYR;
+       spf=pass (google.com: domain of 059-vfz-834.0.69436.0.0.17871.9.186014134@em-sj-77.mktomail.com designates 199.15.215.34 as permitted sender) smtp.mailfrom=059-VFZ-834.0.69436.0.0.17871.9.186014134@em-sj-77.mktomail.com;
+       dmarc=fail (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=cisco.com
+X-MSFBL: LnJS2/05KmpdseuU1/stsT3nf2xQp6nkQKVbEk8zzcs=|eyJiIjoiZHZwLTE5OS0
+	xNS0yMTUtMzQiLCJnIjoiYmctc2pkLTM1IiwidSI6IjA1OS1WRlotODM0OjA6Nzc
+	3MjoyNjQyMjo5NjIyODoxNzg3MTo5OjY5NDM2OjE4NjAxNDEzNCIsInIiOiJkdnQ
+	xODAxMjAwMEBnbWFpbC5jb20ifQ==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1602012378;
+	s=m1; d=mktdns.com; i=@mktdns.com;
+	h=Content-Type:MIME-Version:Subject:To:From:Date;
+	bh=Ens4zQ1rhO3N+/P4e5UGAqRZEjbfajRWySf+OAisphQ=;
+	b=OFIOxUYRvAWk2froRYfn8DYic6eFFtaCBCJYXvi0rJj+hQF8MseC9bvApPQJkuNv
+	07D9nmbU0xOdsSEUi+8QkFxf4teD+3vxL1GCz58/iEFyVRrZX90ROasAs0Wa+04iV8+
+	dtmbsSDT9xqS59Lt3l7ZrjUwdYxk4h+WK0KoJMqo=
+Date: Tue, 6 Oct 2020 14:26:18 -0500 (CDT)
+From: Cisco Networking Academy <netacademail@external.cisco.com>
+Reply-To: netacademail@external.cisco.com
+To: dvt18012000@gmail.com
+Message-ID: <1856785755.13127032.1602012378546@sjmktmail-batch1j.marketo.org>
+Subject: Networking Academy Planned Outage on 6 November 2020
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_13127031_1432940719.1602012378545"
+X-Binding: bg-sjd-35
+X-PVIQ: mkto-059VFZ834-000001-000000-069436
+X-MarketoID: 059-VFZ-834:0:7772:26422:96228:17871:9:69436:186014134
+X-Mailfrom: 059-VFZ-834.0.69436.0.0.17871.9.186014134@em-sj-77.mktomail.com
+X-MktArchive: false
+X-MSYS-API: {"options":{"open_tracking":false,"click_tracking":false}}
+X-MktMailDKIM: true
+
+------=_Part_13127031_1432940719.1602012378545
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+November 6 NetAcad.com Scheduled Maintenance
+
+On Friday, November 6, Networking Academy assessments will be unavailable d=
+ue to scheduled maintenance. Courses are not affected. Dates and times are =
+listed for your location below:
+
+
+=09- San Francisco: Friday, 6 Nov 9:00 p.m. =E2=80=93 Saturday, Nov 7 1:00 =
+a.m. (PST, UTC-8)
+=09- New York: Saturday, 7 Nov 12 midnight =E2=80=93 4:00 a.m. (EST, UTC-5)
+=09- London: Saturday, 7 Nov 5:00 a.m. =E2=80=93 9:00 a.m. (GMT, UTC)
+=09- Hong Kong: Saturday, 7 Nov 1:00 p.m. =E2=80=93 5:00 p.m. (HKT, UTC+8)
+=09- Sydney:=E2=80=AFSaturday, 7 Nov 4:00 p.m.- 8:00 p.m.=E2=80=AF(AEDT UTC=
++11=E2=80=AF=E2=80=AF=C2=A0
+
+
+
+
+Thank you for your patience and understanding during the maintenance period=
+.
+<http://nsmail.cisconetspace.com/z0uL0f400cAFzKt2VYG1Z00>
+ <http://nsmail.cisconetspace.com/p0A00V12HZ0ucLzFf40YLt0>
+ <http://nsmail.cisconetspace.com/wFLZzAfV40010Y2Ic0u0M0t>
+ <http://nsmail.cisconetspace.com/o00Nz00Jt002YV1ALZFfu4c>
+
+
+You are receiving this notification due to its business critical nature. If=
+ you are no longer part of the Networking Academy program, or if you have m=
+ultiple accounts and need to have an account deleted or merged, navigate to=
+ Submit Global support Desk Ticket <http://nsmail.cisconetspace.com/K00uAVF=
+c04tO0KfLY12z0Z0>, provide the account deletion details.
+=20
+ =C2=A92017 Cisco Systems, Inc. and/or its affiliates. All rights reserved.=
+ 170 W Tasman Dr., San Jose, CA 95134.
+=20
+ Cisco.com <http://nsmail.cisconetspace.com/df04Y2GztucZL00FAC100V0> | Priv=
+acy Statement <http://nsmail.cisconetspace.com/HV0001u0zYDLtZAc42F00Hf> | T=
+rademarks <http://nsmail.cisconetspace.com/a001c402uV0L00EZIFztAYf>
+
+------=_Part_13127031_1432940719.1602012378545
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"width: 100%;">
+<head>=20
+<!-- Marketo Variable Definitions -->                                      =
+     =20
+<!-- Other Meta Tags -->=20
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" />=
+=20
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1,=
+ minimum-scale=3D1, maximum-scale=3D1" />=20
+<meta name=3D"robots" content=3D"noindex,nofollow" />=20
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />=20
+<link href=3D"https://fonts.googleapis.com/css?family=3DRaleway:300,400,700=
+" rel=3D"stylesheet" type=3D"text/css" />=20
+<link href=3D"https://fonts.googleapis.com/css?family=3DLato:300,400,700" r=
+el=3D"stylesheet" type=3D"text/css" />=20
+<!--[if mso]>
+<style type=3D'text/css'>
+.primary-font {
+font-family: Arial, sans-serif !important;
+}
+</style>
+<![endif]-->=20
+<!--[if mso]>
+<style type=3D'text/css'>
+.secondary-font {
+font-family: Arial, sans-serif !important;
+}
+</style>
+<![endif]-->=20
+<style>
+=09=09=09/*startcommon*/
+=09=09=09@media only screen and (max-width: 800px) {
+=09=09=09=09table#boxing{
+=09=09=09=09=09width: 100% !important;
+=09=09=09=09}
+=09=09=09}
+=09=09=09/*endcommon*/
+=09=09</style>=20
+<!--[if gte mso 9]>
+<style type=3D"text/css">
+=09=09    =09#hero .table3-3{
+=09=09=09=09=09width: 100% !important;
+=09=09    =09}
+=09=09    </style>
+=09=09<![endif]-->=20
+<style media=3D"all">
+/* CLIENT-SPECIFIC STYLES */
+#outlook a {
+  padding: 0;
+}
+/* Force Outlook to provide a "view in browser" message */
+.ReadMsgBody {
+  width: 100%;
+}
+.ExternalClass {
+  width: 100%;
+}
+/* Force Hotmail to display emails at full width */
+.ExternalClass,
+.ExternalClass p,
+.ExternalClass span,
+.ExternalClass font,
+.ExternalClass td,
+.ExternalClass div {
+  line-height: 100%;
+}
+/* Force Hotmail to display normal line spacing */
+/* iOS BLUE LINKS */
+.appleBody a {
+  color: #000;
+  text-decoration: none;
+}
+.appleFooter a {
+  color: #000;
+  text-decoration: none;
+}
+@-ms-viewport {=20
+    width: device-width;=20
+}
+</style>=20
+<style media=3D"all">
+@media only screen and (max-width: 640px) {
+/*starttablet*/
+=09.mktoVideoThumbnail{
+=09=09width: 100% !important;
+=09=09height: auto!important;
+=09=09max-height:inherit!important;
+=09=09min-height:inherit!important;
+=09}
+body {
+=09width: auto !important;
+}
+table[class=3D"table600"] {
+=09width: 450px !important;
+}
+table[class=3D"table-inner"] {
+=09width: 86% !important;
+}
+table[class=3D"table1-2"] {
+=09width: 47% !important;
+=09clear: both;
+}
+table[class=3D"table1-3"] {
+=09width: 29.4% !important;
+}
+table[class=3D"table1-4"] {
+=09width: 100% !important;
+=09text-align: left !important;
+}
+table[class=3D"table2-3"] {
+=09width: 64% !important;
+=09text-align: center !important;
+}
+table[class=3D"table3-3"] {
+=09width: 100% !important;
+=09text-align: center !important;
+=09clear: both;
+}
+table[class=3D"footer-logo"] {
+=09width: 10% !important;
+=09text-align: right !important;
+}
+td[class=3D"outer"] {
+=09min-width: 0 !important;
+}
+td[class=3D"stack"] {
+=09padding-bottom: 40px !important;
+}
+.stack-tablet {
+=09padding-bottom: 20px !important;
+=09overflow: visible !important;
+=09float: none !important;
+=09mso-hide: none !important;
+=09display: block !important;
+}
+img[class=3D"mobile-img"] {
+=09width: 100% !important;
+=09height: auto !important;
+}
+td[class=3D"center-tablet"] {
+=09text-align: center !important;
+}
+td[class=3D"hide-tablet"] {
+=09display: none !important;
+}
+table[class=3D"footer-column"] {
+=09width: 47% !important;
+=09text-align: left !important;
+}
+.m_two-articles .table1-2 {
+=09width: 100% !important;
+}
+.m_two-articles .photo img {
+=09width: 120px !important;
+}
+.m_two-articles .stack-tablet td {
+=09height: 60px !important;
+}
+.m_free-image img {
+=09width: 450px !important;
+}
+/*endtablet*/
+}
+@media only screen and (max-width: 479px) {
+/*startmobile*/
+body {
+=09width: auto !important;
+}
+table[class=3D"table600"] {
+=09width: 290px !important;
+}
+table[class=3D"table-inner"] {
+=09width: 80% !important;
+=09float: none !important;
+}
+table[class=3D"table1-2"] {
+=09width: 100% !important;
+=09clear: both;
+}
+table[class=3D"table1-3"] {
+=09width: 100% !important;
+=09clear: both;
+}
+table[class=3D"table1-4"] {
+=09width: 100% !important;
+=09text-align: center !important;
+}
+table[class=3D"table2-3"] {
+=09width: 100% !important;
+=09text-align: center !important;
+}
+table[class=3D"table3-3"] {
+=09width: 100% !important;
+=09text-align: center !important;
+=09clear: both;
+}
+table[class=3D"footer-logo"] {
+=09width: 60% !important;
+=09text-align: center !important;
+}
+td[class=3D"outer"] {
+=09min-width: 0 !important;
+}
+td[class=3D"td3-1"] {
+=09width: 60% !important;
+=09text-align: center !important;
+}
+.stack-smartphone {
+=09padding-bottom: 20px !important;
+=09overflow: visible !important;
+=09float: none !important;
+=09display: block !important;
+=09mso-hide: none !important;
+}
+td[class=3D"center-smartphone"] {
+=09text-align: center !important;
+}
+img[class=3D"mobile-img"] {
+=09width: 100% !important;
+}
+td[class=3D"center-tablet"] {
+=09text-align: center !important;
+}
+td[class=3D"hide-smartphone"] {
+=09display: none !important;
+}
+table[class=3D"footer-column"] {
+=09width: 100% !important;
+=09text-align: center !important;
+}
+.m_free-image img {
+=09width: 290px !important;
+}
+.m_hr .table-inner {
+=09width: 100% !important;
+}
+ .photo{
+    width: 120px!important;
+}
+/*endmobile*/
+}
+</style>=20
+</head>=20
+<body style=3D"margin-bottom: 0; -webkit-text-size-adjust: 100%; padding-bo=
+ttom: 0; min-width: 100%; margin-top: 0; margin-right: 0; -ms-text-size-adj=
+ust: 100%; margin-left: 0; padding-top: 0; padding-right: 0; padding-left: =
+0; width: 100%;"><style type=3D"text/css">div#emailPreHeader{ display: none=
+ !important; }</style><div id=3D"emailPreHeader" style=3D"mso-hide:all; vis=
+ibility:hidden; opacity:0; color:transparent; mso-line-height-rule:exactly;=
+ line-height:0; font-size:0px; overflow:hidden; border-width:0; display:non=
+e !important;">Networking Academy Planned Maintenance - Important Dates & T=
+imes</div>=20
+<div style=3D"display:none; white-space:nowrap; font:15px courier; line-hei=
+ght:0;">
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=20
+</div>=20
+<!-- Outer table START -->=20
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-=
+lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; border-collapse: col=
+lapse;">=20
+<tbody>=20
+<tr>=20
+<td class=3D"outer" valign=3D"top" style=3D"-webkit-text-size-adjust: 100%;=
+ -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens:=
+ none; min-width: 600px; border-collapse: collapse; background-color: #eeee=
+ee;">=20
+<table width=3D"800" align=3D"center" id=3D"boxing" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-sp=
+acing: 0; border-collapse: collapse;margin-top: 0; margin-right: auto; marg=
+in-bottom: 0; margin-left: auto;">=20
+<tbody>=20
+<tr>=20
+<td class=3D"mktoContainer boxedbackground" id=3D"template-wrapper" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; word-break: break-word; -webkit-hyphens:=
+ none; -moz-hyphens: none; hyphens: none; border-collapse: collapse;">
+<table class=3D"mktoModule m_free-image" id=3D"free-image" style=3D"-webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; border-spacing: 0; border-collapse: collapse;" alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%=
+">=20
+<tbody>=20
+<tr>=20
+<td style=3D"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-=
+table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;-webkit-hyph=
+ens: none;-moz-hyphens: none;hyphens: none;border-collapse: collapse;backgr=
+ound-color:#ffffff;" bgcolor=3D"#ffffff" valign=3D"top">=20
+<center>=20
+<table class=3D"table600" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-sp=
+acing: 0; border-collapse: collapse; margin-top: 0; margin-right: auto; mar=
+gin-bottom: 0; margin-left: auto;" align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"600">=20
+<tbody>=20
+<tr>=20
+<td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word; -webkit=
+-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collaps=
+e;">=20
+<center>=20
+<div class=3D"mktoImg" id=3D"single" mktolockimgsize=3D"true">
+<a> <img style=3D"-ms-interpolation-mode: bicubic; outline: none; border-ri=
+ght-width: 0; border-bottom-width: 0; border-left-width: 0; text-decoration=
+: none; border-top-width: 0; display: block; max-width: 100%; line-height: =
+100%; height: auto; width: 600px;" width=3D"600" src=3D"http://csrinfo.cisc=
+onetspace.com/rs/059-VFZ-834/images/UpdatedFY18-netacad_email Large FontA.p=
+ng" /> </a>
+</div>=20
+</center> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</center> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table class=3D"mktoModule m_hr" id=3D"hr" style=3D"-webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt; border-spacing: 0; border-collapse: collapse;" align=3D"center" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">=20
+<tbody>=20
+<tr>=20
+<td style=3D"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-=
+table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;-webkit-hyph=
+ens: none;-moz-hyphens: none;hyphens: none;border-collapse: collapse;backgr=
+ound-color:#ffffff;" bgcolor=3D"#ffffff" valign=3D"top">=20
+<table class=3D"table600" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-sp=
+acing: 0; border-collapse: collapse; margin-top: 0; margin-right: auto; mar=
+gin-bottom: 0; margin-left: auto;" align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"600">=20
+<tbody>=20
+<tr>=20
+<td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word; -webkit=
+-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collaps=
+e;">=20
+<center>=20
+<table class=3D"table-inner" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border=
+-spacing: 0; border-collapse: collapse;" align=3D"center" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" width=3D"600">=20
+<tbody>=20
+<tr>=20
+<td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word; -webkit=
+-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collaps=
+e;">=20
+<table class=3D"table3-3" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-sp=
+acing: 0; border-collapse: collapse;" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"600">=20
+<tbody>=20
+<tr style=3D"height: 10px;">=20
+<td class=3D"bordered" style=3D"-moz-hyphens: none;-webkit-text-size-adjust=
+: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;-=
+webkit-hyphens: none;-ms-text-size-adjust: 100%;hyphens: none;border-top-st=
+yle: none;border-bottom-width:1px;border-bottom-style: solid;border-bottom-=
+color:#e6e6e6;border-collapse:=20
+collapse;border-top-color:#e6e6e6;border-left-color:#e6e6e6;border-right-co=
+lor:#e6e6e6;border-top-width:1px;border-left-width:1px;border-right-width:1=
+px;">&nbsp;</td>=20
+</tr>=20
+<tr style=3D"height: 10px;">=20
+<td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word; -webkit=
+-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collaps=
+e;">&nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</center> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table class=3D"mktoModule m_free-text" id=3D"free-text" idstyle=3D"-webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; border-spacing: 0; border-collapse: collapse;" alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%=
+">=20
+<tbody>=20
+<tr>=20
+<td style=3D"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-=
+table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;-webkit-hyph=
+ens: none;-moz-hyphens: none;hyphens: none;border-collapse: collapse;backgr=
+ound-color:#ffffff;" bgcolor=3D"#ffffff" valign=3D"top">=20
+<center>=20
+<table class=3D"table600" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-sp=
+acing: 0; border-collapse: collapse; margin-top: 0; margin-right: auto; mar=
+gin-bottom: 0; margin-left: auto;" align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"600">=20
+<tbody>=20
+<tr>=20
+<td class=3D"" style=3D"-webkit-text-size-adjust: 100%;-ms-text-size-adjust=
+: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;-=
+webkit-hyphens: none;-moz-hyphens: none;hyphens: none;border-collapse: coll=
+apse;line-height:20px;font-size:20px;" height=3D"20px">&nbsp;</td>=20
+</tr>=20
+<tr>=20
+<td class=3D"secondary-font text" style=3D"-moz-hyphens: none;-webkit-text-=
+size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: b=
+reak-word;-webkit-hyphens: none;-ms-text-size-adjust: 100%;hyphens: none;fo=
+nt-family:'Lato', Arial, sans-serif;font-size: 14px;line-height: 23px;color=
+: #666666;border-collapse: collapse;">=20
+<div class=3D"mktoText" id=3D"text">
+<p><span style=3D"font-size: 20px;">November 6 NetAcad.com Scheduled Mainte=
+nance</span></p>=20
+<p>On Friday, November 6, Networking Academy assessments will be unavailabl=
+e due to scheduled maintenance. Courses are not affected. Dates and times a=
+re listed for your location below:</p>=20
+<ul>=20
+<li>San Francisco: Friday, 6 Nov 9:00 p.m. =E2=80=93 Saturday, Nov 7 1:00 a=
+.m. (PST, UTC-8)</li>=20
+<li>New York: Saturday, 7 Nov 12 midnight =E2=80=93 4:00 a.m. (EST, UTC-5)<=
+/li>=20
+<li>London: Saturday, 7 Nov 5:00 a.m. =E2=80=93 9:00 a.m. (GMT, UTC)</li>=
+=20
+<li>Hong Kong: Saturday, 7 Nov 1:00 p.m. =E2=80=93 5:00 p.m. (HKT, UTC+8)</=
+li>=20
+<li>Sydney:=E2=80=AFSaturday, 7 Nov 4:00 p.m.- 8:00 p.m.=E2=80=AF(AEDT UTC+=
+11=E2=80=AF=E2=80=AF&nbsp;<br /></li>=20
+</ul>=20
+<p>Thank you for your patience and understanding during the maintenance per=
+iod.=E2=80=AF=E2=80=AF</p>
+</div> </td>=20
+</tr>=20
+<tr>=20
+<td class=3D"" style=3D"-webkit-text-size-adjust: 100%;-ms-text-size-adjust=
+: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;-=
+webkit-hyphens: none;-moz-hyphens: none;hyphens: none;border-collapse: coll=
+apse;line-height:20px;font-size:20px;" height=3D"20px">&nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</center> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table class=3D"mktoModule m_free-text" id=3D"footer" idstyle=3D"-webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; ms=
+o-table-rspace: 0pt; border-spacing: 0; border-collapse: collapse;" align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"=
+>=20
+<tbody>=20
+<tr>=20
+<td style=3D"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-=
+table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;-webkit-hyph=
+ens: none;-moz-hyphens: none;hyphens: none;border-collapse: collapse;backgr=
+ound-color:#ffffff;" bgcolor=3D"#ffffff" valign=3D"top">=20
+<center>=20
+<table class=3D"table600" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-sp=
+acing: 0; border-collapse: collapse; margin-top: 0; margin-right: auto; mar=
+gin-bottom: 0; margin-left: auto;" align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"600">=20
+<tbody>=20
+<tr>=20
+<td class=3D"" style=3D"-webkit-text-size-adjust: 100%;-ms-text-size-adjust=
+: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;-=
+webkit-hyphens: none;-moz-hyphens: none;hyphens: none;border-collapse: coll=
+apse;line-height:10px;font-size:10px;" height=3D"10px">&nbsp;</td>=20
+</tr>=20
+<tr>=20
+<td class=3D"secondary-font text" style=3D"-moz-hyphens: none;-webkit-text-=
+size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: b=
+reak-word;-webkit-hyphens: none;-ms-text-size-adjust: 100%;hyphens: none;fo=
+nt-family:'Lato', Arial, sans-serif;font-size: 14px;line-height: 23px;color=
+: #666666;border-collapse: collapse;">=20
+<table class=3D"table_responsive" style=3D"width: 100%;" width=3D"100%" cel=
+lspacing=3D"0" cellpadding=3D"0" align=3D"right">=20
+<tbody>=20
+<tr>=20
+<td style=3D"text-align: right; padding: 0px;" class=3D"footer_align">=20
+<div class=3D"mktoSnippet" id=3D"Footer">
+<table style=3D"text-align: left; border-collapse: collapse; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt;" width=3D"100%" cellspacing=3D"0" cellpaddi=
+ng=3D"0" border=3D"0" bgcolor=3D"#6D6E72">=20
+<tbody>=20
+<tr>=20
+<td colspan=3D"8" height=3D"4" bgcolor=3D"#6D6E72"><br /></td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<table style=3D"font-family: Arial, Helvetica, sans-serif; color: #666666; =
+font-size: 11px; line-height: 14px; text-align: left; border-collapse: coll=
+apse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width=3D"100%" cellspa=
+cing=3D"0" cellpadding=3D"0" border=3D"0">=20
+<tbody>=20
+<tr>=20
+<td style=3D"font-family: Arial, Helvetica, sans-serif; color: #666666; fon=
+t-size: 11px; line-height: 14px; padding: 0px 20px;" valign=3D"top"> <p><br=
+ />You are receiving this notification due to its business critical nature.=
+ If you are no longer part of the Networking Academy program, or if you hav=
+e multiple accounts and need to have an account deleted or merged, navigate=
+ to <a href=3D
+"http://nsmail.cisconetspace.com/b0001fF4tVFcZY2B000uLAz" target=3D"_blank"
+>Submit Global Support Desk Ticket</a>, provide the account deletion detail=
+s.<br /> <br /> =C2=A92020 Cisco Systems, Inc. and/or its affiliates. All r=
+ights reserved. 170 W Tasman Dr., San Jose, CA 95134.<br /> <br /> <a style=
+=3D"color: #0088c2; text-decoration: none;" href=3D
+"http://nsmail.cisconetspace.com/df04Y2GztucZL00FAC100V0" target=3D"_blank"
+>Cisco.com</a> | <a style=3D"color: #0088c2; text-decoration: none;" href=
+=3D
+"http://nsmail.cisconetspace.com/HV0001u0zYDLtZAc42F00Hf" target=3D"_blank"
+>Privacy Statement</a> | <a style=3D"color: #0088c2; text-decoration: none;=
+" href=3D
+"http://nsmail.cisconetspace.com/a001c402uV0L00EZIFztAYf" target=3D"_blank"
+>Trademarks</a></p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+</div> </td>=20
+</tr>=20
+</tbody>=20
+</table> <p></p> </td>=20
+</tr>=20
+<tr>=20
+<td class=3D"" style=3D"-webkit-text-size-adjust: 100%;-ms-text-size-adjust=
+: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;-=
+webkit-hyphens: none;-moz-hyphens: none;hyphens: none;border-collapse: coll=
+apse;line-height:20px;font-size:20px;" height=3D"20px">&nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</center> </td>=20
+</tr>=20
+</tbody>=20
+</table></td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<!-- Outer Table END -->  =20
+<a href=3D
+"http://nsmail.cisconetspace.com/vcAL0ztJ0f4ZVYF2F00u001"
+></a>
+<img src=3D"http://nsmail.cisconetspace.com/trk?t=3D1&mid=3DMDU5LVZGWi04MzQ=
+6MDo3NzcyOjI2NDIyOjk2MjI4OjE3ODcxOjk6Njk0MzY6MTg2MDE0MTM0OmR2dDE4MDEyMDAwQG=
+dtYWlsLmNvbQ%3D%3D" width=3D"1" height=3D"1" style=3D"display:none !importa=
+nt;" alt=3D"" />
+</body>
+</html>
+------=_Part_13127031_1432940719.1602012378545--

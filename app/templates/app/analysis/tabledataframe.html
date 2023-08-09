@@ -1,0 +1,254 @@
+{% extends 'app/analysis/analysis.html' %}
+{%load static%}
+{% block wrapper-analysis %}
+
+<script src="{%static 'app/js/emaildatafile.js'%}"></script>
+    <div class="header-content">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand header-content-title">{{folder_name}}/Analysis/Tabledataframe</a>
+            </div>
+        </nav>
+    </div>
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas_datatable_detail" data-bs-keyboard="false" data-bs-backdrop="false" style="position: absolute; width: auto !important; height: 55%">
+      <div class="offcanvas-header">
+        <h6 class="offcanvas-title d-none d-sm-block">Thông tin chi tiết</h6>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <hr style="margin: 2px 0 !important" class="horizontal gray-light" />
+    
+      <div id="offcanvas-content" class="offcanvas-body px-0">
+        <div class="row" style="height: 100%; margin: 0px 0px !important">
+          <div class="col-12 col-xl-4">
+            <div class="card-body p-3">
+              <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong class="text-dark">Tên file:</strong> &nbsp;<label
+                    id="dataframe_filename"
+                  ></label>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-sm">
+                  <strong class="text-dark">Message-ID:</strong> &nbsp;
+                  <label id="dataframe_message_id"></label>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-sm">
+                  <strong class="text-dark">Thời gian:</strong> &nbsp;
+                  <label id="dataframe_date"></label>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-sm">
+                  <strong class="text-dark">Tên người gửi:</strong> &nbsp;
+                  <label id="dataframe_sender_name"></label>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-sm">
+                  <strong class="text-dark">Email gửi:</strong> &nbsp;
+                  <label id="dataframe_sender_email"></label>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-sm">
+                  <strong class="text-dark">Email nhận:</strong> &nbsp;
+                  <label id="dataframe_to"></label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-xl-4">
+            <div class="card-body p-3">
+              <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                  <strong class="text-dark">Subject:</strong> &nbsp;<label
+                    id="dataframe_subject"
+                  ></label>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-sm">
+                  <strong class="text-dark">Mime-Version:</strong> &nbsp;
+                  <label id="dataframe_mime_version"></label>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-sm">
+                  <strong class="text-dark">Content-Type:</strong> &nbsp;
+                  <label id="dataframe_content_type"></label>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-sm">
+                  <strong class="text-dark">Content-Transfer-Encoding:</strong>
+                  &nbsp; <label id="dataframe_content_transfer-encoding"></label>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-sm">
+                  <strong class="text-dark">Cc:</strong> &nbsp;
+                  <label id="dataframe_cc"></label>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-sm">
+                  <strong class="text-dark">Bcc:</strong> &nbsp;
+                  <label id="dataframe_bcc"></label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div style="height: 100%" class="col-12 col-xl-4">
+            <div style="height: 100%" class="card-body p-3">
+              <h6 class="mb-0"><strong class="text-dark">Nội dung:</strong></h6>
+              <br />
+              <div
+                id="dataframe_content"
+                style="height: 100%"
+                class="ifram_dataframe_content"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-analysis">
+        <div id="table-box">
+          <nav class="navbar navbar-light bg-light fff_color">
+            <div class=" container-fluid">
+              <a class="navbar-brand">TABLE DATAFRAME</a>
+              <form  id="from_search" action="{% url 'tabledataframe' %}" method="get" class="d-flex">
+                <div class="input-group rounded">
+                  <div class="box-date" style="display:flex">
+                    <label for="from-date"  class="label-date">Từ ngày:</label>
+                    <input type="date" name="from_date" value="{% if request.GET.from_date %}{{ request.GET.from_date }}{% else %}1900-01-01{% endif %}" id="from-date" class="form-control rounded input-date" />
+                  </div>
+                  <div class="box-date" style="display:flex">
+                    <label for="to-date"  class="label-date">Đến ngày:</label>
+                    <input type="date" name="to_date" value="{% if request.GET.to_date %}{{ request.GET.to_date }}{% else %}{% now 'Y-m-d' %}{% endif %}" id="to-date" class="form-control rounded input-date" />
+                  </div>
+                  <input type="search" name="keyword_search"  class="form-control rounded " placeholder="Nhập tìm kiếm!" aria-label="Nhập tìm kiếm!" aria-describedby="search-addon"/>
+                  <div class="rounded" id="group_icon_btn_search">
+                    <span type="submit" class="input-group-text border-0 fff_color"  onclick="submitForm()">
+                      <i class="fas fa-search"></i>
+                    </span>
+                    <span class="input-group-text border-0 fff_color" >
+                      <i class="fas fa-filter"></i>
+                    </span>
+                    <a class="input-group-text border-0 fff_color" href={% url 'tabledataframe' %}>
+                      <i class="fas fa-sync-alt"></i>
+                    </a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </nav>
+          <table class="table table-bordered" id="table_dataframe">
+            <thead>
+              <tr>
+                <th>File</th>
+                <th>Massage ID</th>
+                <th>Date</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Subject</th>
+                <th>Mime Version</th>
+                <th>Content Type</th>
+                <th>Xcc</th>
+                <th>Xbcc</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in page_obj %}
+              <tr class="item-action cursor-pointer" data-bs-toggle="offcanvas" onclick="view_datafram_detail(`{{ row.file}}`,`{{ row.MassageID}}`,`{{ row.Date}}`,`{{ row.Sender_name}}`,`{{ row.Sender_email}}`,`{{ row.To}}`,`{{ row.Subject}}`,`{{ row.MimeVersion}}`,`{{ row.ContentType}}`,`{{ row.ContentTransferEncoding}}`,`{{ row.Xcc}}`,`{{ row.Xbcc}}`,`{{ row.Content}}`)" data-bs-target="#offcanvas_datatable_detail">
+                <td>{{ row.file}}</td>
+                <td>{{ row.MessageID }}</td>
+                <td>{{ row.Date }}</td>
+                <td>{{ row.From }}</td>
+                <td>{{ row.To }}</td>
+                <td>{{ row.Subject }}</td>
+                <td>{{ row.MimeVersion }}</td>
+                <td>{{ row.ContentType }}</td>
+                <td>{{ row.Xcc }}</td>
+                <td>{{ row.Xbcc }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <nav class="page_table" aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+              {% if page_obj.has_previous %}
+              <li class="page-item">
+                <a class="page-link cursor-pointer" onclick="PreviousTab('{{page_obj.previous_page_number}}')" tabindex="-1">Previous</a>
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a class="page-link cursor-pointer" tabindex="-1">Previous</a>
+              </li>
+              {% endif %}
+              <li class="page-item">
+                <a class="page-link cursor-pointer">{{ page_obj.number }}</a>
+              </li>
+              {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link cursor-pointer" onclick="NextTab('{{page_obj.next_page_number}}')" >Next</a >
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a class="page-link cursor-pointer">Next</a>
+              </li>  
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <script>
+        $(document).ready(function () {
+
+        });
+        function submitForm() {
+          $("#from_search").submit();
+        } 
+        function PreviousTab(pagenumber){
+            event.preventDefault(); // Ngăn chặn hành vi mặc định khi click vào thẻ <a>
+            // Lấy URL hiện tại
+            var currentUrl = window.location.href;
+            if (currentUrl.includes("page=")) {
+              if(pagenumber==1){
+                // Nếu giá trị pagenumber là 1, bỏ tham số "page" ra khỏi URL
+                currentUrl = currentUrl.replace(/(\?|&)page=\d+/g, '');
+              }
+              else{
+                // Nếu đã có biến truyền vào "page", thay đổi giá trị của "page" trong URL
+                currentUrl = currentUrl.replace(/page=\d+/g, "page=" + pagenumber);
+              }
+            } 
+            // Chuyển hướng trang đến URL mới
+            window.location.href = currentUrl;
+        }
+
+        function NextTab(pagenumber){
+          event.preventDefault(); // Ngăn chặn hành vi mặc định khi click vào thẻ <a>
+            // Lấy URL hiện tại
+          var currentUrl = window.location.href;
+          if (currentUrl.includes("page=")) {
+            // Nếu đã có biến truyền vào "page", thay đổi giá trị của "page" trong URL
+            currentUrl = currentUrl.replace(/page=\d+/g, "page=" + pagenumber);
+          }
+          else{
+            if (currentUrl.includes("?")) {
+              currentUrl += "&page=" + pagenumber;
+            } else {
+                currentUrl += "?page=" + pagenumber;
+            }
+          }
+          window.location.href = currentUrl;
+        }
+        function view_datafram_detail( file_name, MassageID, Date, Sender_name, Sender_email, To, Subject, MimeVersion, ContentType, ContentTransferEncoding, Xcc, Xbcc, Content) 
+        {
+          $("#dataframe_filename").text(file_name);
+          $("#dataframe_message_id").text(MassageID);
+          $("#dataframe_date").text(Date);
+          $("#dataframe_sender_name").text(Sender_name);
+          $("#dataframe_sender_email").text(Sender_email);
+          $("#dataframe_to").text(To);
+          $("#dataframe_subject").text(Subject);
+          $("#dataframe_mime_version").text(MimeVersion);
+          $("#dataframe_content_type").text(ContentType);
+          $("#dataframe_content_transfer").text(ContentTransferEncoding);
+          $("#dataframe_cc").text(Xcc);
+          $("#dataframe_bcc").text(Xbcc);
+          $("#dataframe_content").text(Content);
+        }
+    </script>
+<!-- Default dropend button -->
+{% endblock wrapper-analysis %}

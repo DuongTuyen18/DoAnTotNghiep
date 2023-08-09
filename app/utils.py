@@ -22,6 +22,9 @@ import json
 import requests
 import email
 from bs4 import BeautifulSoup
+from premailer import transform
+from datetime import datetime
+
 def check_email_availability(email):
     api_key = 'live_bfb97de3d118e4b8ac6010a039896ce86006f099602baebf48bf0604edbba589'
     url = f'https://api.kickbox.com/v2/verify?email={email}&apikey={api_key}'
@@ -49,6 +52,7 @@ def List_Infor_Email_Eml(folder_path):
         with open(eml_file_path, 'rb') as eml_file:
             eml_data = eml_file.read()
         eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
+        message_id = eml_message['Message-ID']
         from_email = eml_message['From']
         sender_name, sender_email = parseaddr(from_email)
         if(sender_name == ""):
@@ -66,26 +70,26 @@ def List_Infor_Email_Eml(folder_path):
                 subject_decoded += part[0].decode(part[1] or 'utf-8')
             else:
                 subject_decoded += part[0]
-        data.append({'file_name':file_name,'subject_email': subject_decoded, 'sender_name' : sender_name, 'date_email' : date_email})
+        data.append({'file_name':file_name, 'message_id':message_id, 'subject_email': subject_decoded, 'sender_name' : sender_name, 'date_email' : date_email})
     return data
 
-def Content_Email_Eml(file_path):
-    with open(file_path, 'rb') as eml_file:
-        eml_data = eml_file.read()
-    eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
-    # Lấy phần nội dung của email và chuyển đổi nó thành HTML
-    email_content = ''
-    for part in eml_message.walk():
-        content_type = part.get_content_type()
-        charset = part.get_charset()
-        # if content_type == 'text/plain' or content_type == 'text/html':
-        # HIỆN TẠI CHỈ DÙNG TEXT/HTML
-        if content_type == 'text/html':
-            if charset:
-                email_content += part.get_payload(decode=True).decode(charset)
-            else:
-                email_content += part.get_payload(decode=True).decode('utf-8', errors='ignore')
-    return email_content
+# def Content_Email_Eml(file_path):
+#     with open(file_path, 'rb') as eml_file:
+#         eml_data = eml_file.read()
+#     eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
+#     # Lấy phần nội dung của email và chuyển đổi nó thành HTML
+#     email_content = ''
+#     for part in eml_message.walk():
+#         content_type = part.get_content_type()
+#         charset = part.get_charset()
+#         # if content_type == 'text/plain' or content_type == 'text/html':
+#         # HIỆN TẠI CHỈ DÙNG TEXT/HTML
+#         if content_type == 'text/html':
+#             if charset:
+#                 email_content += part.get_payload(decode=True).decode(charset)
+#             else:
+#                 email_content += part.get_payload(decode=True).decode('utf-8', errors='ignore')
+#     return email_content
 
 def read_csv_file(csv_file_path):
     if os.path.exists(csv_file_path):
@@ -166,6 +170,15 @@ def find_most_sent_emails(data_detail, email):
     # Lọc danh sách các email có số lần được nhận bằng với số lần được nhận lớn nhất
     most_sent_emails = sent_counts[sent_counts == most_sent_count].index.tolist()
     return most_sent_emails, most_sent_count
+
+def get_display_names_by_email(data_detail, email):
+    display_names = set()
+    for index, row in data_detail.iterrows():
+        if row['Sender_email'] == email:
+            to_name = row['Sender_name']
+            if pd.notnull(to_name):
+                display_names.add(to_name)
+    return list(display_names)
 
 def get_data_day_statistical(data_detail):
     data_day_statistical=pd.DataFrame()
@@ -277,6 +290,12 @@ def count_spam_emails(data_frame):
             spam_count += 1
     return spam_count
 
+def format_date(date_string):
+    # Chuyển chuỗi ngày tháng thành đối tượng datetime
+    date_object = datetime.strptime(date_string, '%b. %d, %Y, %I:%M %p')
+    # Định dạng ngày tháng theo 'dd/mm/yyyy'
+    formatted_date = date_object.strftime('%d/%m/%Y')
+    return formatted_date
 
 def convert_csv_to_dataframe(csv_file_path):
     data = pd.read_csv(csv_file_path)
@@ -297,6 +316,7 @@ def convert_csv_to_dataframe(csv_file_path):
     data_detail['Date']=tmt
     data_detail['Date']= pd.to_datetime(data_detail.Date)   
     return data_detail
+
 
 def extract_email(to_email):
     if to_email is None:
@@ -370,10 +390,12 @@ def inforEmail(file_path):
 def clear_folder_in_media(folder_name):
     # Lấy đường dẫn tuyệt đối đến thư mục folder_name
     folder_path = os.path.join(settings.MEDIA_ROOT, folder_name)
-    # Xóa toàn bộ các file trong thư mục folder_name 
-    shutil.rmtree(folder_path)
-    # Tạo lại thư mục folder_name trống
-    os.mkdir(folder_path)
+        # Kiểm tra xem thư mục folder_path có tồn tại không
+    if os.path.exists(folder_path):
+        # Nếu tồn tại, thì xóa toàn bộ các file trong thư mục folder_name 
+        shutil.rmtree(folder_path)
+        # Tạo lại thư mục folder_name trống
+        os.mkdir(folder_path)
 
 def list_from_extract_email_address(upload_path):
     list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
@@ -459,7 +481,7 @@ def list_bcc_extract_email_address(upload_path):
 
 import re
 
-def list_from_extract_phone_number(upload_path):
+def list_extract_phone_number(upload_path):
     list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
     phone_numbers = set()
     phone_number_patterns = [
@@ -486,6 +508,34 @@ def list_from_extract_phone_number(upload_path):
     # Chuyển đổi set thành danh sách
     phone_number_list = list(phone_numbers)
     return phone_number_list
+
+def list_extract_links(upload_path):
+    list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+    links = set()  # Sử dụng set để loại bỏ các đường link trùng nhau
+    for file_name in list_eml_files:
+        eml_file_path = os.path.join(upload_path, file_name)
+        # Đọc file EML
+        with open(eml_file_path, 'rb') as file:
+            eml_data = file.read()
+        eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
+
+        # Lấy nội dung của email
+        eml_content = ""
+        if eml_message.is_multipart():
+            for part in eml_message.walk():
+                content_type = part.get_content_type()
+                if "text/plain" in content_type:
+                    eml_content += part.get_payload()
+        else:
+            eml_content = eml_message.get_payload()
+
+        # Tìm các đường link trong nội dung email và thêm vào set
+        link_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+        links.update(link_pattern.findall(eml_content))
+
+    # Chuyển đổi set thành danh sách
+    links_list = list(links)
+    return links_list
 
 def convert_eml_to_csv(upload_path,export_path, folder_name):
     list_eml_files = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
@@ -583,3 +633,104 @@ def convert_eml_to_html(upload_path,html_folder_path):
         with open(html_file_path, 'w', encoding='utf-8') as file:
             file.write(html_content_valid)
     return html_folder_path
+
+
+
+########################################### ANALYSIS ##############################################################
+def convert_eml_to_dataframe(upload_path):
+    eml_file_list = [f for f in os.listdir(upload_path) if f.endswith('.eml')]
+    columns = ['file', 'MessageID', 'Date', 'From', 'Sender_name', 'Sender_email', 'To', 'Subject', 'MimeVersion', 'ContentType', 'ContentTransferEncoding', 'Xcc', 'Xbcc', 'Content']
+    data_detail = pd.DataFrame(columns=columns)
+    for file_name in eml_file_list:
+        eml_file_path = upload_path+ "\\"+ file_name
+        with open(eml_file_path, 'rb') as eml_file:
+            eml_data = eml_file.read()
+        eml_message = Parser().parsestr(eml_data.decode('utf-8', errors='ignore'))
+
+        # Lấy thông tin từ EML
+        message_id = eml_message['Message-ID']
+        date =parse(eml_message['Date']).strftime("%a, %d %b %Y %H:%M:%S")
+        from_email = eml_message['From']
+        sender_name, sender_email = email.utils.parseaddr(from_email)
+        if sender_name == "":
+            sender_name = sender_email
+        decoded_name = email.header.decode_header(sender_name)[0][0]
+        if isinstance(decoded_name, bytes):
+            sender_name = decoded_name.decode()
+        else:
+            sender_name = decoded_name
+        from_email = f'{sender_name} <{sender_email}>'
+
+        delivered_to = eml_message['Delivered-To']
+        to_email = eml_message['To']
+        if to_email is None and delivered_to is not None:
+            to_email = delivered_to
+        to_email = extract_email(to_email)
+        if to_email is None:
+            to_email = ''
+
+        subject = eml_message['subject']
+        subject_decoded = email.header.decode_header(subject)[0][0]
+        if isinstance(subject_decoded, bytes):
+            subject_decoded = subject_decoded.decode()
+        
+        mime_version = eml_message['Mime-Version']
+        content_type = eml_message['Content-Type']
+        content_encoding = eml_message['Content-Transfer-Encoding']
+        
+        email_content = ''
+        for part in eml_message.walk():
+            if part.get_content_type() in ["text/plain", "text/html"]:
+                # Lấy nội dung của phần tử
+                part_content = part.get_payload(decode=True).decode('utf-8', errors='ignore')
+                # Chuyển đổi nội dung HTML thành văn bản thuần túy
+                text_content = html2text.html2text(part_content)
+                # Thêm nội dung vào biến lưu trữ
+                email_content += text_content
+
+        email_content_html = ''
+        for part in eml_message.walk():
+            content_type = part.get_content_type()
+            charset = part.get_charset()
+            # if content_type == 'text/plain' or content_type == 'text/html':
+            # HIỆN TẠI CHỈ DÙNG TEXT/HTML
+            if content_type == 'text/html':
+                if charset:
+                    email_content_html += part.get_payload(decode=True).decode(charset)
+                else:
+                    email_content_html += part.get_payload(decode=True).decode('utf-8', errors='ignore')
+        row_data = {
+            'file': os.path.basename(eml_file_path),
+            'MessageID': message_id,
+            'Date': date,
+            'From': from_email,
+            'Sender_name': sender_name,
+            'Sender_email': sender_email,
+            'To': to_email,
+            'Subject': subject_decoded,
+            'MimeVersion': mime_version,
+            'ContentType': content_type,
+            'ContentTransferEncoding': content_encoding,
+            'Xcc': eml_message.get('Cc', ''),
+            'Xbcc': eml_message.get('Bcc', ''),
+            'Content': email_content,
+            'content_html' : email_content_html
+        }
+        data_detail = pd.concat([data_detail, pd.DataFrame([row_data])], ignore_index=True)
+    data_detail['Date']= pd.to_datetime(data_detail.Date) 
+    return data_detail
+
+
+def get_top_senders(data_detail):
+    top_5_senders_names = data_detail['Sender_email'].value_counts().nlargest(5)
+    top_5_senders_names_data = top_5_senders_names.reset_index()
+    top_5_senders_names_data.columns = ['Sender_email', 'Count']
+    return top_5_senders_names_data
+
+def get_top_receive(data_detail):
+    top_5_receive_names = data_detail['To'].value_counts().nlargest(5)
+    top_5_receive_names_data = top_5_receive_names.reset_index()
+    top_5_receive_names_data.columns = ['To', 'Count']
+    return top_5_receive_names_data
+
+# Ví dụ sử dụng hàm get_top_send

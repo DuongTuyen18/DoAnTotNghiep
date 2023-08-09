@@ -1,15 +1,11 @@
 
-$(document).ready(function () {
+// $(document).ready(function () {
+//   $(".list-file-email .item-file-email").click(function () {
+//     localStorage.setItem("activeTab", $(this).attr("id"));
+//   });
+//   var activeTab = localStorage.getItem('activeTab');
+//   if (activeTab) {
+//     $('#' + activeTab).addClass('active');
+//   }
 
-
-  var activeTab = localStorage.getItem('activeTab');
-  if (activeTab) {
-    $('#' + activeTab).addClass('active');
-  }
-
-  var activeTab_menucontent = localStorage.getItem('activeTab_menucontent');
-  if (activeTab_menucontent) {
-    $('#list-menu-right-content .nav-item a').removeClass('active');
-    $('#' + activeTab_menucontent).addClass('active');
-  }
-})
+// })

@@ -1,0 +1,137 @@
+Delivered-To: dvt18012000@gmail.com
+Received: by 2002:ac2:43b4:0:0:0:0:0 with SMTP id t20csp1376719lfl;
+        Thu, 20 Aug 2020 08:52:47 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxGYjYGHihYWJO2WjpykfCZ0+FsWl/g5UERb05azj1XxJj2oNIa3kAX3CcudW+Scj5kL0pi
+X-Received: by 2002:a17:902:c285:: with SMTP id i5mr3086693pld.288.1597938767342;
+        Thu, 20 Aug 2020 08:52:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597938767; cv=none;
+        d=google.com; s=arc-20160816;
+        b=BIQxSWhacIP2n6keIDq2fBCIiz/NeV5dSqIsAnqGHBXf0nhIbqKgu82RxfBRT01EId
+         IEx0KBYQLKc8IpQAURa4cE/pZEv/elWfXTUi1y0J0myGsn0weAK/e9zsiFLiwqmkSa1G
+         Qya/3bcdxMdDXAieQTSzO9EIAP3VlvoBrItKWmQrrhNofifl+Ths++o2Ui6bOVJSHI5i
+         OiE60UypesxBBb16YK8ljRnkwBbpXghe2RLaResXnTnElYEZBvAs+pTptSEkxbbKyB+2
+         j1TKduKuAEhW+h2sDJgnFadB+Ssi+9gslhy/PxUex9VeCQKgUIlCTLcuOjFXIxyN7I70
+         aIpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=from:subject:mime-version:date:message-id:to
+         :content-transfer-encoding:dkim-signature;
+        bh=xMlUjh9216AEvokzU4EjPz4d2tdazoscIeLgR6+oggw=;
+        b=mo8u6bqxGvtt81154E9xyw+Cb8AkVf7n5FtdH9dEMinigRARf3hw9Qv7wD0hV4vdGO
+         NDe5FKRWM1C4rpAmrRK3/ox6L8X9cz/U+JPKKX88DkoW059p9kAOHAy8i0RioO1MTFkt
+         EnO/wB4naGOivpIbUhPek6JLZwYfnhX9nfJoAXPH2IFsC0wNG5sJCN3TMG3UYXRiC9T9
+         XW37DkejQcMYr0ny6DedoGyPMAkuwmJKXaJ6hIy9HQMGd0OFO+zZnsQP87GLI8BNQvot
+         MiPjMLTVsdrjDitJQLjUsFtrd+jCEtEZQLCHteG5msqrexZo+hP81W+6rj+2WebGjrtS
+         APdA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@cisco.com header.s=scph0618 header.b="Z/rQ2wtt";
+       spf=pass (google.com: domain of msprvs1=185013yufhmcd=bounces-222523@sparkpost-oid-bounce.cisco.com designates 147.253.211.58 as permitted sender) smtp.mailfrom="msprvs1=185013YUfHmCd=bounces-222523@sparkpost-oid-bounce.cisco.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=cisco.com
+Return-Path: <msprvs1=185013YUfHmCd=bounces-222523@sparkpost-oid-bounce.cisco.com>
+Received: from mta-211-58.sparkpostmail.com (mta-211-58.sparkpostmail.com. [147.253.211.58])
+        by mx.google.com with ESMTPS id c18si1816031pgf.116.2020.08.20.08.52.47
+        for <dvt18012000@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 20 Aug 2020 08:52:47 -0700 (PDT)
+Received-SPF: pass (google.com: domain of msprvs1=185013yufhmcd=bounces-222523@sparkpost-oid-bounce.cisco.com designates 147.253.211.58 as permitted sender) client-ip=147.253.211.58;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@cisco.com header.s=scph0618 header.b="Z/rQ2wtt";
+       spf=pass (google.com: domain of msprvs1=185013yufhmcd=bounces-222523@sparkpost-oid-bounce.cisco.com designates 147.253.211.58 as permitted sender) smtp.mailfrom="msprvs1=185013YUfHmCd=bounces-222523@sparkpost-oid-bounce.cisco.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=cisco.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cisco.com;
+	s=scph0618; t=1597938766; i=@cisco.com;
+	bh=xMlUjh9216AEvokzU4EjPz4d2tdazoscIeLgR6+oggw=;
+	h=Content-Type:To:Message-ID:Date:Subject:From;
+	b=Z/rQ2wttjQORtAd69M1Cuc7oWRv/tsj9mQe1a10Bv4TTMjkxXvlCjdAsP3x67GWv7
+	 7bZmtB/AKEwzw8VcqaVudDHPqiYpykR+dmSOfEbmQFmo5EBXwKCor7L/eaT/vn2vl8
+	 wgzW1YSdLRivvlROVA99+VE9+alrvnviVEznuQqk=
+X-MSFBL: YcgkfHS9GahKSaveshW/DvgrgjXJBSFxW/Fdez3l/dE=|eyJzdWJhY2NvdW50X2l
+	kIjoiMCIsImN1c3RvbWVyX2lkIjoiMjIyNTIzIiwidGVuYW50X2lkIjoic3BjIiw
+	iciI6ImR2dDE4MDEyMDAwQGdtYWlsLmNvbSIsIm1lc3NhZ2VfaWQiOiIwMDI2NGU
+	5YzNlNWYyZjQxMzRjMyJ9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+To: dvt18012000@gmail.com
+Message-ID: <43.3C.16687.E4C9E3F5@al.mta1vrest.cc.prd.sparkpost>
+Date: Thu, 20 Aug 2020 15:52:46 +0000
+MIME-Version: 1.0
+Subject: =?utf-8?B?Q2lzY28gLSBNw6MgeMOhYyBtaW5oIGVtYWls?=
+From: oneidsupport@cisco.com
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"        "http=
+://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://=
+www.w3.org/1999/xhtml">    <head>        <meta http-equiv=3D"Content-Type" =
+content=3D"text/html; charset=3Dutf-8">        <meta name=3D"viewport" cont=
+ent=3D"width=3Ddevice-width, initial-scale=3D1.0"/>        <title>Cisco - X=
+=C3=A1c minh email c=E1=BB=A7a b=E1=BA=A1n</title> <!--[if gte mso 7]><xml>=
+ <o:OfficeDocumentSettings> <o:AllowPNG/> <o:PixelsPerInch>96</o:PixelsPerI=
+nch> </o:OfficeDocumentSettings> </xml><![endif]-->    </head>    <body sty=
+le=3D"color: #58585b; background-color: #f9f9f9; text-align: center;">     =
+   <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width: =
+600px; padding: 56px 81px; margin: auto; margin-top: 22px; background-color=
+: #fff;"> <!--[if mso]> <center> <tr><td> <table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"600"> <![endif]-->            <tbody>    =
+            <tr style=3D"vertical-align: middle;">                    <td c=
+olspan=3D"2" style=3D"width: 100%;text-align: center"> <!--[if mso]> <table=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td><img width=3D"90"=
+ height=3D"70" src=3D"https://identity.cisco.com/ux-app/static/Cisco_Logo_D=
+Blue.png" background=3D"" border=3D"0" alt=3D"Cisco Logo" style=3D"display:=
+ inline-block;"></td></tr></table> <div style=3D"display:none"> <![endif]--=
+> <img class=3D"logo" src=3D"https://identity.cisco.com/ux-app/static/Cisco=
+_Logo_DBlue.png" alt=3D"Bi=C3=AA=CC=89u tr=C6=B0ng cu=CC=89a Cisco" border=
+=3D"0" style=3D"max-width: 90px; width:90px; display: inline-block;" backgr=
+ound=3D"" /> <!--[if mso]> </div> <![endif]-->                    </td>    =
+            </tr>                <tr>                    <td style=3D"width=
+: 100%; height:56px"></td>                </tr>                <tr style=3D=
+"text-align: center;">                    <td colspan=3D"2"> <h2 style=3D"f=
+ont-size: 35px; font-weight: 100; line-height: 48px; margin: 0px"> <span id=
+=3D"userName" style=3D"font-family: CiscoSans, helvetica, arial, sans-serif=
+;">X=C3=A1c minh email c=E1=BB=A7a b=E1=BA=A1n</span> </h2>                =
+    </td>                </tr>                <tr>                    <td s=
+tyle=3D"width: 100%; height:24px"></td>                </tr>               =
+ <tr style=3D"text-align: center;">                    <td>                =
+        <p style=3D"font-size: 16px; line-height: 20px; margin:20px; text-a=
+lign: center"> <span style=3D"font-family: CiscoSans, helvetica, arial, san=
+s-serif;"> S=E1=BB=AD d=E1=BB=A5ng m=C3=A3 n=C3=A0y trong v=C3=B2ng 4 gi=E1=
+=BB=9D </span>                        </p>                        <p style=
+=3D"font-size: 16px; line-height: 20px; margin:0px; text-align: center"> <s=
+trong style=3D"font-family: CiscoSans, helvetica, arial, sans-serif;">77657=
+1</strong>                        </p>                    </td>            =
+    </tr>                <tr>                    <td style=3D"width: 100%; =
+height:48px"></td>                </tr>                <tr style=3D"text-al=
+ign: center;">                    <td colspan=3D"2">                       =
+ <p style=3D"font-size: 12px; line-height: 20px; margin: 0px;"> <span style=
+=3D"font-family: CiscoSans, helvetica, arial, sans-serif;"> B=E1=BA=A1n c=
+=E1=BA=A7n tr=E1=BB=A3 gi=C3=BAp=3F  <a href=3D"https://identity.cisco.com/=
+ui/tenants/global/v1.0/about-ui/contact-us" style=3D"color: #049fd9; text-d=
+ecoration: none;">h=C3=A3y li=C3=AAn h=E1=BB=87 v=E1=BB=9Bi b=E1=BB=99 ph=
+=E1=BA=ADn h=E1=BB=97 tr=E1=BB=A3</a>.               </span>               =
+         </p>                    </td>                </tr>                =
+<tr>                    <td style=3D"width: 100%; height:48px"></td>       =
+         </tr>                <tr>                    <td style=3D"text-ali=
+gn: center; font-weight: 400;"> <!--[if mso]> <table><tr><td><img width=3D"=
+60" height=3D"60" src=3D"https://identity.cisco.com/ux-app/static/oneid_log=
+o.png" alt=3D"OneID Logo" border=3D"0"></td></tr></table> <div style=3D"dis=
+play:none"> <![endif]--> <img src=3D"https://identity.cisco.com/ux-app/stat=
+ic/oneid_logo.png" alt=3D"Bi=E1=BB=83u tr=C6=B0ng c=E1=BB=A7a OneID" style=
+=3D"width:60px;height: 60px;" border=3D"0" /> <!--[if mso]> </div> <![endif=
+]-->                    </td>                </tr>            </tbody>     =
+   </table>        <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+style=3D"width: 600px; padding: 0px 40px; margin: 0 auto; background-color:=
+ #f9f9f9;">            <tbody>                <tr style=3D"vertical-align: =
+middle;">                    <td colspan=3D"2">                        <p s=
+tyle=3D"font-size: 8px; color: #7F7F86;font-family: CiscoSans, helvetica, a=
+rial, sans-serif;line-height: 15px; width:520px; text-align: left;"> B=E1=
+=BA=A3n quy=E1=BB=81n &copy; 2019 Cisco Systems, Inc. M=E1=BB=8Di quy=E1=BB=
+=81n =C4=91=C6=B0=E1=BB=A3c b=E1=BA=A3o l=C6=B0u. Cisco. Cisco Systems v=C3=
+=A0 bi=E1=BB=83u tr=C6=B0ng Cisco Systems l=C3=A0 c=C3=A1c th=C6=B0=C6=A1ng=
+ hi=E1=BB=87u =C4=91=C3=A3 =C4=91=C6=B0=E1=BB=A3c =C4=91=C4=83ng k=C3=BD c=
+=E1=BB=A7a Cisco Systems, Inc. v=C3=A0/ho=E1=BA=B7c c=C3=A1c c=C3=B4ng ty l=
+i=C3=AAn k=E1=BA=BFt c=E1=BB=A7a Cisco Systems, Inc. t=E1=BA=A1i Hoa K=E1=
+=BB=B3 v=C3=A0 m=E1=BB=99t s=E1=BB=91 qu=E1=BB=91c gia kh=C3=A1c. Do Cisco =
+g=E1=BB=ADi thay m=E1=BA=B7t c=C3=B4ng ty li=C3=AAn k=E1=BA=BFt t=E1=BA=A1i=
+ =C4=91=E1=BB=8Ba ph=C6=B0=C6=A1ng c=E1=BB=A7a b=E1=BA=A1n: Cisco Systems, =
+Inc. 170 West Tasman Drive. San Jose, California 95134 N=C6=A1i nh=E1=BA=AD=
+n: B=E1=BB=99 ph=E1=BA=ADn ti=E1=BA=BFp th=E1=BB=8B c=E1=BB=A7a C=C3=B4ng t=
+y                        </p>                    </td>                </tr>=
+            </tbody>        </table>    </body></html>
+

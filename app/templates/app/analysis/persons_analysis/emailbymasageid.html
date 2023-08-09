@@ -1,0 +1,106 @@
+{% extends 'app/analysis/persons_analysis/persons.html' %} 
+{%load static%} 
+{% block person_right_content %}
+
+<link rel="stylesheet" href="{%static 'app/css/person_csv.css'%}" />
+    <div class="navbar-right-content" id="list-menu-right-content-person">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'personinfor' email %}" id="person_infor_nav">Thông tin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'personsent' email %}" id="person_list_to_nav">Thư đã gửi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'person_detail' email %}" id="person_list_from_nav">Thư đã nhận</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="content-right-content-person">
+      
+        <div style="padding:10px">
+            <div class="rounded group group_icon_btn">
+                <a type="submit" class="input-group-text border-0 fff_color icon_30"  href="{%url 'personsent' email%}">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+            {% for email in email_by_masageid %}
+
+            <div class="title_email_by_masageid">
+                  {{ email.Subject }}
+            </div>
+            <div class="user_email_by_masageid">
+              <div class="avatar_email_by_masageid">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="box_infor_email_by_masageid">
+                <div class="sender_name_email_by_masageid">{{email.From}}</div>
+                  <div class="infor_email_by_masageid">
+                    <span class="to_email_by_masageid" >Đến {{email.To}} </span> 
+                    <div class="dropdown dropdown_infor">
+                      <i class="fas fa-caret-down btn_dropdown_infor cursor-pointer" id="dropdownMenu_infor"  data-bs-placement="bottom" title="Tooltip on bottom" data-bs-toggle="dropdown"></i>
+                      <div class="dropdown-menu dropdownMenu_email_by_masageid" aria-labelledby="dropdownMenu_infor">
+                        <div class="row mg-bottom-10">
+                          <div class="col-3 text-right">
+                            <label class="weight-300" >Từ:</label>
+                          </div>
+                          <div class="col-9">
+                            <span class="weight-500">{{email.From}}</span>
+                          </div>
+                        </div>
+                        <div class="row mg-bottom-10">
+                          <div class="col-3 text-right">
+                            <label class="weight-300">Đến:</label>
+                          </div>
+                          <div class="col-9">
+                            <span class="weight-500">{{email.To}}</span>
+                          </div>
+                        </div>
+                        <div class="row mg-bottom-10">
+                          <div class="col-3 text-right">
+                            <label class="weight-300">Ngày:</label>
+                          </div>
+                          <div class="col-9">
+                            <span class="weight-500">{{email.Date}}</span>
+                          </div>
+                        </div>
+                        <div class="row mg-bottom-10">
+                          <div class="col-3 text-right">
+                            <label class="weight-300">Tiêu đề:</label>
+                          </div>
+                          <div class="col-9">
+                            <span class="weight-500">{{email.Subject}}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="ifram_email content_email_by_masageid" >{{email.content_html|safe}}</div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+<script>
+    // Lấy URL hiện tại
+    var currentUrl = window.location.href;
+    // Tách chuỗi trên URL bằng ký tự "/"
+    var urlSegments = currentUrl.split('/');
+    // Lấy giá trị email từ URL (phần cuối cùng trong chuỗi)
+    var email = urlSegments[urlSegments.length - 2];
+    var activeTab_menucontent_person = localStorage.getItem('activeTab_menucontent_person');
+    // Kiểm tra nếu có giá trị, thêm class "active" vào thẻ a tương ứng
+    if (email) {
+      $("a[data-email='"+email + "']").addClass("active");
+    }
+    if (activeTab_menucontent_person) {
+      $('#list-menu-right-content .nav-item a').removeClass('active');
+      $('#' + activeTab_menucontent_person).addClass('active');
+    }
+</script>
+
+{% endblock person_right_content %}

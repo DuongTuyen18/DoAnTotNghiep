@@ -1,0 +1,160 @@
+Delivered-To: nttrang13092000@gmail.com
+Received: by 2002:a5d:4206:0:b0:317:67ab:542f with SMTP id n6csp1322394wrq;
+        Mon, 7 Aug 2023 21:17:58 -0700 (PDT)
+X-Received: by 2002:a67:e3ae:0:b0:444:c49c:a95d with SMTP id j14-20020a67e3ae000000b00444c49ca95dmr5233583vsm.7.1691468278381;
+        Mon, 07 Aug 2023 21:17:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1691468278; cv=none;
+        d=google.com; s=arc-20160816;
+        b=mrbW4yk2+sPfvapfWRWH67F23n/UGGUtxy3qgsDqZlLOshqm8ntYk280GNeDVU5hzK
+         OlEKyyGuigfnjgQAzoPb8dNj2db/XyCowwj6GxySszzXmCurF3DgzqtVxcUu+WxQ3b2A
+         OHBj0dp1sqeofkwdy/WchZV1995N1ygHqri+V83RBVTo33oDedF0f0kDX6rifgssIafk
+         EgXbQiMhMQAMncWdWf+Tak/XeZukgNGIz5mVxRizOaoOvv7TSZpSud+hL69r3I3xxcm0
+         hCvU8Qo7vZ8H4f4xXvZW2ud5XW4AjoqaUOi2jJAIjurYUostxHBVi7DejGjrDz3RSzHF
+         qeAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=VwLWcJuPf4AXaOSQv2zv2VlA+gB0G9tK/6tvlvDme9M=;
+        fh=45DYBBrC+Vj2c+meqi+pTHz/Pir6zzaxCWF5fE3FlHM=;
+        b=MdrX5ShnqRrxh3WW4l0o+DlSHrIpd3DiY5DQJbfUWH6SJgAq3NZTokp0rKvlzi1zHG
+         VXWNnCkCeCcRs3W5lC8x8tyhjwMZCQQNONzo77in6EpZHcT2gJgdXDh3pGbYrsTEarfv
+         AVS/rlurQl0GuvXa8eVZ6gWEoBEhf/f/KF5jgG60yXpab0JKyeFDBMpeB3XmS2DAFkMt
+         2LkkgwAxrfyFTDXjosli2RKKlGy5W4geT3LyHVBENS0XSTTTpeE/W5h0pU4sLrwoPnlE
+         6tpU4Pn9xMmAthttVbJ4c6vpjzSpHTNV1FLmxOE9cP0O0fD+QoZt/WNZpgSAiK8fFptY
+         enbg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20221208 header.b="D0JxfpN/";
+       spf=pass (google.com: domain of chuthilinh189@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=chuthilinh189@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <chuthilinh189@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id ei24-20020a056102471800b0044352c60ab2sor1111904vsb.12.2023.08.07.21.17.58
+        for <nttrang13092000@gmail.com>
+        (Google Transport Security);
+        Mon, 07 Aug 2023 21:17:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of chuthilinh189@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20221208 header.b="D0JxfpN/";
+       spf=pass (google.com: domain of chuthilinh189@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=chuthilinh189@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691468278; x=1692073078;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VwLWcJuPf4AXaOSQv2zv2VlA+gB0G9tK/6tvlvDme9M=;
+        b=D0JxfpN/9W1pAqKvaSq/oTLPD6cILN8v2zE+ZQDwLMwYGf/l2XaGXJEubUN0JMcJ6v
+         /W+4pVpCv3yIW35JMo3+uIn7QTopCXFdOiPnOzsjRrcUpEPsWakXEDlyd/1MYeaxbk5K
+         q8FXPNlhF470PZ2O/ijyE6PNk2abWdT9gg9bBhQBMSDIxVtGV5G+PrNNhYnnQ0Xq2U+v
+         IaYnroNfbTM9u/uMCRuk0cYSfq5eD8e8XWIXDUHJGdUwqaNXr9R+pVX/NMZ3dVLENT9N
+         7RjwCj1HK7u02S4RD8B7AvIygH786TKdAMl1PUmWi1afe4GLu5oBw0Slq0t95F4rGHnG
+         TONQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691468278; x=1692073078;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VwLWcJuPf4AXaOSQv2zv2VlA+gB0G9tK/6tvlvDme9M=;
+        b=boJ7dV3tGxHJEDxHcOcign6rURs4JdAwn/p7BtnlZ2+boQBZx8wC8pvGIZ2gfk3McH
+         xj8mXYtADyqrU3RYeVNQDEiVARlHtKO3FXsZ/O8hPxK2mbxBwkodE5ieeeoQjYgLE2iR
+         KRJMOOvBLZXTGqygycdcNPRUet1WmvQwCvsmSf6yzqBrQ+kaC5ZygyZKBn/y+uCfMXJQ
+         brcMHYGJ97s60xt/RgJt6kF59pIYCcsIwvVqYHjybyyFMywPGjT/nC5szTRFC29Dk3DB
+         iQJYL/hykJRdKYW3ZO/gOZtwaANYmvuNBuDr54oKgkrf4VjucBi5tAZRGZIw+LFnB6I7
+         FeyQ==
+X-Gm-Message-State: AOJu0YwojL1ULTKq7JoYBVTLY2Xkh9BcHp3fFdNoc0KhSIpiGArDQTFG
+	fdzLs8fHTmnXAHz+pU8ZBMb9yK3vvL91wEGU14ViFD9CXSiiVQ==
+X-Google-Smtp-Source: AGHT+IEiJSRqGQuLr5eqZeRWEtbmqFkMnimM+QtBbFYH0pBZUdrJ15B/8vvR88DHtJfO3R/k7/0upHEhifT/K7s5oQo=
+X-Received: by 2002:a67:ef91:0:b0:447:7d9d:7b67 with SMTP id
+ r17-20020a67ef91000000b004477d9d7b67mr6002794vsp.33.1691468277741; Mon, 07
+ Aug 2023 21:17:57 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?B?TGluaCBDaHUgVGjhu4s=?= <chuthilinh189@gmail.com>
+Date: Tue, 8 Aug 2023 11:17:46 +0700
+Message-ID: <CAHgpuZVkk4bcoveKdcH03KRbPArO4RQmaTpWVOdtFx+WqxYpBw@mail.gmail.com>
+Subject: =?UTF-8?B?VGjDtG5nIGLDoW8gbOG7i2NoIG5naOG7iSBU4bq/dCBj4bunYSBjw7RuZyB0eSBBQkM=?=
+To: nttrang13092000@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000d7fb9a060261a548"
+
+--000000000000d7fb9a060261a548
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+S8OtbmggY2jDoG8gcXXDvSBraMOhY2ggaMOgbmcgdGjDom4gdGhp4bq/dCAgY+G7p2EgY8O0bmcg
+dHkgQUJDLA0KDQpM4budaSDEkeG6p3UgdGnDqm4sIGPDtG5nIHR5IEFCQyBjaMO6bmcgdMO0aSB4
+aW4gZ+G7rWkgbOG7nWkgY+G6o20gxqFuIHPDonUgc+G6r2MgxJHhur9uIHF1w70NCmtow6FjaCBo
+w6BuZyDEkcOjIGx1w7RuIMSR4buTbmcgaMOgbmgsIOG7p25nIGjhu5kgdsOgIHRpbiB0xrDhu59u
+ZyBs4buxYSBjaOG7jW4gc+G6o24gcGjhuqltIGThu4tjaCB24bulDQpkbyBjw7RuZyB0eSBBQkMg
+Y3VuZyBj4bqlcC4NCg0KS+G7syBuZ2jhu4kgxJHDs24gVOG6v3Qgc+G6r3AgxJHhur9uLCDEkeG7
+gyB0aHXhuq1uIGzhu6NpIGNobyB2aeG7h2MgbGnDqm4gaOG7hywgdHJhbyDEkeG7lWkgY8O0bmcg
+dmnhu4djLA0KY8O0bmcgdHkgQUJDIHhpbiB0csOibiB0cuG7jW5nIHRow7RuZyBiw6FvIGzhu4tj
+aCBuZ2jhu4kgVOG6v3QgTmd1ecOqbiDEkMOhbiBuxINtIDIwMjQgdOG7m2kNCnF1w70ga2jDoWNo
+IGjDoG5nOg0KDQpUaOG7nWkgZ2lhbiBjaMOtbmggdGjhu6ljIG5naOG7iSBU4bq/dCBOZ3V5w6pu
+IMSQw6FuIDogdOG7qyBuZ8OgeSAwMS8wMyDEkeG6v24gbmfDoHkgMDMvMDMNCg0KVGjhu51pIGdp
+YW4gbMOgbSB2aeG7h2MgdHLhu58gbOG6oWkgOiBuZ8OgeSAwNS8wMy4NCg0KVOG7lW5nIGPhu5lu
+ZyBuZ2jhu4kgVOG6v3QgOiA1IG5nw6B5DQoNClRyb25nIHRo4budaSBnaWFuIG5naOG7iSBU4bq/
+dCBOZ3V5w6puIMSQw6FuLCBu4bq/dSBj4bqnbiBo4buXIHRy4bujIGfhuqVwLCBRw7p5IGtow6Fj
+aCBow6BuZyB2dWkNCmzDsm5nIGxpw6puIGjhu4cgaG90bGluZQ0KaHR0cHM6Ly90YWxlbnRib2xk
+LmNvbS8xMC1tYXUtZW1haWwtZ3VpLWtoYWNoLWhhbmctdGhvbmctZHVuZy1uaGF0LW1vaS10aG9p
+LWRhaS0tMTIyOS1ucw0KLg0KDQpLw61uaCBjaMO6YyBRdcO9IGtow6FjaCBow6BuZyB2w6AgZ2lh
+IHF1eeG6v24gbsSDbSBt4bubaQ0KDQpBbiBraGFuZyB0aOG7i25oIHbGsOG7o25nIOKAkyBW4bqh
+biBz4buxIG5oxrAgw70g4oCTIEPDoXQgdMaw4budbmcgdGjhu4tuaCB2xrDhu6NuZw0KDQpUaMOi
+biDDoWksDQoNCk5nw6B5IDggdGjDoW5nIDggbsSDbSAyMDIzLg0KDQpDw5RORyBUWSBBQkMNCg==
+--000000000000d7fb9a060261a548
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p dir=3D"ltr" style=3D"box-sizing:border-box;margin:0px;f=
+ont-size:16px;line-height:26px;letter-spacing:0.8px;color:rgb(51,51,51);pad=
+ding-top:20px;font-family:Roboto,sans-serif">K=C3=ADnh ch=C3=A0o qu=C3=BD k=
+h=C3=A1ch h=C3=A0ng th=C3=A2n thi=E1=BA=BFt=C2=A0 c=E1=BB=A7a c=C3=B4ng ty =
+ABC,</p><p dir=3D"ltr" style=3D"box-sizing:border-box;margin:0px;font-size:=
+16px;line-height:26px;letter-spacing:0.8px;color:rgb(51,51,51);padding-top:=
+20px;font-family:Roboto,sans-serif">L=E1=BB=9Di =C4=91=E1=BA=A7u ti=C3=AAn,=
+ c=C3=B4ng ty ABC ch=C3=BAng t=C3=B4i xin g=E1=BB=ADi l=E1=BB=9Di c=E1=BA=
+=A3m =C6=A1n s=C3=A2u s=E1=BA=AFc =C4=91=E1=BA=BFn qu=C3=BD kh=C3=A1ch h=C3=
+=A0ng =C4=91=C3=A3 lu=C3=B4n =C4=91=E1=BB=93ng h=C3=A0nh, =E1=BB=A7ng h=E1=
+=BB=99 v=C3=A0 tin t=C6=B0=E1=BB=9Fng l=E1=BB=B1a ch=E1=BB=8Dn s=E1=BA=A3n =
+ph=E1=BA=A9m d=E1=BB=8Bch v=E1=BB=A5 do c=C3=B4ng ty ABC cung c=E1=BA=A5p.<=
+/p><p dir=3D"ltr" style=3D"box-sizing:border-box;margin:0px;font-size:16px;=
+line-height:26px;letter-spacing:0.8px;color:rgb(51,51,51);padding-top:20px;=
+font-family:Roboto,sans-serif">K=E1=BB=B3 ngh=E1=BB=89 =C4=91=C3=B3n T=E1=
+=BA=BFt s=E1=BA=AFp =C4=91=E1=BA=BFn, =C4=91=E1=BB=83 thu=E1=BA=ADn l=E1=BB=
+=A3i cho vi=E1=BB=87c li=C3=AAn h=E1=BB=87, trao =C4=91=E1=BB=95i c=C3=B4ng=
+ vi=E1=BB=87c, c=C3=B4ng ty ABC xin tr=C3=A2n tr=E1=BB=8Dng th=C3=B4ng b=C3=
+=A1o l=E1=BB=8Bch ngh=E1=BB=89 T=E1=BA=BFt Nguy=C3=AAn =C4=90=C3=A1n n=C4=
+=83m 2024 t=E1=BB=9Bi qu=C3=BD kh=C3=A1ch h=C3=A0ng:</p><p dir=3D"ltr" styl=
+e=3D"box-sizing:border-box;margin:0px;font-size:16px;line-height:26px;lette=
+r-spacing:0.8px;color:rgb(51,51,51);padding-top:20px;font-family:Roboto,san=
+s-serif">Th=E1=BB=9Di gian ch=C3=ADnh th=E1=BB=A9c ngh=E1=BB=89 T=E1=BA=BFt=
+ Nguy=C3=AAn =C4=90=C3=A1n : t=E1=BB=AB ng=C3=A0y 01/03 =C4=91=E1=BA=BFn ng=
+=C3=A0y 03/03</p><p dir=3D"ltr" style=3D"box-sizing:border-box;margin:0px;f=
+ont-size:16px;line-height:26px;letter-spacing:0.8px;color:rgb(51,51,51);pad=
+ding-top:20px;font-family:Roboto,sans-serif">Th=E1=BB=9Di gian l=C3=A0m vi=
+=E1=BB=87c tr=E1=BB=9F l=E1=BA=A1i : ng=C3=A0y 05/03.</p><p dir=3D"ltr" sty=
+le=3D"box-sizing:border-box;margin:0px;font-size:16px;line-height:26px;lett=
+er-spacing:0.8px;color:rgb(51,51,51);padding-top:20px;font-family:Roboto,sa=
+ns-serif">T=E1=BB=95ng c=E1=BB=99ng ngh=E1=BB=89 T=E1=BA=BFt : 5 ng=C3=A0y<=
+/p><p dir=3D"ltr" style=3D"box-sizing:border-box;margin:0px;font-size:16px;=
+line-height:26px;letter-spacing:0.8px;color:rgb(51,51,51);padding-top:20px;=
+font-family:Roboto,sans-serif">Trong th=E1=BB=9Di gian ngh=E1=BB=89 T=E1=BA=
+=BFt Nguy=C3=AAn =C4=90=C3=A1n, n=E1=BA=BFu c=E1=BA=A7n h=E1=BB=97 tr=E1=BB=
+=A3 g=E1=BA=A5p, Q=C3=BAy kh=C3=A1ch h=C3=A0ng vui l=C3=B2ng li=C3=AAn h=E1=
+=BB=87 hotline <a href=3D"https://talentbold.com/10-mau-email-gui-khach-han=
+g-thong-dung-nhat-moi-thoi-dai--1229-ns">https://talentbold.com/10-mau-emai=
+l-gui-khach-hang-thong-dung-nhat-moi-thoi-dai--1229-ns</a>.</p><p dir=3D"lt=
+r" style=3D"box-sizing:border-box;margin:0px;font-size:16px;line-height:26p=
+x;letter-spacing:0.8px;color:rgb(51,51,51);padding-top:20px;font-family:Rob=
+oto,sans-serif">K=C3=ADnh ch=C3=BAc Qu=C3=BD kh=C3=A1ch h=C3=A0ng v=C3=A0 g=
+ia quy=E1=BA=BFn n=C4=83m m=E1=BB=9Bi</p><p dir=3D"ltr" style=3D"box-sizing=
+:border-box;margin:0px;font-size:16px;line-height:26px;letter-spacing:0.8px=
+;color:rgb(51,51,51);padding-top:20px;font-family:Roboto,sans-serif">An kha=
+ng th=E1=BB=8Bnh v=C6=B0=E1=BB=A3ng =E2=80=93 V=E1=BA=A1n s=E1=BB=B1 nh=C6=
+=B0 =C3=BD =E2=80=93 C=C3=A1t t=C6=B0=E1=BB=9Dng th=E1=BB=8Bnh v=C6=B0=E1=
+=BB=A3ng</p><p dir=3D"ltr" style=3D"box-sizing:border-box;margin:0px;font-s=
+ize:16px;line-height:26px;letter-spacing:0.8px;color:rgb(51,51,51);padding-=
+top:20px;font-family:Roboto,sans-serif">Th=C3=A2n =C3=A1i,</p><p dir=3D"ltr=
+" style=3D"box-sizing:border-box;margin:0px;font-size:16px;line-height:26px=
+;letter-spacing:0.8px;color:rgb(51,51,51);padding-top:20px;font-family:Robo=
+to,sans-serif">Ng=C3=A0y 8 th=C3=A1ng 8 n=C4=83m 2023.</p><p dir=3D"ltr" st=
+yle=3D"box-sizing:border-box;margin:0px;font-size:16px;line-height:26px;let=
+ter-spacing:0.8px;color:rgb(51,51,51);padding-top:20px;font-family:Roboto,s=
+ans-serif">C=C3=94NG TY ABC</p></div>
+
+--000000000000d7fb9a060261a548--

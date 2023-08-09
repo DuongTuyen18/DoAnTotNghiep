@@ -37,3 +37,11 @@
     height: calc(100% - 250px);
     overflow: auto;
 }
+
+#list-links-extract{
+    margin-left: 0px;
+    border: 1px solid rgba(58, 57, 57, 0.3); 
+    height: calc(100% - 200px);
+    width: 1000px;
+    overflow: auto;
+}

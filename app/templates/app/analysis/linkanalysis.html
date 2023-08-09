@@ -1,0 +1,211 @@
+{% extends 'app/analysis/analysis.html' %}
+{%load static%}
+{% block wrapper-analysis %}
+
+<script src="{%static 'app/js/emaildatafile.js'%}"></script>
+    <div class="header-content">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand header-content-title">{{folder_name}}/Analysis/Tabledataframe</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="row content-analysis">
+        <div style="padding: 0px;" class="col-md-3 col-left">
+            <div class="left-content-linkanalysic">
+            <div class="list-group  list-file-email">
+                <div id="left-content-header-email-linkanalysis">
+                <a id="box-emaildress-header"  class="list-group-item item-file-email ">
+                    <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+                    <div class="box-content-header">
+                    <div class="box-title-header">Địa chỉ email</div> 
+                    <div class="box-selectall-file">
+                        <input class="form-check-input" type="checkbox" id="icon_select_all">
+                        <label class="form-check-label" for="icon_select_all">
+                        Select all
+                        </label>
+                    </div>
+                    <div id="box-action-header" class="box-action-header">
+                        <i class="fa fa-check-square fa-lg"></i>
+                    </div>
+                    </div>
+                </a>
+                </div>
+                <div id="left-content-list-email-linkanalysis">
+                {% for  email in  list_form_and_to%}
+                <a id="box-emaildress{{ forloop.counter }}"  class="list-group-item item-file-email ">
+                    <div class="box-icon-file">
+                    <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="box-infor-file">
+                    {{email}}
+                    </div>
+                </a>
+                {% endfor %}
+                </div>
+
+            </div>
+            </div>
+        </div>
+        <div style="padding: 0px; "  class="col-md-9 col-right">
+            <div id="canvas_link" style="position: relative;" class="right-content-linkanalysic"></div>
+        </div>
+    </div> 
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#icon_select_all").click(function() {
+          var isChecked = $(this).prop("checked");
+          $("#left-content-list-email-linkanalysis input[type='checkbox']").prop("checked", isChecked);
+        });
+    
+        $("#box-action-header").click(function(){
+            // Tạo một mảng để lưu trữ danh sách email được chọn
+            var selectedEmails = [];
+            // Duyệt qua tất cả các checkbox
+            $("#left-content-list-email-linkanalysis input[type='checkbox']").each(function() {
+            // Kiểm tra nếu checkbox được chọn
+              if ($(this).is(":checked")) {
+                  // Lấy giá trị của email tương ứng
+                  var email = $(this).closest(".list-group-item").find(".box-infor-file").text().trim();
+                  // Thêm email vào danh sách
+                  selectedEmails.push(email);
+              }
+            });
+            var list_email = selectedEmails;
+            $.ajax({
+                url: "/emaildatafile/linkanalysisjson",
+                type: "GET",
+                data: {
+                    list_email: list_email
+                  },
+                success: function(response) {
+
+                    var linkAnalysisData = JSON.parse(response);
+                    $("#canvas_link").html('');
+                    var width = $("#canvas_link").width();
+                    var height = $("#canvas_link").height();
+                    // Thêm phần tử tooltip vào #canvas_link
+                    d3.select("#canvas_link")
+                    .append("div")
+                    .attr("class", "tooltip")
+                    .style("opacity", 0); // Bạn có thể đặt opacity ban đầu là 0
+                    // Tạo đối tượng SVG và gán nó cho phần tử có id là "canvas"
+                    
+                    var svg = d3.select("#canvas_link")
+                    .append("svg")  
+                    .style("width", width)
+                    .style("height", height)  
+    
+                      // Xác định độ rộng và chiều cao của canvas
+                    var width = svg.node().clientWidth;
+                    var height = svg.node().clientHeight;
+                    // Thiết lập thông tin về đồ thị (nodes và edges) từ dữ liệu linkAnalysisData
+                    var nodes = linkAnalysisData.nodes;
+                    var edges = linkAnalysisData.links;
+                    edges.forEach(function(d) {
+                      d.count = + d.count; // Chuyển đổi giá trị count sang kiểu số
+                    });
+    
+                  var simulation = d3.forceSimulation(nodes)
+                  .force("link", d3.forceLink(edges).id(function(d) { return d.id; }).distance(200)) // Thay đổi giá trị distance
+                  .force("charge", d3.forceManyBody().strength(-2000))
+                  .force("center", d3.forceCenter((width / 2)-100, height / 2))
+                  .force("x", d3.forceX(width / 2).strength(0.1).x(d => Math.max(0, Math.min(width, d.x)))) // Giới hạn vị trí x của các node trong khung
+                  .force("y", d3.forceY(height / 2).strength(0.2).y(d => Math.max(0, Math.min(height, d.y)))) // Giới hạn vị trí y của các node trong khung
+                  
+                  simulation.on("tick", function() {
+                    // Cập nhật vị trí của các cạnh và nút dựa trên thông tin của simulation
+                    link.attr("x1", function(d) { return d.source.x; })
+                      .attr("y1", function(d) { return d.source.y; })
+                      .attr("x2", function(d) { return d.target.x; })
+                      .attr("y2", function(d) { return d.target.y; });
+                    text_count.attr("x", function(d) { return (d.source.x + d.target.x) /2; })
+                      .attr("y", function(d) { return (d.source.y+d.target.y)/2; });
+                    circle_text.attr("cx", function(d) { return (d.source.x + d.target.x) /2; })
+                      .attr("cy", function(d) { return (d.source.y+d.target.y)/2; });
+                    // Cập nhật vị trí của các node và text
+                    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+                  });
+    
+                  // Tạo một phần tử <g> để nhóm <line> và <text>
+                    var linkGroup = svg.selectAll(".link-group")
+                    .data(edges)
+                    .enter()
+                    .append("g")
+                    .attr("class", "link-group");
+                    // Vẽ cạnh (line)
+                    var link = linkGroup.append("line")
+                      .attr("class", "link")
+                      .style("stroke", "gray")
+                      .style("stroke-width", 2);
+                    var circle_text = linkGroup.append("circle")
+                      .attr("class", "count-circle")
+                      .style("fill", "blue") // Đổi màu của hình tròn
+                      .attr("r", 8); // Đặt bán kính của hình tròn
+                    var text_count = linkGroup.append("text")
+                      .attr("class", "counttext")
+                      .style("text-anchor", "middle") // Căn giữa theo trục x
+                      .style("dominant-baseline", "middle") // Căn giữa theo trục y
+                      .style("font-weight", "bold") // Đặt độ đậm
+                      .style("font-size", "12px") // Đặt kích thước
+                      .style("fill", "white") 
+                      .text(function(d) { return d.count; });
+    
+                  // Vẽ nút (nodes)
+                  var node = svg.selectAll(".node")
+                    .data(nodes)
+                    .enter()
+                    .append("g")
+                    .attr("class", "node cursor-pointer");
+
+                  // Vẽ hình tròn cho mỗi node
+                  node.append("image")
+                    .attr("xlink:href", personImageUrl)  // Đường dẫn đến hình ảnh của người
+                    .attr("x", -10)  // Đặt vị trí x của hình ảnh
+                    .attr("y", -10)  // Đặt vị trí y của hình ảnh
+                    .attr("width", 30)  // Đặt chiều rộng của hình ảnh
+                    .attr("height", 30)  // Đặt chiều cao của hình ảnh\
+                    .on("mouseover", function(d) {
+                      // Lấy vị trí của node
+                      var nodeX = d.x;
+                      var nodeY = d.y;
+                      // Hiển thị tooltip dưới chân của node
+                      d3.select(".tooltip")
+                          .style("opacity", 1)
+                          .html(`Email: ${d.id}`)
+                          .style("left", (nodeX + "px"))
+                          .style("top", (nodeY + 30 + "px")); // Điều chỉnh vị trí dưới chân node
+                      })
+                      .on("mouseout", function(d) {
+                          // Ẩn tooltip khi di chuột ra khỏi node
+                          d3.select(".tooltip").style("opacity", 0);
+                      })
+                  
+                      .on("click", function(d) {
+                          // Xử lý sự kiện khi nút được click
+                          var email = d.id;  // Đây là giả định bạn lấy email từ d.id, bạn cần điều chỉnh tương ứng
+                          var url = "/emaildatafile/analysis/personinfor/" + email;
+                          window.open(url, '_blank');
+                      });
+                    
+                  // Hiển thị tên của mỗi node
+                  node.append("text")
+                    .attr("dx", 0) // Dịch chuyển vị trí của text
+                    .attr("dy", -10)
+                    .text(function(d) { return d.id; });
+                  
+
+                },
+                error: function(xhr, errmsg, err) {
+                    // Xử lý lỗi nếu có
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        })
+    });
+    
+</script>
+{% endblock wrapper-analysis %}

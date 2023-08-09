@@ -1,0 +1,136 @@
+{% extends 'app/emailcsvfile/persons/persons.html' %} 
+
+{%load static%} 
+{% block person_detail %}
+<link rel="stylesheet" href="{%static 'app/css/person_csv.css'%}" />
+    <div class="navbar-right-content" id="list-menu-right-content-person">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'person_detail' email %}" id="person_infor_nav">Thông tin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'person_sent' email %}" id="person_list_to_nav">Thư đã gửi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'person_detail' email %}" id="person_list_from_nav">Thư đã nhận</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="content-right-content-person">
+      
+        <div style="padding:10px" class="list-group">
+          <form  id="from_search" action="{% url 'person_sent' email %}" method="get" class="d-flex">
+            <div class="btn-group mgb-10" role="group" aria-label="Button group with nested dropdown">
+
+              <div class="dropdown mgr-10">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="btn_dropdown_choose_date" data-bs-toggle="dropdown" aria-expanded="false">
+                  {% if request.GET.daterangetype %}
+                    {% if  request.GET.daterangetype == "all_date"%}
+                      Mọi lúc
+                    {% elif request.GET.daterangetype == "older_than_week" %}
+                      Hơn 1 tuần trước
+                    {% elif request.GET.daterangetype == "older_than_month" %}
+                      Hơn 1 tháng trước
+                    {% elif request.GET.daterangetype == "older_than_year" %}
+                      Hơn 1 năm trước
+                    {% endif %}
+                  {% else %}Mọi lúc {% endif %}</button>
+                <input type="hidden" name="daterangetype" id="daterangetype" value="{% if request.GET.daterangetype %}{{ request.GET.daterangetype }}{% else %}all_date{% endif %}"/>
+                <ul class="dropdown-menu" aria-labelledby="btn_dropdown_choose_date">
+                  <li class="cursor-pointer"><a class=" dropdown-item list-group-item list-group-item-action list-group-item-light border-none" id="all_date" onclick="changeDropdownChooseDate('all_date','Mọi lúc')">Mọi lúc</a></li>
+                  <li class="cursor-pointer"><a class=" dropdown-item list-group-item list-group-item-action list-group-item-light border-none" id="older_than_week" onclick="changeDropdownChooseDate('older_than_week','Hơn 1 tuần trước')">Hơn 1 tuần trước</a></li>
+                  <li class="cursor-pointer"><a class=" dropdown-item list-group-item list-group-item-action list-group-item-light border-none" id="older_than_month" onclick="changeDropdownChooseDate('older_than_month','Hơn 1 tháng trước')">Hơn 1 tháng trước</a></li>
+                  <li class="cursor-pointer"><a class=" dropdown-item list-group-item list-group-item-action list-group-item-light border-none" id="older_than_year" onclick="changeDropdownChooseDate('older_than_year','Hơn 1 năm trước')">Hơn 1 năm trước</a></li>
+                </ul>
+              </div>
+
+              <div class="dropdown mgr-10">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="btn_dropdown_choose_received" data-bs-toggle="dropdown" aria-expanded="false">
+                  {% if request.GET.todisplay %}
+                    {% if  request.GET.todisplay == "null_email"%}
+                      Đến
+                    {% else %}
+                      Đến {{request.GET.todisplay}}
+                    {% endif %}
+                  {% else %}Đến {% endif %}</button>
+                </button>
+                <input type="hidden" name="todisplay" id="todisplay" value="{% if request.GET.todisplay %}{{ request.GET.todisplay }}{% else %}null_email{% endif %}"/>
+                
+                <ul class="dropdown-menu " aria-labelledby="btn_dropdown_choose_received">
+                    {% if list_received%}
+                      <li class="cursor-pointer">
+                        <a class=" dropdown-item list-group-item list-group-item-action list-group-item-light border-none" onclick= "changeDropdownChooseEmail('null_email')">Tất cả</a>
+                      </li>
+                      {% for received in list_received %}
+                        <li class="cursor-pointer">
+                          <a class=" dropdown-item list-group-item list-group-item-action list-group-item-light border-none" onclick= "changeDropdownChooseEmail('{{received.to}}')">{{received.to}}</a>
+                        </li>
+                      {% endfor %}
+                    {% else %}
+                      <li class="cursor-pointer"><a class=" dropdown-item list-group-item list-group-item-action list-group-item-light border-none">Không có email nào</a></li>
+                    {% endif %}
+                </ul>
+              </div>
+              <div class="dropdown mgr-10">
+                <button class="btn btn-secondary" onclick="submitForm_filter()" aria-expanded="false">Lọc</button>
+              </div>
+
+
+            </div>
+          </form>
+          {% for email_sent in list_email_sent %}
+            <a class="list-group-item list-group-item-action cursor-pointer" aria-current="true">
+              <div class="d-flex justify-content-between">
+                <span  class="mb-1 display_names"><i style="margin-right: 10px" class="far fa-file-code fa-lg"></i>{{email_sent.Sender_name}}</span>
+                <div class="box_content_email">
+                  <span class="title_email">{{email_sent.Subject}}</span>
+                  <span class="Zt">&nbsp;-&nbsp;</span>
+                  <span class="content_email">{{email_sent.Content}}</span>
+                </div>
+                <span class="date_time_email">{{ email_sent.Date}}</span>
+              </div>
+            </a>
+          {% endfor %}
+
+          </div>
+    </div>
+<script>
+    // Lấy URL hiện tại
+    var currentUrl = window.location.href;
+    // Tách chuỗi trên URL bằng ký tự "?"
+    var urlParams = currentUrl.split('?');
+    var emailSegment = urlParams[0]; // Phần trước ký tự "?"
+    // Tách đoạn email từ phần trước ký tự "?"
+    var email = emailSegment.split('/').pop();
+    var activeTab_menucontent_person = localStorage.getItem('activeTab_menucontent_person');
+    // Kiểm tra nếu có giá trị, thêm class "active" vào thẻ a tương ứng
+    if (email) {
+      $("a[data-email='"+email + "']").addClass("active");
+    }
+    if (activeTab_menucontent_person) {
+      $('#list-menu-right-content .nav-item a').removeClass('active');
+      $('#' + activeTab_menucontent_person).addClass('active');
+    }
+    
+    function changeDropdownChooseDate(daterangetype,date_text) {
+      $("#btn_dropdown_choose_date").html(date_text+' ');
+      $("#daterangetype").val(daterangetype);
+    }
+
+    function changeDropdownChooseEmail(email){
+      debugger
+      if(email=="null_email"){
+        $("#btn_dropdown_choose_received").html('Đến ');
+      }
+      else{
+        $("#btn_dropdown_choose_received").html('Đến ' + email + ' ');
+      }
+      $("#todisplay").val(email);
+    }
+    function submitForm_filter() {
+      $("#from_search").submit();
+    }
+
+</script>
+{% endblock person_detail %}

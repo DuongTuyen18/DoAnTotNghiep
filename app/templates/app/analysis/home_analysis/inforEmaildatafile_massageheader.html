@@ -1,0 +1,19 @@
+{% extends 'app/analysis/home_analysis/inforEmaildatafile.html' %}
+{%load static%}
+{% block content-right-content %}
+<div id="box_message_header">
+  {% for key, value in infor_email.message_header %}
+    <p>{{ key }}: {{ value }}</p>
+  {% endfor %}
+</div>
+<script>
+  $(document).ready(function () {
+        var currentUrl = window.location.href;
+        var messageid = currentUrl.split('/').pop();
+        messageid = decodeURIComponent(messageid);
+        $("a[data-messageid='"+messageid + "']").addClass("active");
+        $('#list-menu-right-content .nav-item a').removeClass('active');
+        $('#' + "inforemail_massageheader").addClass('active');
+    })
+</script>
+{% endblock content-right-content %}

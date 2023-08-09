@@ -1,195 +1,199 @@
 {% extends 'app/emailcsvfile/csvdatafile.html' %} {%load static%} 
 {% block content-csvdatafile %}
-<div style="height: 50px" class="header-content">
-  <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
-    <div style="height: 100%; padding: 0px" class="container-fluid">
-      <a id="name-export" class="navbar-brand">{{filecsv_name}}/Dashboard</a>
+
+<div class="header-content">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a id="name-export" class="navbar-brand header-content-title">{{filecsv_name}}/Dashboard</a>
     </div>
   </nav>
 </div>
-<div class="container-dashboard content-emailcsvfile py-4">
+<div class="content-analysis">
+  <div class="container-dashboard py-4">
 
-  <div class="offcanvas offcanvas-bottom"  tabindex="-1" id="offcanvas_emailform_detail" data-bs-keyboard="false" data-bs-backdrop="false" style=" position: absolute;width: auto !important;height:50%">
-    <div class="offcanvas-header">
-        <h6 class="offcanvas-title  d-none d-sm-block" >Thông tin email </h6>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <hr style="margin:2px 0 !important"  class="horizontal gray-light">
-
-    <div id="offcanvas-content" class="offcanvas-body px-0">
-      <div class="row" style="margin: 0px 0px !important;">
-
-        <div class="col-12 col-xl-4">
-          <div class="card-body p-3">
-            <ul class="list-group">
-              <li class="list-group-item border-0 ps-0 pt-0 text-sm"><h6>Thông tin email <strong class="title_table_sender_from"></strong></h6>  </li>
-              <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Người gửi:</strong> &nbsp;<label id="fromemail_sender_name"></label></li>
-              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email gửi:</strong> &nbsp; <label id="fromemail_sender_email"></label></li>
-              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số lần gửi:</strong> &nbsp; <label id="fromemail_count"></label></li>
-              <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Tình trạng email:</strong> &nbsp; <label id="fromemail_status">Còn hoạt động</label></li>
-            </ul>
+    <div class="offcanvas offcanvas-bottom"  tabindex="-1" id="offcanvas_emailform_detail" data-bs-keyboard="false" data-bs-backdrop="false" style=" position: absolute;width: auto !important;height:50%">
+      <div class="offcanvas-header">
+          <h6 class="offcanvas-title  d-none d-sm-block" >Thông tin email </h6>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <hr style="margin:2px 0 !important"  class="horizontal gray-light">
+  
+      <div id="offcanvas-content" class="offcanvas-body px-0">
+        <div class="row" style="margin: 0px 0px !important;">
+  
+          <div class="col-12 col-xl-4">
+            <div class="card-body p-3">
+              <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><h6>Thông tin email <strong class="title_table_sender_from"></strong></h6>  </li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Người gửi:</strong> &nbsp;<label id="fromemail_sender_name"></label></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email gửi:</strong> &nbsp; <label id="fromemail_sender_email"></label></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số lần gửi:</strong> &nbsp; <label id="fromemail_count"></label></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Tình trạng email:</strong> &nbsp; <label id="fromemail_status">Còn hoạt động</label></li>
+              </ul>
+            </div>
           </div>
-        </div>
-
-        <div class="col-12 col-xl-4">
-          <div class="card-body p-3">
-            <div class="card-header pb-0">
-              <div class="row">
-                <div class="col-lg-12 col-12">
-                  <h6>Danh sách những email nhận thư từ <strong class="title_table_sender_from"></strong></h6>
+  
+          <div class="col-12 col-xl-4">
+            <div class="card-body p-3">
+              <div class="card-header pb-0">
+                <div class="row">
+                  <div class="col-lg-12 col-12">
+                    <h6>Danh sách những email nhận thư từ <strong class="title_table_sender_from"></strong></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body px-0 pb-2">
+                <div class="table-responsive">
+                  <table class="table table-hover" id="table_list_to_by_from"></table>
                 </div>
               </div>
             </div>
-            <div class="card-body px-0 pb-2">
-              <div class="table-responsive">
-                <table class="table table-hover" id="table_list_to_by_from"></table>
-              </div>
-            </div>
           </div>
-        </div>
-
-        <div class="col-12 col-xl-4">
-          <div class="card-body p-3">
-            <div class="card-header pb-0">
-              <div class="row">
-                <div class="col-lg-12 col-12">
-                  <h6>Link Analysis</h6>
+  
+          <div class="col-12 col-xl-4">
+            <div class="card-body p-3">
+              <div class="card-header pb-0">
+                <div class="row">
+                  <div class="col-lg-12 col-12">
+                    <h6>Link Analysis</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body px-0 pb-2">
+                <div id="box_image_link_analysis_inforemail" >
+                  <div id="canvas_inforemail" style="height:200px"></div>
                 </div>
               </div>
             </div>
-            <div class="card-body px-0 pb-2">
-              <div id="box_image_link_analysis_inforemail" >
-                <div id="canvas_inforemail" style="height:200px"></div>
+          </div>
+  
+        </div> 
+  
+      </div>
+    </div>
+  
+    <div class="row mt-4">
+      <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="card z-index-2">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+            <div class="bg-gradient-primary background-chart-day shadow-primary border-radius-lg py-3 pe-1" >
+              <div class="chart">
+                <canvas id="chart-day" class="chart-canvas" height="170"></canvas>
               </div>
             </div>
           </div>
+          <div class="card-body">
+            <h6 class="mb-0">BIỂU ĐỒ THỐNG KÊ THEO NGÀY</h6>
+            <p class="text-sm chart-title">
+              Biểu đồ thống kê số lượng email được gửi trong các ngày
+            </p>
+          </div>
         </div>
-
-      </div> 
-
+      </div>
+      <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="card z-index-2">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+            <div class="bg-gradient-primary background-chart-month shadow-primary border-radius-lg py-3 pe-1">
+              <div class="chart">
+                <canvas id="chart-month" class="chart-canvas" height="170"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h6 class="mb-0">BIỂU ĐỒ THỐNG KÊ THEO THÁNG</h6>
+            <p class="text-sm chart-title">
+              Biểu đồ thống kê số lượng email được gửi trong các tháng
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="card z-index-2">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+            <div class="bg-gradient-primary background-chart-year shadow-primary border-radius-lg py-3 pe-1">
+              <div class="chart">
+                <canvas id="chart-year" class="chart-canvas" height="170"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h6 class="mb-0">BIỂU ĐỒ THỐNG KÊ THEO NĂM</h6>
+            <p class="text-sm chart-title">
+              Biểu đồ thống kê số lượng email được gửi trong các năm
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="row mb-4">
+      <div class="col-lg-4 col-md-4">
+        <div class="card cart_word_cloud">
+          <div class="card-header pb-0">
+            <div class="row">
+              <div class="col-lg-6 col-7">
+                <h6>PHÂN TÍCH WORD CLOUD</h6>
+              </div>
+            </div>
+          </div>
+          <div id="box_image_word_cloud" class="card-body px-0 pb-2 ">
+            <img id="image_word_cloud" src="data:image/png;base64,{{ image_data }}" alt="Word Cloud">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-8">
+        <div class="card cart_word_cloud">
+          <div class="card-header pb-0">
+            <div class="row">
+              <div class="col-lg-6 col-7">
+                <h6>PHÂN TÍCH LIÊN KẾT </h6>
+              </div>
+            </div>
+          </div>
+          <div id="box_image_link_analysis"class="card-body px-0 pb-2 ">
+            <div id="canvas"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-lg-6 col-md-6">
+        <div class="card cart_table">
+          <div class="card-header pb-0">
+            <div class="row">
+              <div class="col-lg-6 col-7">
+                <h6>BẢNG DANH SÁCH NHỮNG EMAIL GỬI THƯ</h6>
+              </div>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table table-hover" id="table_from"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="card cart_table">
+          <div class="card-header pb-0">
+            <div class="row">
+              <div class="col-lg-6 col-7">
+                <h6>BẢNG DANH SÁCH NHỮNG EMAIL NHẬN THƯ</h6>
+              </div>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table table-hover" id="table_to"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
   </div>
-
-  <div class="row mt-4">
-    <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
-      <div class="card z-index-2">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-          <div class="bg-gradient-primary background-chart-day shadow-primary border-radius-lg py-3 pe-1" >
-            <div class="chart">
-              <canvas id="chart-day" class="chart-canvas" height="170"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h6 class="mb-0">BIỂU ĐỒ THỐNG KÊ THEO NGÀY</h6>
-          <p class="text-sm chart-title">
-            Biểu đồ thống kê số lượng email được gửi trong các ngày
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
-      <div class="card z-index-2">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-          <div class="bg-gradient-primary background-chart-month shadow-primary border-radius-lg py-3 pe-1">
-            <div class="chart">
-              <canvas id="chart-month" class="chart-canvas" height="170"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h6 class="mb-0">BIỂU ĐỒ THỐNG KÊ THEO THÁNG</h6>
-          <p class="text-sm chart-title">
-            Biểu đồ thống kê số lượng email được gửi trong các tháng
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
-      <div class="card z-index-2">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-          <div class="bg-gradient-primary background-chart-year shadow-primary border-radius-lg py-3 pe-1">
-            <div class="chart">
-              <canvas id="chart-year" class="chart-canvas" height="170"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h6 class="mb-0">BIỂU ĐỒ THỐNG KÊ THEO NĂM</h6>
-          <p class="text-sm chart-title">
-            Biểu đồ thống kê số lượng email được gửi trong các năm
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row mb-4">
-    <div class="col-lg-4 col-md-4">
-      <div class="card cart_word_cloud">
-        <div class="card-header pb-0">
-          <div class="row">
-            <div class="col-lg-6 col-7">
-              <h6>PHÂN TÍCH WORD CLOUD</h6>
-            </div>
-          </div>
-        </div>
-        <div id="box_image_word_cloud" class="card-body px-0 pb-2 ">
-          <img id="image_word_cloud" src="data:image/png;base64,{{ image_data }}" alt="Word Cloud">
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-8 col-md-8">
-      <div class="card cart_word_cloud">
-        <div class="card-header pb-0">
-          <div class="row">
-            <div class="col-lg-6 col-7">
-              <h6>PHÂN TÍCH LIÊN KẾT </h6>
-            </div>
-          </div>
-        </div>
-        <div id="box_image_link_analysis"class="card-body px-0 pb-2 ">
-          <div id="canvas"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row mb-4">
-    <div class="col-lg-6 col-md-6">
-      <div class="card cart_table">
-        <div class="card-header pb-0">
-          <div class="row">
-            <div class="col-lg-6 col-7">
-              <h6>BẢNG DANH SÁCH NHỮNG EMAIL GỬI THƯ</h6>
-            </div>
-          </div>
-        </div>
-        <div class="card-body px-0 pb-2">
-          <div class="table-responsive">
-            <table class="table table-hover" id="table_from"></table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6 col-md-6">
-      <div class="card cart_table">
-        <div class="card-header pb-0">
-          <div class="row">
-            <div class="col-lg-6 col-7">
-              <h6>BẢNG DANH SÁCH NHỮNG EMAIL NHẬN THƯ</h6>
-            </div>
-          </div>
-        </div>
-        <div class="card-body px-0 pb-2">
-          <div class="table-responsive">
-            <table class="table table-hover" id="table_to"></table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
 </div>
+
 
 
 
@@ -407,21 +411,22 @@
 
 
     // Xác định độ rộng và chiều cao của canvas
-    var width = svg.node().clientWidth;
-    var height = svg.node().clientHeight;
+  var width = svg.node().clientWidth;
+  var height = svg.node().clientHeight;
   // Thiết lập thông tin về đồ thị (nodes và edges) từ dữ liệu linkAnalysisData
   var nodes = linkAnalysisData.nodes;
   var edges = linkAnalysisData.links;
   
   // Tạo một đồ thị force-directed layout
   var simulation = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(edges).id(function(d) { return d.id; }).distance(120)) // Thay đổi giá trị distance
+    .force("link", d3.forceLink(edges).id(function(d) { return d.id; }).distance(30)) // Thay đổi giá trị distance
     .force("charge", d3.forceManyBody().strength(-2000))
-    .force("center", d3.forceCenter((width / 2)-120, height/2))
-    .force("x", d3.forceX((width / 2)).strength(0.2)) // Giới hạn vị trí x của các node trong khung
-    .force("y", d3.forceY(height / 2 ).strength(0.4)); // Giới hạn vị trí y của các node trong khung
+    .force("center", d3.forceCenter((width / 2)-100, height/2))
+    .force("x", d3.forceX((width / 2)).strength(0.5)) // Giới hạn vị trí x của các node trong khung
+    .force("y", d3.forceY(height / 2 ).strength(0.8)); // Giới hạn vị trí y của các node trong khung
+    
 
-
+  
   window.addEventListener('resize', function() {
     containerWidth = document.getElementById('box_image_link_analysis').clientWidth;
     containerHeight = document.getElementById('box_image_link_analysis').clientHeight;
@@ -441,8 +446,12 @@
     .append("line")
     .attr("class", "link")
     .style("stroke", "gray")
-    .style("stroke-width", 1);
-  
+    .style("stroke-width", 1)
+    .attr("x1", function(d) { return Math.max(0, Math.min(width, d.source.x)); }) // Giới hạn vị trí x
+    .attr("y1", function(d) { return Math.max(0, Math.min(height, d.source.y)); }) // Giới hạn vị trí y
+    .attr("x2", function(d) { return Math.max(0, Math.min(width, d.target.x)); }) // Giới hạn vị trí x
+    .attr("y2", function(d) { return Math.max(0, Math.min(height, d.target.y)); }); // Giới hạn vị trí y
+
 
 
 // Vẽ nút (nodes)
@@ -450,7 +459,10 @@ var node = svg.selectAll(".node")
   .data(nodes)
   .enter()
   .append("g")
-  .attr("class", "node");
+  .attr("class", "node")
+  .attr("transform", function(d) {
+    return "translate(" + Math.max(0, Math.min(width, d.x)) + "," + Math.max(0, Math.min(height, d.y)) + ")";
+  });
 
               // Vẽ hình tròn cho mỗi node
               node.append("image")

@@ -1,0 +1,40 @@
+.display_names{
+    margin-right: 20px;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.box_content_email{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.date_time_email{
+    margin-left: 20px;
+}
+
+.title_email{
+    font-weight: 450;
+}
+
+.content_email{
+    font-weight: 300;
+}
+
+.mgb-10{
+margin-bottom: 10px;
+}
+
+.mgr-10{
+    margin-right: 10px;
+}
+
+.border-none{
+    border: none;
+}
+

@@ -1,0 +1,17 @@
+{% extends 'app/analysis/analysis.html' %}
+{%load static%}
+{% block content-analysis %}
+
+<script src="{%static 'app/js/emaildatafile.js'%}"></script>
+    <div class="header-content">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand header-content-title">{{folder_name}}/Analysis</a>
+            </div>
+        </nav>
+    </div>
+    <div style="--bs-gutter-x: unset;" class="row row-content">
+        {% block wrapper-content%} {% endblock wrapper-content%}
+    </div>
+<!-- Default dropend button -->
+{% endblock content-analysis %}

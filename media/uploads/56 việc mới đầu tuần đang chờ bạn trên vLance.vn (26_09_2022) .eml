@@ -1,0 +1,3124 @@
+Delivered-To: dvt18012000@gmail.com
+Received: by 2002:a05:7300:8ba4:b0:78:e3ca:c401 with SMTP id a36csp1939682dys;
+        Sun, 25 Sep 2022 23:49:15 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM4wXbcXtjhOGsQhsjX4nMD17XpyNVslAchDSIs5MowcNcYZfsZQ5e0/aVrbpbZY7LeT+4zl
+X-Received: by 2002:ac8:5995:0:b0:35c:e39a:176b with SMTP id e21-20020ac85995000000b0035ce39a176bmr16968917qte.567.1664174955110;
+        Sun, 25 Sep 2022 23:49:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1664174955; cv=none;
+        d=google.com; s=arc-20160816;
+        b=r1YGZZP5XCzVPHBIztUxcgSK1LxSAAth/ZqXOwq+YchWQnG4dAxRCikGhmOB/lcltc
+         rFc5rzIgS/UV54xum0Xj2YZTPPU3r7cO+RbtSdJYU8VylD/a44SDk5/ygQzv/GTNmaA+
+         49pj02IBXxgCo9obLAwsSbu5eXitCkKKDvp85SCz24/k52NusPAjttYBYZ/nvjZ4aG5v
+         glIsFIciheYZVkTjLs+mUhK62VHY3NQT/OLG6c0NNV7FMpFdz+lDyJT8iUF4edtZoQwH
+         2A/m2C3PL5r8+4Hm0B3ydCCmx7jqPdP1DpPYSmuDBbwq/9Gsjd+r3uNes3xtLZdOaziV
+         6Q4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:message-id:mime-version:subject:to:reply-to:from
+         :dkim-signature:dkim-signature;
+        bh=FLq8zWEEhv5ORxf+UQNX9LbdGQ2XN1b+eJBxpcTXhjs=;
+        b=SaGllrHYBQXD5/TiEBBevX2nSM6jFI2Kd8X5/ArPdyxYOrsmC7U9BzfqtVahqb8AOg
+         nC/AIyYddtECGUapfmwTDCdyGcXYUMJj5KuoFsjLdr1dpLAs/+x1NPdx/x2uBtJva0N4
+         h+Xdy4dK3X1ERTItjrdok1ldS8Q+EgWMGnBszpg3s7+1Z7q9KqafgfP0XAPCLIIlcLOe
+         22q4lFZbOMkef7drv7ezPNDFLbyST+Gp9yG6wh/guxLEj98YJHYLNyQZCh9nq2/nTalk
+         kv2GosZCjNHJ1kBdpQO1ItPivYR/CVX7ITOHo9Fh7HiMBOjTK8subk6bmN/EAkuqcNtN
+         b96w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@vlance.vn header.s=t2fei5ekf5ed2nvltmqlfsmxzw4ctq7u header.b=hScqrx5E;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=ccynDnQI;
+       spf=pass (google.com: domain of 01000183788e9729-da1551a2-b6da-4fd4-8596-1d9c2ab7aeb6-000000@www.vlance.vn designates 54.240.48.178 as permitted sender) smtp.mailfrom=01000183788e9729-da1551a2-b6da-4fd4-8596-1d9c2ab7aeb6-000000@www.vlance.vn;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vlance.vn
+Return-Path: <01000183788e9729-da1551a2-b6da-4fd4-8596-1d9c2ab7aeb6-000000@www.vlance.vn>
+Received: from a48-178.smtp-out.amazonses.com (a48-178.smtp-out.amazonses.com. [54.240.48.178])
+        by mx.google.com with ESMTPS id d11-20020ac8614b000000b00304a5c5f331si7681667qtm.595.2022.09.25.23.49.14
+        for <dvt18012000@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 25 Sep 2022 23:49:15 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 01000183788e9729-da1551a2-b6da-4fd4-8596-1d9c2ab7aeb6-000000@www.vlance.vn designates 54.240.48.178 as permitted sender) client-ip=54.240.48.178;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@vlance.vn header.s=t2fei5ekf5ed2nvltmqlfsmxzw4ctq7u header.b=hScqrx5E;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=ccynDnQI;
+       spf=pass (google.com: domain of 01000183788e9729-da1551a2-b6da-4fd4-8596-1d9c2ab7aeb6-000000@www.vlance.vn designates 54.240.48.178 as permitted sender) smtp.mailfrom=01000183788e9729-da1551a2-b6da-4fd4-8596-1d9c2ab7aeb6-000000@www.vlance.vn;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=vlance.vn
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=t2fei5ekf5ed2nvltmqlfsmxzw4ctq7u; d=vlance.vn; t=1664174954;
+	h=From:Reply-To:To:Subject:MIME-Version:Content-Type:Message-ID:Date;
+	bh=AunuqW4CRkQLtIaTgToeDYL5ZuJQMFAaqblmL86L0Aw=;
+	b=hScqrx5EdpeOy8oV9LORRrqlpfeZlxPOCUlTKoLQCm3bMQ+ISWwe+wuT29kvpkzV
+	qNLzsUH7tZjZ2tyowUfbpvBNDEs16Pb2QSyjHCFavp14g1W84PuPk5NXVdgzRLsmmt/
+	9MHLjxGyc/1MtPKOkmXjOH7nyfpKHAqaCaEJ0dew=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1664174954;
+	h=From:Reply-To:To:Subject:MIME-Version:Content-Type:Message-ID:Date:Feedback-ID;
+	bh=AunuqW4CRkQLtIaTgToeDYL5ZuJQMFAaqblmL86L0Aw=;
+	b=ccynDnQIsAEp0wpMVAxwKOwx2FaMC+OtqUo616DWrVYlUM7uaCOW9sB1G7sE3gz/
+	287TSAFvdP/GEItINHvIB6jYkPCAe4FqxcM3QB0UL68woKYgQYDrziB+/pPzrHFuw8p
+	Eecb+DqMBjECtMKQWofFlEUzXHYVDS7k6hRKvv3o=
+From: vLance <noreply@vlance.vn>
+Reply-To: hotro@vlance.vn
+To: dvt18012000@gmail.com
+Subject: =?UTF-8?Q?56_vi=E1=BB=87c_m=E1=BB=9Bi_=C4=91=E1=BA=A7u?=
+ =?UTF-8?Q?_tu=E1=BA=A7n_=C4=91ang_ch=E1=BB=9D_b?=
+ =?UTF-8?Q?=E1=BA=A1n_tr=C3=AAn_vLance.vn_(26/09/2022)=0A?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1489721_584898434.1664174954285"
+Message-ID: <01000183788e9729-da1551a2-b6da-4fd4-8596-1d9c2ab7aeb6-000000@email.amazonses.com>
+Date: Mon, 26 Sep 2022 06:49:14 +0000
+Feedback-ID: 1.us-east-1.udy4aUOaWvlXxw+XWFSQM9/oNKsHK4meazGAUPZXQGc=:AmazonSES
+X-SES-Outgoing: 2022.09.26-54.240.48.178
+
+------=_Part_1489721_584898434.1664174954285
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+   =20
+       =20
+            label{font-weight: bold}
+            a{text-decoration: none;font-weight: 600;color: #0088CC;}
+       =20
+       =20
+       =20
+       =20
+        vlance.vn
+   =20
+   =20
+       =20
+       =20
+           =20
+               =20
+                   =20
+                       =20
+                   =20
+               =20
+           =20
+       =20
+        =20
+       =20
+       =20
+                          =20
+   =20
+                Ch=C3=A0o Tuyen Duong Van,
+        M=E1=BB=99t tu=E1=BA=A7n m=E1=BB=9Bi =C4=91=C3=A3 b=E1=BA=AFt =C4=
+=91=E1=BA=A7u. vLance xin g=E1=BB=ADi t=E1=BB=9Bi b=E1=BA=A1n 56 c=C3=B4ng =
+vi=E1=BB=87c  v=E1=BB=ABa =C4=91=C6=B0=E1=BB=A3c =C4=91=C4=83ng. H=C3=A3y g=
+=E1=BB=ADi ch=C3=A0o gi=C3=A1 ngay h=C3=B4m nay =C4=91=E1=BB=83 c=C3=B3 c=
+=C6=A1 h=E1=BB=99i s=E1=BB=9Bm nh=E1=BA=A5t =C4=91=C6=B0=E1=BB=A3c kh=C3=A1=
+ch h=C3=A0ng l=E1=BB=B1a ch=E1=BB=8Dn.
+        B=E1=BA=A1n c=C3=B3 bi=E1=BA=BFt? Nh=E1=BB=AFng vi=E1=BB=87c m=E1=
+=BB=9Bi n=C3=A0y =C4=91=C6=B0=E1=BB=A3c h=E1=BB=87 th=E1=BB=91ng t=E1=BB=B1=
+ =C4=91=E1=BB=99ng ph=C3=A2n lo=E1=BA=A1i d=E1=BB=B1a theo k=E1=BB=B9 n=C4=
+=83ng v=C3=A0 chuy=C3=AAn m=C3=B4n c=E1=BB=A7a b=E1=BA=A1n. =C4=90=E1=BB=83=
+ c=C3=B3 c=C6=A1 h=E1=BB=99i nh=E1=BA=ADn nh=E1=BB=AFng c=C3=B4ng vi=E1=BB=
+=87c ph=C3=B9 h=E1=BB=A3p nh=E1=BA=A5t, b=E1=BA=A1n ch=E1=BB=89 c=E1=BA=A7n=
+ =C4=91i=E1=BB=81n ch=C3=ADnh x=C3=A1c nh=E1=BB=AFng c=C3=A1c k=E1=BB=B9 n=
+=C4=83ng, l=C4=A9nh v=E1=BB=B1c chuy=C3=AAn m=C3=B4n c=E1=BB=A7a m=C3=ACnh,=
+ =C4=91=E1=BB=93ng th=E1=BB=9Di c=E1=BA=ADp nh=E1=BA=ADt =C4=91=E1=BA=A7y =
+=C4=91=E1=BB=A7 c=C3=A1c th=C3=B4ng tin trong h=E1=BB=93 s=C6=A1 vi=E1=BB=
+=87c l=C3=A0m.
+        Ch=C3=BAc b=E1=BA=A1n m=E1=BB=99t tu=E1=BA=A7n m=E1=BB=9Bi l=C3=A0m=
+ vi=E1=BB=87c hi=E1=BB=87u qu=E1=BA=A3.
+       =20
+                                                                           =
+                                                                           =
+             =20
+                    Marketing Online
+                    B=C3=A1n th=E1=BB=9Di gian
+                    T=C6=B0 v=E1=BA=A5n, l=E1=BA=ADp k=E1=BA=BF ho=E1=BA=A1=
+ch &amp; tri=E1=BB=83n khai marketing online | 2.000.000 VN=C4=90 - 10.000.=
+000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    Doanh nghi=E1=BB=87p chuy=C3=AAn ph=C3=A2n ph=E1=BB=91i=
+ thu=E1=BB=91c ngu=E1=BB=93n g=E1=BB=91c th=E1=BA=A3o d=C6=B0=E1=BB=A3c, =
+=C4=91i=E1=BB=81u tr=E1=BB=8B c=C3=A1c b=E1=BB=87nh v=E1=BB=81 x=C6=B0=C6=
+=A1ng kh=E1=BB=9Bp, gout, =C4=83n k=C3=A9m-ng=E1=BB=A7 k=C3=A9m,.. =C4=91an=
+g t=C3=ACm m=E1=BB=99t nh=C3=A2n s=E1=BB=B1 ph=E1=BB=A5 tr=C3=A1ch Marketin=
+g Online.
+- Ph=C3=BAc l=E1=BB=A3i: L=C6=B0=C6=A1ng (h=C3=A0ng th=C3=A1ng) + hoa... Xe=
+m th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    Gi=C3=BAp ch=E1=BB=8Dn t=C3=AAn cho b=C3=A9 theo nguy=
+=C3=AAn t=E1=BA=AFc c=C3=B3 s=E1=BA=B5n
+                   =20
+                    Vi=E1=BB=87c l=E1=BA=ADp tr=C3=ACnh kh=C3=A1c | 1.000.0=
+00 VN=C4=90 - 2.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    Ch=E1=BB=8Dn t=C3=AAn th=E1=BB=A7 c=C3=B4ng d=E1=BB=B1a=
+ tr=C3=AAn nguy=C3=AAn t=E1=BA=AFc t=E1=BB=91n th=E1=BB=9Di gian, v=E1=BA=
+=A5t v=E1=BA=A3=20
+M=E1=BB=A5c =C4=91=C3=ADch: t=C3=ACm c=C3=B4ng c=E1=BB=A5 h=E1=BB=97 tr=E1=
+=BB=A3 ph=C3=B9 h=E1=BB=A3p... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    Thi=C3=AAt k=E1=BA=BF website ph=C3=A1t tri=E1=BB=83n p=
+h=E1=BA=A7n m=E1=BB=81m
+                   =20
+                    Thi=E1=BA=BFt k=E1=BA=BF giao di=E1=BB=87n Website | 3.=
+000.000 VN=C4=90 - 5.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    Hi!
+
+M=C3=ACnh c=E1=BA=A7n 1 b=E1=BA=A1n chuy=C3=AAn thi=E1=BA=BFt k=E1=BA=BF gi=
+ao di=E1=BB=87n web theo xu h=C6=B0=E1=BB=9Bng hi=E1=BB=87n =C4=91=E1=BA=A1=
+i, v=E1=BB=81 b=E1=BB=91 c=E1=BB=A5c, v=C3=A0 c=E1=BA=A5u tr=C3=BAc m=C3=AC=
+nh mu=E1=BB=91n thi=E1=BA=BFt k=E1=BA=BF gi=E1=BB=91ng nh=C6=B0 2 trang n=
+=C3=A0y [Link =C4=91=C3=A3 b=E1=BB=8B =E1=BA=A9n. B=E1=BA=A5m xem chi ti=E1=
+=BA=BFt c=C3=B4ng vi=E1=BB=87c =C4=91=E1=BB=83 xem =C4=91=E1=BA=A7y =C4=91=
+=E1=BB=A7 =C4=91=C6=B0=E1=BB=9D... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    T=C6=B0 v=E1=BA=A5n, thi=E1=BA=BFt k=E1=BA=BF h=E1=BB=
+=87 th=E1=BB=91ng m=E1=BA=A1ng d=E1=BA=A1ng trung cho doanh nghi=E1=BB=87p
+                    B=C3=A1n th=E1=BB=9Di gian
+                    T=C6=B0 v=E1=BA=A5n, thi=E1=BA=BFt k=E1=BA=BF h=E1=BB=
+=87 th=E1=BB=91ng m=E1=BA=A1ng | 2.000.000 VN=C4=90 - 4.000.000 VN=C4=90 | =
+To=C3=A0n Qu=E1=BB=91c
+                    Thi=E1=BA=BFt k=E1=BA=BF h=E1=BB=87 th=E1=BB=91ng m=E1=
+=BA=A1ng hi=E1=BB=87n =C4=91=E1=BA=A1i, b=E1=BA=A3o m=E1=BA=ADt, =C4=91=C3=
+=A1p =E1=BB=A9ng 300 user.
+H=E1=BB=87 th=E1=BB=91ng wifi, camera gi=C3=A1m s=C3=A1t.
+(L=C6=B0=C6=A1ng th=E1=BB=8Fa thu=E1=BA=ADn)... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    L=E1=BA=ADp tr=C3=ACnh giao di=E1=BB=87n
+                    B=C3=A1n th=E1=BB=9Di gian
+                    =E1=BB=A8ng d=E1=BB=A5ng di =C4=91=E1=BB=99ng | 1.000.0=
+00 VN=C4=90 - 4.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    B=C3=AAn m=C3=ACnh c=E1=BA=A7n t=C3=ACm b=E1=BA=A1n n=
+=C3=A0o c=C3=B3 th=E1=BB=83 vi=E1=BA=BFt giao di=E1=BB=87n App tr=C3=AAn An=
+droid v=C3=A0 iOS d=C3=B9ng Flutter v=E1=BB=9Bi Dart. Giao di=E1=BB=87n c=
+=C3=B3 s=E1=BA=B5n t=E1=BB=AB m=E1=BB=99t website c=C3=B3 h=E1=BB=97 tr=E1=
+=BB=A3 mobile.... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    D=E1=BB=B0NG PH=E1=BB=90I C=E1=BA=A2NH 3D T=E1=BB=94NG =
+TH=E1=BB=82 NH=C3=80 V=C3=80 B=E1=BA=BEP
+                   =20
+                    Thi=E1=BA=BFt k=E1=BA=BF ngo=E1=BA=A1i th=E1=BA=A5t | 1=
+.000.000 VN=C4=90 - 1.500.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    M=C3=ACnh =C4=91ang =C4=91=E1=BB=8Bnh c=E1=BA=A3i t=E1=
+=BA=A1o nh=C3=A0 =C3=B4ng b=C3=A0 gi=C3=A0 =E1=BB=9F qu=C3=AA.=20
+C=E1=BA=A7n ph=E1=BB=91i c=E1=BA=A3nh 3D t=E1=BB=95ng th=E1=BB=83 v=C3=A0 b=
+=E1=BA=BFp.=20
+D=E1=BB=B1ng b=E1=BA=B1ng Revit. B=C3=A1c n=C3=A0o l=C3=A0m =C4=91=C6=B0=E1=
+=BB=A3c ibx ae trao =C4=91=E1=BB=95i t=C3=AD.=20
+K c=E1=BA=A7n b=E1=BA=A3n v=E1=BA=BD chi ti=E1=BA=BFt ch=E1=BB=89 c=E1=BA=
+=A7n 3D.... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    L=E1=BA=ADp tr=C3=ACnh api cho wordpress k=E1=BA=BFt n=
+=E1=BB=91i v=E1=BB=9Bi m=C3=A1y ch=E1=BB=A7 sql server
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh web | 3.000.000 VN=C4=90 - 5.000=
+.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    Website =C4=91=C3=A3 c=C3=B3 s=E1=BA=B5n api k=E1=BA=BF=
+t n=E1=BB=91i v=E1=BB=9Bi m=C3=A1y ch=E1=BB=A7 sql =C4=91=E1=BB=83 l=E1=BA=
+=A5y s=E1=BA=A3n ph=E1=BA=A9m t=E1=BB=AB m=C3=A1y ch=E1=BB=A7 sql server =
+=C4=91=E1=BB=93ng b=E1=BB=99 l=C3=AAn woo nh=C6=B0ng gi=E1=BB=9D c=E1=BA=A7=
+n t=E1=BB=91i =C6=B0u l=E1=BA=A1i, v=C3=AC m=E1=BB=99t s=E1=BB=91 l=E1=BB=
+=97i hi=E1=BB=83n th=E1=BB=8B s=E1=BA=A3n ph=E1=BA=A9m l=C3=AAn c=E1=BB=A7a=
+ wordpress (vd: ph=C3=A2n trang s=E1=BA=A3n ph=E1=BA=A9m... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    D=E1=BB=B1ng  website (wireframe c=C3=B3 s=E1=BA=B5n tr=
+=C3=AAn Figma)
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 4.000=
+.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    C=E1=BA=A7n t=C3=ACm b=E1=BA=A1n d=E1=BB=B1ng website b=
+=C3=A1n h=C3=A0ng, responsive =C4=91=C3=A3 c=C3=B3 s=E1=BA=B5n layout wiref=
+rame tr=C3=AAn figma.
+
+Th=C3=B4ng tin v=E1=BB=81 d=E1=BB=B1 =C3=A1n:
+- S=E1=BA=A3n ph=E1=BA=A9m: d=E1=BB=8Bch v=E1=BB=A5 th=C3=AAu vi t=C3=ADnh =
+theo y=C3=AAu c=E1=BA=A7u &amp; tranh th=C3=AAu vi t=C3=ADnh.
+- Kh=C3=A1ch h=C3=A0ng c=E1=BB=A7a websi... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    m=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF logo
+                   =20
+                    Thi=E1=BA=BFt k=E1=BA=BF Logo | 300.000 VN=C4=90 - 500.=
+000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    m=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF logo =C4=
+=91=C6=A1n gi=E1=BA=A3n
+m=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF logo =C4=91=C6=A1n gi=E1=BA=
+=A3n
+m=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF logo =C4=91=C6=A1n gi=E1=BA=
+=A3n
+m=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF logo =C4=91=C6=A1n gi=E1=BA=
+=A3n... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    Tuy=E1=BB=83n freelancer d=E1=BB=8Bch thu=E1=BA=ADt
+                   =20
+                    D=E1=BB=8Bch thu=E1=BA=ADt | 500.000 VN=C4=90 - 2.000.0=
+00 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    C=C3=B4ng ty TNHH TM &amp; DV Wowland Group tr=C3=A2n t=
+r=E1=BB=8Dng th=C3=B4ng b=C3=A1o: Ch=C3=BAng t=C3=B4i hi=E1=BB=87n c=C3=B3 =
+nhu c=E1=BA=A7u tuy=E1=BB=83n d=E1=BB=A5ng cho v=E1=BB=8B tr=C3=AD C=E1=BB=
+=99ng t=C3=A1c vi=C3=AAn (CTV) d=E1=BB=8Bch thu=E1=BA=ADt- freelancer trans=
+lator cho chuy=C3=AAn ng=C3=A0nh b=E1=BA=A5t =C4=91=E1=BB=99ng s=E1=BA=A3n.
+- H=C3=ACnh th... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    T=C3=ACm b=E1=BA=A1n bi=E1=BA=BFt ASP.Net =C4=91=E1=BB=
+=83 chuy=E1=BB=83n design template th=C3=A0nh website v=C3=A0 s=E1=BB=ADa c=
+h=E1=BB=AFa functions c=E1=BB=A7a trang web
+                    B=C3=A1n th=E1=BB=9Di gian
+                    L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 4.000=
+.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    M=C3=ACnh =C4=91ang t=C3=ACm m=E1=BB=99t b=E1=BA=A1n bi=
+=E1=BA=BFt [Link =C4=91=C3=A3 b=E1=BB=8B =E1=BA=A9n. B=E1=BA=A5m xem chi ti=
+=E1=BA=BFt c=C3=B4ng vi=E1=BB=87c =C4=91=E1=BB=83 xem =C4=91=E1=BA=A7y =C4=
+=91=E1=BB=A7 =C4=91=C6=B0=E1=BB=9Dng link] C# v=C3=A0 mysql server, n=E1=BA=
+=BFu bi=E1=BA=BFt th=C3=AAm solr search th=C3=AC c=C3=A0ng t=E1=BB=91t.
+
+M=C3=ACnh c=C3=B3 trang web [Link =C4=91=C3=A3 b=E1=BB=8B =E1=BA=A9n. B=E1=
+=BA=A5m xem... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                                                                           =
+                                                                     =20
+                    T=C3=ACm freelancer c=C3=B3 kinh nghi=E1=BB=87m v=E1=BB=
+=9Bi C# API
+                    B=C3=A1n th=E1=BB=9Di gian
+                    L=E1=BA=ADp tr=C3=ACnh ph=E1=BA=A7n m=E1=BB=81m | 1.000=
+.000 VN=C4=90 - 5.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    D=E1=BB=B1 =C3=A1n b=C3=AAn m=C3=ACnh c=E1=BA=A7n m=E1=
+=BB=99t b=E1=BA=A1n c=C3=B3 kinh nghi=E1=BB=87m l=C3=A0m vi=E1=BB=87c v=E1=
+=BB=9Bi C#. =C4=90=E1=BB=83 vi=E1=BA=BFt API support cho Mobile App.
+V=C3=AC b=C3=AAn m=C3=ACnh l=C3=A0 c=C3=B4ng ty n=C3=AAn =C6=B0u ti=C3=AAn =
+c=C3=A1c b=E1=BA=A1n c=C3=B3 kh=E1=BA=A3 n=C4=83ng =C4=91=E1=BB=91i =E1=BB=
+=A9ng tr=E1=BA=A3 l=E1=BB=9Di trong gi=E1=BB=9D l=C3=A0m vi=E1=BB=87c khi c=
+=C3=B4ng vi=E1=BB=87c ... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    Landing Page
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 2.000=
+.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    C=C3=A2=CC=80n m=C3=B4=CC=A3t ba=CC=A3n ho=C4=83=CC=A3c=
+ team la=CC=80m Landing Page. Ch=C6=B0=CC=81c n=C4=83ng chi=CC=81nh la=CC=
+=80 truy c=C3=A2=CC=A3p camera chu=CC=A3p hi=CC=80nh ho=C4=83=CC=A3c quay v=
+ideo co=CC=81 th=C3=AA=CC=89 chia se=CC=89 qua ca=CC=81c trang mxh (fb, ins=
+....). N=C3=B4=CC=A3i dung va=CC=80 hi=CC=80nh a=CC=89nh b=C3=AAn brand ...=
+ Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    Ch=E1=BB=89nh s=E1=BB=ADa video qu=E1=BA=A3ng c=C3=A1o =
+gi=E1=BB=9Bi thi=E1=BB=87u s=E1=BA=A3n ph=E1=BA=A9m t=E1=BB=AB n=C6=B0=E1=
+=BB=9Bc ngo=C3=A0i
+                    B=C3=A1n th=E1=BB=9Di gian
+                    L=C3=A0m video clip | 300.000 VN=C4=90 - 3.000.000 VN=
+=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    C=C3=B4ng ty TNHH Ascent Protein Vi=E1=BB=87t Nam c=E1=
+=BA=A7n t=C3=ACm b=E1=BA=A1n h=E1=BB=A3p t=C3=A1c l=C3=A2u d=C3=A0i, l=C3=
+=A0m c=C3=B4ng vi=E1=BB=87c edit, ch=E1=BB=89nh s=E1=BB=ADa video, =E1=BA=
+=A3nh =C4=91=E1=BB=83 th=E1=BB=B1c hi=E1=BB=87n c=C3=A1c chi=E1=BA=BFn d=E1=
+=BB=8Bch qu=E1=BA=A3ng c=C3=A1o, marketing.
+C=C3=B4ng ty s=E1=BA=BD cung c=E1=BA=A5p video m=E1=BA=ABu t=E1=BB=AB n=C6=
+=B0=E1=BB=9Bc ngo=C3=A0... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    H=E1=BB=A3p =C4=91=E1=BB=93ng =C4=91i=E1=BB=87n t=E1=BB=
+=AD
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh web | 10.000.000 VN=C4=90 - 20.0=
+00.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    1. Upload file pdf
+2. K=C3=BD file pdf b=E1=BA=B1ng usb token c=E1=BB=A7a misa, fpt ho=E1=BA=
+=B7c vnpt .....
+3. Tr=E1=BA=A3 ra file pdf =C4=91=C3=A3 k=C3=BD.... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    C=E1=BA=A7n 1 b=E1=BA=A1n thi=E1=BA=BFt k=E1=BA=BF logo=
+ v=C3=A0 ch=E1=BB=89nh s=E1=BB=ADa =E1=BA=A3nh qu=E1=BA=A3ng c=C3=A1o
+                   =20
+                    C=C3=A1c vi=E1=BB=87c thi=E1=BA=BFt k=E1=BA=BF kh=C3=A1=
+c | 1.000.000 VN=C4=90 - 2.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    Thi=E1=BA=BFt k=E1=BA=BF v=C3=A0 ch=E1=BB=89nh s=E1=BB=
+=ADa =E1=BA=A3nh cho c=C3=A1c chi=E1=BA=BFn d=E1=BB=8Bch marketing; h=E1=BB=
+=A3p t=C3=A1c l=C3=A2u d=C3=A0i... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    Ch=E1=BB=89nh s=E1=BB=ADa n=E1=BB=99i dung s=E1=BA=A3n =
+ph=E1=BA=A9m
+                   =20
+                    Bi=C3=AAn t=E1=BA=ADp &amp; ch=E1=BB=89nh s=E1=BB=ADa n=
+=E1=BB=99i dung | 2.000.000 VN=C4=90 - 5.000.000 VN=C4=90 | To=C3=A0n Qu=E1=
+=BB=91c
+                    M=C3=B4 t=E1=BA=A3 c=C3=B4ng vi=E1=BB=87c:
+- Ch=E1=BB=89nh s=E1=BB=ADa n=E1=BB=99i dung s=E1=BA=A3n ph=E1=BA=A9m
+C=E1=BB=A5 th=E1=BB=83:
+S=E1=BA=A3n ph=E1=BA=A9m =C4=91ang =E1=BB=9F ch=E1=BA=BF =C4=91=C3=B3 &quot=
+;Nh=C3=A1p&quot;
+1. B=E1=BA=A1n t=C3=ACm ki=E1=BA=BFm 1 h=C3=ACnh =E1=BA=A3nh theo t=C3=AAn =
+s=E1=BA=A3n ph=E1=BA=A9m v=C3=A0 =C4=91=C4=83ng l=C3=AAn
+2. N=E1=BB=99i dung =C4=91=C3=A3 c=C3=B3 s=E1=BA=B3n - B=E1=BA=A1n xo=C3=A1=
+ h=E1=BA=BFt v=C3=A0 =C4=91=E1=BB=83 l=E1=BA=A1i ho=E1=BA=B7c vi... Xem th=
+=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    Thi=E1=BA=BFt k=E1=BA=BF trang web - SEO website
+                    B=C3=A1n th=E1=BB=9Di gian
+                    Thi=E1=BA=BFt k=E1=BA=BF giao di=E1=BB=87n Website | 5.=
+000.000 VN=C4=90 - 10.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    M=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF trang we=
+b x=C3=A2y d=E1=BB=B1ng, v=C3=A0 SEO website... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    Thi=E1=BA=BFt k=E1=BA=BF laning page
+                   =20
+                    Vi=E1=BB=87c KD v=C3=A0 marketing kh=C3=A1c | 1.000.000=
+ VN=C4=90 - 2.000.000 VN=C4=90 | H=C3=A0 N=E1=BB=99i
+                    Thi=E1=BA=BFt k=E1=BA=BF laning page cho s=E1=BA=A3n ph=
+=E1=BA=A9m th=E1=BB=B1c ph=E1=BA=A9m ch=E1=BB=A9c n=C4=83ng... Xem th=C3=AA=
+m
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    L=E1=BA=ADp b=E1=BA=A3ng v=E1=BA=BD k=E1=BB=B9 thu=E1=
+=BA=ADt h=E1=BB=87 th=E1=BB=91ng x=E1=BB=AD l=C3=BD n=C3=B4ng s=E1=BA=A3n
+                   =20
+                    C=C3=A1c vi=E1=BB=87c thi=E1=BA=BFt k=E1=BA=BF kh=C3=A1=
+c | 1.000.000 VN=C4=90 - 3.000.000 VN=C4=90 | Ti=E1=BB=81n Giang
+                    C=E1=BA=A7n 01 b=E1=BA=A1n ho=C3=A0n th=C3=A0nh b=E1=BA=
+=A3ng v=E1=BA=BD k=E1=BB=B9 thu=E1=BA=ADt cho h=E1=BB=87 th=E1=BB=91ng m=C3=
+=A1y x=E1=BB=AD l=C3=BD n=C3=B4ng s=E1=BA=A3n. V=E1=BA=BD theo k=C3=ADch th=
+=C6=B0=E1=BB=9Bc b=C3=AAn m=C3=ACnh cung c=E1=BA=A5p.... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    Modeler 3D s=E1=BA=A3n ph=E1=BA=A9m th=E1=BB=B1c t=E1=
+=BA=BF
+                    B=C3=A1n th=E1=BB=9Di gian
+                    C=C3=A1c vi=E1=BB=87c thi=E1=BA=BFt k=E1=BA=BF kh=C3=A1=
+c | 540.000 VN=C4=90 - 1.080.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    TUY=E1=BB=82N D=E1=BB=A4NG MODELER 3D L=C3=80M VI=E1=BB=
+=86C ONLINE
+**Nh=E1=BA=ADn =C4=91=C4=83ng k=C3=BD theo nh=C3=B3m
+M=C3=B4 t=E1=BA=A3 c=C3=B4ng vi=E1=BB=87c:
+- D=E1=BB=B1ng m=C3=B4 h=C3=ACnh 3D s=E1=BA=A3n ph=E1=BA=A9m c=E1=BB=A7a c=
+=C3=B4ng ty t=E1=BB=AB h=C3=ACnh =E1=BA=A3nh ch=E1=BB=A5p, lo=E1=BA=A1i s=
+=E1=BA=A3n ph=E1=BA=A9m =C4=91a d=E1=BA=A1ng, s=E1=BB=91 l=C6=B0=E1=BB=A3ng=
+ nhi=E1=BB=81u
+- D=E1=BB=B1ng model 3D k=C3=A8m t... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                                            =20
+                    Thi=E1=BA=BFt k=E1=BA=BF giao di=E1=BB=87n website quy =
+ho=E1=BA=A1ch
+                   =20
+                    Thi=E1=BA=BFt k=E1=BA=BF giao di=E1=BB=87n Website | 6.=
+000.000 VN=C4=90 - 10.000.000 VN=C4=90 | H=C3=A0 N=E1=BB=99i
+                    Thi=E1=BA=BFt k=E1=BA=BF to=C3=A0n b=E1=BB=99 giao di=
+=E1=BB=87n website quy ho=E1=BA=A1ch theo ti=C3=AAu ch=C3=AD =C4=91=E1=BA=
+=B9p, tinh t=E1=BA=BF mang t=C3=ADnh th=E1=BA=A9m m=E1=BB=B9 cao.
+Y=C3=AAu c=E1=BA=A7u c=E1=BB=A5 th=E1=BB=83 v=E1=BB=81 thi=E1=BA=BFt k=E1=
+=BA=BF t=E1=BB=ABng trang s=E1=BA=BD trao =C4=91=E1=BB=95i khi l=C3=A0m vi=
+=E1=BB=87c.... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    gi=E1=BA=A3i m=C3=A3 =C4=91o=E1=BA=A1n code b=E1=BB=8B =
+m=C3=A3 h=C3=B3a
+                    B=C3=A1n th=E1=BB=9Di gian
+                    L=E1=BA=ADp tr=C3=ACnh web | 200.000 VN=C4=90 - 200.000=
+ VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    m=C3=ACnh c=E1=BA=A7n gi=E1=BA=A3i m=C3=A3 4 =C4=91o=E1=
+=BA=A1n code b=E1=BA=A3n quy=E1=BB=81n c=E1=BB=A7a template trong blogspot,=
+ d=C3=B9ng c=C3=A1c web gi=E1=BA=A3i m=C3=A3 online kh=C3=B4ng ra link b=E1=
+=BA=A3n quy=E1=BB=81n, b=E1=BA=A1n n=C3=A0o l=C3=A0m =C4=91=C6=B0=E1=BB=A3c=
+ ib nh=C3=A9... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    Vi=E1=BA=BFt ebook d=E1=BA=A1y con cho =C4=91=E1=BB=91i=
+ t=C6=B0=E1=BB=A3ng ph=E1=BB=A5 huynh - =C4=90=C3=A3 c=C3=B3 d=C3=A0n =C3=
+=BD
+                    B=C3=A1n th=E1=BB=9Di gian
+                    Vi=E1=BA=BFt s=C3=A1ch | 1.000.000 VN=C4=90 - 2.000.000=
+ VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    M=C3=ACnh c=E1=BA=A7n thu=C3=AA 1 b=E1=BA=A1n c=C3=B3 k=
+h=E1=BA=A3 n=C4=83ng vi=E1=BA=BFt t=E1=BB=91t:
+- T=E1=BA=A1o ra cu=E1=BB=91n ebook ch=E1=BB=A7 =C4=91=E1=BB=81 d=E1=BA=A1y=
+ con =C4=91=E1=BB=91i t=C6=B0=E1=BB=A3ng =C4=91=E1=BB=8Dc l=C3=A0 ph=E1=BB=
+=A5 huynh, m=C3=ACnh =C4=91=C3=A3 c=C3=B3 gi=C3=A0n =C3=BD
+- Ebook ko c=E1=BA=A7n qu=C3=A1 d=C3=A0i, =C4=91=E1=BB=A7 =C3=BD v=C3=A0 ho=
+=C3=A0n th=C3=A0nh =C4=91=C3=BAng dealine
+- Mong mu=E1=BB=91n l=C3=A0m vi... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    Tuy=E1=BB=83n d=E1=BB=A5ng HR partime theo d=E1=BB=B1 =
+=C3=A1n
+                    B=C3=A1n th=E1=BB=9Di gian
+                    Tuy=E1=BB=83n d=E1=BB=A5ng | 1.000.000 VN=C4=90 - 5.000=
+.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    Th=E1=BB=B1c hi=E1=BB=87n c=C3=A1c c=C3=B4ng vi=E1=BB=
+=87c =C4=91=C4=83ng tin tuy=E1=BB=83n d=E1=BB=A5ng c=E1=BB=A7a CTY.
+H=C3=ACnh th=E1=BB=A9c ph=C3=AD tr=E1=BA=A3 theo d=E1=BB=B1 =C3=A1n.... Xem=
+ th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    =E1=BB=A8ng d=E1=BB=A5ng d=E1=BB=B1 =C4=91o=C3=A1n k=E1=
+=BA=BFt qu=E1=BA=A3 trong 1 d=C3=A3y s=E1=BB=91
+                    B=C3=A1n th=E1=BB=9Di gian
+                    AI - Tr=C3=AD tu=E1=BB=87 nh=C3=A2n t=E1=BA=A1o, Machin=
+e Learning | 1.000.000 VN=C4=90 - 5.000.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=
+=AD Minh
+                    Xin ch=C3=A0o,
+M=C3=ACnh =C4=91ang c=E1=BA=A7n l=C3=A0m 1 =E1=BB=A9ng d=E1=BB=A5ng d=E1=BB=
+=B1 =C4=91o=C3=A1n k=E1=BA=BFt qu=E1=BA=A3 c=E1=BB=A7a ng=C6=B0=E1=BB=9Di c=
+h=C6=A1i trong 1 d=C3=A3y s=E1=BB=91 cho tr=C6=B0=E1=BB=9Bc (1,2,3).
+Trao =C4=91=E1=BB=95i k=E1=BB=B9 khi nh=E1=BA=ADn d=E1=BB=B1 =C3=A1n
+Xin c=E1=BA=A3m =C6=A1n... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    Business data extraction from Google Places or similar =
+API
+                    B=C3=A1n th=E1=BB=9Di gian
+                    Nghi=C3=AAn c=E1=BB=A9u &amp; kh=E1=BA=A3o s=C3=A1t th=
+=E1=BB=8B tr=C6=B0=E1=BB=9Dng | 500.000 VN=C4=90 - 1.000.000 VN=C4=90 | To=
+=C3=A0n Qu=E1=BB=91c
+                    I have a basic one time data pull from Google Places or=
+ similar API where this data might exist.
+
+Within 272 zipcodes, pull information for 2 specific type of businesses (to=
+ be discussed at proposal... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    =EF=BB=BFEnglish translation English translation work
+                    B=C3=A1n th=E1=BB=9Di gian
+                    D=E1=BB=8Bch thu=E1=BA=ADt | 500.000 VN=C4=90 - 800.000=
+ VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    This is an English translation job.
+
+This is a software startup company founded this year in Ho Chi Minh city. W=
+e are looking for someone who can work as a part-time translator online. Al=
+though we a... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    Ch=E1=BA=A1y b=C3=A0i =C4=91=C4=83ng tr=C3=AAn Instagra=
+m
+                   =20
+                    Qu=E1=BA=A3ng c=C3=A1o facebook | 2.000.000 VN=C4=90 - =
+3.000.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    Ch=E1=BA=A1y story, Q&amp;A, h=C3=ACnh =E1=BA=A3nh v=C3=
+=A0 qu=E1=BA=A3ng c=C3=A1o v=E1=BB=81 ng=C3=A0nh l=C3=A0m kem =C3=9D.... Xe=
+m th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    Vi=E1=BA=BFt PR, Ch=C4=83m s=C3=B3c fanpage
+                    B=C3=A1n th=E1=BB=9Di gian
+                    T=C6=B0 v=E1=BA=A5n, l=E1=BA=ADp k=E1=BA=BF ho=E1=BA=A1=
+ch &amp; tri=E1=BB=83n khai marketing online | 1.500.000 VN=C4=90 - 2.500.0=
+00 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    Ch=C3=A0o c=C3=A1c b=E1=BA=A1n!
+C=C3=B4ng ty m=C3=ACnh l=C3=A0m l=C4=A9nh v=E1=BB=B1c M=E1=BB=B9 ph=E1=BA=
+=A9m
+m=C3=ACnh =C4=91ang c=E1=BA=A7n nh=C3=A2n vi=C3=AAn cho c=C3=B4ng vi=E1=BB=
+=87c sau:
+- Content marketing. ( Vi=E1=BA=BFt n=E1=BB=99i dung website, Pr, gi=E1=BB=
+=9Bi thi=E1=BB=87u s=E1=BA=A3n ph=E1=BA=A9m....)
+- Qu=E1=BA=A3n l=C3=BD v=C3=A0 s=C3=A1ng t=E1=BA=A1o n=E1=BB=99i dung... Xe=
+m th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    [C=E1=BA=A6N T=C3=8CM DEV CODE WEB B=E1=BA=B0NG VUEJS]
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 5.000=
+.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    C=C3=B4ng ty m=C3=ACnh =C4=91ang c=E1=BA=A7n x=E1=BB=AD=
+ l=C3=AD v=E1=BA=A5n =C4=91=E1=BB=81 li=C3=AAn quan =C4=91=E1=BA=BFn VUEJS.
+C=E1=BA=A7n t=C3=ACm b=E1=BA=A1n dev code web b=E1=BA=B1ng VUEJS, bi=E1=BA=
+=BFt v=E1=BB=81 m=C3=A3 h=C3=B3a aes payload trong Vuejs.=20
+M=C3=ACnh c=E1=BA=A3m =C6=A1n.... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    M=C3=ACnh c=E1=BA=A7n t=C3=ACm ng=C6=B0=E1=BB=9Di l=C3=
+=A0m l=E1=BA=A1i to=C3=A0n b=E1=BB=99 website =C4=91=C3=A3 c=C3=B3 s=E1=BA=
+=B5n theo nhu c=E1=BA=A7u c=E1=BB=A7a c=C3=B4ng ty. Bao g=E1=BB=93m vi=E1=
+=BB=87c set th=C3=AAm gi=E1=BB=8F h=C3=A0ng, ph=C6=B0=C6=A1ng th=E1=BB=A9c =
+mua (hi=E1=BB=87n t=E1=BA=A1i web =C4=91=C6=A1n gi=E1=BA=A3n ch=E1=BB=89 =
+=C4=91=E1=BB=83 =C4=91=C4=83ng th=C3=B4ng tin)
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 6.000=
+.000 VN=C4=90 | H=C3=A0 N=E1=BB=99i
+                    - Thi=E1=BA=BFt k=E1=BA=BF l=E1=BA=A1i trang ch=E1=BB=
+=A7 web
+- Th=C3=AAm c=C3=A1c ti=E1=BB=87n =C3=ADch kh=C3=A1c nh=C6=B0 gi=E1=BB=8F h=
+=C3=A0ng, ch=E1=BB=A9c n=C4=83ng thanh to=C3=A1n, =C4=91=C4=83ng nh=E1=BA=
+=ADp user, =C4=91=C4=83ng k=C3=AD mail nh=E1=BA=ADn th=C3=B4ng tin
+- Thi=E1=BA=BFt k=E1=BA=BF nh=C6=B0 m=E1=BB=99t trang b=C3=A1n h=C3=A0ng
+- G=E1=BB=ADi demo =C4=91=C3=BAng h=E1=BA=B9n, tr=E1=BA=A3 l=C6=B0=C6=A1n..=
+. Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    =C4=90i=E1=BB=81u Ch=E1=BB=89nh L=E1=BA=A1i Giao Di=E1=
+=BB=87n Website Shopbase Theo Y=C3=AAu C=E1=BA=A7u
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh web | 2.000.000 VN=C4=90 - 5.000=
+.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    M=C3=ACnh c=E1=BA=A7n ch=E1=BB=89nh s=E1=BB=ADa l=E1=BA=
+=A1i giao di=E1=BB=87n website Shopbase (=C4=91=C3=A3 l=C3=AAn s=E1=BA=B5n =
+wireframe)
+Code theo ng=C3=B4n ng=E1=BB=AF l=E1=BA=ADp tr=C3=ACnh Vue.
+C=C3=B3 custom l=E1=BA=A1i flow ad to cart tr=C3=AAn trang product c=E1=BB=
+=A7a sshopbase.
+N=E1=BA=BFu b=E1=BA=A1n quan t=C3=A2m vui l=C3=B2ng ... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    Thi=E1=BA=BFt k=E1=BA=BF Brochure, backdrop, standee
+                    B=C3=A1n th=E1=BB=9Di gian
+                    Thi=E1=BA=BFt k=E1=BA=BF brochure | 200.000 VN=C4=90 - =
+1.000.000 VN=C4=90 | H=C3=A0 N=E1=BB=99i
+                    M=C3=ACnh c=E1=BA=A7n t=C3=ACm b=E1=BA=A1n thi=E1=BA=BF=
+t k=E1=BA=BF =C4=91=E1=BB=93 h=E1=BB=8Da bi=E1=BA=BFt thi=E1=BA=BFt k=E1=BA=
+=BF 3D, ren =E1=BA=A3nh =C4=91=E1=BB=83 thi=E1=BA=BFt k=E1=BA=BF Flyer ch=
+=C3=A0o h=C3=A0ng, brochure, backdrop, standee (in s=E1=BB=B1 ki=E1=BB=87n)=
+... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    PHP Developer Freelancer
+                    B=C3=A1n th=E1=BB=9Di gian
+                    L=E1=BA=ADp tr=C3=ACnh web | 20.633.750 VN=C4=90 - 29.6=
+33.750 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    =E2=97=8F Html/Css/Sass/JS/Twig (JS frameworks are not =
+necessary but at least basic javascript is
+needed, HTML and CSS on level to implement basic templates)
+=E2=97=8F PHP / Symfony + ecosystem knowledge / Doctrine... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    Thi=E1=BA=BFt k=E1=BA=BF brochure c=C3=B4ng ty
+                   =20
+                    Thi=E1=BA=BFt k=E1=BA=BF brochure | 1.000.000 VN=C4=90 =
+- 5.000.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    - Thi=E1=BA=BFt k=E1=BA=BF l=E1=BA=A1i brochure c=C3=B4=
+ng ty theo h=C6=B0=E1=BB=9Bng c=C3=B3 UX/UI theo logo c=C3=B4ng ty.
+- T=E1=BB=91i =C4=91a 20 page (k=C3=ADch th=C6=B0=E1=BB=9Bc page powerpoint=
+).
+- 50% n=E1=BB=99i dung file =C4=91=C3=ADnh k=C3=A8m + 50% thay =C4=91=E1=BB=
+=95i (th=C3=AAm/b=E1=BB=9Bt) so v=E1=BB=9Bi profile c=C5=A9... Xem th=C3=AA=
+m
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    Li=C3=AAn h=E1=BB=87 t=C3=ACm ki=E1=BA=BFm =C4=91=E1=BB=
+=91i t=C3=A1c
+                   =20
+                    T=C6=B0 v=E1=BA=A5n b=C3=A1n h=C3=A0ng &amp; Gi=E1=BB=
+=9Bi thi=E1=BB=87u s=E1=BA=A3n ph=E1=BA=A9m | 1.000.000 VN=C4=90 - 3.000.00=
+0 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    M=C3=ACnh c=E1=BA=A7n tuy=E1=BB=83n 1 b=E1=BA=A1n c=C3=
+=B3 th=E1=BB=83 h=E1=BB=97 tr=E1=BB=A3 trong vi=E1=BB=87c li=C3=AAn h=E1=BB=
+=87 t=C3=ACm ki=E1=BA=BFm =C4=91=E1=BB=91i t=C3=A1c. V=E1=BB=8B tr=C3=AD n=
+=C3=A0y ch=E1=BB=89 c=E1=BA=A7n t=E1=BA=A1o danh s=C3=A1ch =C4=91=E1=BB=91i=
+ t=C3=A1c, v=C3=A0 s=E1=BA=AFp x=E1=BA=BFp bu=E1=BB=95i g=E1=BA=B7p.=20
+
+=C6=AFu ti=C3=AAn c=C3=A1c b=E1=BA=A1n =E1=BB=9F TP H=E1=BB=93 Ch=C3=AD Min=
+h.=20
+
+B=C3=AAn m=C3=ACnh s=E1=BA=BD tr=E1=BB=B1c ti=E1=BA=BFp =C4=91... Xem th=C3=
+=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    T=C3=ACm Dev Android - Flutter
+                   =20
+                    =E1=BB=A8ng d=E1=BB=A5ng di =C4=91=E1=BB=99ng | 5.000.0=
+00 VN=C4=90 - 50.000.000 VN=C4=90 | H=C3=A0 N=E1=BB=99i
+                    M=C3=ACnh c=E1=BA=A7n t=C3=ACm Dev ho=E1=BA=B7c team =
+=C4=91=E1=BB=83 Code app h=E1=BB=A3p t=C3=A1c l=C3=A2u d=C3=A0i (=C4=91=C3=
+=A3 c=C3=B3 Design v=C3=A0 SRS). Dev c=E1=BB=A9ng C=C3=B3 kinh nghi=E1=BB=
+=87m l=C3=A0m Andoird ho=E1=BA=B7c Flutter.
+
+B=C3=AAn m=C3=ACnh c=C5=A9ng tuy=E1=BB=83n c=E1=BA=A3 Dev Android, Flutter =
+l=C3=A0m cho c=C3=B4ng ty (Level Ju... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    thi=E1=BA=BFt k=E1=BA=BF logo, tem nh=C3=A3n, bao b=C3=
+=AC cho s=E1=BA=A3n ph=E1=BA=A9m n=C3=B4ng s=E1=BA=A3n
+                    B=C3=A1n th=E1=BB=9Di gian
+                    Nh=C3=A3n hi=E1=BB=87u v=C3=A0 bao b=C3=AC | 200.000 VN=
+=C4=90 - 500.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    ch=C3=A0o m=E1=BB=8Di ng=C6=B0=E1=BB=9Di !
+c=C3=B4ng ty m=C3=ACnh =C4=91ang c=E1=BA=A7n 1 b=E1=BA=A1n c=C3=B3 th=E1=BB=
+=83 c=E1=BB=99ng t=C3=A1c l=C3=A2u d=C3=A0i =C4=91=E1=BB=83 l=C3=A0m thi=E1=
+=BA=BFt k=E1=BA=BF logo v=E1=BB=81 tem nh=C3=A3n, tag cho c=C3=A1c s=E1=BA=
+=A3n ph=E1=BA=A9m N=C3=B4ng s=E1=BA=A3n =C4=91=E1=BB=83 xu=E1=BA=A5t kh=E1=
+=BA=A9u v=C3=A0 ph=C3=A2n ph=E1=BB=91i trong n=C6=B0=E1=BB=9Bc nh=C6=B0 nh=
+=C3=A3n, v=E1=BA=A3i, thanh long, g=E1=BA=A1... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                                            =20
+                    Thi=E1=BA=BFt k=E1=BA=BF logo v=C3=A0 b=E1=BB=99 nh=E1=
+=BA=ADn di=E1=BB=87n th=C6=B0=C6=A1ng hi=E1=BB=87u
+                   =20
+                    Thi=E1=BA=BFt k=E1=BA=BF Logo | 2.000.000 VN=C4=90 - 10=
+.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    Thu nh=E1=BA=ADp: Th=E1=BB=8Fa thu=E1=BA=ADn theo d=E1=
+=BB=B1 =C3=A1n
+
+C=C3=B4ng vi=E1=BB=87c:
+=E2=80=A2 Thi=E1=BA=BFt k=E1=BA=BF logo v=C3=A0 b=E1=BB=99 nh=E1=BA=ADn di=
+=E1=BB=87n th=C6=B0=C6=A1ng hi=E1=BB=87u.
+=E2=80=A2 Thi=E1=BA=BFt k=E1=BA=BF c=C3=A1c d=E1=BB=B1 =C3=A1n kh=C3=A1c: b=
+ao b=C3=AC s=E1=BA=A3n ph=E1=BA=A9m, =E1=BA=A5n ph=E1=BA=A9m truy=E1=BB=81n=
+ th=C3=B4ng (n=E1=BA=BFu c=C3=B3)
+
+Y=C3=AAu c=E1=BA=A7u:
+=E2=80=A2 C=C3=B3 kinh nghi=E1=BB=87m thi... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    L=C3=A0m clip ng=E1=BA=AFn tiktok ( =C4=91=C6=A1n gi=E1=
+=BA=A3n) gi=E1=BB=9Bi thi=E1=BB=87u s=E1=BA=A3n ph=E1=BA=A9m
+                   =20
+                    L=C3=A0m video clip | 200.000 VN=C4=90 - 200.000 VN=C4=
+=90 | To=C3=A0n Qu=E1=BB=91c
+                    H=C3=A0ng ng=C3=A0y t=E1=BA=A1o 2 clip ng=E1=BA=AFn =C4=
+=91=C6=A1n gi=E1=BA=A3n =C4=91=E1=BB=83 m=C3=ACnh =C4=91=C4=83ng tiktok (b=
+=E1=BA=A3n quy=E1=BB=81n clip ng=E1=BA=AFn thu=E1=BB=99c v=E1=BB=81 m=C3=AC=
+nh) b=C3=A0 b=E1=BA=A1n kh=C3=B4ng =C4=91=C6=B0=E1=BB=A3c g=E1=BB=ADi ai kh=
+=C3=A1c! M=C3=ACnh s=E1=BA=BD cung c=E1=BA=A5p h=C3=ACnh =E1=BA=A3nh s=C6=
+=A1 l=C6=B0=E1=BB=A3c =C4=91=E1=BB=83 b=E1=BA=A1n l=C3=AAn =C3=BD t=C6=B0=
+=E1=BB=9Fng. Clip ng=E1=BA=AFn kho=E1=BA=A3ng 30 gi=C3=A2y... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    Crack PrintShop mail 2020 / 2021 / 2022
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh ph=E1=BA=A7n m=E1=BB=81m | 1.000=
+.000 VN=C4=90 - 10.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    M=C3=ACnh c=E1=BA=A7n Crack ph=E1=BA=A7n m=E1=BB=81m Pr=
+intShop mail 2020 / 2021 / 2022, gi=C3=A1 c=E1=BA=A3 th=E1=BB=8Fa thu=E1=BA=
+=ADn... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    qu=E1=BA=A3ng c=C3=A1o google ads m=E1=BA=A3ng t=C3=A0i=
+ ch=C3=ADnh ng=C3=A2n h=C3=A0ng
+                    B=C3=A1n th=E1=BB=9Di gian
+                    Qu=E1=BA=A3ng c=C3=A1o google adwords =E2=80=93 SEM | 3=
+.000.000 VN=C4=90 - 4.500.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    m=C3=ACnh c=E1=BA=A7n m=E1=BB=99t b=E1=BA=A1n ch=E1=BA=
+=A1y qu=E1=BA=A3ng c=C3=A1o google ads m=E1=BA=A3ng t=C3=A0i ch=C3=ADnh ng=
+=C3=A2n h=C3=A0ng... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    Ph=E1=BA=A7n m=E1=BB=81m t=E1=BB=B1 =C4=91=E1=BB=99ng t=
+hao t=C3=A1c web tr=C3=AAn n=E1=BB=81n d=E1=BB=AF li=E1=BB=87u excel
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh ph=E1=BA=A7n m=E1=BB=81m | 1.000=
+.000 VN=C4=90 - 2.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    M=C3=ACnh c=C3=B3 c=C3=B4ng vi=E1=BB=87c nh=E1=BA=ADp d=
+=E1=BB=AF li=E1=BB=87u t=E1=BB=AB file excel l=C3=AAn h=E1=BB=87 th=E1=BB=
+=91ng c=E1=BB=A7a c=C3=B4ng ty. c=E1=BA=A7n ng=C6=B0=E1=BB=9Di thi=E1=BA=BF=
+t k=E1=BA=BFt t=E1=BB=B1 =C4=91=E1=BB=99ng nh=E1=BA=ADp v=C3=A0 tr=E1=BA=A3=
+ k=E1=BA=BFt qu=E1=BA=A3 v=E1=BB=81 file excel.... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    Tr=E1=BB=A3 gi=E1=BA=A3ng d=E1=BA=A1y =C4=91=C3=A0n pia=
+no cho l=E1=BB=9Bp nh=E1=BA=A1c t=E1=BA=A1i B=C3=ACnh Th=E1=BA=A1nh, Ph=C3=
+=BA Nhu=E1=BA=ADn, Q1
+                    B=C3=A1n th=E1=BB=9Di gian
+                    Tuy=E1=BB=83n d=E1=BB=A5ng | 200.000 VN=C4=90 - 201.000=
+ VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    Hi=E1=BB=87n trung t=C3=A2m d=E1=BA=A1y =C4=91=C3=A0n b=
+=C3=AAn em =C4=91ang c=E1=BA=A7n tuy=E1=BB=83n:
+- Tr=E1=BB=A3 gi=E1=BA=A3ng h=E1=BB=95 tr=E1=BB=A3 gi=C3=A1o vi=C3=AAn ch=
+=C3=ADnh trong vi=E1=BB=87c d=E1=BA=A1y, =C4=91=C6=B0=E1=BB=A3c h=C6=B0=E1=
+=BB=9Bng d=E1=BA=ABn n=E1=BA=BFu ch=C6=B0a c=C3=B3 kinh nghi=E1=BB=87m.
+- Gi=C3=A1o vi=C3=AAn d=E1=BA=A1y =C4=91=C3=A0n: Piano, Organ, Guitar v=C3=
+=A0 Ukulele.
+- =C6=AFu t... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    Vi=E1=BA=BFt ph=E1=BA=A7n m=E1=BB=81m qu=E1=BA=A3n l=C3=
+=BD Container t=E1=BA=A1i b=C3=A3i
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh ph=E1=BA=A7n m=E1=BB=81m | 20.00=
+0.000 VN=C4=90 - 30.000.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    T=C3=B4i c=E1=BA=A7n 1 ph=E1=BA=A7n m=E1=BB=81m =C4=91=
+=C6=A1n gi=E1=BA=A3n v=E1=BB=9Bi c=C3=A1c tr=C6=B0=E1=BB=9Dng input theo y=
+=C3=AAu c=E1=BA=A7u, chia ra c=C3=A1c t=C3=ADnh n=C4=83ng nh=E1=BA=B1m qu=
+=E1=BA=A3n l=C3=BD container nh=E1=BA=ADp, xu=E1=BA=A5t, s=E1=BB=ADa ch=E1=
+=BB=AFa, gi=C3=A1m =C4=91=E1=BB=8Bnh,c=E1=BA=A5p x=C4=83ng d=E1=BA=A7u, nh=
+=E1=BA=ADp xu=E1=BA=A5t t=E1=BB=93n v=E1=BA=ADt li=E1=BB=87u.
+Database truy xu=E1=BA=A5t =C4=91=C6=B0... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                        =20
+                    Ch=E1=BB=89nh s=E1=BB=ADa mobile react-native app
+                    B=C3=A1n th=E1=BB=9Di gian
+                    =E1=BB=A8ng d=E1=BB=A5ng di =C4=91=E1=BB=99ng | 200.000=
+ VN=C4=90 - 200.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    C=C3=B4ng ty hi=E1=BB=87n =C4=91ang c=E1=BA=A7n m=E1=BB=
+=99t b=E1=BA=A1n React-Native Mobile App Dev =E1=BB=9F khu v=E1=BB=B1c TP. =
+HCM l=C3=A0m vi=E1=BB=87c b=C3=A1n th=E1=BB=9Di gian ch=E1=BB=89nh s=E1=BB=
+=ADa app c=C3=B3 s=E1=BA=B5n.... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+=20
+                    Thi=E1=BA=BFt k=E1=BA=BF menu qu=C3=A1n =C4=83n online
+                   =20
+                    Thi=E1=BA=BFt k=E1=BA=BF b=E1=BB=99 nh=E1=BA=ADn di=E1=
+=BB=87n th=C6=B0=C6=A1ng hi=E1=BB=87u | 500.000 VN=C4=90 - 1.000.000 VN=C4=
+=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    Qu=C3=A1n =C4=83n ph=C3=A1t tri=E1=BB=83n m=E1=BA=A3ng =
+kinh doanh online n=C3=AAn c=E1=BA=A7n t=C3=ACm 1 b=E1=BA=A1n thi=E1=BA=BFt=
+ k=E1=BA=BF h=C3=ACnh =E1=BA=A3nh g=E1=BB=93m c=C3=A1c n=E1=BB=99i dung:
+- =E1=BA=A2nh =C4=91=E1=BA=A1i di=E1=BB=87n 3 m=C3=B3n ch=C3=ADnh &amp; m=
+=E1=BB=99t s=E1=BB=91 th=E1=BB=A9c u=E1=BB=91ng
+- 1 Banner ch=C6=B0=C6=A1ng tr=C3=ACnh khuy=E1=BA=BFn m=C3=A3i
+- 1 m=E1=BA=ABu t=E1=BB=9D r=C6=A1i qu=E1=BA=A3ng... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+            =20
+                    C=E1=BA=A7n l=C3=A0m tool leech truy=E1=BB=87n tranh ch=
+o website
+                   =20
+                    L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 1.500=
+.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c
+                    C=E1=BA=A7n 1 b=E1=BA=A1n vi=E1=BA=BFt tool leech truy=
+=E1=BB=87n cho website wordpess theme Madara.... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                       =20
+       =20
+       =20
+                                                   =20
+                    X=C3=A2y d=E1=BB=B1ng ph=E1=BA=A7n m=E1=BB=81m d=E1=BA=
+=ABn =C4=91=C6=B0=E1=BB=9Dng v=E1=BB=87 tinh GPS cho =C3=B4 t=C3=B4
+                    To=C3=A0n th=E1=BB=9Di gian
+                    =E1=BB=A8ng d=E1=BB=A5ng di =C4=91=E1=BB=99ng | 15.000.=
+000 VN=C4=90 - 40.000.000 VN=C4=90 | H=C3=A0 N=E1=BB=99i
+                    X=C3=A2y d=E1=BB=B1ng ph=E1=BA=A7n m=E1=BB=81m tr=C3=AA=
+n Android native
+T=E1=BB=91i =C6=B0u giao di=E1=BB=87n =E1=BB=A9ng d=E1=BB=A5ng, ph=E1=BA=A7=
+n m=E1=BB=81m t=C6=B0=C6=A1ng t=E1=BB=B1 Google Map... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                               =20
+                    Ki=E1=BB=83m tra ch=E1=BA=A5t l=C6=B0=E1=BB=A3ng Mobile=
+ App, APIs
+                    To=C3=A0n th=E1=BB=9Di gian
+                    QA Tester | 8.000.000 VN=C4=90 - 25.000.000 VN=C4=90 | =
+H=C3=A0 N=E1=BB=99i
+                    - Test ch=E1=BA=A5t l=C6=B0=E1=BB=A3ng k=E1=BA=BFt qu=
+=E1=BA=A3 t=C3=ACm ki=E1=BA=BFm t=E1=BB=AB search engine=20
+- Ho=E1=BA=B7c Test =E1=BB=A9ng d=E1=BB=A5ng mobile App
+- Kh=E1=BA=A3 n=C4=83ng g=E1=BB=A3i =C3=BD t=C3=ADnh n=C4=83ng, =C4=91=C6=
+=B0a y=C3=AAu c=E1=BA=A7u c=E1=BB=A5 th=E1=BB=83 t=E1=BB=9Bi Dev.... Xem th=
+=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                                                                           =
+                                                                           =
+                                                          =20
+                    Qu=E1=BA=A3n l=C3=BD Marketing
+                    To=C3=A0n th=E1=BB=9Di gian
+                    Vi=E1=BB=87c KD v=C3=A0 marketing kh=C3=A1c | 7.000.000=
+ VN=C4=90 - 30.000.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    L=E1=BA=ADp k=E1=BA=BF ho=E1=BA=A1ch marketing, theo d=
+=C3=B5i c=C3=A1c ch=E1=BB=89 s=E1=BB=91 marketing &amp; kinh doanh. qu=E1=
+=BA=A3n l=C3=BD team marketing n=E1=BB=99i b=E1=BB=99.... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                               =20
+                    Content marketing
+                    To=C3=A0n th=E1=BB=9Di gian
+                    Bi=C3=AAn t=E1=BA=ADp &amp; ch=E1=BB=89nh s=E1=BB=ADa n=
+=E1=BB=99i dung | 7.000.000 VN=C4=90 - 15.000.000 VN=C4=90 | TP. H=E1=BB=93=
+ Ch=C3=AD Minh
+                    Vi=E1=BA=BFt b=C3=A0i cho l=C4=A9nh v=E1=BB=B1c =C4=91=
+=C3=A0o t=E1=BA=A1o tr=C3=AAn h=E1=BB=87 th=E1=BB=91ng social, k=E1=BB=8Bch=
+ b=E1=BA=A3n, ch=E1=BB=A7 =C4=91=E1=BB=81 video chia s=E1=BA=BD.... Xem th=
+=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                               =20
+                    editor &amp; design
+                    To=C3=A0n th=E1=BB=9Di gian
+                    L=C3=A0m video clip | 7.000.000 VN=C4=90 - 20.000.000 V=
+N=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    thi=E1=BA=BFt k=E1=BA=BF =E1=BA=A3nh, quay &amp; ch=E1=
+=BB=89nh s=E1=BB=ADa video t=E1=BA=A1i ph=C3=B2ng thu. l=C3=A0m vi=E1=BB=87=
+c t=E1=BA=A1i v=C4=83n ph=C3=B2ng, to=C3=A0n th=E1=BB=9Di gian. Ch=E1=BA=BF=
+ =C4=91=E1=BB=99 theo quy =C4=91=E1=BB=8Bnh nh=C3=A0 n=C6=B0=E1=BB=9Bc... X=
+em th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                                                                           =
+                                                                           =
+                                      =20
+                    VFX Designer
+                    To=C3=A0n th=E1=BB=9Di gian
+                    L=C3=A0m video clip | 8.000.000 VN=C4=90 - 10.000.000 V=
+N=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh
+                    M=C3=B4 t=E1=BA=A3 c=C3=B4ng vi=E1=BB=87c:
+- S=E1=BB=AD d=E1=BB=A5ng ph=E1=BA=A7n m=E1=BB=81m After Effect =C4=91=E1=
+=BB=83 t=E1=BA=A1o visual effect cho video.
+- C=C3=A1c c=C3=B4ng vi=E1=BB=87c kh=C3=A1c theo s=E1=BB=B1 ph=C3=A2n c=C3=
+=B4ng c=E1=BB=A7a Qu=E1=BA=A3n l=C3=BD.
+- X=C3=A2y d=E1=BB=B1ng =C3=BD t=C6=B0=E1=BB=9Fng, thi=E1=BA=BFt k=E1=BA=BF=
+ t=E1=BA=A1o th=C3=AAm c=C3=A1c hi=E1=BB=87u =E1=BB=A9ng h=C3=ACnh =E1=BA=
+=A3nh =C4=91=E1=BB=83 n... Xem th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                =20
+                    GI=C3=81O VI=C3=8AN NGO=E1=BA=A0I NG=E1=BB=AE
+                    To=C3=A0n th=E1=BB=9Di gian
+                    Gia s=C6=B0 | 15.000.000 VN=C4=90 - 25.000.000 VN=C4=90=
+ | B=C3=A0 R=E1=BB=8Ba - V=C5=A9ng T=C3=A0u
+                    =E2=80=A2 Tr=E1=BB=B1c ti=E1=BA=BFp gi=E1=BA=A3ng d=E1=
+=BA=A1y c=C3=A1c ch=C6=B0=C6=A1ng tr=C3=ACnh IELTS theo ph=C3=A2n c=C3=B4ng=
+ c=E1=BB=A7a Trung t=C3=A2m.
+=E2=80=A2 So=E1=BA=A1n b=C3=A0i v=C3=A0 chu=E1=BA=A9n b=E1=BB=8B b=C3=A0i t=
+r=C6=B0=E1=BB=9Bc khi l=C3=AAn l=E1=BB=9Bp
+=E2=80=A2 Gi=C3=A1o vi=C3=AAn =C4=91=E1=BB=A9ng l=E1=BB=9Bp, tr=E1=BB=A3 gi=
+=E1=BA=A3ng theo s=E1=BB=B1 b=E1=BB=91 tr=C3=AD
+=E2=80=A2 Theo d=C3=B5i t=C3=ACnh h=C3=ACnh l=E1=BB=9Bp h=E1=BB=8Dc, ... Xe=
+m th=C3=AAm
+                    G=E1=BB=ADi h=E1=BB=93 s=C6=A1
+               =20
+                                                                           =
+                                                                           =
+                                                                           =
+   Th=C3=A0nh th=E1=BA=ADt xin l=E1=BB=97i n=E1=BA=BFu mail n=C3=A0y =C4=91=
+=C3=A3 l=C3=A0m phi=E1=BB=81n b=E1=BA=A1n. B=E1=BA=A1n c=C3=B3 th=E1=BB=83 =
+t=E1=BB=AB ch=E1=BB=91i ti=E1=BA=BFp nh=E1=BA=ADn mail  t=E1=BA=A1i =C4=91=
+=C3=A2y.
+   =20
+
+       =20
+       =20
+       =20
+       =20
+           =20
+       =20
+       =20
+       =20
+        =20
+           =20
+               =20
+                   =20
+                        B=E1=BA=A1n c=E1=BA=A7n tr=E1=BB=A3 gi=C3=BAp? Li=
+=C3=AAn h=E1=BB=87 v=E1=BB=9Bi ch=C3=BAng t=C3=B4i
+                        Email: hotro@vlance.vn
+                        Tel: (+84) 024.6684.1818
+                   =20
+                   =20
+                       =20
+                           =20
+                       =20
+                       =20
+                           =20
+                       =20
+                       =20
+                           =20
+                       =20
+                       =20
+                           =20
+                       =20
+                   =20
+               =20
+               =20
+                    =C2=A9 2022 vLance.vn
+                    =C4=90=E1=BB=8Ba ch=E1=BB=89: T=C3=B2a nh=C3=A0 Ladeco,=
+ t=E1=BA=A7ng 12A, s=E1=BB=91 266 =C4=90=E1=BB=99i C=E1=BA=A5n, ph=C6=B0=E1=
+=BB=9Dng Li=E1=BB=85u Giai, qu=E1=BA=ADn Ba =C4=90=C3=ACnh, th=C3=A0nh ph=
+=E1=BB=91 H=C3=A0 N=E1=BB=99i.
+               =20
+           =20
+       =20
+               =20
+   =20
+       =20
+
+
+------=_Part_1489721_584898434.1664174954285
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+        <style>
+            label{font-weight: bold}
+            a{text-decoration: none;font-weight: 600;color: #0088CC;}
+        </style>
+        <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Du=
+tf-8">
+        <meta name=3D"robots" content=3D"noindex,nofollow">
+        <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3D9">
+        <title>vlance.vn</title>
+    </head>
+    <body style=3D"margin: 0px auto;padding: 0px;font-family: 'Open sans', =
+sans-serif;font-size: 13px;width: 600px;">
+        <!-- Header -->
+        <div style=3D"margin: 0 auto;width: 600px;padding: 0px;">
+            <div style=3D"height: 140px; margin: 0 auto;width: 460px;">
+                <div style=3D"text-align: center;height: 140px;">
+                    <a href=3D"https://www.vlance.vn" style=3D"height: 140p=
+x;">
+                        <img src=3D"https://www.vlance.vn/newsletter/img/ma=
+il_logo.png" style=3D"width: 140px;height: 140px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+         <!-- //end Header -->
+        <!-- content -->
+        <div style=3D"margin: 0 auto;width: 600px;padding: 0px;">
+            <div style=3D"min-height: 350px;">              =20
+    <div>
+                <p>Ch=C3=A0o <i>Tuyen Duong Van</i>,</p>
+        <p>M=E1=BB=99t tu=E1=BA=A7n m=E1=BB=9Bi =C4=91=C3=A3 b=E1=BA=AFt =
+=C4=91=E1=BA=A7u. vLance xin g=E1=BB=ADi t=E1=BB=9Bi b=E1=BA=A1n <i><strong=
+>56 c=C3=B4ng vi=E1=BB=87c </strong></i> v=E1=BB=ABa =C4=91=C6=B0=E1=BB=A3c=
+ =C4=91=C4=83ng. H=C3=A3y g=E1=BB=ADi ch=C3=A0o gi=C3=A1 ngay h=C3=B4m nay =
+=C4=91=E1=BB=83 c=C3=B3 c=C6=A1 h=E1=BB=99i s=E1=BB=9Bm nh=E1=BA=A5t =C4=91=
+=C6=B0=E1=BB=A3c kh=C3=A1ch h=C3=A0ng l=E1=BB=B1a ch=E1=BB=8Dn.</p>
+        <p>B=E1=BA=A1n c=C3=B3 bi=E1=BA=BFt? Nh=E1=BB=AFng vi=E1=BB=87c m=
+=E1=BB=9Bi n=C3=A0y =C4=91=C6=B0=E1=BB=A3c h=E1=BB=87 th=E1=BB=91ng t=E1=BB=
+=B1 =C4=91=E1=BB=99ng ph=C3=A2n lo=E1=BA=A1i d=E1=BB=B1a theo k=E1=BB=B9 n=
+=C4=83ng v=C3=A0 chuy=C3=AAn m=C3=B4n c=E1=BB=A7a b=E1=BA=A1n. =C4=90=E1=BB=
+=83 c=C3=B3 c=C6=A1 h=E1=BB=99i nh=E1=BA=ADn nh=E1=BB=AFng c=C3=B4ng vi=E1=
+=BB=87c ph=C3=B9 h=E1=BB=A3p nh=E1=BA=A5t, b=E1=BA=A1n ch=E1=BB=89 c=E1=BA=
+=A7n =C4=91i=E1=BB=81n ch=C3=ADnh x=C3=A1c nh=E1=BB=AFng c=C3=A1c <i>k=E1=
+=BB=B9 n=C4=83ng, l=C4=A9nh v=E1=BB=B1c chuy=C3=AAn m=C3=B4n</i> c=E1=BB=A7=
+a m=C3=ACnh, =C4=91=E1=BB=93ng th=E1=BB=9Di c=E1=BA=ADp nh=E1=BA=ADt =C4=91=
+=E1=BA=A7y =C4=91=E1=BB=A7 c=C3=A1c th=C3=B4ng tin trong <a href=3D"https:/=
+/www.vlance.vn/freelancer/tuyen-duong-van-1?ap=3Dnewjob&utm_source=3Dviec-m=
+oi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" s=
+tyle=3D"text-decoration: none; color: #429fdd">h=E1=BB=93 s=C6=A1 vi=E1=BB=
+=87c l=C3=A0m</a>.</p>
+        <p>Ch=C3=BAc b=E1=BA=A1n m=E1=BB=99t tu=E1=BA=A7n m=E1=BB=9Bi l=C3=
+=A0m vi=E1=BB=87c hi=E1=BB=87u qu=E1=BA=A3.</p>
+        <br/>
+                                                                           =
+                                                                           =
+              <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20p=
+x; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px;=
+ -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/marketing-online-33?utm_source=3Dviec-=
+moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" =
+target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; font-=
+weight: normal;text-decoration: none;">Marketing Online</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">T=C6=B0 v=E1=BA=A5n, l=E1=BA=ADp k=E1=BA=BF ho=E1=BA=A1ch &am=
+p; tri=E1=BB=83n khai marketing online | 2.000.000 VN=C4=90 - 10.000.000 VN=
+=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>Doanh nghi=E1=BB=87p chuy=C3=AAn ph=C3=A2n ph=E1=BB=
+=91i thu=E1=BB=91c ngu=E1=BB=93n g=E1=BB=91c th=E1=BA=A3o d=C6=B0=E1=BB=A3c=
+, =C4=91i=E1=BB=81u tr=E1=BB=8B c=C3=A1c b=E1=BB=87nh v=E1=BB=81 x=C6=B0=C6=
+=A1ng kh=E1=BB=9Bp, gout, =C4=83n k=C3=A9m-ng=E1=BB=A7 k=C3=A9m,.. =C4=91an=
+g t=C3=ACm m=E1=BB=99t nh=C3=A2n s=E1=BB=B1 ph=E1=BB=A5 tr=C3=A1ch Marketin=
+g Online.
+- Ph=C3=BAc l=E1=BB=A3i: L=C6=B0=C6=A1ng (h=C3=A0ng th=C3=A1ng) + hoa... <a=
+ href=3D"https://www.vlance.vn/viec-lam/marketing-online-33?utm_source=3Dvi=
+ec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-wee=
+k" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=
+=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/marketing-online-33?=
+utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-nonc=
+at-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/giup-chon-ten-cho-be-theo-nguyen=
+-tac-co-san?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-new=
+sletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; te=
+xt-transform: uppercase; font-weight: normal;text-decoration: none;">Gi=C3=
+=BAp ch=E1=BB=8Dn t=C3=AAn cho b=C3=A9 theo nguy=C3=AAn t=E1=BA=AFc c=C3=B3=
+ s=E1=BA=B5n</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Vi=E1=BB=87c l=E1=BA=ADp tr=C3=ACnh kh=C3=A1c | 1.000.000 VN=
+=C4=90 - 2.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>Ch=E1=BB=8Dn t=C3=AAn th=E1=BB=A7 c=C3=B4ng d=E1=BB=
+=B1a tr=C3=AAn nguy=C3=AAn t=E1=BA=AFc t=E1=BB=91n th=E1=BB=9Di gian, v=E1=
+=BA=A5t v=E1=BA=A3=20
+M=E1=BB=A5c =C4=91=C3=ADch: t=C3=ACm c=C3=B4ng c=E1=BB=A5 h=E1=BB=97 tr=E1=
+=BB=A3 ph=C3=B9 h=E1=BB=A3p... <a href=3D"https://www.vlance.vn/viec-freela=
+nce/giup-chon-ten-cho-be-theo-nguyen-tac-co-san?utm_source=3Dviec-moi&utm_m=
+edium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D=
+"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a><=
+/p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/giup-chon-ten-=
+cho-be-theo-nguyen-tac-co-san?utm_source=3Dviec-moi&utm_medium=3Demail&utm_=
+campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/thiet-ke-website-phat-trien-phan=
+-mem?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter=
+-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-tran=
+sform: uppercase; font-weight: normal;text-decoration: none;">Thi=C3=AAt k=
+=E1=BA=BF website ph=C3=A1t tri=E1=BB=83n ph=E1=BA=A7n m=E1=BB=81m</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Thi=E1=BA=BFt k=E1=BA=BF giao di=E1=BB=87n Website | 3.000.00=
+0 VN=C4=90 - 5.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>Hi!
+
+M=C3=ACnh c=E1=BA=A7n 1 b=E1=BA=A1n chuy=C3=AAn thi=E1=BA=BFt k=E1=BA=BF gi=
+ao di=E1=BB=87n web theo xu h=C6=B0=E1=BB=9Bng hi=E1=BB=87n =C4=91=E1=BA=A1=
+i, v=E1=BB=81 b=E1=BB=91 c=E1=BB=A5c, v=C3=A0 c=E1=BA=A5u tr=C3=BAc m=C3=AC=
+nh mu=E1=BB=91n thi=E1=BA=BFt k=E1=BA=BF gi=E1=BB=91ng nh=C6=B0 2 trang n=
+=C3=A0y [Link =C4=91=C3=A3 b=E1=BB=8B =E1=BA=A9n. B=E1=BA=A5m xem chi ti=E1=
+=BA=BFt c=C3=B4ng vi=E1=BB=87c =C4=91=E1=BB=83 xem =C4=91=E1=BA=A7y =C4=91=
+=E1=BB=A7 =C4=91=C6=B0=E1=BB=9D... <a href=3D"https://www.vlance.vn/viec-fr=
+eelance/thiet-ke-website-phat-trien-phan-mem?utm_source=3Dviec-moi&utm_medi=
+um=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_b=
+lank" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/thiet-ke-websi=
+te-phat-trien-phan-mem?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaig=
+n=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/tu-van-thiet-ke-he-thong-mang-dang-tru=
+ng-cho-doanh-nghiep?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=
+=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #=
+429fdd; text-transform: uppercase; font-weight: normal;text-decoration: non=
+e;">T=C6=B0 v=E1=BA=A5n, thi=E1=BA=BFt k=E1=BA=BF h=E1=BB=87 th=E1=BB=91ng =
+m=E1=BA=A1ng d=E1=BA=A1ng trung cho doanh nghi=E1=BB=87p</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">T=C6=B0 v=E1=BA=A5n, thi=E1=BA=BFt k=E1=BA=BF h=E1=BB=87 th=
+=E1=BB=91ng m=E1=BA=A1ng | 2.000.000 VN=C4=90 - 4.000.000 VN=C4=90 | To=C3=
+=A0n Qu=E1=BB=91c</p>
+                    <p>Thi=E1=BA=BFt k=E1=BA=BF h=E1=BB=87 th=E1=BB=91ng m=
+=E1=BA=A1ng hi=E1=BB=87n =C4=91=E1=BA=A1i, b=E1=BA=A3o m=E1=BA=ADt, =C4=91=
+=C3=A1p =E1=BB=A9ng 300 user.
+H=E1=BB=87 th=E1=BB=91ng wifi, camera gi=C3=A1m s=C3=A1t.
+(L=C6=B0=C6=A1ng th=E1=BB=8Fa thu=E1=BA=ADn)... <a href=3D"https://www.vlan=
+ce.vn/viec-lam/tu-van-thiet-ke-he-thong-mang-dang-trung-cho-doanh-nghiep?ut=
+m_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat=
+-20220926-week" target=3D"_blank" style=3D"text-decoration: none; color: #4=
+29fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/tu-van-thiet-ke-he-t=
+hong-mang-dang-trung-cho-doanh-nghiep?utm_source=3Dviec-moi&utm_medium=3Dem=
+ail&utm_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/lap-trinh-giao-dien?utm_source=3Dviec-=
+moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" =
+target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; font-=
+weight: normal;text-decoration: none;">L=E1=BA=ADp tr=C3=ACnh giao di=E1=BB=
+=87n</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">=E1=BB=A8ng d=E1=BB=A5ng di =C4=91=E1=BB=99ng | 1.000.000 VN=
+=C4=90 - 4.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>B=C3=AAn m=C3=ACnh c=E1=BA=A7n t=C3=ACm b=E1=BA=A1n =
+n=C3=A0o c=C3=B3 th=E1=BB=83 vi=E1=BA=BFt giao di=E1=BB=87n App tr=C3=AAn A=
+ndroid v=C3=A0 iOS d=C3=B9ng Flutter v=E1=BB=9Bi Dart. Giao di=E1=BB=87n c=
+=C3=B3 s=E1=BA=B5n t=E1=BB=AB m=E1=BB=99t website c=C3=B3 h=E1=BB=97 tr=E1=
+=BB=A3 mobile.... <a href=3D"https://www.vlance.vn/viec-lam/lap-trinh-giao-=
+dien?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter=
+-noncat-20220926-week" target=3D"_blank" style=3D"text-decoration: none; co=
+lor: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/lap-trinh-giao-dien?=
+utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-nonc=
+at-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/dung-phoi-canh-3d-tong-the-nha-v=
+a-bep?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newslette=
+r-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-tra=
+nsform: uppercase; font-weight: normal;text-decoration: none;">D=E1=BB=B0NG=
+ PH=E1=BB=90I C=E1=BA=A2NH 3D T=E1=BB=94NG TH=E1=BB=82 NH=C3=80 V=C3=80 B=
+=E1=BA=BEP</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Thi=E1=BA=BFt k=E1=BA=BF ngo=E1=BA=A1i th=E1=BA=A5t | 1.000.0=
+00 VN=C4=90 - 1.500.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>M=C3=ACnh =C4=91ang =C4=91=E1=BB=8Bnh c=E1=BA=A3i t=
+=E1=BA=A1o nh=C3=A0 =C3=B4ng b=C3=A0 gi=C3=A0 =E1=BB=9F qu=C3=AA.=20
+C=E1=BA=A7n ph=E1=BB=91i c=E1=BA=A3nh 3D t=E1=BB=95ng th=E1=BB=83 v=C3=A0 b=
+=E1=BA=BFp.=20
+D=E1=BB=B1ng b=E1=BA=B1ng Revit. B=C3=A1c n=C3=A0o l=C3=A0m =C4=91=C6=B0=E1=
+=BB=A3c ibx ae trao =C4=91=E1=BB=95i t=C3=AD.=20
+K c=E1=BA=A7n b=E1=BA=A3n v=E1=BA=BD chi ti=E1=BA=BFt ch=E1=BB=89 c=E1=BA=
+=A7n 3D.... <a href=3D"https://www.vlance.vn/viec-freelance/dung-phoi-canh-=
+3d-tong-the-nha-va-bep?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaig=
+n=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"text-de=
+coration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/dung-phoi-canh=
+-3d-tong-the-nha-va-bep?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campai=
+gn=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/lap-trinh-api-cho-wordpress-ket-=
+noi-voi-may-chu-sql-server?utm_source=3Dviec-moi&utm_medium=3Demail&utm_cam=
+paign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"col=
+or: #429fdd; text-transform: uppercase; font-weight: normal;text-decoration=
+: none;">L=E1=BA=ADp tr=C3=ACnh api cho wordpress k=E1=BA=BFt n=E1=BB=91i v=
+=E1=BB=9Bi m=C3=A1y ch=E1=BB=A7 sql server</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 3.000.000 VN=C4=90 - 5.000.000 V=
+N=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>Website =C4=91=C3=A3 c=C3=B3 s=E1=BA=B5n api k=E1=BA=
+=BFt n=E1=BB=91i v=E1=BB=9Bi m=C3=A1y ch=E1=BB=A7 sql =C4=91=E1=BB=83 l=E1=
+=BA=A5y s=E1=BA=A3n ph=E1=BA=A9m t=E1=BB=AB m=C3=A1y ch=E1=BB=A7 sql server=
+ =C4=91=E1=BB=93ng b=E1=BB=99 l=C3=AAn woo nh=C6=B0ng gi=E1=BB=9D c=E1=BA=
+=A7n t=E1=BB=91i =C6=B0u l=E1=BA=A1i, v=C3=AC m=E1=BB=99t s=E1=BB=91 l=E1=
+=BB=97i hi=E1=BB=83n th=E1=BB=8B s=E1=BA=A3n ph=E1=BA=A9m l=C3=AAn c=E1=BB=
+=A7a wordpress (vd: ph=C3=A2n trang s=E1=BA=A3n ph=E1=BA=A9m... <a href=3D"=
+https://www.vlance.vn/viec-freelance/lap-trinh-api-cho-wordpress-ket-noi-vo=
+i-may-chu-sql-server?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=
+=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"text-dec=
+oration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/lap-trinh-api-=
+cho-wordpress-ket-noi-voi-may-chu-sql-server?utm_source=3Dviec-moi&utm_medi=
+um=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/dung-website-wireframe-co-san?ut=
+m_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat=
+-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: =
+uppercase; font-weight: normal;text-decoration: none;">D=E1=BB=B1ng  websit=
+e (wireframe c=C3=B3 s=E1=BA=B5n tr=C3=AAn Figma)</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 4.000.000 V=
+N=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>C=E1=BA=A7n t=C3=ACm b=E1=BA=A1n d=E1=BB=B1ng websit=
+e b=C3=A1n h=C3=A0ng, responsive =C4=91=C3=A3 c=C3=B3 s=E1=BA=B5n layout wi=
+reframe tr=C3=AAn figma.
+
+Th=C3=B4ng tin v=E1=BB=81 d=E1=BB=B1 =C3=A1n:
+- S=E1=BA=A3n ph=E1=BA=A9m: d=E1=BB=8Bch v=E1=BB=A5 th=C3=AAu vi t=C3=ADnh =
+theo y=C3=AAu c=E1=BA=A7u &amp; tranh th=C3=AAu vi t=C3=ADnh.
+- Kh=C3=A1ch h=C3=A0ng c=E1=BB=A7a websi... <a href=3D"https://www.vlance.v=
+n/viec-freelance/dung-website-wireframe-co-san?utm_source=3Dviec-moi&utm_me=
+dium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"=
+_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></=
+p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/dung-website-w=
+ireframe-co-san?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob=
+-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/minh-can-thiet-ke-logo?utm_sourc=
+e=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-202209=
+26-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: upperca=
+se; font-weight: normal;text-decoration: none;">m=C3=ACnh c=E1=BA=A7n thi=
+=E1=BA=BFt k=E1=BA=BF logo</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Thi=E1=BA=BFt k=E1=BA=BF Logo | 300.000 VN=C4=90 - 500.000 VN=
+=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>m=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF logo =
+=C4=91=C6=A1n gi=E1=BA=A3n
+m=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF logo =C4=91=C6=A1n gi=E1=BA=
+=A3n
+m=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF logo =C4=91=C6=A1n gi=E1=BA=
+=A3n
+m=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF logo =C4=91=C6=A1n gi=E1=BA=
+=A3n... <a href=3D"https://www.vlance.vn/viec-freelance/minh-can-thiet-ke-l=
+ogo?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-=
+noncat-20220926-week" target=3D"_blank" style=3D"text-decoration: none; col=
+or: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/minh-can-thiet=
+-ke-logo?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsle=
+tter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/tuyen-freelancer-dich-thuat?utm_=
+source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2=
+0220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: up=
+percase; font-weight: normal;text-decoration: none;">Tuy=E1=BB=83n freelanc=
+er d=E1=BB=8Bch thu=E1=BA=ADt</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">D=E1=BB=8Bch thu=E1=BA=ADt | 500.000 VN=C4=90 - 2.000.000 VN=
+=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>C=C3=B4ng ty TNHH TM &amp; DV Wowland Group tr=C3=A2=
+n tr=E1=BB=8Dng th=C3=B4ng b=C3=A1o: Ch=C3=BAng t=C3=B4i hi=E1=BB=87n c=C3=
+=B3 nhu c=E1=BA=A7u tuy=E1=BB=83n d=E1=BB=A5ng cho v=E1=BB=8B tr=C3=AD C=E1=
+=BB=99ng t=C3=A1c vi=C3=AAn (CTV) d=E1=BB=8Bch thu=E1=BA=ADt- freelancer tr=
+anslator cho chuy=C3=AAn ng=C3=A0nh b=E1=BA=A5t =C4=91=E1=BB=99ng s=E1=BA=
+=A3n.
+- H=C3=ACnh th... <a href=3D"https://www.vlance.vn/viec-freelance/tuyen-fre=
+elancer-dich-thuat?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3D=
+job-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"text-decora=
+tion: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/tuyen-freelanc=
+er-dich-thuat?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-n=
+ewsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/tim-ban-biet-asp-net-de-chuyen-design-=
+template-thanh-website-va-sua-chua-functions-cua-trang-web?utm_source=3Dvie=
+c-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week=
+" target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; fon=
+t-weight: normal;text-decoration: none;">T=C3=ACm b=E1=BA=A1n bi=E1=BA=BFt =
+ASP.Net =C4=91=E1=BB=83 chuy=E1=BB=83n design template th=C3=A0nh website v=
+=C3=A0 s=E1=BB=ADa ch=E1=BB=AFa functions c=E1=BB=A7a trang web</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 4.000.000 V=
+N=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>M=C3=ACnh =C4=91ang t=C3=ACm m=E1=BB=99t b=E1=BA=A1n=
+ bi=E1=BA=BFt [Link =C4=91=C3=A3 b=E1=BB=8B =E1=BA=A9n. B=E1=BA=A5m xem chi=
+ ti=E1=BA=BFt c=C3=B4ng vi=E1=BB=87c =C4=91=E1=BB=83 xem =C4=91=E1=BA=A7y =
+=C4=91=E1=BB=A7 =C4=91=C6=B0=E1=BB=9Dng link] C# v=C3=A0 mysql server, n=E1=
+=BA=BFu bi=E1=BA=BFt th=C3=AAm solr search th=C3=AC c=C3=A0ng t=E1=BB=91t.
+
+M=C3=ACnh c=C3=B3 trang web [Link =C4=91=C3=A3 b=E1=BB=8B =E1=BA=A9n. B=E1=
+=BA=A5m xem... <a href=3D"https://www.vlance.vn/viec-lam/tim-ban-biet-asp-n=
+et-de-chuyen-design-template-thanh-website-va-sua-chua-functions-cua-trang-=
+web?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-=
+noncat-20220926-week" target=3D"_blank" style=3D"text-decoration: none; col=
+or: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/tim-ban-biet-asp-net=
+-de-chuyen-design-template-thanh-website-va-sua-chua-functions-cua-trang-we=
+b?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-no=
+ncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                                                                           =
+                                                                      <div =
+style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background-color=
+: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-border-rad=
+ius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/tim-freelancer-co-kinh-nghiem-voi-c-ap=
+i?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-no=
+ncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transfo=
+rm: uppercase; font-weight: normal;text-decoration: none;">T=C3=ACm freelan=
+cer c=C3=B3 kinh nghi=E1=BB=87m v=E1=BB=9Bi C# API</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh ph=E1=BA=A7n m=E1=BB=81m | 1.000.000 V=
+N=C4=90 - 5.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>D=E1=BB=B1 =C3=A1n b=C3=AAn m=C3=ACnh c=E1=BA=A7n m=
+=E1=BB=99t b=E1=BA=A1n c=C3=B3 kinh nghi=E1=BB=87m l=C3=A0m vi=E1=BB=87c v=
+=E1=BB=9Bi C#. =C4=90=E1=BB=83 vi=E1=BA=BFt API support cho Mobile App.
+V=C3=AC b=C3=AAn m=C3=ACnh l=C3=A0 c=C3=B4ng ty n=C3=AAn =C6=B0u ti=C3=AAn =
+c=C3=A1c b=E1=BA=A1n c=C3=B3 kh=E1=BA=A3 n=C4=83ng =C4=91=E1=BB=91i =E1=BB=
+=A9ng tr=E1=BA=A3 l=E1=BB=9Di trong gi=E1=BB=9D l=C3=A0m vi=E1=BB=87c khi c=
+=C3=B4ng vi=E1=BB=87c ... <a href=3D"https://www.vlance.vn/viec-lam/tim-fre=
+elancer-co-kinh-nghiem-voi-c-api?utm_source=3Dviec-moi&utm_medium=3Demail&u=
+tm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=
+=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/tim-freelancer-co-ki=
+nh-nghiem-voi-c-api?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=
+=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/landing-page-3?utm_source=3Dviec=
+-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week"=
+ target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; font=
+-weight: normal;text-decoration: none;">Landing Page</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 2.000.000 V=
+N=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>C=C3=A2=CC=80n m=C3=B4=CC=A3t ba=CC=A3n ho=C4=83=CC=
+=A3c team la=CC=80m Landing Page. Ch=C6=B0=CC=81c n=C4=83ng chi=CC=81nh la=
+=CC=80 truy c=C3=A2=CC=A3p camera chu=CC=A3p hi=CC=80nh ho=C4=83=CC=A3c qua=
+y video co=CC=81 th=C3=AA=CC=89 chia se=CC=89 qua ca=CC=81c trang mxh (fb, =
+ins....). N=C3=B4=CC=A3i dung va=CC=80 hi=CC=80nh a=CC=89nh b=C3=AAn brand =
+... <a href=3D"https://www.vlance.vn/viec-freelance/landing-page-3?utm_sour=
+ce=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220=
+926-week" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd"=
+>Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/landing-page-3=
+?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-non=
+cat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/chinh-sua-video-quang-cao-tu-nuoc-ngoa=
+i?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-no=
+ncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transfo=
+rm: uppercase; font-weight: normal;text-decoration: none;">Ch=E1=BB=89nh s=
+=E1=BB=ADa video qu=E1=BA=A3ng c=C3=A1o gi=E1=BB=9Bi thi=E1=BB=87u s=E1=BA=
+=A3n ph=E1=BA=A9m t=E1=BB=AB n=C6=B0=E1=BB=9Bc ngo=C3=A0i</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=C3=A0m video clip | 300.000 VN=C4=90 - 3.000.000 VN=C4=90 |=
+ To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>C=C3=B4ng ty TNHH Ascent Protein Vi=E1=BB=87t Nam c=
+=E1=BA=A7n t=C3=ACm b=E1=BA=A1n h=E1=BB=A3p t=C3=A1c l=C3=A2u d=C3=A0i, l=
+=C3=A0m c=C3=B4ng vi=E1=BB=87c edit, ch=E1=BB=89nh s=E1=BB=ADa video, =E1=
+=BA=A3nh =C4=91=E1=BB=83 th=E1=BB=B1c hi=E1=BB=87n c=C3=A1c chi=E1=BA=BFn d=
+=E1=BB=8Bch qu=E1=BA=A3ng c=C3=A1o, marketing.
+C=C3=B4ng ty s=E1=BA=BD cung c=E1=BA=A5p video m=E1=BA=ABu t=E1=BB=AB n=C6=
+=B0=E1=BB=9Bc ngo=C3=A0... <a href=3D"https://www.vlance.vn/viec-lam/chinh-=
+sua-video-quang-cao-tu-nuoc-ngoai?utm_source=3Dviec-moi&utm_medium=3Demail&=
+utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=
+=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/chinh-sua-video-quan=
+g-cao-tu-nuoc-ngoai?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=
+=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/hop-dong-dien-tu?utm_source=3Dvi=
+ec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-wee=
+k" target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; fo=
+nt-weight: normal;text-decoration: none;">H=E1=BB=A3p =C4=91=E1=BB=93ng =C4=
+=91i=E1=BB=87n t=E1=BB=AD</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 10.000.000 VN=C4=90 - 20.000.000=
+ VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>1. Upload file pdf
+2. K=C3=BD file pdf b=E1=BA=B1ng usb token c=E1=BB=A7a misa, fpt ho=E1=BA=
+=B7c vnpt .....
+3. Tr=E1=BA=A3 ra file pdf =C4=91=C3=A3 k=C3=BD.... <a href=3D"https://www.=
+vlance.vn/viec-freelance/hop-dong-dien-tu?utm_source=3Dviec-moi&utm_medium=
+=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_bla=
+nk" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/hop-dong-dien-=
+tu?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-n=
+oncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/can-1-ban-thiet-ke-logo-va-chinh=
+-sua-anh-quang-cao?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3D=
+job-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429=
+fdd; text-transform: uppercase; font-weight: normal;text-decoration: none;"=
+>C=E1=BA=A7n 1 b=E1=BA=A1n thi=E1=BA=BFt k=E1=BA=BF logo v=C3=A0 ch=E1=BB=
+=89nh s=E1=BB=ADa =E1=BA=A3nh qu=E1=BA=A3ng c=C3=A1o</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">C=C3=A1c vi=E1=BB=87c thi=E1=BA=BFt k=E1=BA=BF kh=C3=A1c | 1.=
+000.000 VN=C4=90 - 2.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>Thi=E1=BA=BFt k=E1=BA=BF v=C3=A0 ch=E1=BB=89nh s=E1=
+=BB=ADa =E1=BA=A3nh cho c=C3=A1c chi=E1=BA=BFn d=E1=BB=8Bch marketing; h=E1=
+=BB=A3p t=C3=A1c l=C3=A2u d=C3=A0i... <a href=3D"https://www.vlance.vn/viec=
+-freelance/can-1-ban-thiet-ke-logo-va-chinh-sua-anh-quang-cao?utm_source=3D=
+viec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-w=
+eek" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem =
+th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/can-1-ban-thie=
+t-ke-logo-va-chinh-sua-anh-quang-cao?utm_source=3Dviec-moi&utm_medium=3Dema=
+il&utm_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/chinh-sua-noi-dung-san-pham?utm_=
+source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2=
+0220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: up=
+percase; font-weight: normal;text-decoration: none;">Ch=E1=BB=89nh s=E1=BB=
+=ADa n=E1=BB=99i dung s=E1=BA=A3n ph=E1=BA=A9m</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Bi=C3=AAn t=E1=BA=ADp &amp; ch=E1=BB=89nh s=E1=BB=ADa n=E1=BB=
+=99i dung | 2.000.000 VN=C4=90 - 5.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91=
+c</p>
+                    <p>M=C3=B4 t=E1=BA=A3 c=C3=B4ng vi=E1=BB=87c:
+- Ch=E1=BB=89nh s=E1=BB=ADa n=E1=BB=99i dung s=E1=BA=A3n ph=E1=BA=A9m
+C=E1=BB=A5 th=E1=BB=83:
+S=E1=BA=A3n ph=E1=BA=A9m =C4=91ang =E1=BB=9F ch=E1=BA=BF =C4=91=C3=B3 &quot=
+;Nh=C3=A1p&quot;
+1. B=E1=BA=A1n t=C3=ACm ki=E1=BA=BFm 1 h=C3=ACnh =E1=BA=A3nh theo t=C3=AAn =
+s=E1=BA=A3n ph=E1=BA=A9m v=C3=A0 =C4=91=C4=83ng l=C3=AAn
+2. N=E1=BB=99i dung =C4=91=C3=A3 c=C3=B3 s=E1=BA=B3n - B=E1=BA=A1n xo=C3=A1=
+ h=E1=BA=BFt v=C3=A0 =C4=91=E1=BB=83 l=E1=BA=A1i ho=E1=BA=B7c vi... <a href=
+=3D"https://www.vlance.vn/viec-freelance/chinh-sua-noi-dung-san-pham?utm_so=
+urce=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-202=
+20926-week" target=3D"_blank" style=3D"text-decoration: none; color: #429fd=
+d">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/chinh-sua-noi-=
+dung-san-pham?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-n=
+ewsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/thiet-ke-trang-web-seo-website?utm_sou=
+rce=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2022=
+0926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: upper=
+case; font-weight: normal;text-decoration: none;">Thi=E1=BA=BFt k=E1=BA=BF =
+trang web - SEO website</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Thi=E1=BA=BFt k=E1=BA=BF giao di=E1=BB=87n Website | 5.000.00=
+0 VN=C4=90 - 10.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>M=C3=ACnh c=E1=BA=A7n thi=E1=BA=BFt k=E1=BA=BF trang=
+ web x=C3=A2y d=E1=BB=B1ng, v=C3=A0 SEO website... <a href=3D"https://www.v=
+lance.vn/viec-lam/thiet-ke-trang-web-seo-website?utm_source=3Dviec-moi&utm_=
+medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=
+=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</=
+a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/thiet-ke-trang-web-s=
+eo-website?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-news=
+letter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/thiet-ke-laning-page?utm_source=
+=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2022092=
+6-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercas=
+e; font-weight: normal;text-decoration: none;">Thi=E1=BA=BFt k=E1=BA=BF lan=
+ing page</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Vi=E1=BB=87c KD v=C3=A0 marketing kh=C3=A1c | 1.000.000 VN=C4=
+=90 - 2.000.000 VN=C4=90 | H=C3=A0 N=E1=BB=99i</p>
+                    <p>Thi=E1=BA=BFt k=E1=BA=BF laning page cho s=E1=BA=A3n=
+ ph=E1=BA=A9m th=E1=BB=B1c ph=E1=BA=A9m ch=E1=BB=A9c n=C4=83ng... <a href=
+=3D"https://www.vlance.vn/viec-freelance/thiet-ke-laning-page?utm_source=3D=
+viec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-w=
+eek" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem =
+th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/thiet-ke-lanin=
+g-page?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newslett=
+er-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/lap-bang-ve-ky-thuat-he-thong-xu=
+-ly-nong-san?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-ne=
+wsletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; t=
+ext-transform: uppercase; font-weight: normal;text-decoration: none;">L=E1=
+=BA=ADp b=E1=BA=A3ng v=E1=BA=BD k=E1=BB=B9 thu=E1=BA=ADt h=E1=BB=87 th=E1=
+=BB=91ng x=E1=BB=AD l=C3=BD n=C3=B4ng s=E1=BA=A3n</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">C=C3=A1c vi=E1=BB=87c thi=E1=BA=BFt k=E1=BA=BF kh=C3=A1c | 1.=
+000.000 VN=C4=90 - 3.000.000 VN=C4=90 | Ti=E1=BB=81n Giang</p>
+                    <p>C=E1=BA=A7n 01 b=E1=BA=A1n ho=C3=A0n th=C3=A0nh b=E1=
+=BA=A3ng v=E1=BA=BD k=E1=BB=B9 thu=E1=BA=ADt cho h=E1=BB=87 th=E1=BB=91ng m=
+=C3=A1y x=E1=BB=AD l=C3=BD n=C3=B4ng s=E1=BA=A3n. V=E1=BA=BD theo k=C3=ADch=
+ th=C6=B0=E1=BB=9Bc b=C3=AAn m=C3=ACnh cung c=E1=BA=A5p.... <a href=3D"http=
+s://www.vlance.vn/viec-freelance/lap-bang-ve-ky-thuat-he-thong-xu-ly-nong-s=
+an?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-n=
+oncat-20220926-week" target=3D"_blank" style=3D"text-decoration: none; colo=
+r: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/lap-bang-ve-ky=
+-thuat-he-thong-xu-ly-nong-san?utm_source=3Dviec-moi&utm_medium=3Demail&utm=
+_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/modeler-3d-san-pham-thuc-te?utm_source=
+=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2022092=
+6-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercas=
+e; font-weight: normal;text-decoration: none;">Modeler 3D s=E1=BA=A3n ph=E1=
+=BA=A9m th=E1=BB=B1c t=E1=BA=BF</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">C=C3=A1c vi=E1=BB=87c thi=E1=BA=BFt k=E1=BA=BF kh=C3=A1c | 54=
+0.000 VN=C4=90 - 1.080.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>TUY=E1=BB=82N D=E1=BB=A4NG MODELER 3D L=C3=80M VI=E1=
+=BB=86C ONLINE
+**Nh=E1=BA=ADn =C4=91=C4=83ng k=C3=BD theo nh=C3=B3m
+M=C3=B4 t=E1=BA=A3 c=C3=B4ng vi=E1=BB=87c:
+- D=E1=BB=B1ng m=C3=B4 h=C3=ACnh 3D s=E1=BA=A3n ph=E1=BA=A9m c=E1=BB=A7a c=
+=C3=B4ng ty t=E1=BB=AB h=C3=ACnh =E1=BA=A3nh ch=E1=BB=A5p, lo=E1=BA=A1i s=
+=E1=BA=A3n ph=E1=BA=A9m =C4=91a d=E1=BA=A1ng, s=E1=BB=91 l=C6=B0=E1=BB=A3ng=
+ nhi=E1=BB=81u
+- D=E1=BB=B1ng model 3D k=C3=A8m t... <a href=3D"https://www.vlance.vn/viec=
+-lam/modeler-3d-san-pham-thuc-te?utm_source=3Dviec-moi&utm_medium=3Demail&u=
+tm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=
+=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/modeler-3d-san-pham-=
+thuc-te?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newslet=
+ter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                                             <div style=3D"padding: 1px 20p=
+x 20px 20px; margin-bottom: 20px; background-color: #f5fafd; border: 1px so=
+lid #d8e8f2;border-radius: 4px; -webkit-border-radius: 4px; -moz-border-rad=
+ius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/thiet-ke-giao-dien-website-quy-h=
+oach?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter=
+-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-tran=
+sform: uppercase; font-weight: normal;text-decoration: none;">Thi=E1=BA=BFt=
+ k=E1=BA=BF giao di=E1=BB=87n website quy ho=E1=BA=A1ch</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Thi=E1=BA=BFt k=E1=BA=BF giao di=E1=BB=87n Website | 6.000.00=
+0 VN=C4=90 - 10.000.000 VN=C4=90 | H=C3=A0 N=E1=BB=99i</p>
+                    <p>Thi=E1=BA=BFt k=E1=BA=BF to=C3=A0n b=E1=BB=99 giao d=
+i=E1=BB=87n website quy ho=E1=BA=A1ch theo ti=C3=AAu ch=C3=AD =C4=91=E1=BA=
+=B9p, tinh t=E1=BA=BF mang t=C3=ADnh th=E1=BA=A9m m=E1=BB=B9 cao.
+Y=C3=AAu c=E1=BA=A7u c=E1=BB=A5 th=E1=BB=83 v=E1=BB=81 thi=E1=BA=BFt k=E1=
+=BA=BF t=E1=BB=ABng trang s=E1=BA=BD trao =C4=91=E1=BB=95i khi l=C3=A0m vi=
+=E1=BB=87c.... <a href=3D"https://www.vlance.vn/viec-freelance/thiet-ke-gia=
+o-dien-website-quy-hoach?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campa=
+ign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"text-=
+decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/thiet-ke-giao-=
+dien-website-quy-hoach?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaig=
+n=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/giai-ma-doan-code-bi-ma-hoa?utm_source=
+=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2022092=
+6-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercas=
+e; font-weight: normal;text-decoration: none;">gi=E1=BA=A3i m=C3=A3 =C4=91o=
+=E1=BA=A1n code b=E1=BB=8B m=C3=A3 h=C3=B3a</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 200.000 VN=C4=90 - 200.000 VN=C4=
+=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>m=C3=ACnh c=E1=BA=A7n gi=E1=BA=A3i m=C3=A3 4 =C4=91o=
+=E1=BA=A1n code b=E1=BA=A3n quy=E1=BB=81n c=E1=BB=A7a template trong blogsp=
+ot, d=C3=B9ng c=C3=A1c web gi=E1=BA=A3i m=C3=A3 online kh=C3=B4ng ra link b=
+=E1=BA=A3n quy=E1=BB=81n, b=E1=BA=A1n n=C3=A0o l=C3=A0m =C4=91=C6=B0=E1=BB=
+=A3c ib nh=C3=A9... <a href=3D"https://www.vlance.vn/viec-lam/giai-ma-doan-=
+code-bi-ma-hoa?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-=
+newsletter-noncat-20220926-week" target=3D"_blank" style=3D"text-decoration=
+: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/giai-ma-doan-code-bi=
+-ma-hoa?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newslet=
+ter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/viet-ebook-day-con-cho-doi-tuong-phu-h=
+uynh-da-co-dan-y?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djo=
+b-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fd=
+d; text-transform: uppercase; font-weight: normal;text-decoration: none;">V=
+i=E1=BA=BFt ebook d=E1=BA=A1y con cho =C4=91=E1=BB=91i t=C6=B0=E1=BB=A3ng p=
+h=E1=BB=A5 huynh - =C4=90=C3=A3 c=C3=B3 d=C3=A0n =C3=BD</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Vi=E1=BA=BFt s=C3=A1ch | 1.000.000 VN=C4=90 - 2.000.000 VN=C4=
+=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>M=C3=ACnh c=E1=BA=A7n thu=C3=AA 1 b=E1=BA=A1n c=C3=
+=B3 kh=E1=BA=A3 n=C4=83ng vi=E1=BA=BFt t=E1=BB=91t:
+- T=E1=BA=A1o ra cu=E1=BB=91n ebook ch=E1=BB=A7 =C4=91=E1=BB=81 d=E1=BA=A1y=
+ con =C4=91=E1=BB=91i t=C6=B0=E1=BB=A3ng =C4=91=E1=BB=8Dc l=C3=A0 ph=E1=BB=
+=A5 huynh, m=C3=ACnh =C4=91=C3=A3 c=C3=B3 gi=C3=A0n =C3=BD
+- Ebook ko c=E1=BA=A7n qu=C3=A1 d=C3=A0i, =C4=91=E1=BB=A7 =C3=BD v=C3=A0 ho=
+=C3=A0n th=C3=A0nh =C4=91=C3=BAng dealine
+- Mong mu=E1=BB=91n l=C3=A0m vi... <a href=3D"https://www.vlance.vn/viec-la=
+m/viet-ebook-day-con-cho-doi-tuong-phu-huynh-da-co-dan-y?utm_source=3Dviec-=
+moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" =
+target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=
+=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/viet-ebook-day-con-c=
+ho-doi-tuong-phu-huynh-da-co-dan-y?utm_source=3Dviec-moi&utm_medium=3Demail=
+&utm_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/tuyen-dung-hr-partime-theo-du-an?utm_s=
+ource=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20=
+220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: upp=
+ercase; font-weight: normal;text-decoration: none;">Tuy=E1=BB=83n d=E1=BB=
+=A5ng HR partime theo d=E1=BB=B1 =C3=A1n</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Tuy=E1=BB=83n d=E1=BB=A5ng | 1.000.000 VN=C4=90 - 5.000.000 V=
+N=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>Th=E1=BB=B1c hi=E1=BB=87n c=C3=A1c c=C3=B4ng vi=E1=
+=BB=87c =C4=91=C4=83ng tin tuy=E1=BB=83n d=E1=BB=A5ng c=E1=BB=A7a CTY.
+H=C3=ACnh th=E1=BB=A9c ph=C3=AD tr=E1=BA=A3 theo d=E1=BB=B1 =C3=A1n.... <a =
+href=3D"https://www.vlance.vn/viec-lam/tuyen-dung-hr-partime-theo-du-an?utm=
+_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-=
+20220926-week" target=3D"_blank" style=3D"text-decoration: none; color: #42=
+9fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/tuyen-dung-hr-partim=
+e-theo-du-an?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-ne=
+wsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/ung-dung-du-doan-ket-qua-trong-1-day-s=
+o?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-no=
+ncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transfo=
+rm: uppercase; font-weight: normal;text-decoration: none;">=E1=BB=A8ng d=E1=
+=BB=A5ng d=E1=BB=B1 =C4=91o=C3=A1n k=E1=BA=BFt qu=E1=BA=A3 trong 1 d=C3=A3y=
+ s=E1=BB=91</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">AI - Tr=C3=AD tu=E1=BB=87 nh=C3=A2n t=E1=BA=A1o, Machine Lear=
+ning | 1.000.000 VN=C4=90 - 5.000.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Mi=
+nh</p>
+                    <p>Xin ch=C3=A0o,
+M=C3=ACnh =C4=91ang c=E1=BA=A7n l=C3=A0m 1 =E1=BB=A9ng d=E1=BB=A5ng d=E1=BB=
+=B1 =C4=91o=C3=A1n k=E1=BA=BFt qu=E1=BA=A3 c=E1=BB=A7a ng=C6=B0=E1=BB=9Di c=
+h=C6=A1i trong 1 d=C3=A3y s=E1=BB=91 cho tr=C6=B0=E1=BB=9Bc (1,2,3).
+Trao =C4=91=E1=BB=95i k=E1=BB=B9 khi nh=E1=BA=ADn d=E1=BB=B1 =C3=A1n
+Xin c=E1=BA=A3m =C6=A1n... <a href=3D"https://www.vlance.vn/viec-lam/ung-du=
+ng-du-doan-ket-qua-trong-1-day-so?utm_source=3Dviec-moi&utm_medium=3Demail&=
+utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=
+=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/ung-dung-du-doan-ket=
+-qua-trong-1-day-so?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=
+=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/business-data-extraction-from-google-p=
+laces-or-similar-api?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=
+=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #=
+429fdd; text-transform: uppercase; font-weight: normal;text-decoration: non=
+e;">Business data extraction from Google Places or similar API</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Nghi=C3=AAn c=E1=BB=A9u &amp; kh=E1=BA=A3o s=C3=A1t th=E1=BB=
+=8B tr=C6=B0=E1=BB=9Dng | 500.000 VN=C4=90 - 1.000.000 VN=C4=90 | To=C3=A0n=
+ Qu=E1=BB=91c</p>
+                    <p>I have a basic one time data pull from Google Places=
+ or similar API where this data might exist.
+
+Within 272 zipcodes, pull information for 2 specific type of businesses (to=
+ be discussed at proposal... <a href=3D"https://www.vlance.vn/viec-lam/busi=
+ness-data-extraction-from-google-places-or-similar-api?utm_source=3Dviec-mo=
+i&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" ta=
+rget=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=
+=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/business-data-extrac=
+tion-from-google-places-or-similar-api?utm_source=3Dviec-moi&utm_medium=3De=
+mail&utm_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/dahenglish-translation-english-transla=
+tion-work?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsl=
+etter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text=
+-transform: uppercase; font-weight: normal;text-decoration: none;">=EF=BB=
+=BFEnglish translation English translation work</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">D=E1=BB=8Bch thu=E1=BA=ADt | 500.000 VN=C4=90 - 800.000 VN=C4=
+=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>This is an English translation job.
+
+This is a software startup company founded this year in Ho Chi Minh city. W=
+e are looking for someone who can work as a part-time translator online. Al=
+though we a... <a href=3D"https://www.vlance.vn/viec-lam/dahenglish-transla=
+tion-english-translation-work?utm_source=3Dviec-moi&utm_medium=3Demail&utm_=
+campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"=
+text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/dahenglish-translati=
+on-english-translation-work?utm_source=3Dviec-moi&utm_medium=3Demail&utm_ca=
+mpaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/chay-bai-dang-tren-instagram?utm=
+_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-=
+20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: u=
+ppercase; font-weight: normal;text-decoration: none;">Ch=E1=BA=A1y b=C3=A0i=
+ =C4=91=C4=83ng tr=C3=AAn Instagram</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Qu=E1=BA=A3ng c=C3=A1o facebook | 2.000.000 VN=C4=90 - 3.000.=
+000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>Ch=E1=BA=A1y story, Q&amp;A, h=C3=ACnh =E1=BA=A3nh v=
+=C3=A0 qu=E1=BA=A3ng c=C3=A1o v=E1=BB=81 ng=C3=A0nh l=C3=A0m kem =C3=9D....=
+ <a href=3D"https://www.vlance.vn/viec-freelance/chay-bai-dang-tren-instagr=
+am?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-n=
+oncat-20220926-week" target=3D"_blank" style=3D"text-decoration: none; colo=
+r: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/chay-bai-dang-=
+tren-instagram?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-=
+newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/viet-pr-cham-soc-fanpage?utm_source=3D=
+viec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-w=
+eek" target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; =
+font-weight: normal;text-decoration: none;">Vi=E1=BA=BFt PR, Ch=C4=83m s=C3=
+=B3c fanpage</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">T=C6=B0 v=E1=BA=A5n, l=E1=BA=ADp k=E1=BA=BF ho=E1=BA=A1ch &am=
+p; tri=E1=BB=83n khai marketing online | 1.500.000 VN=C4=90 - 2.500.000 VN=
+=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>Ch=C3=A0o c=C3=A1c b=E1=BA=A1n!
+C=C3=B4ng ty m=C3=ACnh l=C3=A0m l=C4=A9nh v=E1=BB=B1c M=E1=BB=B9 ph=E1=BA=
+=A9m
+m=C3=ACnh =C4=91ang c=E1=BA=A7n nh=C3=A2n vi=C3=AAn cho c=C3=B4ng vi=E1=BB=
+=87c sau:
+- Content marketing. ( Vi=E1=BA=BFt n=E1=BB=99i dung website, Pr, gi=E1=BB=
+=9Bi thi=E1=BB=87u s=E1=BA=A3n ph=E1=BA=A9m....)
+- Qu=E1=BA=A3n l=C3=BD v=C3=A0 s=C3=A1ng t=E1=BA=A1o n=E1=BB=99i dung... <a=
+ href=3D"https://www.vlance.vn/viec-lam/viet-pr-cham-soc-fanpage?utm_source=
+=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2022092=
+6-week" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">X=
+em th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/viet-pr-cham-soc-fan=
+page?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter=
+-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/can-tim-dev-code-web-bang-vuejs?=
+utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-nonc=
+at-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform=
+: uppercase; font-weight: normal;text-decoration: none;">[C=E1=BA=A6N T=C3=
+=8CM DEV CODE WEB B=E1=BA=B0NG VUEJS]</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 5.000.000 V=
+N=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>C=C3=B4ng ty m=C3=ACnh =C4=91ang c=E1=BA=A7n x=E1=BB=
+=AD l=C3=AD v=E1=BA=A5n =C4=91=E1=BB=81 li=C3=AAn quan =C4=91=E1=BA=BFn VUE=
+JS.
+C=E1=BA=A7n t=C3=ACm b=E1=BA=A1n dev code web b=E1=BA=B1ng VUEJS, bi=E1=BA=
+=BFt v=E1=BB=81 m=C3=A3 h=C3=B3a aes payload trong Vuejs.=20
+M=C3=ACnh c=E1=BA=A3m =C6=A1n.... <a href=3D"https://www.vlance.vn/viec-fre=
+elance/can-tim-dev-code-web-bang-vuejs?utm_source=3Dviec-moi&utm_medium=3De=
+mail&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" =
+style=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/can-tim-dev-co=
+de-web-bang-vuejs?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Dj=
+ob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/minh-can-tim-nguoi-lam-lai-toan-=
+bo-website-da-co-san-theo-nhu-cau-cua-cong-ty-bao-gom-viec-set-them-gio-han=
+g-phuong-thuc-mua-hien-tai-web-don-gian-chi-de-dang-thong-tin?utm_source=3D=
+viec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-w=
+eek" target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; =
+font-weight: normal;text-decoration: none;">M=C3=ACnh c=E1=BA=A7n t=C3=ACm =
+ng=C6=B0=E1=BB=9Di l=C3=A0m l=E1=BA=A1i to=C3=A0n b=E1=BB=99 website =C4=91=
+=C3=A3 c=C3=B3 s=E1=BA=B5n theo nhu c=E1=BA=A7u c=E1=BB=A7a c=C3=B4ng ty. B=
+ao g=E1=BB=93m vi=E1=BB=87c set th=C3=AAm gi=E1=BB=8F h=C3=A0ng, ph=C6=B0=
+=C6=A1ng th=E1=BB=A9c mua (hi=E1=BB=87n t=E1=BA=A1i web =C4=91=C6=A1n gi=E1=
+=BA=A3n ch=E1=BB=89 =C4=91=E1=BB=83 =C4=91=C4=83ng th=C3=B4ng tin)</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 6.000.000 V=
+N=C4=90 | H=C3=A0 N=E1=BB=99i</p>
+                    <p>- Thi=E1=BA=BFt k=E1=BA=BF l=E1=BA=A1i trang ch=E1=
+=BB=A7 web
+- Th=C3=AAm c=C3=A1c ti=E1=BB=87n =C3=ADch kh=C3=A1c nh=C6=B0 gi=E1=BB=8F h=
+=C3=A0ng, ch=E1=BB=A9c n=C4=83ng thanh to=C3=A1n, =C4=91=C4=83ng nh=E1=BA=
+=ADp user, =C4=91=C4=83ng k=C3=AD mail nh=E1=BA=ADn th=C3=B4ng tin
+- Thi=E1=BA=BFt k=E1=BA=BF nh=C6=B0 m=E1=BB=99t trang b=C3=A1n h=C3=A0ng
+- G=E1=BB=ADi demo =C4=91=C3=BAng h=E1=BA=B9n, tr=E1=BA=A3 l=C6=B0=C6=A1n..=
+. <a href=3D"https://www.vlance.vn/viec-freelance/minh-can-tim-nguoi-lam-la=
+i-toan-bo-website-da-co-san-theo-nhu-cau-cua-cong-ty-bao-gom-viec-set-them-=
+gio-hang-phuong-thuc-mua-hien-tai-web-don-gian-chi-de-dang-thong-tin?utm_so=
+urce=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-202=
+20926-week" target=3D"_blank" style=3D"text-decoration: none; color: #429fd=
+d">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/minh-can-tim-n=
+guoi-lam-lai-toan-bo-website-da-co-san-theo-nhu-cau-cua-cong-ty-bao-gom-vie=
+c-set-them-gio-hang-phuong-thuc-mua-hien-tai-web-don-gian-chi-de-dang-thong=
+-tin?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter=
+-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/dieu-chinh-lai-giao-dien-website=
+-shopbase-theo-yeu-cau?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaig=
+n=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"color: =
+#429fdd; text-transform: uppercase; font-weight: normal;text-decoration: no=
+ne;">=C4=90i=E1=BB=81u Ch=E1=BB=89nh L=E1=BA=A1i Giao Di=E1=BB=87n Website =
+Shopbase Theo Y=C3=AAu C=E1=BA=A7u</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 2.000.000 VN=C4=90 - 5.000.000 V=
+N=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>M=C3=ACnh c=E1=BA=A7n ch=E1=BB=89nh s=E1=BB=ADa l=E1=
+=BA=A1i giao di=E1=BB=87n website Shopbase (=C4=91=C3=A3 l=C3=AAn s=E1=BA=
+=B5n wireframe)
+Code theo ng=C3=B4n ng=E1=BB=AF l=E1=BA=ADp tr=C3=ACnh Vue.
+C=C3=B3 custom l=E1=BA=A1i flow ad to cart tr=C3=AAn trang product c=E1=BB=
+=A7a sshopbase.
+N=E1=BA=BFu b=E1=BA=A1n quan t=C3=A2m vui l=C3=B2ng ... <a href=3D"https://=
+www.vlance.vn/viec-freelance/dieu-chinh-lai-giao-dien-website-shopbase-theo=
+-yeu-cau?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsle=
+tter-noncat-20220926-week" target=3D"_blank" style=3D"text-decoration: none=
+; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/dieu-chinh-lai=
+-giao-dien-website-shopbase-theo-yeu-cau?utm_source=3Dviec-moi&utm_medium=
+=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/thiet-ke-brochure-backdrop-standee?utm=
+_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-=
+20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: u=
+ppercase; font-weight: normal;text-decoration: none;">Thi=E1=BA=BFt k=E1=BA=
+=BF Brochure, backdrop, standee</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Thi=E1=BA=BFt k=E1=BA=BF brochure | 200.000 VN=C4=90 - 1.000.=
+000 VN=C4=90 | H=C3=A0 N=E1=BB=99i</p>
+                    <p>M=C3=ACnh c=E1=BA=A7n t=C3=ACm b=E1=BA=A1n thi=E1=BA=
+=BFt k=E1=BA=BF =C4=91=E1=BB=93 h=E1=BB=8Da bi=E1=BA=BFt thi=E1=BA=BFt k=E1=
+=BA=BF 3D, ren =E1=BA=A3nh =C4=91=E1=BB=83 thi=E1=BA=BFt k=E1=BA=BF Flyer c=
+h=C3=A0o h=C3=A0ng, brochure, backdrop, standee (in s=E1=BB=B1 ki=E1=BB=87n=
+)... <a href=3D"https://www.vlance.vn/viec-lam/thiet-ke-brochure-backdrop-s=
+tandee?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newslett=
+er-noncat-20220926-week" target=3D"_blank" style=3D"text-decoration: none; =
+color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/thiet-ke-brochure-ba=
+ckdrop-standee?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-=
+newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/php-developer-freelancer-1?utm_source=
+=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2022092=
+6-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercas=
+e; font-weight: normal;text-decoration: none;">PHP Developer Freelancer</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 20.633.750 VN=C4=90 - 29.633.750=
+ VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>=E2=97=8F Html/Css/Sass/JS/Twig (JS frameworks are n=
+ot necessary but at least basic javascript is
+needed, HTML and CSS on level to implement basic templates)
+=E2=97=8F PHP / Symfony + ecosystem knowledge / Doctrine... <a href=3D"http=
+s://www.vlance.vn/viec-lam/php-developer-freelancer-1?utm_source=3Dviec-moi=
+&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" tar=
+get=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=AA=
+m</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/php-developer-freela=
+ncer-1?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newslett=
+er-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/thiet-ke-brochure-cong-ty-3?utm_=
+source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2=
+0220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: up=
+percase; font-weight: normal;text-decoration: none;">Thi=E1=BA=BFt k=E1=BA=
+=BF brochure c=C3=B4ng ty</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Thi=E1=BA=BFt k=E1=BA=BF brochure | 1.000.000 VN=C4=90 - 5.00=
+0.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>- Thi=E1=BA=BFt k=E1=BA=BF l=E1=BA=A1i brochure c=C3=
+=B4ng ty theo h=C6=B0=E1=BB=9Bng c=C3=B3 UX/UI theo logo c=C3=B4ng ty.
+- T=E1=BB=91i =C4=91a 20 page (k=C3=ADch th=C6=B0=E1=BB=9Bc page powerpoint=
+).
+- 50% n=E1=BB=99i dung file =C4=91=C3=ADnh k=C3=A8m + 50% thay =C4=91=E1=BB=
+=95i (th=C3=AAm/b=E1=BB=9Bt) so v=E1=BB=9Bi profile c=C5=A9... <a href=3D"h=
+ttps://www.vlance.vn/viec-freelance/thiet-ke-brochure-cong-ty-3?utm_source=
+=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2022092=
+6-week" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">X=
+em th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/thiet-ke-broch=
+ure-cong-ty-3?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-n=
+ewsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/lien-he-tim-kiem-doi-tac?utm_sou=
+rce=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2022=
+0926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: upper=
+case; font-weight: normal;text-decoration: none;">Li=C3=AAn h=E1=BB=87 t=C3=
+=ACm ki=E1=BA=BFm =C4=91=E1=BB=91i t=C3=A1c</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">T=C6=B0 v=E1=BA=A5n b=C3=A1n h=C3=A0ng &amp; Gi=E1=BB=9Bi thi=
+=E1=BB=87u s=E1=BA=A3n ph=E1=BA=A9m | 1.000.000 VN=C4=90 - 3.000.000 VN=C4=
+=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>M=C3=ACnh c=E1=BA=A7n tuy=E1=BB=83n 1 b=E1=BA=A1n c=
+=C3=B3 th=E1=BB=83 h=E1=BB=97 tr=E1=BB=A3 trong vi=E1=BB=87c li=C3=AAn h=E1=
+=BB=87 t=C3=ACm ki=E1=BA=BFm =C4=91=E1=BB=91i t=C3=A1c. V=E1=BB=8B tr=C3=AD=
+ n=C3=A0y ch=E1=BB=89 c=E1=BA=A7n t=E1=BA=A1o danh s=C3=A1ch =C4=91=E1=BB=
+=91i t=C3=A1c, v=C3=A0 s=E1=BA=AFp x=E1=BA=BFp bu=E1=BB=95i g=E1=BA=B7p.=20
+
+=C6=AFu ti=C3=AAn c=C3=A1c b=E1=BA=A1n =E1=BB=9F TP H=E1=BB=93 Ch=C3=AD Min=
+h.=20
+
+B=C3=AAn m=C3=ACnh s=E1=BA=BD tr=E1=BB=B1c ti=E1=BA=BFp =C4=91... <a href=
+=3D"https://www.vlance.vn/viec-freelance/lien-he-tim-kiem-doi-tac?utm_sourc=
+e=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-202209=
+26-week" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">=
+Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/lien-he-tim-ki=
+em-doi-tac?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-news=
+letter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/tim-dev-android-flutter?utm_sour=
+ce=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220=
+926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: upperc=
+ase; font-weight: normal;text-decoration: none;">T=C3=ACm Dev Android - Flu=
+tter</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">=E1=BB=A8ng d=E1=BB=A5ng di =C4=91=E1=BB=99ng | 5.000.000 VN=
+=C4=90 - 50.000.000 VN=C4=90 | H=C3=A0 N=E1=BB=99i</p>
+                    <p>M=C3=ACnh c=E1=BA=A7n t=C3=ACm Dev ho=E1=BA=B7c team=
+ =C4=91=E1=BB=83 Code app h=E1=BB=A3p t=C3=A1c l=C3=A2u d=C3=A0i (=C4=91=C3=
+=A3 c=C3=B3 Design v=C3=A0 SRS). Dev c=E1=BB=A9ng C=C3=B3 kinh nghi=E1=BB=
+=87m l=C3=A0m Andoird ho=E1=BA=B7c Flutter.
+
+B=C3=AAn m=C3=ACnh c=C5=A9ng tuy=E1=BB=83n c=E1=BA=A3 Dev Android, Flutter =
+l=C3=A0m cho c=C3=B4ng ty (Level Ju... <a href=3D"https://www.vlance.vn/vie=
+c-freelance/tim-dev-android-flutter?utm_source=3Dviec-moi&utm_medium=3Demai=
+l&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" sty=
+le=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/tim-dev-androi=
+d-flutter?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsl=
+etter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/thiet-ke-logo-tem-nhan-bao-bi-cho-san-=
+pham-nong-san?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-n=
+ewsletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; =
+text-transform: uppercase; font-weight: normal;text-decoration: none;">thi=
+=E1=BA=BFt k=E1=BA=BF logo, tem nh=C3=A3n, bao b=C3=AC cho s=E1=BA=A3n ph=
+=E1=BA=A9m n=C3=B4ng s=E1=BA=A3n</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Nh=C3=A3n hi=E1=BB=87u v=C3=A0 bao b=C3=AC | 200.000 VN=C4=90=
+ - 500.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>ch=C3=A0o m=E1=BB=8Di ng=C6=B0=E1=BB=9Di !
+c=C3=B4ng ty m=C3=ACnh =C4=91ang c=E1=BA=A7n 1 b=E1=BA=A1n c=C3=B3 th=E1=BB=
+=83 c=E1=BB=99ng t=C3=A1c l=C3=A2u d=C3=A0i =C4=91=E1=BB=83 l=C3=A0m thi=E1=
+=BA=BFt k=E1=BA=BF logo v=E1=BB=81 tem nh=C3=A3n, tag cho c=C3=A1c s=E1=BA=
+=A3n ph=E1=BA=A9m N=C3=B4ng s=E1=BA=A3n =C4=91=E1=BB=83 xu=E1=BA=A5t kh=E1=
+=BA=A9u v=C3=A0 ph=C3=A2n ph=E1=BB=91i trong n=C6=B0=E1=BB=9Bc nh=C6=B0 nh=
+=C3=A3n, v=E1=BA=A3i, thanh long, g=E1=BA=A1... <a href=3D"https://www.vlan=
+ce.vn/viec-lam/thiet-ke-logo-tem-nhan-bao-bi-cho-san-pham-nong-san?utm_sour=
+ce=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220=
+926-week" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd"=
+>Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/thiet-ke-logo-tem-nh=
+an-bao-bi-cho-san-pham-nong-san?utm_source=3Dviec-moi&utm_medium=3Demail&ut=
+m_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                                             <div style=3D"padding: 1px 20p=
+x 20px 20px; margin-bottom: 20px; background-color: #f5fafd; border: 1px so=
+lid #d8e8f2;border-radius: 4px; -webkit-border-radius: 4px; -moz-border-rad=
+ius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/thiet-ke-logo-va-bo-nhan-dien-th=
+uong-hieu-11?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-ne=
+wsletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; t=
+ext-transform: uppercase; font-weight: normal;text-decoration: none;">Thi=
+=E1=BA=BFt k=E1=BA=BF logo v=C3=A0 b=E1=BB=99 nh=E1=BA=ADn di=E1=BB=87n th=
+=C6=B0=C6=A1ng hi=E1=BB=87u</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Thi=E1=BA=BFt k=E1=BA=BF Logo | 2.000.000 VN=C4=90 - 10.000.0=
+00 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>Thu nh=E1=BA=ADp: Th=E1=BB=8Fa thu=E1=BA=ADn theo d=
+=E1=BB=B1 =C3=A1n
+
+C=C3=B4ng vi=E1=BB=87c:
+=E2=80=A2 Thi=E1=BA=BFt k=E1=BA=BF logo v=C3=A0 b=E1=BB=99 nh=E1=BA=ADn di=
+=E1=BB=87n th=C6=B0=C6=A1ng hi=E1=BB=87u.
+=E2=80=A2 Thi=E1=BA=BFt k=E1=BA=BF c=C3=A1c d=E1=BB=B1 =C3=A1n kh=C3=A1c: b=
+ao b=C3=AC s=E1=BA=A3n ph=E1=BA=A9m, =E1=BA=A5n ph=E1=BA=A9m truy=E1=BB=81n=
+ th=C3=B4ng (n=E1=BA=BFu c=C3=B3)
+
+Y=C3=AAu c=E1=BA=A7u:
+=E2=80=A2 C=C3=B3 kinh nghi=E1=BB=87m thi... <a href=3D"https://www.vlance.=
+vn/viec-freelance/thiet-ke-logo-va-bo-nhan-dien-thuong-hieu-11?utm_source=
+=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2022092=
+6-week" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">X=
+em th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/thiet-ke-logo-=
+va-bo-nhan-dien-thuong-hieu-11?utm_source=3Dviec-moi&utm_medium=3Demail&utm=
+_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/lam-clip-ngan-tiktok-don-gian-gi=
+oi-thieu-san-pham?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Dj=
+ob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429f=
+dd; text-transform: uppercase; font-weight: normal;text-decoration: none;">=
+L=C3=A0m clip ng=E1=BA=AFn tiktok ( =C4=91=C6=A1n gi=E1=BA=A3n) gi=E1=BB=9B=
+i thi=E1=BB=87u s=E1=BA=A3n ph=E1=BA=A9m</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=C3=A0m video clip | 200.000 VN=C4=90 - 200.000 VN=C4=90 | T=
+o=C3=A0n Qu=E1=BB=91c</p>
+                    <p>H=C3=A0ng ng=C3=A0y t=E1=BA=A1o 2 clip ng=E1=BA=AFn =
+=C4=91=C6=A1n gi=E1=BA=A3n =C4=91=E1=BB=83 m=C3=ACnh =C4=91=C4=83ng tiktok =
+(b=E1=BA=A3n quy=E1=BB=81n clip ng=E1=BA=AFn thu=E1=BB=99c v=E1=BB=81 m=C3=
+=ACnh) b=C3=A0 b=E1=BA=A1n kh=C3=B4ng =C4=91=C6=B0=E1=BB=A3c g=E1=BB=ADi ai=
+ kh=C3=A1c! M=C3=ACnh s=E1=BA=BD cung c=E1=BA=A5p h=C3=ACnh =E1=BA=A3nh s=
+=C6=A1 l=C6=B0=E1=BB=A3c =C4=91=E1=BB=83 b=E1=BA=A1n l=C3=AAn =C3=BD t=C6=
+=B0=E1=BB=9Fng. Clip ng=E1=BA=AFn kho=E1=BA=A3ng 30 gi=C3=A2y... <a href=3D=
+"https://www.vlance.vn/viec-freelance/lam-clip-ngan-tiktok-don-gian-gioi-th=
+ieu-san-pham?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-ne=
+wsletter-noncat-20220926-week" target=3D"_blank" style=3D"text-decoration: =
+none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/lam-clip-ngan-=
+tiktok-don-gian-gioi-thieu-san-pham?utm_source=3Dviec-moi&utm_medium=3Demai=
+l&utm_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/crack-printshop-mail-2020-2021-2=
+022?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-=
+noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-trans=
+form: uppercase; font-weight: normal;text-decoration: none;">Crack PrintSho=
+p mail 2020 / 2021 / 2022</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh ph=E1=BA=A7n m=E1=BB=81m | 1.000.000 V=
+N=C4=90 - 10.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>M=C3=ACnh c=E1=BA=A7n Crack ph=E1=BA=A7n m=E1=BB=81m=
+ PrintShop mail 2020 / 2021 / 2022, gi=C3=A1 c=E1=BA=A3 th=E1=BB=8Fa thu=E1=
+=BA=ADn... <a href=3D"https://www.vlance.vn/viec-freelance/crack-printshop-=
+mail-2020-2021-2022?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=
+=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"text-dec=
+oration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/crack-printsho=
+p-mail-2020-2021-2022?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=
+=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/quang-cao-google-ads-mang-tai-chinh-ng=
+an-hang?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newslet=
+ter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-t=
+ransform: uppercase; font-weight: normal;text-decoration: none;">qu=E1=BA=
+=A3ng c=C3=A1o google ads m=E1=BA=A3ng t=C3=A0i ch=C3=ADnh ng=C3=A2n h=C3=
+=A0ng</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Qu=E1=BA=A3ng c=C3=A1o google adwords =E2=80=93 SEM | 3.000.0=
+00 VN=C4=90 - 4.500.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>m=C3=ACnh c=E1=BA=A7n m=E1=BB=99t b=E1=BA=A1n ch=E1=
+=BA=A1y qu=E1=BA=A3ng c=C3=A1o google ads m=E1=BA=A3ng t=C3=A0i ch=C3=ADnh =
+ng=C3=A2n h=C3=A0ng... <a href=3D"https://www.vlance.vn/viec-lam/quang-cao-=
+google-ads-mang-tai-chinh-ngan-hang?utm_source=3Dviec-moi&utm_medium=3Demai=
+l&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" sty=
+le=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/quang-cao-google-ads=
+-mang-tai-chinh-ngan-hang?utm_source=3Dviec-moi&utm_medium=3Demail&utm_camp=
+aign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/phan-mem-tu-dong-thao-tac-web-tr=
+en-nen-du-lieu-exel?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=
+=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #=
+429fdd; text-transform: uppercase; font-weight: normal;text-decoration: non=
+e;">Ph=E1=BA=A7n m=E1=BB=81m t=E1=BB=B1 =C4=91=E1=BB=99ng thao t=C3=A1c web=
+ tr=C3=AAn n=E1=BB=81n d=E1=BB=AF li=E1=BB=87u excel</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh ph=E1=BA=A7n m=E1=BB=81m | 1.000.000 V=
+N=C4=90 - 2.000.000 VN=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>M=C3=ACnh c=C3=B3 c=C3=B4ng vi=E1=BB=87c nh=E1=BA=AD=
+p d=E1=BB=AF li=E1=BB=87u t=E1=BB=AB file excel l=C3=AAn h=E1=BB=87 th=E1=
+=BB=91ng c=E1=BB=A7a c=C3=B4ng ty. c=E1=BA=A7n ng=C6=B0=E1=BB=9Di thi=E1=BA=
+=BFt k=E1=BA=BFt t=E1=BB=B1 =C4=91=E1=BB=99ng nh=E1=BA=ADp v=C3=A0 tr=E1=BA=
+=A3 k=E1=BA=BFt qu=E1=BA=A3 v=E1=BB=81 file excel.... <a href=3D"https://ww=
+w.vlance.vn/viec-freelance/phan-mem-tu-dong-thao-tac-web-tren-nen-du-lieu-e=
+xel?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-=
+noncat-20220926-week" target=3D"_blank" style=3D"text-decoration: none; col=
+or: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/phan-mem-tu-do=
+ng-thao-tac-web-tren-nen-du-lieu-exel?utm_source=3Dviec-moi&utm_medium=3Dem=
+ail&utm_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/tro-giang-day-dan-piano-cho-lop-nhac-t=
+ai-binh-thanh-phu-nhuan-q1-1?utm_source=3Dviec-moi&utm_medium=3Demail&utm_c=
+ampaign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" style=3D"c=
+olor: #429fdd; text-transform: uppercase; font-weight: normal;text-decorati=
+on: none;">Tr=E1=BB=A3 gi=E1=BA=A3ng d=E1=BA=A1y =C4=91=C3=A0n piano cho l=
+=E1=BB=9Bp nh=E1=BA=A1c t=E1=BA=A1i B=C3=ACnh Th=E1=BA=A1nh, Ph=C3=BA Nhu=
+=E1=BA=ADn, Q1</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Tuy=E1=BB=83n d=E1=BB=A5ng | 200.000 VN=C4=90 - 201.000 VN=C4=
+=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>Hi=E1=BB=87n trung t=C3=A2m d=E1=BA=A1y =C4=91=C3=A0=
+n b=C3=AAn em =C4=91ang c=E1=BA=A7n tuy=E1=BB=83n:
+- Tr=E1=BB=A3 gi=E1=BA=A3ng h=E1=BB=95 tr=E1=BB=A3 gi=C3=A1o vi=C3=AAn ch=
+=C3=ADnh trong vi=E1=BB=87c d=E1=BA=A1y, =C4=91=C6=B0=E1=BB=A3c h=C6=B0=E1=
+=BB=9Bng d=E1=BA=ABn n=E1=BA=BFu ch=C6=B0a c=C3=B3 kinh nghi=E1=BB=87m.
+- Gi=C3=A1o vi=C3=AAn d=E1=BA=A1y =C4=91=C3=A0n: Piano, Organ, Guitar v=C3=
+=A0 Ukulele.
+- =C6=AFu t... <a href=3D"https://www.vlance.vn/viec-lam/tro-giang-day-dan-=
+piano-cho-lop-nhac-tai-binh-thanh-phu-nhuan-q1-1?utm_source=3Dviec-moi&utm_=
+medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=
+=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</=
+a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/tro-giang-day-dan-pi=
+ano-cho-lop-nhac-tai-binh-thanh-phu-nhuan-q1-1?utm_source=3Dviec-moi&utm_me=
+dium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/viet-phan-mem-quan-ly-container-=
+tai-bai?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newslet=
+ter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-t=
+ransform: uppercase; font-weight: normal;text-decoration: none;">Vi=E1=BA=
+=BFt ph=E1=BA=A7n m=E1=BB=81m qu=E1=BA=A3n l=C3=BD Container t=E1=BA=A1i b=
+=C3=A3i</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh ph=E1=BA=A7n m=E1=BB=81m | 20.000.000 =
+VN=C4=90 - 30.000.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>T=C3=B4i c=E1=BA=A7n 1 ph=E1=BA=A7n m=E1=BB=81m =C4=
+=91=C6=A1n gi=E1=BA=A3n v=E1=BB=9Bi c=C3=A1c tr=C6=B0=E1=BB=9Dng input theo=
+ y=C3=AAu c=E1=BA=A7u, chia ra c=C3=A1c t=C3=ADnh n=C4=83ng nh=E1=BA=B1m qu=
+=E1=BA=A3n l=C3=BD container nh=E1=BA=ADp, xu=E1=BA=A5t, s=E1=BB=ADa ch=E1=
+=BB=AFa, gi=C3=A1m =C4=91=E1=BB=8Bnh,c=E1=BA=A5p x=C4=83ng d=E1=BA=A7u, nh=
+=E1=BA=ADp xu=E1=BA=A5t t=E1=BB=93n v=E1=BA=ADt li=E1=BB=87u.
+Database truy xu=E1=BA=A5t =C4=91=C6=B0... <a href=3D"https://www.vlance.vn=
+/viec-freelance/viet-phan-mem-quan-ly-container-tai-bai?utm_source=3Dviec-m=
+oi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" t=
+arget=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=
+=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/viet-phan-mem-=
+quan-ly-container-tai-bai?utm_source=3Dviec-moi&utm_medium=3Demail&utm_camp=
+aign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                         <div style=3D"padding: 1px 20px 20px 20px; margin-=
+bottom: 20px; background-color: #f5fafd; border: 1px solid #d8e8f2;border-r=
+adius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/chinh-sua-mobile-react-native-app?utm_=
+source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2=
+0220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: up=
+percase; font-weight: normal;text-decoration: none;">Ch=E1=BB=89nh s=E1=BB=
+=ADa mobile react-native app</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#4390D9;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px;">B=C3=A1n th=E1=BB=9Di gian</span></h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">=E1=BB=A8ng d=E1=BB=A5ng di =C4=91=E1=BB=99ng | 200.000 VN=C4=
+=90 - 200.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>C=C3=B4ng ty hi=E1=BB=87n =C4=91ang c=E1=BA=A7n m=E1=
+=BB=99t b=E1=BA=A1n React-Native Mobile App Dev =E1=BB=9F khu v=E1=BB=B1c T=
+P. HCM l=C3=A0m vi=E1=BB=87c b=C3=A1n th=E1=BB=9Di gian ch=E1=BB=89nh s=E1=
+=BB=ADa app c=C3=B3 s=E1=BA=B5n.... <a href=3D"https://www.vlance.vn/viec-l=
+am/chinh-sua-mobile-react-native-app?utm_source=3Dviec-moi&utm_medium=3Dema=
+il&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_blank" st=
+yle=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/chinh-sua-mobile-rea=
+ct-native-app?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-n=
+ewsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+ <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background=
+-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; -webkit-bord=
+er-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/thiet-ke-menu-quan-an-online?utm=
+_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-=
+20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: u=
+ppercase; font-weight: normal;text-decoration: none;">Thi=E1=BA=BFt k=E1=BA=
+=BF menu qu=C3=A1n =C4=83n online</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Thi=E1=BA=BFt k=E1=BA=BF b=E1=BB=99 nh=E1=BA=ADn di=E1=BB=87n=
+ th=C6=B0=C6=A1ng hi=E1=BB=87u | 500.000 VN=C4=90 - 1.000.000 VN=C4=90 | TP=
+. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>Qu=C3=A1n =C4=83n ph=C3=A1t tri=E1=BB=83n m=E1=BA=A3=
+ng kinh doanh online n=C3=AAn c=E1=BA=A7n t=C3=ACm 1 b=E1=BA=A1n thi=E1=BA=
+=BFt k=E1=BA=BF h=C3=ACnh =E1=BA=A3nh g=E1=BB=93m c=C3=A1c n=E1=BB=99i dung=
+:
+- =E1=BA=A2nh =C4=91=E1=BA=A1i di=E1=BB=87n 3 m=C3=B3n ch=C3=ADnh &amp; m=
+=E1=BB=99t s=E1=BB=91 th=E1=BB=A9c u=E1=BB=91ng
+- 1 Banner ch=C6=B0=C6=A1ng tr=C3=ACnh khuy=E1=BA=BFn m=C3=A3i
+- 1 m=E1=BA=ABu t=E1=BB=9D r=C6=A1i qu=E1=BA=A3ng... <a href=3D"https://www=
+.vlance.vn/viec-freelance/thiet-ke-menu-quan-an-online?utm_source=3Dviec-mo=
+i&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" ta=
+rget=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=
+=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/thiet-ke-menu-=
+quan-an-online?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-=
+newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+             <div style=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px=
+; background-color: #f5fafd; border: 1px solid #d8e8f2;border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-freelance/can-lam-tool-leech-truyen-tranh-=
+cho-website?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-new=
+sletter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; te=
+xt-transform: uppercase; font-weight: normal;text-decoration: none;">C=E1=
+=BA=A7n l=C3=A0m tool leech truy=E1=BB=87n tranh cho website</a>
+                    </h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=E1=BA=ADp tr=C3=ACnh web | 1.000.000 VN=C4=90 - 1.500.000 V=
+N=C4=90 | To=C3=A0n Qu=E1=BB=91c</p>
+                    <p>C=E1=BA=A7n 1 b=E1=BA=A1n vi=E1=BA=BFt tool leech tr=
+uy=E1=BB=87n cho website wordpess theme Madara.... <a href=3D"https://www.v=
+lance.vn/viec-freelance/can-lam-tool-leech-truyen-tranh-cho-website?utm_sou=
+rce=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2022=
+0926-week" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd=
+">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-freelance/can-lam-tool-l=
+eech-truyen-tranh-cho-website?utm_source=3Dviec-moi&utm_medium=3Demail&utm_=
+campaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #4390D9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                        <br>
+        <hr>
+        <br>
+                                                    <div style=3D"padding: =
+1px 20px 20px 20px; margin-bottom: 20px; background-color: #FCF4FF; border-=
+radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/xay-dung-phan-mem-dan-duong-ve-tinh-gp=
+s-cho-o-to?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-news=
+letter-noncat-20220926-week" target=3D"_blank" style=3D"color: #429fdd; tex=
+t-transform: uppercase; font-weight: normal;text-decoration: none;">X=C3=A2=
+y d=E1=BB=B1ng ph=E1=BA=A7n m=E1=BB=81m d=E1=BA=ABn =C4=91=C6=B0=E1=BB=9Dng=
+ v=E1=BB=87 tinh GPS cho =C3=B4 t=C3=B4</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#f76d22;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px; background-color:#7d528f;">To=C3=A0n th=E1=BB=9Di gian</span><=
+/h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">=E1=BB=A8ng d=E1=BB=A5ng di =C4=91=E1=BB=99ng | 15.000.000 VN=
+=C4=90 - 40.000.000 VN=C4=90 | H=C3=A0 N=E1=BB=99i</p>
+                    <p>X=C3=A2y d=E1=BB=B1ng ph=E1=BA=A7n m=E1=BB=81m tr=C3=
+=AAn Android native
+T=E1=BB=91i =C6=B0u giao di=E1=BB=87n =E1=BB=A9ng d=E1=BB=A5ng, ph=E1=BA=A7=
+n m=E1=BB=81m t=C6=B0=C6=A1ng t=E1=BB=B1 Google Map... <a href=3D"https://w=
+ww.vlance.vn/viec-lam/xay-dung-phan-mem-dan-duong-ve-tinh-gps-cho-o-to?utm_=
+source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-2=
+0220926-week" target=3D"_blank" style=3D"text-decoration: none; color: #429=
+fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/xay-dung-phan-mem-da=
+n-duong-ve-tinh-gps-cho-o-to?utm_source=3Dviec-moi&utm_medium=3Demail&utm_c=
+ampaign=3Djob-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #9D5AB9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                <div style=
+=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background-color: #FC=
+F4FF; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4=
+px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/kiem-tra-chat-luong-mobile-app-apis?ut=
+m_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat=
+-20220926-week" target=3D"_blank" style=3D"color: #429fdd; text-transform: =
+uppercase; font-weight: normal;text-decoration: none;">Ki=E1=BB=83m tra ch=
+=E1=BA=A5t l=C6=B0=E1=BB=A3ng Mobile App, APIs</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#f76d22;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px; background-color:#7d528f;">To=C3=A0n th=E1=BB=9Di gian</span><=
+/h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">QA Tester | 8.000.000 VN=C4=90 - 25.000.000 VN=C4=90 | H=C3=
+=A0 N=E1=BB=99i</p>
+                    <p>- Test ch=E1=BA=A5t l=C6=B0=E1=BB=A3ng k=E1=BA=BFt q=
+u=E1=BA=A3 t=C3=ACm ki=E1=BA=BFm t=E1=BB=AB search engine=20
+- Ho=E1=BA=B7c Test =E1=BB=A9ng d=E1=BB=A5ng mobile App
+- Kh=E1=BA=A3 n=C4=83ng g=E1=BB=A3i =C3=BD t=C3=ADnh n=C4=83ng, =C4=91=C6=
+=B0a y=C3=AAu c=E1=BA=A7u c=E1=BB=A5 th=E1=BB=83 t=E1=BB=9Bi Dev.... <a hre=
+f=3D"https://www.vlance.vn/viec-lam/kiem-tra-chat-luong-mobile-app-apis?utm=
+_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-=
+20220926-week" target=3D"_blank" style=3D"text-decoration: none; color: #42=
+9fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/kiem-tra-chat-luong-=
+mobile-app-apis?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob=
+-newsletter-noncat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #9D5AB9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                                                                           =
+                                                                           =
+                                                           <div style=3D"pa=
+dding: 1px 20px 20px 20px; margin-bottom: 20px; background-color: #FCF4FF; =
+border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/quan-ly-marketing?utm_source=3Dviec-mo=
+i&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" ta=
+rget=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; font-we=
+ight: normal;text-decoration: none;">Qu=E1=BA=A3n l=C3=BD Marketing</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#f76d22;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px; background-color:#7d528f;">To=C3=A0n th=E1=BB=9Di gian</span><=
+/h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Vi=E1=BB=87c KD v=C3=A0 marketing kh=C3=A1c | 7.000.000 VN=C4=
+=90 - 30.000.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>L=E1=BA=ADp k=E1=BA=BF ho=E1=BA=A1ch marketing, theo=
+ d=C3=B5i c=C3=A1c ch=E1=BB=89 s=E1=BB=91 marketing &amp; kinh doanh. qu=E1=
+=BA=A3n l=C3=BD team marketing n=E1=BB=99i b=E1=BB=99.... <a href=3D"https:=
+//www.vlance.vn/viec-lam/quan-ly-marketing?utm_source=3Dviec-moi&utm_medium=
+=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=3D"_bla=
+nk" style=3D"text-decoration: none; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/quan-ly-marketing?ut=
+m_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat=
+-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #9D5AB9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                <div style=
+=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background-color: #FC=
+F4FF; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4=
+px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/content-marketing-50?utm_source=3Dviec=
+-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week"=
+ target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; font=
+-weight: normal;text-decoration: none;">Content marketing</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#f76d22;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px; background-color:#7d528f;">To=C3=A0n th=E1=BB=9Di gian</span><=
+/h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Bi=C3=AAn t=E1=BA=ADp &amp; ch=E1=BB=89nh s=E1=BB=ADa n=E1=BB=
+=99i dung | 7.000.000 VN=C4=90 - 15.000.000 VN=C4=90 | TP. H=E1=BB=93 Ch=C3=
+=AD Minh</p>
+                    <p>Vi=E1=BA=BFt b=C3=A0i cho l=C4=A9nh v=E1=BB=B1c =C4=
+=91=C3=A0o t=E1=BA=A1o tr=C3=AAn h=E1=BB=87 th=E1=BB=91ng social, k=E1=BB=
+=8Bch b=E1=BA=A3n, ch=E1=BB=A7 =C4=91=E1=BB=81 video chia s=E1=BA=BD.... <a=
+ href=3D"https://www.vlance.vn/viec-lam/content-marketing-50?utm_source=3Dv=
+iec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-we=
+ek" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem t=
+h=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/content-marketing-50=
+?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-non=
+cat-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #9D5AB9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                <div style=
+=3D"padding: 1px 20px 20px 20px; margin-bottom: 20px; background-color: #FC=
+F4FF; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4=
+px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/editor-design?utm_source=3Dviec-moi&ut=
+m_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" target=
+=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; font-weight=
+: normal;text-decoration: none;">editor &amp; design</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#f76d22;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px; background-color:#7d528f;">To=C3=A0n th=E1=BB=9Di gian</span><=
+/h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=C3=A0m video clip | 7.000.000 VN=C4=90 - 20.000.000 VN=C4=
+=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>thi=E1=BA=BFt k=E1=BA=BF =E1=BA=A3nh, quay &amp; ch=
+=E1=BB=89nh s=E1=BB=ADa video t=E1=BA=A1i ph=C3=B2ng thu. l=C3=A0m vi=E1=BB=
+=87c t=E1=BA=A1i v=C4=83n ph=C3=B2ng, to=C3=A0n th=E1=BB=9Di gian. Ch=E1=BA=
+=BF =C4=91=E1=BB=99 theo quy =C4=91=E1=BB=8Bnh nh=C3=A0 n=C6=B0=E1=BB=9Bc..=
+. <a href=3D"https://www.vlance.vn/viec-lam/editor-design?utm_source=3Dviec=
+-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week"=
+ target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=
+=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/editor-design?utm_so=
+urce=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-202=
+20926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #9D5AB9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                                                                           =
+                                                                           =
+                                       <div style=3D"padding: 1px 20px 20px=
+ 20px; margin-bottom: 20px; background-color: #FCF4FF; border-radius: 4px; =
+-webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/vfx-designer-1?utm_source=3Dviec-moi&u=
+tm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" targe=
+t=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; font-weigh=
+t: normal;text-decoration: none;">VFX Designer</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#f76d22;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px; background-color:#7d528f;">To=C3=A0n th=E1=BB=9Di gian</span><=
+/h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">L=C3=A0m video clip | 8.000.000 VN=C4=90 - 10.000.000 VN=C4=
+=90 | TP. H=E1=BB=93 Ch=C3=AD Minh</p>
+                    <p>M=C3=B4 t=E1=BA=A3 c=C3=B4ng vi=E1=BB=87c:
+- S=E1=BB=AD d=E1=BB=A5ng ph=E1=BA=A7n m=E1=BB=81m After Effect =C4=91=E1=
+=BB=83 t=E1=BA=A1o visual effect cho video.
+- C=C3=A1c c=C3=B4ng vi=E1=BB=87c kh=C3=A1c theo s=E1=BB=B1 ph=C3=A2n c=C3=
+=B4ng c=E1=BB=A7a Qu=E1=BA=A3n l=C3=BD.
+- X=C3=A2y d=E1=BB=B1ng =C3=BD t=C6=B0=E1=BB=9Fng, thi=E1=BA=BFt k=E1=BA=BF=
+ t=E1=BA=A1o th=C3=AAm c=C3=A1c hi=E1=BB=87u =E1=BB=A9ng h=C3=ACnh =E1=BA=
+=A3nh =C4=91=E1=BB=83 n... <a href=3D"https://www.vlance.vn/viec-lam/vfx-de=
+signer-1?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsle=
+tter-noncat-20220926-week" target=3D"_blank" style=3D"text-decoration: none=
+; color: #429fdd">Xem th=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/vfx-designer-1?utm_s=
+ource=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20=
+220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #9D5AB9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                 <div style=3D"padding: 1px=
+ 20px 20px 20px; margin-bottom: 20px; background-color: #FCF4FF; border-rad=
+ius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;">
+                    <h2 style=3D"margin-top: 1.1em;margin-bottom: 0;"><a hr=
+ef=3D"https://www.vlance.vn/viec-lam/giao-vien-ngoai-ngu?utm_source=3Dviec-=
+moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-week" =
+target=3D"_blank" style=3D"color: #429fdd; text-transform: uppercase; font-=
+weight: normal;text-decoration: none;">GI=C3=81O VI=C3=8AN NGO=E1=BA=A0I NG=
+=E1=BB=AE</a>
+                    <span style=3D"font-size:11px;font-weight:bold;backgrou=
+nd:#f76d22;color:#FFF;font-family:'Open Sans',sans-serif;padding:1px 4px 0 =
+4px;border-radius:2px;text-transform:uppercase;display: inline-block;line-h=
+eight: 14px; background-color:#7d528f;">To=C3=A0n th=E1=BB=9Di gian</span><=
+/h2>
+                    <p style=3D"font-size: 14px; font-style: italic; margin=
+-top: 0.5em;">Gia s=C6=B0 | 15.000.000 VN=C4=90 - 25.000.000 VN=C4=90 | B=
+=C3=A0 R=E1=BB=8Ba - V=C5=A9ng T=C3=A0u</p>
+                    <p>=E2=80=A2 Tr=E1=BB=B1c ti=E1=BA=BFp gi=E1=BA=A3ng d=
+=E1=BA=A1y c=C3=A1c ch=C6=B0=C6=A1ng tr=C3=ACnh IELTS theo ph=C3=A2n c=C3=
+=B4ng c=E1=BB=A7a Trung t=C3=A2m.
+=E2=80=A2 So=E1=BA=A1n b=C3=A0i v=C3=A0 chu=E1=BA=A9n b=E1=BB=8B b=C3=A0i t=
+r=C6=B0=E1=BB=9Bc khi l=C3=AAn l=E1=BB=9Bp
+=E2=80=A2 Gi=C3=A1o vi=C3=AAn =C4=91=E1=BB=A9ng l=E1=BB=9Bp, tr=E1=BB=A3 gi=
+=E1=BA=A3ng theo s=E1=BB=B1 b=E1=BB=91 tr=C3=AD
+=E2=80=A2 Theo d=C3=B5i t=C3=ACnh h=C3=ACnh l=E1=BB=9Bp h=E1=BB=8Dc, ... <a=
+ href=3D"https://www.vlance.vn/viec-lam/giao-vien-ngoai-ngu?utm_source=3Dvi=
+ec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-noncat-20220926-wee=
+k" target=3D"_blank" style=3D"text-decoration: none; color: #429fdd">Xem th=
+=C3=AAm</a></p>
+                    <p style=3D"text-align: center; margin-top: 40px"><a ta=
+rget=3D"_blank" href=3D"https://www.vlance.vn/viec-lam/giao-vien-ngoai-ngu?=
+utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsletter-nonc=
+at-20220926-week"
+                       style=3D"text-decoration: none; border-radius: 5px; =
+-webkit-border-radius: 5px; -moz-border-radius: 5px; padding: 10px 24px; ba=
+ckground: #9D5AB9; font-size: 16px; text-transform: uppercase; color: #ffff=
+ff;">G=E1=BB=ADi h=E1=BB=93 s=C6=A1</a></p>
+                </div>
+                                                                           =
+                                                                           =
+                                                                           =
+   <p style=3D"font-size: 0.9em; color: #888;">Th=C3=A0nh th=E1=BA=ADt xin =
+l=E1=BB=97i n=E1=BA=BFu mail n=C3=A0y =C4=91=C3=A3 l=C3=A0m phi=E1=BB=81n b=
+=E1=BA=A1n. B=E1=BA=A1n c=C3=B3 th=E1=BB=83 t=E1=BB=AB ch=E1=BB=91i ti=E1=
+=BA=BFp nh=E1=BA=ADn mail <a style=3D"text-decoration: none; color: #429fdd=
+" href=3D"https://www.vlance.vn/options/unsubscribe/b7baec15f2d33de3613b603=
+0e428d314?utm_source=3Dviec-moi&utm_medium=3Demail&utm_campaign=3Djob-newsl=
+etter-noncat-20220926-week"> t=E1=BA=A1i =C4=91=C3=A2y</a>.</p>
+    </div>
+</div>
+        </div>
+        <!-- end content -->
+        <!-- Block h=C6=B0=E1=BB=9Bng d=E1=BA=ABn ch=E1=BB=91ng spam email =
+-->
+        <div>
+            <img src=3D"https://www.vlance.vn/media/huong_dan_danh_dau_sao_=
+email.png"/>
+        </div>
+        <!-- End block h=C6=B0=E1=BB=9Bng d=E1=BA=ABn ch=E1=BB=91ng spam em=
+ail -->
+        <!-- Footer -->
+         <footer style=3D"display: block;">
+            <div style=3D"width: 600px;margin: 0 auto;">
+                <div style=3D"height: 85px;clear: both;">
+                    <div style=3D"float: left;margin-top: 18px;">
+                        B=E1=BA=A1n c=E1=BA=A7n tr=E1=BB=A3 gi=C3=BAp? <str=
+ong>Li=C3=AAn h=E1=BB=87 v=E1=BB=9Bi ch=C3=BAng t=C3=B4i</strong><br/>
+                        Email: <a target=3D"_blank" style=3D"text-decoratio=
+n: none;color: #429fdd;" href=3D"mailto:hotro@vlance.vn">hotro@vlance.vn</a=
+><br/>
+                        Tel: (+84) 024.6684.1818
+                    </div>
+                    <ul class=3D"img_face" style=3D"float: right;list-style=
+: none;margin-top: 18px;padding-left:0px;">
+                        <li style=3D"float: left;margin-left: 3px;">
+                            <a target=3D"_blank" style=3D"text-decoration: =
+none;" href=3D"https://plus.google.com/+VlanceVn"><img src=3D"https://www.v=
+lance.vn/newsletter/img/mail_gplus.png"></a>
+                        </li>
+                        <li style=3D"float: left;margin-left: 3px;">
+                            <a target=3D"_blank" style=3D"text-decoration: =
+none;" href=3D"https://www.linkedin.com/groups/vLancevn-L=C3=A0m-freelance-=
+ki=E1=BA=BFm-th=C3=AAm-4699959"><img src=3D"https://www.vlance.vn/newslette=
+r/img/mail_linkedin.png"></a>
+                        </li>
+                        <li style=3D"float: left;margin-left: 3px;">
+                            <a target=3D"_blank" style=3D"text-decoration: =
+none;" href=3D"https://www.facebook.com/vlance.vn"><img src=3D"https://www.=
+vlance.vn/newsletter/img/mail_facebook1.png"></a>
+                        </li>
+                        <li style=3D"float: left;margin-left: 3px;">
+                            <a target=3D"_blank" style=3D"text-decoration: =
+none;" href=3D"https://twitter.com/vlancevn"><img src=3D"https://www.vlance=
+.vn/newsletter/img/mail_tiw1.png"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div style=3D"font-size: 11px; text-align: center; margin-t=
+op: 20px;clear:both;">
+                    =C2=A9 2022 vLance.vn<br/>
+                    =C4=90=E1=BB=8Ba ch=E1=BB=89: T=C3=B2a nh=C3=A0 Ladeco,=
+ t=E1=BA=A7ng 12A, s=E1=BB=91 266 =C4=90=E1=BB=99i C=E1=BA=A5n, ph=C6=B0=E1=
+=BB=9Dng Li=E1=BB=85u Giai, qu=E1=BA=ADn Ba =C4=90=C3=ACnh, th=C3=A0nh ph=
+=E1=BB=91 H=C3=A0 N=E1=BB=99i.
+                </div>
+            </div>
+        </footer>
+                <img src=3D"https://www.vlance.vn/email/newsletter/8E95qxXh=
+-hfC6Z3uMx5zjw=3D=3D" width=3D"1" height=3D"1"/>
+    <img src=3D"https://www.google-analytics.com/collect?v=3D1&tid=3DUA-340=
+03187-3&cid=3D34003187&t=3Devent&ec=3Djob-newsletter&ea=3Dopen&el=3Dnoncat-=
+20220926-week&cs=3Djob-newsletter&cm=3Demail&cn=3Djob-newsletter-noncat-202=
+20926-week&uid=3D1193003"/>
+        </body>
+</html>
+
+------=_Part_1489721_584898434.1664174954285--

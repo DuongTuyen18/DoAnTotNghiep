@@ -1,0 +1,78 @@
+{% extends 'app/analysis/home_analysis/emaildatafile.html' %}
+{%load static%}
+{% block right-content %}
+<script src="{%static 'app/js/export_js/export.js'%}"></script>
+<div style="height: 50px" class="header-content">
+  <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
+    <div style="height: 100%; padding: 0px" class="container-fluid">
+      <a id="name-export" class="navbar-brand">Extract Links</a>
+      <div id="box-save-close">
+        <a style="text-decoration: none;" class="box-extract" id="btn_extract_links" type="button">
+            <i class="fas fa-sign-out-alt fa-2x"></i>
+            <span style="padding-left: 5px;" id="Save-text-export">Extract</span>
+        </a>
+        <a href="{% url 'save_extract_links' %}" style="text-decoration: none;" id="box-save" type="button">
+          <i class="fas fa-save fa-2x"></i>
+          <span style="padding-left: 5px;" >Save</span>
+        </a>
+        <a href="{% url 'analysis' %}" id="box-close" type="button">
+          <i class="far fa-window-close fa-lg"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="content-right-content-extract">
+    <div class="extract-left-content">
+        <div class="form-check form-switch padding-top padding-bottom">
+            <input class="form-check-input" checked type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Mở thư mục sau khi hoàn thành</label>
+        </div>
+        <div class="form-check form-switch padding-top padding-bottom">
+            <input class="form-check-input" checked type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Trích xuất địa chỉ email từ tệp đính kèm</label>
+        </div>
+        <div class="form-check form-switch padding-top padding-bottom">
+            <input class="form-check-input" checked type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Chọn đường dẫn lưu file</label>
+        </div>
+        <label class="col-form-label">Danh sách các link tìm được:</label>
+        <ul class="col-sm-4 " id="list-links-extract">
+
+        </ul>
+        <label class="col-form-label">Tổng số: <span id="tongso_links">0</span></label>
+    </div>
+
+</div>
+<script>
+    $("#btn_extract_links").click(function(){
+        $.ajax({
+            url: "/emaildatafile/extract/action_extract_links",
+            type: "GET",
+            success: function(response) {
+                
+                var list_links = JSON.parse(response); // Gọi hàm để trích xuất các đường link
+
+                var listContainer = $('#list-links-extract');
+    
+                // Xóa bỏ nội dung cũ trong khung
+                listContainer.empty();
+                
+                // Thêm các thẻ li vào khung
+                list_links.forEach(function(link) {
+                    var listItem = $('<li>').text(link);
+                    listContainer.append(listItem);
+                });
+
+                $("#tongso_links").html(list_links.length);
+            },
+            error: function(xhr, errmsg, err) {
+                // Xử lý lỗi nếu có
+                console.log(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    });
+
+   
+</script>
+{% endblock right-content %}

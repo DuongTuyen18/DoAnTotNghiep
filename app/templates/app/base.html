@@ -5,10 +5,13 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
     <link rel="stylesheet" href="{%static 'app/bootstrap/css/bootstrap.min.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/all.min.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/jquery.dataTables.min.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/bootstrap-icons/font/bootstrap-icons.min.css'%}" />
+
+    
     <link rel="stylesheet" href="{%static 'app/css/base.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/emaildatafile.css'%}" />
     <link rel="stylesheet" href="{%static 'app/css/inforEmaildatafile.css'%}" />
@@ -28,7 +31,6 @@
     
 
     <script src="{%static 'app/js/base.js'%}"></script>
-    <script src="{%static 'app/js/emailcsvfile/linkanalysis.js'%}"></script>
 
     <script>
         var personImageUrl = "{% static 'app/images/svg/person-32.png' %}";
@@ -49,19 +51,19 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="list-menu-top">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 " id="list-menu-top">
                         <li class="nav-item dropdown" id="li-open">
                             <a class="nav-link dropdown-toggle stopPropagation" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-folder-open fa-lg icon-open"></i>&nbsp;Open
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="dropend edfDropdown" id="edfDropdown">
-                                    <a class="dropdown-item dropdown-toggle stopPropagation-edfDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                                    <a class="dropdown-item dropdown-toggle stopPropagation-edfDropdown item-action" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                                       <i class="bi bi-envelope-paper-fill icon-edfDropdown"></i>&nbsp;Email Data Files
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-edfDropdown dropdown-menu-end">
                                         <li class="dropend emlDropdown">
-                                            <a class="dropdown-item dropdown-toggle stopPropagation-emlDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                                            <a class="dropdown-item dropdown-toggle stopPropagation-emlDropdown item-action" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                                               <i class="fas fa-file-alt icon-emlFile"></i>&nbsp;EML Files
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-emlDropdown dropdown-menu-end">
@@ -72,25 +74,25 @@
                                                         <input type="file" id="folder" name="folder" webkitdirectory>
                                                         <input type="submit" value="Open folder">
                                                     </form>
-                                                    <a class="dropdown-item" href="#" id="ChooseFolderEML">
+                                                    <a class="dropdown-item item-action" href="#" id="ChooseFolderEML">
                                                         <i class="fas fa-folder icon-chooseFolder"></i>&nbsp;Choose Folder ...
                                                     </a>
-                                                    <a class="dropdown-item" href="#">
+                                                    <a class="dropdown-item item-action" href="#">
                                                         <i class="fas fa-file icon-chooseFile"></i>&nbsp;Choose Files ...
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="dropend msgDropdown">
-                                            <a class="dropdown-item dropdown-toggle stopPropagation-msgDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                                            <a class="dropdown-item dropdown-toggle stopPropagation-msgDropdown item-action" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                                               <i class="fas fa-file-alt icon-msgFile"></i>&nbsp;MSG Files
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-msgDropdown dropdown-menu-end">
                                                 <li>
-                                                    <a class="dropdown-item" href="#">
+                                                    <a class="dropdown-item item-action" href="#">
                                                       <i class="fas fa-folder icon-chooseFolder"></i>&nbsp;Choose Folder ...
                                                     </a>
-                                                    <a class="dropdown-item" href="#">
+                                                    <a class="dropdown-item item-action" href="#">
                                                       <i class="fas fa-file icon-chooseFile"></i>&nbsp; Choose Files ...
                                                     </a>
                                                 </li>
@@ -103,44 +105,55 @@
                                         </form>
                                         <input id="csvFileInput" type="file" style="display: none;" accept=".csv" onchange="handleCSVFile">
                                         <li class="dropend csvDropdown">
-                                            <a class="dropdown-item" role="button" id="Choosefile_csv"  >
+                                            <a class="dropdown-item item-action" role="button" id="Choosefile_csv"  >
                                               <i class="fas fa-file-alt icon-csvFile"></i>&nbsp;CSV Files
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="dropend eaDropdown">
-                                    <a class="dropdown-item dropdown-toggle stopPropagation-eaDropdown" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+                                    <a class="dropdown-item dropdown-toggle stopPropagation-eaDropdown item-action" data-bs-toggle="dropdown" aria-expanded="false" role="button">
                                         <i class="bi bi-envelope-fill"></i>&nbsp;Email Accounts
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-eaDropdown dropdown-menu-end">
                                         <li class="dropend addADropdown">
-                                            <a class="dropdown-item dropdown-toggle stopPropagation-addADropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">Add Accounts</a>
+                                            <a class="dropdown-item dropdown-toggle stopPropagation-addADropdown item-action" data-bs-toggle="dropdown" role="button" aria-expanded="false">Add Accounts</a>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li>
-                                                    <a class="dropdown-item" href="#">Choose Folder ...</a>
-                                                    <a class="dropdown-item" href="#">Choose Files ...</a>
+                                                    <a class="dropdown-item item-action" href="#">Choose Folder ...</a>
+                                                    <a class="dropdown-item item-action" href="#">Choose Files ...</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="dropend manageADropdown">
-                                            <a class="dropdown-item dropdown-toggle stopPropagation-manageADropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">Manage Accounts</a>
+                                            <a class="dropdown-item dropdown-toggle stopPropagation-manageADropdown item-action" data-bs-toggle="dropdown" role="button" aria-expanded="false">Manage Accounts</a>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li>
-                                                    <a class="dropdown-item" href="#">Choose Folder ...</a>
-                                                    <a class="dropdown-item" href="#">Choose Files ...</a>
+                                                    <a class="dropdown-item item-action" href="#">Choose Folder ...</a>
+                                                    <a class="dropdown-item item-action" href="#">Choose Files ...</a>
                                                 </li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="dropend eaDropdown">
-                                    <a class="dropdown-item" href={% url 'clearfilefolders' %} aria-expanded="false" role="button">
+                                    <a class="dropdown-item item-action" href={% url 'clearfilefolders' %} aria-expanded="false" role="button">
                                         <i class="bi bi-eraser-fill"></i>&nbsp;Clear File/Folders
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
+                        {% comment %} <li class="nav-item dropdown disable" id="li-options">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-list fa-lg icon-options"></i>&nbsp;Options
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item item-action" href={% url 'emaildatafile' %}>Home</a></li>
+                                <li><a class="dropdown-item item-action" href={% url 'analysis' %}>Analysis</a></li>
+                            </ul>
+                        </li> {% endcomment %}
+
                         <li class="nav-item dropdown disable " id="li-export">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-file-export fa-lg icon-export"></i>&nbsp;Export
@@ -189,13 +202,15 @@
                                 <i class="fas fa-sign-out-alt fa-lg icon-extract"></i>&nbsp;Extract
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href={% url 'extract_email_address' %}>Email Adresses</a></li>
-                                <li><a class="dropdown-item" href="#">Attachments</a></li>
-                                <li><a class="dropdown-item" href={% url 'extract_phone_number' %}>Phone Numbers</a></li>
-                                <li> <a class="dropdown-item" href="#">Associated Email & Phone Numbers</a> </li>
-                                <li><a class="dropdown-item" href="#">Contact Photos</a></li>
+                                <li><a class="dropdown-item item-action" href={% url 'extract_email_address' %}>Email Adresses</a></li>
+                                <li><a class="dropdown-item" href={% url 'extract_links' %}>Links</a></li>
+                                <li><a class="dropdown-item item-action" href={% url 'extract_phone_number' %}>Phone Numbers</a></li>
+                                <li> <a class="dropdown-item item-action" href="#">Associated Email & Phone Numbers</a> </li>
+                                <li><a class="dropdown-item item-action" href="#">Contact Photos</a></li>
                             </ul>
                         </li>
+
+
                     </ul>
                 </div>
             </div>
@@ -203,7 +218,6 @@
     </div>
 
     <div class="content">
-
         {% block main-content%} {% endblock main-content%}
     </div>
     <div class="footer">

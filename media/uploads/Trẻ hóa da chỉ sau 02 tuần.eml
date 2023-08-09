@@ -1,0 +1,146 @@
+Delivered-To: nttrang13092000@gmail.com
+Received: by 2002:a5d:4206:0:b0:317:67ab:542f with SMTP id n6csp1320702wrq;
+        Mon, 7 Aug 2023 21:11:24 -0700 (PDT)
+X-Received: by 2002:a05:620a:4513:b0:767:e9aa:5d51 with SMTP id t19-20020a05620a451300b00767e9aa5d51mr15606095qkp.3.1691467883980;
+        Mon, 07 Aug 2023 21:11:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1691467883; cv=none;
+        d=google.com; s=arc-20160816;
+        b=L7+PblXQasQ7tauWz7ruklGQ9V+tensenxAKIdXHBaG8rr9ls/bhoBpKHaBPwAmHpP
+         kjJM74FNpJspn5c4sE5eW9cxRq4Ely0qg749Rri8eLUn9RBf+k7m3GrlTfA7gAoD7v5c
+         kEQV+tn1+Y5n93UmvVW4mHTWArlRj4yN2XPuqHw6hhoefOmrwEHaid7jblCbW0w9EeWX
+         6qrQSxu2nZS0qjRaKL7fuHe2z3LM/S7vIRU9n1yvj/RR6iocSzNslpa/Tf/libmqIU7D
+         87EEj244r+0eACFU13d6Dt+2npt8+OJ4zGNBezqyYftGFlcdjELIb9npBEqLRivuDfJf
+         JFkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=mRUVrebt7VyAzo7sbZTUE6ZH9/Sk+P+J89mvwlGQv9Q=;
+        fh=8QmpEHKG3aECGpJoqziXq4+Xr8ZiVwxDfFQ5HFcbGVQ=;
+        b=gifp81+hvkD75wPG3+H61NsKzzbFmL+4H/koTnti0OVTr1DqAPOAWna25uPJ3xkuZT
+         00i8fUrcqafokVH1tLH2SMNfWD6jrHDI/6ZHFu3Z7IFwSv6iGZz+gao7tmF1491frkM/
+         cCRpA6F7WxDFr1PDCsJzVrfklYiqxZwBTM9h7VtnZzb4Fxi3nyDvfMrUOpQsQ5FG31Pm
+         CVnblSDEf1VzuPcCHDT8knhWbVJJ8u5oy4H9ASkCSz3i0IfrX2XcBFwuBRP/6KxoTTBJ
+         BnXdQUlX0RUsxBcD47lrSR9NFlLYND609cAMmB3IJAFUwSdjqVdVabvfx1iKQTjaT2wc
+         Fu9Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20221208 header.b=SkWQgbsS;
+       spf=pass (google.com: domain of pthaolb@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=pthaolb@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <pthaolb@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id s22-20020a05620a081600b007683bb2cea0sor5308756qks.3.2023.08.07.21.11.23
+        for <nttrang13092000@gmail.com>
+        (Google Transport Security);
+        Mon, 07 Aug 2023 21:11:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of pthaolb@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20221208 header.b=SkWQgbsS;
+       spf=pass (google.com: domain of pthaolb@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=pthaolb@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1691467883; x=1692072683;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=mRUVrebt7VyAzo7sbZTUE6ZH9/Sk+P+J89mvwlGQv9Q=;
+        b=SkWQgbsSABqId/7OeBUsDm8pY+KAX//hOjiSwpZzrr6DxFWN+4JMVaMLF/rxFwgQtL
+         IcDNYHeTTVBiauAm1c3mS/W8y6+DBd4CCMT/VdsccrEvpk5slW/H6UwoEOlsGO91Lz1T
+         0G8oqseEuGzEOggTCiHbeXZAi35pYRPNj8dFlEbhe0dBbHXAii6/UR69JKJk66kQ8WCu
+         HifAKC8VrSEWNcK0a/SiuoCouYed8PYNs3tGevFmFU2CcFK50luRPz6zgHcpcO8VRQ7U
+         VdC9asor2n9xoCWYAaKA4i0Ry/7/q5GgMwhcsIeYmQYbbqeuaVwet6wScTEIsLQ84S2r
+         ZCsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691467883; x=1692072683;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mRUVrebt7VyAzo7sbZTUE6ZH9/Sk+P+J89mvwlGQv9Q=;
+        b=NyTSU5u4HwJ59TPg2TsUNRDyo8g5wb9ZfTWqXzPSVW1eIdo5O5eXPSiAJonlPD8HfI
+         kNmQPLhYz3Hta4SBsFrOzVYfwJo6glM7qTYrj3YII7V8m/N5HWv+/3fwfwPPpf5wnswP
+         bEZZSRZx1Wq2xlEzidCj66TBhXYY5AX+J4hBSxgGGHQi6td12di5Fk4NNTvH75qsdhOZ
+         6c/S/gMsJylii70g7f0ygG7m2zV90vyNnHDNQ0kZVdLyBL0NZq5kMjbmsZwKbAfOgKg5
+         9Ln9Vp6dU67BKKATGgdV5jPFX9qO3VYuVZA5Mkc2z4j9jjdyUWQNn3IyMsQ/u4WcFtoh
+         XfoQ==
+X-Gm-Message-State: AOJu0YwEbLs+2m4lzPvHIAaS6E/HH7fAwNPF7c5KtU82OUYJntZXL69d
+	GnzTa714gNFmmOrw0TyNP0KfpGxaO+SEORFXHqEkeKoEHia+0w==
+X-Google-Smtp-Source: AGHT+IEE6I7NxgvNQW+UM7GJ5Aqh7h8g99IkNcfSyMHfBO3IFZFdVG0JdtRwsmg+JAdjRi5KiGTPXgtQ3GgveX8coqA=
+X-Received: by 2002:ac8:5e07:0:b0:40f:c669:a130 with SMTP id
+ h7-20020ac85e07000000b0040fc669a130mr13816884qtx.36.1691467883264; Mon, 07
+ Aug 2023 21:11:23 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?B?QsO5aSBUaOG7iyBQaMawxqFuZyBUaOG6o28=?= <pthaolb@gmail.com>
+Date: Tue, 8 Aug 2023 11:11:11 +0700
+Message-ID: <CADz-oY6Ee4MUTGVbg7Frp+EYfQoOeYLZ0cnkFuzAL22shSD5Bw@mail.gmail.com>
+Subject: =?UTF-8?B?U+G6o24gcGjhuqltIHRy4buLIG7DoW0sIHRy4bq7IGjDs2EgZGEgY2jhu4kgc2F1IDAyIA==?=
+	=?UTF-8?B?dHXhuqdu?=
+To: nttrang13092000@gmail.com
+Content-Type: multipart/alternative; boundary="00000000000054bf060602618e03"
+
+--00000000000054bf060602618e03
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+WGluIGNow6BvIEFuaC8gQ2jhu4sga2jDoWNoIGjDoG5nLCAobsOqdSBo4buNIHTDqm4gbuG6v3Ug
+YuG6oW4gYmnhur90IHLDtSkNCg0KVMO0aSBsw6AgTmd1eeG7hW4gVsSDbiBNaW5oLCBoaeG7h24g
+xJFhbmcgbMOgbSB2aeG7h2MgdOG6oWkgY8O0bmcgdHkgQUJDLiBUw7RpIGfhu61pIGVtYWlsDQpu
+w6B5IG5o4bqxbSBnaeG7m2kgdGhp4buHdSDEkeG6v24gQW5oIC8gQ2jhu4sgduG7gSBkw7JuZyBz
+4bqjbiBwaOG6qW0gdHLhu4sgbsOhbSwgdHLhursgaMOzYSBkYSBj4bqjaQ0KdGnhur9uIG3DoCBj
+w7RuZyB0eSBjaMO6bmcgdMO0aSB24burYSBuZ2hpw6puIGPhu6l1IHRow6BuaCBjw7RuZywgdsOg
+IHPhuq9wIHR1bmcgcmEgdGjhu4sNCnRyxrDhu51uZyB2w6BvIHRow6FuZyAwNSBuxINtIG5heS4N
+Cg0KVuG7m2kgdMawIGPDoWNoIGzDoCBjaHV5w6puIHZpw6puIHTGsCB24bqlbiBjaMSDbSBzw7Nj
+IGRhIGNodXnDqm4gbmdoaeG7h3AsIHTDtGkgbHXDtG4gbW9uZw0KbXXhu5FuIGxhbiB04buPYSBu
+aOG7r25nIHPhuqNuIHBo4bqpbSBsw6BtIMSR4bq5cCBjaOG6pXQgbMaw4bujbmcgdOG7kXQsIGhp
+4buHdSBxdeG6oyBjYW8sIHbhu5tpIG3hu6ljDQpnacOhIGPhu7FjIHThu5F0LCBnacO6cCBraMOh
+Y2ggaMOgbmcgYW4gdMOibSBz4butIGThu6VuZywgc+G7m20gdMOsbSBs4bqhaSBuw6l0IMSR4bq5
+cCBob8OgbiBo4bqjbw0KbmjhuqV0Lg0KDQpO4bq/dSBjw7RuZyBk4bulbmcgdHV54buHdCB24bud
+aSBj4bunYSBkw7JuZyBz4bqjbiBwaOG6qW0gbsOgeSBsw6AgxJFp4buBdSBBbmgvIENo4buLIMSR
+YW5nIHF1YW4NCnTDom0sIHhpbiB2dWkgbMOybmcgbGnDqm4gbOG6oWMgduG7m2kgdMO0aSBxdWEg
+c+G7kSB6YWxvIDog4oCmLiAuDQoNCkNow6JuIHRow6BuaCBj4bqjbSDGoW4gQW5oLyBDaOG7iyAh
+IENow7pjIEFuaC8gQ2jhu4sgbeG7mXQgbmfDoHkgbMOgbSB2aeG7h2MgdOG7kXQgbMOgbmggIQ0K
+DQpUcsOibiB0cuG7jW5nLA0KDQooSOG7jSB0w6puLCB0aMO0bmcgdGluIGxpw6puIGzhuqFjIGPh
+u6dhIG5nxrDhu51pIGfhu61pIGVtYWlsKQ0K
+--00000000000054bf060602618e03
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p dir=3D"ltr" style=3D"box-sizing:border-box;margin:0px;f=
+ont-size:16px;line-height:26px;letter-spacing:0.8px;color:rgb(51,51,51);pad=
+ding-top:20px;font-family:Roboto,sans-serif">Xin ch=C3=A0o Anh/ Ch=E1=BB=8B=
+ kh=C3=A1ch h=C3=A0ng, (n=C3=AAu h=E1=BB=8D t=C3=AAn n=E1=BA=BFu b=E1=BA=A1=
+n bi=E1=BA=BFt r=C3=B5)</p><p dir=3D"ltr" style=3D"box-sizing:border-box;ma=
+rgin:0px;font-size:16px;line-height:26px;letter-spacing:0.8px;color:rgb(51,=
+51,51);padding-top:20px;font-family:Roboto,sans-serif">T=C3=B4i l=C3=A0 Ngu=
+y=E1=BB=85n V=C4=83n Minh, hi=E1=BB=87n =C4=91ang l=C3=A0m vi=E1=BB=87c t=
+=E1=BA=A1i c=C3=B4ng ty ABC. T=C3=B4i g=E1=BB=ADi email n=C3=A0y nh=E1=BA=
+=B1m gi=E1=BB=9Bi thi=E1=BB=87u =C4=91=E1=BA=BFn Anh / Ch=E1=BB=8B v=E1=BB=
+=81 d=C3=B2ng s=E1=BA=A3n ph=E1=BA=A9m tr=E1=BB=8B n=C3=A1m, tr=E1=BA=BB h=
+=C3=B3a da c=E1=BA=A3i ti=E1=BA=BFn m=C3=A0 c=C3=B4ng ty ch=C3=BAng t=C3=B4=
+i v=E1=BB=ABa nghi=C3=AAn c=E1=BB=A9u th=C3=A0nh c=C3=B4ng, v=C3=A0 s=E1=BA=
+=AFp tung ra th=E1=BB=8B tr=C6=B0=E1=BB=9Dng v=C3=A0o th=C3=A1ng 05 n=C4=83=
+m nay.</p><p dir=3D"ltr" style=3D"box-sizing:border-box;margin:0px;font-siz=
+e:16px;line-height:26px;letter-spacing:0.8px;color:rgb(51,51,51);padding-to=
+p:20px;font-family:Roboto,sans-serif">V=E1=BB=9Bi t=C6=B0 c=C3=A1ch l=C3=A0=
+ chuy=C3=AAn vi=C3=AAn t=C6=B0 v=E1=BA=A5n ch=C4=83m s=C3=B3c da chuy=C3=AA=
+n nghi=E1=BB=87p, t=C3=B4i lu=C3=B4n mong mu=E1=BB=91n lan t=E1=BB=8Fa nh=
+=E1=BB=AFng s=E1=BA=A3n ph=E1=BA=A9m l=C3=A0m =C4=91=E1=BA=B9p ch=E1=BA=A5t=
+ l=C6=B0=E1=BB=A3ng t=E1=BB=91t, hi=E1=BB=87u qu=E1=BA=A3 cao, v=E1=BB=9Bi =
+m=E1=BB=A9c gi=C3=A1 c=E1=BB=B1c t=E1=BB=91t, gi=C3=BAp kh=C3=A1ch h=C3=A0n=
+g an t=C3=A2m s=E1=BB=AD d=E1=BB=A5ng, s=E1=BB=9Bm t=C3=ACm l=E1=BA=A1i n=
+=C3=A9t =C4=91=E1=BA=B9p ho=C3=A0n h=E1=BA=A3o nh=E1=BA=A5t.</p><p dir=3D"l=
+tr" style=3D"box-sizing:border-box;margin:0px;font-size:16px;line-height:26=
+px;letter-spacing:0.8px;color:rgb(51,51,51);padding-top:20px;font-family:Ro=
+boto,sans-serif">N=E1=BA=BFu c=C3=B4ng d=E1=BB=A5ng tuy=E1=BB=87t v=E1=BB=
+=9Di c=E1=BB=A7a d=C3=B2ng s=E1=BA=A3n ph=E1=BA=A9m n=C3=A0y l=C3=A0 =C4=91=
+i=E1=BB=81u Anh/ Ch=E1=BB=8B =C4=91ang quan t=C3=A2m, xin vui l=C3=B2ng li=
+=C3=AAn l=E1=BA=A1c v=E1=BB=9Bi t=C3=B4i qua s=E1=BB=91 zalo : =E2=80=A6. .=
+</p><p dir=3D"ltr" style=3D"box-sizing:border-box;margin:0px;font-size:16px=
+;line-height:26px;letter-spacing:0.8px;color:rgb(51,51,51);padding-top:20px=
+;font-family:Roboto,sans-serif">Ch=C3=A2n th=C3=A0nh c=E1=BA=A3m =C6=A1n An=
+h/ Ch=E1=BB=8B ! Ch=C3=BAc Anh/ Ch=E1=BB=8B m=E1=BB=99t ng=C3=A0y l=C3=A0m =
+vi=E1=BB=87c t=E1=BB=91t l=C3=A0nh !</p><p dir=3D"ltr" style=3D"box-sizing:=
+border-box;margin:0px;font-size:16px;line-height:26px;letter-spacing:0.8px;=
+color:rgb(51,51,51);padding-top:20px;font-family:Roboto,sans-serif">Tr=C3=
+=A2n tr=E1=BB=8Dng,</p><p dir=3D"ltr" style=3D"box-sizing:border-box;margin=
+:0px;font-size:16px;line-height:26px;letter-spacing:0.8px;color:rgb(51,51,5=
+1);padding-top:20px;font-family:Roboto,sans-serif">(H=E1=BB=8D t=C3=AAn, th=
+=C3=B4ng tin li=C3=AAn l=E1=BA=A1c c=E1=BB=A7a ng=C6=B0=E1=BB=9Di g=E1=BB=
+=ADi email)</p></div>
+
+--00000000000054bf060602618e03--

@@ -1,10 +1,8 @@
 
-{% extends 'app/export/export.html' %}
+{% extends 'app/analysis/home_analysis/emaildatafile.html' %}
 {%load static%}
 {% block right-content %}
 <script src="{%static 'app/js/export_js/export.js'%}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <div style="height: 50px" class="header-content">
   <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
     <div style="height: 100%; padding: 0px" class="container-fluid">
@@ -18,7 +16,7 @@
           <i class="fas fa-save fa-2x"></i>
           <span style="padding-left: 5px;" id="Save-text-export">Save</span>
         </a>
-        <a href="{% url 'emaildatafile' %}" id="box-close" type="button">
+        <a href="{% url 'analysis' %}" id="box-close" type="button">
           <i class="far fa-window-close fa-lg"></i>
         </a>
       </div>

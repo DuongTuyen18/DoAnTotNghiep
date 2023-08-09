@@ -1,0 +1,108 @@
+.content-offcanvas{
+    position: relative;
+    --bs-gutter-x: unset;
+    width: 100%;
+    height: 100%;
+}
+.content-analysis{
+    margin: 0px;
+    height: calc(100% - 50px);
+    overflow: auto;
+    background-color: #fff !important;
+}
+.container-dashboard{
+    min-height: 100%;
+    padding: 10px 20px;
+    background-color: #f0f2f5 !important;
+}
+.btn-offcanvas{
+    padding: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.group_icon_btn{
+    display: flex;
+}
+
+/* PERSON */
+#content-right-content-person{
+    height: calc(100% - 39px);
+    overflow: auto;
+}
+.title_email_by_masageid{
+    padding: 20px 0 8px 72px;
+    font-size: 24px;
+    font-weight: 400;
+}
+.user_email_by_masageid{
+    display: flex;
+    padding: 20px 0 0 72px;
+    align-items: center;
+}
+
+.infor_email_by_masageid{
+    display: flex;
+    align-items: center;
+
+}
+.to_email_by_masageid{
+    font-size: 12px;
+}
+.dropdown_infor{
+    margin-left: 5px;
+}
+.sender_name_email_by_masageid{
+    font-weight: 500 ;
+}
+.btn_dropdown_infor{
+    width: 16px !important;
+    font-size: 16px;
+    border-radius: 4px;
+}
+.btn_dropdown_infor:hover{
+    background-color: #d1d1d1;
+}
+.content_email_by_masageid{
+    padding: 20px 0 0 72px;
+}
+
+.avatar_email_by_masageid{
+    margin-right: 10px;
+    font-size: 28px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #00ff57;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.dropdownMenu_email_by_masageid{
+    width: 600px;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.mg-bottom-10{
+    margin-bottom: 10px;
+}
+
+.weight-300{
+    font-weight: 300;
+}
+
+.weight-500{
+    font-weight: 500;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    opacity: 0; /* Ban đầu ẩn tooltip */
+    pointer-events: none; /* Để tooltip không ảnh hưởng tới sự kiện chuột của nút */
+}

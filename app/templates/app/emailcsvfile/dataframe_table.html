@@ -2,23 +2,16 @@
 {%load static%} 
 {% block content-csvdatafile %}
 {% load tz %}
-<div style="height: 50px" class="header-content">
-  <nav style="padding: 0px; height: 100%" class="navbar bg-body-tertiary">
-    <div style="height: 100%; padding: 0px" class="container-fluid">
-      <a id="name-export" class="navbar-brand"
-        >{{filecsv_name}}/Table Dataframe</a
-      >
+
+<div class="header-content">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a id="name-export" class="navbar-brand header-content-title">{{filecsv_name}}/Table Dataframe</a>
     </div>
   </nav>
 </div>
-<div
-  class="offcanvas offcanvas-bottom"
-  tabindex="-1"
-  id="offcanvas_datatable_detail"
-  data-bs-keyboard="false"
-  data-bs-backdrop="false"
-  style="position: absolute; width: auto !important; height: 55%"
->
+
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas_datatable_detail" data-bs-keyboard="false" data-bs-backdrop="false" style="position: absolute; width: auto !important; height: 55%">
   <div class="offcanvas-header">
     <h6 class="offcanvas-title d-none d-sm-block">Thông tin chi tiết</h6>
     <button
@@ -108,7 +101,7 @@
     </div>
   </div>
 </div>
-<div class="content-emailcsvfile">
+<div class="content-analysis">
   <div id="table-box">
     <nav class="navbar navbar-light bg-light fff_color">
       <div class=" container-fluid">
@@ -218,23 +211,9 @@
   $(document).ready(function () {});
   function submitForm() {
     $("#from_search").submit();
-}
-  function view_datafram_detail(
-    file_name,
-    MassageID,
-    Date,
-    Sender_name,
-    Sender_email,
-    To,
-    Subject,
-    MimeVersion,
-    ContentType,
-    ContentTransferEncoding,
-    Xcc,
-    Xbcc,
-    Content
+  }
+  function view_datafram_detail( file_name, MassageID, Date, Sender_name, Sender_email, To, Subject, MimeVersion, ContentType, ContentTransferEncoding, Xcc, Xbcc, Content
   ) {
-    debugger;
     $("#dataframe_filename").text(file_name);
     $("#dataframe_message_id").text(MassageID);
     $("#dataframe_date").text(Date);

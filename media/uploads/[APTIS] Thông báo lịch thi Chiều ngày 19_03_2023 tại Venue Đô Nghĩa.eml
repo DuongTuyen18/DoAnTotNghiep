@@ -1,0 +1,620 @@
+Delivered-To: nttrang13092000@gmail.com
+Received: by 2002:adf:fc09:0:0:0:0:0 with SMTP id i9csp1194969wrr;
+        Tue, 14 Mar 2023 20:52:36 -0700 (PDT)
+X-Google-Smtp-Source: AK7set8ac2PwRrtI22c4Afk4E76jNtIrG2c6owIE6NDrc0gSic5H+nmDjtQXIBwBdz47xnJ6ZD9e
+X-Received: by 2002:a9d:724b:0:b0:68b:e2bc:3f7 with SMTP id a11-20020a9d724b000000b0068be2bc03f7mr8131103otk.18.1678852356665;
+        Tue, 14 Mar 2023 20:52:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1678852356; cv=none;
+        d=google.com; s=arc-20160816;
+        b=i55EyeL4ktA266U7zfLzfCGnIP+aDyV9f6K4PscNK0LaEZlAnWizcxGHX3l7IpMnp4
+         +1f2XI54jRi3dzYQSY4qzkuUshqMHhnHoRfbEqllzID5ZeR6RbOZCvcwhlA1xigLFeqM
+         1CzW80glh4QSy3oXse40WaepTA/06BlKeYcDFUY8gFtQ9keCNNmtnJl0TW+SJxnwjTkb
+         aqx+EtGeU1xMyDPciShACS+ervK3OYxurgxBqOQSpPfcVO5If9LlhWWK9IPCvaii7hjR
+         hGFx4AKrU5Jb4d2LndAn+YrFVxvJPrwHGBPx+8cACzMHhXXVqTI41/sB7EVLhkxpEtQG
+         3p4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=9pZxYEVUAgjKRU9vw2LvXfbFQfZWUtUJFnYBF2/cN3s=;
+        b=oj8qqC14SK176pw6irCek/jSGN+9R/jO82FykjUQyMTmBJbPToYPf6nMn/HEMVHxkU
+         d4xSodZW28fq0CXKLkFbMD06fZSMWJ/MWxopBgOn7lWRowzmWqiOB07b7SWYyNyYwVgy
+         RzcCuj+cxQeuPBGPI65khFL1Q8Y7fUAQzDvjAnpaVEHOIPWDgM+OheWL9fCrvCxWkNFa
+         lHozPNe0Wed/huJR1Z8lnDdYfpLdq2gqCIS/dpM1VHGgr952tJL+KvUwNFaC7ba7lXSM
+         /Vev9lLGhZ2Sbz6BMTF8Nl9z2Cj1jWdL9/UF5W3TxeIB3+45+WRWhAgSarmTPwZfVXu2
+         E77A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=euZfYiCe;
+       spf=pass (google.com: domain of info.etevn@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=info.etevn@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <info.etevn@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id x29-20020a9d459d000000b00684e6cbb214sor698618ote.98.2023.03.14.20.52.36
+        for <nttrang13092000@gmail.com>
+        (Google Transport Security);
+        Tue, 14 Mar 2023 20:52:36 -0700 (PDT)
+Received-SPF: pass (google.com: domain of info.etevn@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=euZfYiCe;
+       spf=pass (google.com: domain of info.etevn@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=info.etevn@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678852356;
+        h=cc:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=9pZxYEVUAgjKRU9vw2LvXfbFQfZWUtUJFnYBF2/cN3s=;
+        b=euZfYiCeQHbYuiayMaREhytPkzvnTiw4TGoulWOnEG+4BwVDTpzMXGYy9Tq/YkQD2A
+         nhPNLMOUZ8Kv30+qLtKxOpKk8T9jkVgIDqzBXqjGSznJusCKIUQv90VsAhviuYI3fScm
+         FrKms+rBdxjE7wXGCyem/Efuzpl+aVXH7/AgqTzx8bWJhlfdBJhB8tJJZxxRgsR4YaBV
+         +Cx96SsKojs+BADurklPmb05oXgLiqkIAxJqyEoIld8/9Q7LCnXkArnx1qUCusfUvFn5
+         uUdr3EebChumlT/51BulKUAVaXSDjShcYC1H1xbM7Ce0LT9K6V5EmXW/y7LTJcvl7MEE
+         FAEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678852356;
+        h=cc:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9pZxYEVUAgjKRU9vw2LvXfbFQfZWUtUJFnYBF2/cN3s=;
+        b=wG1e/CRYBYOTws1S4bOWy4ZhgAFFjGqisYxZBmXVKCYY4q7knTn47cYFyyiwbZGNv9
+         AhHOunoJPui15wTMr8rPQHnD1Wh3KpO4XDX3hjCcKC1r3aiGGuSVOTNOIAf3IyCUWQJY
+         JedGwqWm9T324ZEcSfrvQoIm7PoAWaysQGnQCCqLubI5/EnHdDwtVu539ZKcsKZolSlZ
+         9hvqi3pqr6B4rwOVfa/joj8Qnax4Qfkl8Y2IgOMxif3K5yA5k2IGfi/oJopBRGEHVj+c
+         QvqQl+znNVBsR3YuddtwlBe/bIM1zNj6npgz7sFCrE8flBT4Ru1DL7RPgI/hqHupu3iu
+         gZMA==
+X-Gm-Message-State: AO0yUKVOF53neOyOWr+VKrI/xSnUyZo2URZH6N4wg2GL/rlg/U1HCWDs
+	3szswYCcW0OvqklNn40exrhzd5JISYIwMfgE9Rc=
+X-Received: by 2002:a9d:4b9a:0:b0:693:dce4:49fb with SMTP id
+ k26-20020a9d4b9a000000b00693dce449fbmt14878917otf.1.1678852355847; Tue, 14
+ Mar 2023 20:52:35 -0700 (PDT)
+MIME-Version: 1.0
+From: ETE Info <info.etevn@gmail.com>
+Date: Wed, 15 Mar 2023 10:52:28 +0700
+Message-ID: <CAL3xXaHgiVptPt26SZx8RoiT6KoTZgyiOhk1iw6-dovzBStfYw@mail.gmail.com>
+Subject: =?UTF-8?B?W0FQVElTXSBUaMO0bmcgYsOhbyBs4buLY2ggdGhpIENoaeG7gXUgbmfDoHkgMTkvMDMvMg==?=
+	=?UTF-8?B?MDIzIHThuqFpIFZlbnVlIMSQw7QgTmdoxKlh?=
+Cc: duonganhvu0512@gmail.com
+Content-Type: multipart/alternative; boundary="0000000000004e6f3905f6e846d9"
+Bcc: nttrang13092000@gmail.com
+
+--0000000000004e6f3905f6e846d9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+QXB0aXMgRVNPTA0KDQoNCipUaMOibiBn4butaSB0aMOtIHNpbmggQXB0aXMgRVNPTCwqDQoNCg0K
+DQpD4bqjbSDGoW4gYuG6oW4gxJHDoyDEkcSDbmcga8O9IHRoaSBBcHRpcyBFU09MIMSRxrDhu6Nj
+IHThu5UgY2jhu6ljIGLhu59pIEjhu5lpIMSR4buTbmcgQW5oIHbhu5tpIEVURQ0KVmlldG5hbSB0
+4bqhaSBIw6AgTuG7mWkuDQoNClNhdSDEkcOieSBsw6AgY2hpIHRp4bq/dCB24buBIGzhu4tjaCB0
+aGkgY+G7p2EgYuG6oW46DQoNCipOZ8OgeSB0aGkgdsOgIEdp4budIGLhuq90IMSR4bqndSBsw6Bt
+IGLDoGkqDQoNCjE5LzAzLzIwMjMgYXQgMTM6MzANCg0KKkdp4budIGzDoG0gdGjhu6cgdOG7pWMg
+dsOgbyBwaMOybmcgdGhpKg0KDQpU4burIDEyOjMwIHThu5tpIDEzOjAwDQoNCipMb+G6oWkgYsOg
+aSB0aGkqDQoNCkFwdGlzIEVTT0wgR2VuZXJhbA0KDQoqxJDhu4thIMSRaeG7g20gdGhpKg0KDQoq
+QlRVIDA1LTUxIEtodSDEkMO0IHRo4buLIMSQw7QgTmdoxKlhLCBZw6puIE5naMSpYSwgSMOgIMSQ
+w7RuZywgSMOgIE7hu5lpLipHb29nbGUNCm1hcHM6ICpodHRwczovL2dvby5nbC9tYXBzL3VFazFv
+S1hTMnNhdWdlckQ4DQo8aHR0cHM6Ly9nb28uZ2wvbWFwcy91RWsxb0tYUzJzYXVnZXJEOD4qDQoN
+Cg0KDQpWdWkgbMOybmcgY8OzIG3hurd0IHThuqFpIMSR4buLYSDEkWnhu4NtIHRoaSDDrXQgbmjh
+uqV0IDYwIHBow7p0IHNvIHbhu5tpIGdp4budIGLhuq90IMSR4bqndSBsw6BtDQpiw6BpICDEkeG7
+gyBsw6BtIHRo4bunIHThu6VjIHbDoG8gcGjDsm5nIHRoaS4gTuG6v3UgYuG6oW4gdOG7m2kgbXXh
+u5luIGjGoW4gdGjhu51pIGdpYW4gbsOgeSwgYuG6oW4NCmPDsyB0aOG7gyBraMO0bmcgxJHGsOG7
+o2MgdGhhbSBk4buxIGvhu7MgdGhpLg0KDQpMxrB1IMO9IGtoaSB0aGFtIGThu7Ega+G7syB0aGk6
+DQoNCioxLiAgICAqKkdp4bqleSB04budIHTDuXkgdGjDom4gaOG7o3AgbOG7hyoNCg0KVGjDrSBz
+aW5oIGLhuq90IGJ14buZYyBwaOG6o2kgxJFlbSDEkcO6bmcgYuG6o24gZ+G7kWMgdsOgIGPDsm4g
+aGnhu4d1IGzhu7FjIGPhu6dhIEdp4bqleSB04budIHTDuXkNCnRow6JuIMSRw6Mgc+G7rSBk4bul
+bmcgxJHhu4MgxJHEg25nIGvDvSB0aGksIGPDsyB0aOG7gyBsw6A6DQoNCsK3ICAgICAgICAgSOG7
+mSBjaGnhur91OyBob+G6t2MNCg0KwrcgICAgICAgICBDaOG7qW5nIG1pbmggbmjDom4gZMOibi9D
+xINuIGPGsOG7m2MgY8O0bmcgZMOibiAoQ01ORC9DQ0NEKQ0KDQpLaMO0bmcgY8OzIGLhuqV0IGPh
+u6kgbG/huqFpIGjDrG5oIEdp4bqleSB04budIG7DoG8ga2jDoWMgaG/hurdjIGLhuqNuIHBob3Rv
+IMSRxrDhu6NjIGNo4bqlcCBuaOG6rW4NCmtoaSBk4buxIHRoaS4gVGjDrSBzaW5oIHPhur0ga2jD
+tG5nIMSRxrDhu6NjIHBow6lwIHbDoG8gcGjDsm5nIHRoaSB2w6Agc+G6vSBraMO0bmcgxJHGsOG7
+o2MgaG/DoG4NCmzhuqFpIGzhu4cgcGjDrSB0aGkgbuG6v3UgR2nhuqV5IHThu50gdHXhu7MgdGjD
+om4gY+G7p2EgdGjDrSBzaW5oIGtow7RuZyBo4bujcCBs4buHIGhv4bq3YyBraMO0bmcNCsSRw6Fw
+IOG7qW5nIMSRxrDhu6NjIHnDqnUgY+G6p3UgaG/hurdjIG7hur91IG5ow6JuIHZpw6puIGdpw6Ft
+IHPDoXQgdGjhuqV5IGPDsyBi4bqldCBr4buzIGThuqV1IGhp4buHdQ0KbmdoaSBuZ+G7nSBnw6wg
+duG7gSB0w61uaCB4w6FjIHRo4buxYyBj4bunYSBHaeG6pXkgdOG7nSB0deG7syB0aMOibiBj4bun
+YSB0aMOtIHNpbmguIFZ1aSBsb8yAbmcNCnhlbSB0aMOqbSBRdXkgxJFpzKNuaCB2w6rMgCBHacOi
+zIF5IHTGocyAIHR1zIB5IHRow6JuIFRBzKNJIMSQw4JZDQo8aHR0cHM6Ly93d3cuYnJpdGlzaGNv
+dW5jaWwudm4vc2l0ZXMvZGVmYXVsdC9maWxlcy9wb2xpY3ktYWJvdXQtcHJlc2VudGluZy1pZGVu
+dGlmaWNhdGlvbi1kb2N1bWVudC1mb3ItYXB0aXMtZXNvbC12aWUucGRmPg0KDQoqMi4gICAgKipW
+4bqtdCBk4bulbmcgdsOgIGjDoG5oIGzDvSBjw6EgbmjDom4qDQoNClThuqV0IGPhuqMgduG6rXQg
+ZOG7pW5nIHbDoCBow6BuaCBsw70gY8OhIG5ow6JuIHBo4bqjaSDEkeG7gyB04bqhaSBraHUgduG7
+sWMgcXV5IMSR4buLbmggdsOgIOG7nyBiw6puDQpuZ2/DoGkgcGjDsm5nIHRoaS4gQuG6pXQgY+G7
+qSBjw6FjIHRoaeG6v3QgYuG7iyDEkWnhu4duIHThu6sgYmFvIGfhu5NtIHbDoCBraMO0bmcgZ2nh
+u5tpIGjhuqFuIG5oxrANCsSRaeG7h24gdGhv4bqhaSB2w6AgxJHhu5NuZyBo4buTIMSR4buBdSBr
+aMO0bmcgxJHGsOG7o2MgcGjDqXAgbWFuZyB2w6BvIHBow7JuZyB0aGkuDQoNClZ1aSBsw7JuZyBs
+xrB1IMO9IHLhurFuZyBjaMO6bmcgdMO0aSBraMO0bmcgY2jhu4t1IHRyw6FjaCBuaGnhu4dtIG7h
+ur91IGPDsyBi4bqldCBj4bupIHPhu7EgbeG6pXQNCm3DoXQgduG7gSB24bqtdCBk4bulbmcgdsOg
+IGjDoG5oIGzDvSBjw6EgbmjDom4sIGRvIHbhuq15LCB0aMOtIHNpbmggxJHGsOG7o2Mga2h1eeG6
+v24ga2jDrWNoDQpraMO0bmcgbsOqbiBtYW5nIHRoZW8gY8OhYyB24bqtdCBk4bulbmcgY8OzIGdp
+w6EgdHLhu4suDQoNCiozLiAgICAqKk5o4buvbmcgduG6rXQgZOG7pW5nIMSRxrDhu6NjIHBow6lw
+IG1hbmcgdsOgbyBwaMOybmcgdGhpOioNCg0KwrcgICAgICAgICBI4buZIGNoaeG6v3UvQ01ORC9D
+Q0NEIGLhuqNuIGfhu5FjDQoNCsK3ICAgICAgICAgTsaw4bubYyB14buRbmcgdHJvbmcgY2hhaSBu
+aOG7sWEgdHJvbmcNCg0KwrcgICAgICAgICBLaMSDbiBnaeG6pXkgdsOgIHRodeG7kWMNCg0KKjQu
+ICAgICoqTmjhu69uZyB24bqtdCBk4bulbmcgS0jDlE5HIMSRxrDhu6NjIHBow6lwIG1hbmcgdsOg
+byBwaMOybmcgdGhpOioNCg0KwrcgICAgICAgICBIw6BuaCBsw70gY8OhIG5ow6JuDQoNCsK3ICAg
+ICAgICAgxJDhu5NuZyBo4buTL8SR4buTbmcgaOG7kyB0aMO0bmcgbWluaA0KDQrCtyAgICAgICAg
+IEPDoWMgdGhp4bq/dCBi4buLIMSRaeG7h24gdOG7rQ0KDQrCtyAgICAgICAgIFThu6sgxJFp4buD
+biwgc8OhY2ggdsOgIGPDoWMgdMOgaSBsaeG7h3UgaW4uDQoNCsK3ICAgICAgICAgQ2HMgWMgdGHM
+gGkgbGnDqsyjdSBob8SDzKNjIGdoaSBjaHXMgSDGocyJIGLDosyBdCBjxrDMgSBoacyAbmggdGjG
+sMyBYyBuYcyAbw0KDQoNCg0KR2lhbiBsw6LMo24gdGhpIGPGsMyJDQoNClTDosyBdCBjYcyJIGNh
+zIFjIHRyxrDGocyAbmcgaMahzKNwIGdpYW4gbMOizKNuIGJpzKMgcGhhzIF0IGhpw6rMo24gdHLG
+sMahzIFjLCB0cm9uZyBob8SDzKNjDQpzYXUga3nMgCB0aGkgQXB0aXMgRVNPTCDEkcOqzIB1IHNl
+zIMgYmnMoyBodcyJeSBrw6rMgXQgcXVhzIkgdGhpIHZhzIAgY2/MgSBraGHMiSBuxINuZw0KYmnM
+oyBjw6LMgW0gdGhpIHRyb25nIHZvzIBuZyBtw7TMo3QgbsSDbS4gVnVpIGxvzIBuZyB0acyAbSBo
+acOqzIl1IHRow6ptIFF1eSDEkWnMo25oIHbDqsyADQp2acOqzKNjIGh1zIl5IGvDqsyBdCBxdWHM
+iSB0aGkgdmHMgCBjw6LMgW0gdGhpIEFwdGlzIEVTT0wuDQo8aHR0cHM6Ly93d3cuYnJpdGlzaGNv
+dW5jaWwudm4vdGhpL2FwdGlzL2tldC1xdWE+DQoNCkzGsHUgw70gduG7gSBjaOG7qW5nIGNo4buJ
+IEFwdGlzIEVTT0wNCg0KQ2jhu6luZyBjaOG7iSBBcHRpcyBj4bunYSBi4bqhbiBz4bq9IGPDsyBz
+YXUgbmfDoHkgdGhpIGtob+G6o25nIDEwIG5nw6B5IGtow7RuZyBr4buDIG5nw6B5IEzhu4UNCnbD
+oCBjdeG7kWkgdHXhuqduLiBWdWkgbMOybmcgbGnDqm4gaOG7hyBTxJBUOiAwMzI1LjIxLjQxLjkx
+IMSR4buDIMSRxrDhu6NjIGjGsOG7m25nIGThuqtuIHbhu4Egdmnhu4djDQpuaOG6rW4gY2jhu6lu
+ZyBjaOG7iSBBcHRpcy4NCg0KQ8OhYyB04buVIGNo4bupYyBjw7RuZyBuaOG6rW4gY2jhu6luZyBj
+aOG7iSBBcHRpcyBFU09MIGPDsyB0aOG7gyB5w6p1IGPhuqd1IGjhuq11IGtp4buDbSBtaeG7hW4g
+cGjDrQ0Ka+G6v3QgcXXhuqMgdGhpIEFwdGlzIGPhu6dhIHRow60gc2luaCB0cm9uZyB2w7JuZyBo
+YWkgbsSDbSBr4buDIHThu6sgbmfDoHkgdGhpLiBDw6FjIHThu5UNCmNo4bupYyBjw7MgdGjhu4Mg
+Z+G7rWkgecOqdSBj4bqndSBo4bqtdSBraeG7g20gdHLhu7FjIHRp4bq/cCDEkeG6v24gSOG7mWkg
+xJHhu5NuZyBBbmggdGhlbyDEkeG7i2EgY2jhu4kNCmVtYWlsOg0KDQrCtyAgICAgICAgIMSQ4buR
+aSB24bubaSB0aMOtIHNpbmggdGhpIEFwdGlzIOG7nyBIw6AgTuG7mWkgaG/hurdjIGPDoWMgdOG7
+iW5oIG1p4buBbiBC4bqvYyB2w6ANCm1p4buBbiBUcnVuZyBleGFtcy5oYW5vaUBicml0aXNoY291
+bmNpbC5vcmcudm4NCg0KwrcgICAgICAgICDEkOG7kWkgduG7m2kgdGjDrSBzaW5oIHRoaSBBcHRp
+cyDhu58gSOG7kyBjaMOtIE1pbmggaG/hurdjIGPDoWMgdOG7iW5oIHBow61hIE5hbToNCmV4YW1z
+LmhjbWNAYnJpdGlzaGNvdW5jaWwub3JnLnZuLg0KDQpDaHXhuqluIGLhu4sgY2hvIGvhu7MgdGhp
+DQoNCkjDo3kgY2h14bqpbiBi4buLIGNobyBr4buzIHRoaSB0aOG6rXQgdOG7kXQgduG7m2kgY8Oh
+YyBixrDhu5tjIHNhdToNCg0KwrcgICAgICAgICAqVOG6o2kgduG7gSBjdeG7kW4gSMaw4bubbmcg
+ZOG6q24gY2hvIFRow60gc2luaCogIEFwdGlzIEVTT0wgR2VuZXJhbA0KPGh0dHBzOi8vd3d3LmJy
+aXRpc2hjb3VuY2lsLm9yZy9zaXRlcy9kZWZhdWx0L2ZpbGVzL2FwdGlzX2NhbmRpZGF0ZV9ndWlk
+ZV8yMDIwX2E0X2ZpbmFsLnBkZj4NCiwgQXB0aXMgRVNPTCBBZHZhbmNlZA0KPGh0dHBzOi8vd3d3
+LmJyaXRpc2hjb3VuY2lsLm9yZy9zaXRlcy9kZWZhdWx0L2ZpbGVzL2FwdGlzX2FkdmFuY2VkX2Nh
+bmRpZGF0ZV9ndWlkZV8yMDIwX2E0X2ZpbmFsLnBkZj4NCiwgQXB0aXMgRVNPTCBmb3IgVGVhY2hl
+cnMNCjxodHRwczovL3d3dy5icml0aXNoY291bmNpbC5vcmcvc2l0ZXMvZGVmYXVsdC9maWxlcy9h
+cHRpc190ZWFjaGVyc19jYW5kaWRhdGVfZ3VpZGVfMjAyMV9hNF8wLnBkZj4NCmNhbmRpZGF0ZQ0K
+Z3VpZGUNCg0KwrcgICAgICAgICAqTMOgbSB0aOG7rSBiw6BpIHRoaSBt4bqrdSAqdOG6oWkgxJHD
+onkNCjxodHRwczovL3d3dy5icml0aXNoY291bmNpbC5vcmcvZXhhbS9hcHRpcy9wcmFjdGljZS1t
+YXRlcmlhbHM+DQoNCsK3ICAgICAgICAgKlhlbSB0aMOqbSBjw6FjIHZpZGVvIGdp4bubaSB0aGnh
+u4d1IHbhu4EgYsOgaSB0aGkqOiBBcHRpcyBFU09MIEdlbmVyYWwNCjxodHRwczovL3d3dy55b3V0
+dWJlLmNvbS93YXRjaD92PXd1bWc1cDR4ZUpZJmxpc3Q9UExVMEdKOEdMZV91cDR6ZXM3clpPZHQ5
+NTRmM0VVYU5Zdz4NCiAvIEFwdGlzIEVTT0wgQWR2YW5jZWQNCjxodHRwczovL3d3dy55b3V0dWJl
+LmNvbS93YXRjaD92PWstZUpianV3TUdNJmxpc3Q9UExVMEdKOEdMZV91cWhUUGNwNWI5VXI0Qktu
+Nll1U3JXZT4NCi4NCg0KDQoNCkNow7pjIGLhuqFuIGhvw6BuIHRow6BuaCB04buRdCBr4buzIHRo
+aSBj4bunYSBtw6xuaA0KDQoNCg0KKlRyw6JuIHRy4buNbmcsKg0KDQotLSANCkVkdWNhdGlvbmFs
+IFRlc3RpbmcgYW5kIEV2YWx1YXRpb24gVmlldG5hbWlldG5hbSAoRVRFIFZp4buHdCBOYW0pDQrw
+n4yOIFdlYnNpdGU6IGh0dHBzOi8vYXB0aXNldGUuY29tLw0K8J+TsSBIb3RsaW5lL1phbG86ICgr
+ODQpIDAzMi01MjEtNDE5MQ0K8J+TjSDEkOG7i2EgY2jhu4k6IE5ow6AgMzYgR2FsYXh5IDYsIEdh
+bGF4eSBW4bqhbiBQaMO6YywgU+G7kSA2OSDEkMaw4budbmcgVOG7kSBI4buvdSwgUGjGsOG7nW5n
+DQpW4bqhbiBQaMO6YyBRdeG6rW4gSMOgIMSQw7RuZywgSMOgIE7hu5lpLg0K
+--0000000000004e6f3905f6e846d9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p style=3D"margin:0cm 0cm 6pt;line-height:38.3333px;font-=
+size:25pt;font-family:Arial,&quot;sans-serif&quot;;color:rgb(35,8,89);lette=
+r-spacing:-1pt;font-weight:bold"><span lang=3D"EN-GB" style=3D"color:rgb(23=
+4,0,52)">Aptis=C2=A0</span><span lang=3D"EN-GB" style=3D"color:rgb(234,0,52=
+);font-weight:normal">ESOL</span><span lang=3D"EN-GB" style=3D"color:rgb(23=
+4,0,52)"></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line=
+-height:18.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><im=
+g width=3D"57" height=3D"4" align=3D"left" hspace=3D"12"><b><span lang=3D"V=
+I" style=3D"font-size:11pt;line-height:16.8667px;color:rgb(234,0,52)"></spa=
+n></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:18=
+.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><b><span lang=
+=3D"VI" style=3D"font-size:11pt;line-height:16.8667px;color:rgb(234,0,52)">=
+<br></span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-=
+height:18.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><b><=
+span lang=3D"VI" style=3D"font-size:11pt;line-height:16.8667px;color:rgb(23=
+4,0,52)">Th=C3=A2n g=E1=BB=ADi th=C3=AD sinh Aptis ESOL,</span></b></p><p c=
+lass=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size=
+:12pt;font-family:Arial,&quot;sans-serif&quot;"><span lang=3D"VI" style=3D"=
+font-size:11pt;line-height:16.8667px">=C2=A0</span></p><p class=3D"MsoNorma=
+l" style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size:12pt;font-famil=
+y:Arial,&quot;sans-serif&quot;"><span lang=3D"VI" style=3D"font-size:11pt;l=
+ine-height:16.8667px">C=E1=BA=A3m =C6=A1n b=E1=BA=A1n =C4=91=C3=A3 =C4=91=
+=C4=83ng k=C3=BD thi Aptis ESOL =C4=91=C6=B0=E1=BB=A3c t=E1=BB=95 ch=E1=BB=
+=A9c b=E1=BB=9Fi H=E1=BB=99i =C4=91=E1=BB=93ng Anh v=E1=BB=9Bi=C2=A0<font c=
+olor=3D"#ea0034">ETE Vietnam</font>=C2=A0t=E1=BA=A1i<span style=3D"color:rg=
+b(234,0,52)">=C2=A0H=C3=A0 N=E1=BB=99i</span>.</span></p><p class=3D"MsoNor=
+mal" style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size:12pt;font-fam=
+ily:Arial,&quot;sans-serif&quot;"><span lang=3D"VI" style=3D"font-size:11pt=
+;line-height:16.8667px">Sau =C4=91=C3=A2y l=C3=A0 chi ti=E1=BA=BFt v=E1=BB=
+=81 l=E1=BB=8Bch thi c=E1=BB=A7a b=E1=BA=A1n:</span></p><table border=3D"1"=
+ cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:collapse;bord=
+er:none"><tbody><tr><td width=3D"245" valign=3D"top" style=3D"width:184.05p=
+t;border:1pt solid rgb(234,0,52);padding:0cm 5.4pt"><p class=3D"MsoNormal" =
+style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size:12pt;font-family:A=
+rial,&quot;sans-serif&quot;"><b><span lang=3D"VI" style=3D"font-size:11pt;l=
+ine-height:16.8667px">Ng=C3=A0y thi v=C3=A0 Gi=E1=BB=9D b=E1=BA=AFt =C4=91=
+=E1=BA=A7u l=C3=A0m b=C3=A0i</span></b></p></td><td width=3D"434" valign=3D=
+"top" style=3D"width:325.35pt;border-top:1pt solid rgb(234,0,52);border-rig=
+ht:1pt solid rgb(234,0,52);border-bottom:1pt solid rgb(234,0,52);border-lef=
+t:none;padding:0cm 5.4pt"><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6p=
+t;line-height:18.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot=
+;"><span lang=3D"VI" style=3D"font-size:11pt;line-height:16.8667px;color:rg=
+b(234,0,52)">19/03/2023 at 13:30</span></p></td></tr><tr><td width=3D"245" =
+valign=3D"top" style=3D"width:184.05pt;border-right:1pt solid rgb(234,0,52)=
+;border-bottom:1pt solid rgb(234,0,52);border-left:1pt solid rgb(234,0,52);=
+border-top:none;padding:0cm 5.4pt"><p class=3D"MsoNormal" style=3D"margin:0=
+cm 0cm 6pt;line-height:18.4px;font-size:12pt;font-family:Arial,&quot;sans-s=
+erif&quot;"><b><span lang=3D"VI" style=3D"font-size:11pt;line-height:16.866=
+7px">Gi=E1=BB=9D l=C3=A0m th=E1=BB=A7 t=E1=BB=A5c v=C3=A0o ph=C3=B2ng thi</=
+span></b></p></td><td width=3D"434" valign=3D"top" style=3D"width:325.35pt;=
+border-top:none;border-left:none;border-bottom:1pt solid rgb(234,0,52);bord=
+er-right:1pt solid rgb(234,0,52);padding:0cm 5.4pt"><p class=3D"MsoNormal" =
+style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size:12pt;font-family:A=
+rial,&quot;sans-serif&quot;"><span lang=3D"VI" style=3D"font-size:11pt;line=
+-height:16.8667px;color:rgb(234,0,52)">T=E1=BB=AB 12:30 t=E1=BB=9Bi 13:00</=
+span></p></td></tr><tr><td width=3D"245" valign=3D"top" style=3D"width:184.=
+05pt;border-right:1pt solid rgb(234,0,52);border-bottom:1pt solid rgb(234,0=
+,52);border-left:1pt solid rgb(234,0,52);border-top:none;padding:0cm 5.4pt"=
+><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font=
+-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><b><span lang=3D"VI" s=
+tyle=3D"font-size:11pt;line-height:16.8667px">Lo=E1=BA=A1i b=C3=A0i thi</sp=
+an></b></p></td><td width=3D"434" valign=3D"top" style=3D"width:325.35pt;bo=
+rder-top:none;border-left:none;border-bottom:1pt solid rgb(234,0,52);border=
+-right:1pt solid rgb(234,0,52);padding:0cm 5.4pt"><p class=3D"MsoNormal" st=
+yle=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size:12pt;font-family:Ari=
+al,&quot;sans-serif&quot;"><span lang=3D"VI" style=3D"font-size:11pt;line-h=
+eight:16.8667px">Aptis ESOL=C2=A0<span style=3D"color:rgb(234,0,52)">Genera=
+l</span></span></p></td></tr><tr><td width=3D"245" valign=3D"top" style=3D"=
+width:184.05pt;border-right:1pt solid rgb(234,0,52);border-bottom:1pt solid=
+ rgb(234,0,52);border-left:1pt solid rgb(234,0,52);border-top:none;padding:=
+0cm 5.4pt"><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:1=
+8.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><b><span lan=
+g=3D"VI" style=3D"font-size:11pt;line-height:16.8667px">=C4=90=E1=BB=8Ba =
+=C4=91i=E1=BB=83m thi</span></b></p></td><td width=3D"434" valign=3D"top" s=
+tyle=3D"width:325.35pt;border-top:none;border-left:none;border-bottom:1pt s=
+olid rgb(234,0,52);border-right:1pt solid rgb(234,0,52);padding:0cm 5.4pt">=
+<b style=3D"color:rgb(0,0,0)"><font face=3D"arial, sans-serif">BTU 05-51 Kh=
+u =C4=90=C3=B4 th=E1=BB=8B =C4=90=C3=B4 Ngh=C4=A9a, Y=C3=AAn Ngh=C4=A9a, H=
+=C3=A0 =C4=90=C3=B4ng,=C2=A0H=C3=A0 N=E1=BB=99i.<br></font></b><font face=
+=3D"arial, sans-serif"><font color=3D"#000000">Google maps:=C2=A0</font><u>=
+<font color=3D"#0000ff"><a href=3D"https://goo.gl/maps/uEk1oKXS2saugerD8" t=
+arget=3D"_blank">https://goo.gl/maps/uEk1oKXS2saugerD8</a></font></u></font=
+><br></td></tr></tbody></table><p class=3D"MsoNormal" style=3D"margin:0cm 0=
+cm 6pt;line-height:18.4px;font-size:12pt;font-family:Arial,&quot;sans-serif=
+&quot;"><span lang=3D"VI" style=3D"font-size:11pt;line-height:16.8667px">=
+=C2=A0</span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-he=
+ight:18.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><span =
+lang=3D"VI" style=3D"font-size:11pt;line-height:16.8667px">Vui l=C3=B2ng c=
+=C3=B3 m=E1=BA=B7t t=E1=BA=A1i =C4=91=E1=BB=8Ba =C4=91i=E1=BB=83m thi =C3=
+=ADt nh=E1=BA=A5t=C2=A0<span style=3D"color:rgb(234,0,52)">60</span>=C2=A0p=
+h=C3=BAt so v=E1=BB=9Bi gi=E1=BB=9D b=E1=BA=AFt =C4=91=E1=BA=A7u l=C3=A0m b=
+=C3=A0i=C2=A0 =C4=91=E1=BB=83 l=C3=A0m th=E1=BB=A7 t=E1=BB=A5c v=C3=A0o ph=
+=C3=B2ng thi. N=E1=BA=BFu b=E1=BA=A1n t=E1=BB=9Bi mu=E1=BB=99n h=C6=A1n th=
+=E1=BB=9Di gian n=C3=A0y, b=E1=BA=A1n c=C3=B3 th=E1=BB=83 kh=C3=B4ng =C4=91=
+=C6=B0=E1=BB=A3c tham d=E1=BB=B1 k=E1=BB=B3 thi.</span></p><p style=3D"marg=
+in:26pt 0cm 6pt;line-height:21.4667px;font-size:14pt;font-family:Arial,&quo=
+t;sans-serif&quot;;color:rgb(35,8,89);font-weight:bold"><span lang=3D"VI" s=
+tyle=3D"font-size:12pt;line-height:18.4px">L=C6=B0u =C3=BD khi tham d=E1=BB=
+=B1 k=E1=BB=B3 thi:</span></p><p style=3D"margin:0cm 0cm 6pt 36pt;line-heig=
+ht:18.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><b><span=
+ lang=3D"VI" style=3D"font-size:11pt;line-height:16.8667px">1.<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-weight:=
+normal;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&qu=
+ot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0</span></span></b><b><spa=
+n lang=3D"VI" style=3D"font-size:11pt;line-height:16.8667px">Gi=E1=BA=A5y t=
+=E1=BB=9D t=C3=B9y th=C3=A2n h=E1=BB=A3p l=E1=BB=87</span></b></p><p class=
+=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size:12p=
+t;font-family:Arial,&quot;sans-serif&quot;"><span lang=3D"VI" style=3D"font=
+-size:11pt;line-height:16.8667px">Th=C3=AD sinh b=E1=BA=AFt bu=E1=BB=99c ph=
+=E1=BA=A3i =C4=91em =C4=91=C3=BAng b=E1=BA=A3n g=E1=BB=91c v=C3=A0 c=C3=B2n=
+ hi=E1=BB=87u l=E1=BB=B1c c=E1=BB=A7a Gi=E1=BA=A5y t=E1=BB=9D t=C3=B9y th=
+=C3=A2n =C4=91=C3=A3 s=E1=BB=AD d=E1=BB=A5ng =C4=91=E1=BB=83 =C4=91=C4=83ng=
+ k=C3=BD thi, c=C3=B3 th=E1=BB=83 l=C3=A0:</span></p><p style=3D"margin:0cm=
+ 0cm 6pt 54pt;line-height:18.4px;font-size:12pt;font-family:Arial,&quot;san=
+s-serif&quot;"><span lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.=
+8667px;font-family:Symbol;color:rgb(107,181,82)">=C2=B7<span style=3D"font-=
+variant-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;f=
+ont-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span><span l=
+ang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.8667px">H=E1=BB=99 chi=
+=E1=BA=BFu; ho=E1=BA=B7c</span></p><p style=3D"margin:0cm 0cm 6pt 54pt;line=
+-height:18.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><sp=
+an lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.8667px;font-family=
+:Symbol;color:rgb(107,181,82)">=C2=B7<span style=3D"font-variant-numeric:no=
+rmal;font-variant-east-asian:normal;font-stretch:normal;font-size:7pt;line-=
+height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span><span lang=3D"EN-GB" styl=
+e=3D"font-size:11pt;line-height:16.8667px">Ch=E1=BB=A9ng minh nh=C3=A2n d=
+=C3=A2n/C=C4=83n c=C6=B0=E1=BB=9Bc c=C3=B4ng d=C3=A2n (CMND/CCCD)</span></p=
+><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font=
+-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><span lang=3D"VI" styl=
+e=3D"font-size:11pt;line-height:16.8667px">Kh=C3=B4ng c=C3=B3 b=E1=BA=A5t c=
+=E1=BB=A9 lo=E1=BA=A1i h=C3=ACnh Gi=E1=BA=A5y t=E1=BB=9D n=C3=A0o kh=C3=A1c=
+ ho=E1=BA=B7c b=E1=BA=A3n photo =C4=91=C6=B0=E1=BB=A3c ch=E1=BA=A5p nh=E1=
+=BA=ADn khi d=E1=BB=B1 thi.=C2=A0</span><span lang=3D"vi" style=3D"font-siz=
+e:11pt;line-height:16.8667px">Th=C3=AD sinh s=E1=BA=BD kh=C3=B4ng =C4=91=C6=
+=B0=E1=BB=A3c ph=C3=A9p v=C3=A0o ph=C3=B2ng thi v=C3=A0 s=E1=BA=BD kh=C3=B4=
+ng =C4=91=C6=B0=E1=BB=A3c ho=C3=A0n l=E1=BA=A1i l=E1=BB=87 ph=C3=AD thi n=
+=E1=BA=BFu Gi=E1=BA=A5y t=E1=BB=9D tu=E1=BB=B3 th=C3=A2n c=E1=BB=A7a th=C3=
+=AD sinh kh=C3=B4ng h=E1=BB=A3p l=E1=BB=87 ho=E1=BA=B7c kh=C3=B4ng =C4=91=
+=C3=A1p =E1=BB=A9ng =C4=91=C6=B0=E1=BB=A3c y=C3=AAu c=E1=BA=A7u ho=E1=BA=B7=
+c n=E1=BA=BFu nh=C3=A2n vi=C3=AAn gi=C3=A1m s=C3=A1t th=E1=BA=A5y c=C3=B3 b=
+=E1=BA=A5t k=E1=BB=B3 d=E1=BA=A5u hi=E1=BB=87u nghi ng=E1=BB=9D g=C3=AC v=
+=E1=BB=81 t=C3=ADnh x=C3=A1c th=E1=BB=B1c c=E1=BB=A7a Gi=E1=BA=A5y t=E1=BB=
+=9D tu=E1=BB=B3 th=C3=A2n c=E1=BB=A7a th=C3=AD sinh.</span><span lang=3D"VI=
+" style=3D"font-size:11pt;line-height:16.8667px">=C2=A0Vui lo=CC=80ng xem t=
+h=C3=AAm Quy =C4=91i=CC=A3nh v=C3=AA=CC=80 Gi=C3=A2=CC=81y t=C6=A1=CC=80 tu=
+=CC=80y th=C3=A2n=C2=A0</span><span lang=3D"VI"><a href=3D"https://www.brit=
+ishcouncil.vn/sites/default/files/policy-about-presenting-identification-do=
+cument-for-aptis-esol-vie.pdf" target=3D"_blank" style=3D"color:rgb(255,0,2=
+00)"><span style=3D"font-size:11pt;line-height:16.8667px">TA=CC=A3I =C4=90=
+=C3=82Y</span></a></span><span lang=3D"VI" style=3D"font-size:11pt;line-hei=
+ght:16.8667px"></span></p><p style=3D"margin:0cm 0cm 6pt 36pt;line-height:1=
+8.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><b><span lan=
+g=3D"vi" style=3D"font-size:11pt;line-height:16.8667px">2.<span style=3D"fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-weight:normal=
+;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Tim=
+es New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0</span></span></b><b><span lang=
+=3D"vi" style=3D"font-size:11pt;line-height:16.8667px">V=E1=BA=ADt d=E1=BB=
+=A5ng v=C3=A0 h=C3=A0nh l=C3=BD c=C3=A1 nh=C3=A2n</span></b></p><p class=3D=
+"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size:12pt;f=
+ont-family:Arial,&quot;sans-serif&quot;"><span lang=3D"vi" style=3D"font-si=
+ze:11pt;line-height:16.8667px">T=E1=BA=A5t c=E1=BA=A3 v=E1=BA=ADt d=E1=BB=
+=A5ng v=C3=A0 h=C3=A0nh l=C3=BD c=C3=A1 nh=C3=A2n ph=E1=BA=A3i =C4=91=E1=BB=
+=83 t=E1=BA=A1i khu v=E1=BB=B1c quy =C4=91=E1=BB=8Bnh v=C3=A0 =E1=BB=9F b=
+=C3=AAn ngo=C3=A0i ph=C3=B2ng thi. B=E1=BA=A5t c=E1=BB=A9 c=C3=A1c thi=E1=
+=BA=BFt b=E1=BB=8B =C4=91i=E1=BB=87n t=E1=BB=AB bao g=E1=BB=93m v=C3=A0 kh=
+=C3=B4ng gi=E1=BB=9Bi h=E1=BA=A1n nh=C6=B0 =C4=91i=E1=BB=87n tho=E1=BA=A1i =
+v=C3=A0 =C4=91=E1=BB=93ng h=E1=BB=93 =C4=91=E1=BB=81u kh=C3=B4ng =C4=91=C6=
+=B0=E1=BB=A3c ph=C3=A9p mang v=C3=A0o ph=C3=B2ng thi.</span></p><p class=3D=
+"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size:12pt;f=
+ont-family:Arial,&quot;sans-serif&quot;"><span lang=3D"vi" style=3D"font-si=
+ze:11pt;line-height:16.8667px">Vui l=C3=B2ng l=C6=B0u =C3=BD r=E1=BA=B1ng c=
+h=C3=BAng t=C3=B4i kh=C3=B4ng ch=E1=BB=8Bu tr=C3=A1ch nhi=E1=BB=87m n=E1=BA=
+=BFu c=C3=B3 b=E1=BA=A5t c=E1=BB=A9 s=E1=BB=B1 m=E1=BA=A5t m=C3=A1t v=E1=BB=
+=81 v=E1=BA=ADt d=E1=BB=A5ng v=C3=A0 h=C3=A0nh l=C3=BD c=C3=A1 nh=C3=A2n, d=
+o v=E1=BA=ADy, th=C3=AD sinh =C4=91=C6=B0=E1=BB=A3c khuy=E1=BA=BFn kh=C3=AD=
+ch kh=C3=B4ng n=C3=AAn mang theo c=C3=A1c v=E1=BA=ADt d=E1=BB=A5ng c=C3=B3 =
+gi=C3=A1 tr=E1=BB=8B.</span></p><p style=3D"margin:0cm 0cm 6pt 36pt;line-he=
+ight:18.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><b><sp=
+an lang=3D"vi" style=3D"font-size:11pt;line-height:16.8667px">3.<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-weight:=
+normal;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&qu=
+ot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0</span></span></b><b><spa=
+n lang=3D"vi" style=3D"font-size:11pt;line-height:16.8667px">Nh=E1=BB=AFng =
+v=E1=BA=ADt d=E1=BB=A5ng =C4=91=C6=B0=E1=BB=A3c ph=C3=A9p mang v=C3=A0o ph=
+=C3=B2ng thi:</span></b></p><p style=3D"margin:0cm 0cm 6pt 54pt;line-height=
+:18.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><span lang=
+=3D"vi" style=3D"font-size:11pt;line-height:16.8667px;font-family:Symbol;co=
+lor:rgb(107,181,82)">=C2=B7<span style=3D"font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;font-size:7pt;line-height:nor=
+mal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0</span></span><span lang=3D"vi" style=3D"font-size:=
+11pt;line-height:16.8667px">H=E1=BB=99 chi=E1=BA=BFu/CMND/CCCD b=E1=BA=A3n =
+g=E1=BB=91c</span></p><p style=3D"margin:0cm 0cm 6pt 54pt;line-height:18.4p=
+x;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><span lang=3D"EN=
+-GB" style=3D"font-size:11pt;line-height:16.8667px;font-family:Symbol;color=
+:rgb(107,181,82)">=C2=B7<span style=3D"font-variant-numeric:normal;font-var=
+iant-east-asian:normal;font-stretch:normal;font-size:7pt;line-height:normal=
+;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0</span></span><span lang=3D"EN-GB" style=3D"font-size:=
+11pt;line-height:16.8667px">N=C6=B0=E1=BB=9Bc u=E1=BB=91ng trong chai nh=E1=
+=BB=B1a trong</span></p><p style=3D"margin:0cm 0cm 6pt 54pt;line-height:18.=
+4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><span lang=3D"=
+EN-GB" style=3D"font-size:11pt;line-height:16.8667px;font-family:Symbol;col=
+or:rgb(107,181,82)">=C2=B7<span style=3D"font-variant-numeric:normal;font-v=
+ariant-east-asian:normal;font-stretch:normal;font-size:7pt;line-height:norm=
+al;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0</span></span><span lang=3D"EN-GB" style=3D"font-si=
+ze:11pt;line-height:16.8667px">Kh=C4=83n gi=E1=BA=A5y v=C3=A0 thu=E1=BB=91c=
+</span></p><p style=3D"margin:0cm 0cm 6pt 36pt;line-height:18.4px;font-size=
+:12pt;font-family:Arial,&quot;sans-serif&quot;"><b><span lang=3D"VI" style=
+=3D"font-size:11pt;line-height:16.8667px">4.<span style=3D"font-variant-num=
+eric:normal;font-variant-east-asian:normal;font-weight:normal;font-stretch:=
+normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&q=
+uot;">=C2=A0=C2=A0=C2=A0=C2=A0</span></span></b><b><span lang=3D"VI" style=
+=3D"font-size:11pt;line-height:16.8667px">Nh=E1=BB=AFng v=E1=BA=ADt d=E1=BB=
+=A5ng=C2=A0<span style=3D"color:rgb(234,0,52)">KH=C3=94NG</span>=C2=A0=C4=
+=91=C6=B0=E1=BB=A3c ph=C3=A9p mang v=C3=A0o ph=C3=B2ng thi:</span></b></p><=
+p style=3D"margin:0cm 0cm 6pt 54pt;line-height:18.4px;font-size:12pt;font-f=
+amily:Arial,&quot;sans-serif&quot;"><span lang=3D"EN-GB" style=3D"font-size=
+:11pt;line-height:16.8667px;font-family:Symbol;color:rgb(107,181,82)">=C2=
+=B7<span style=3D"font-variant-numeric:normal;font-variant-east-asian:norma=
+l;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Ti=
+mes New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+</span></span><span lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.8=
+667px">H=C3=A0nh l=C3=BD c=C3=A1 nh=C3=A2n</span></p><p style=3D"margin:0cm=
+ 0cm 6pt 54pt;line-height:18.4px;font-size:12pt;font-family:Arial,&quot;san=
+s-serif&quot;"><span lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.=
+8667px;font-family:Symbol;color:rgb(107,181,82)">=C2=B7<span style=3D"font-=
+variant-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;f=
+ont-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span><span l=
+ang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.8667px">=C4=90=E1=BB=
+=93ng h=E1=BB=93/=C4=91=E1=BB=93ng h=E1=BB=93 th=C3=B4ng minh</span></p><p =
+style=3D"margin:0cm 0cm 6pt 54pt;line-height:18.4px;font-size:12pt;font-fam=
+ily:Arial,&quot;sans-serif&quot;"><span lang=3D"EN-GB" style=3D"font-size:1=
+1pt;line-height:16.8667px;font-family:Symbol;color:rgb(107,181,82)">=C2=B7<=
+span style=3D"font-variant-numeric:normal;font-variant-east-asian:normal;fo=
+nt-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times =
+New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</sp=
+an></span><span lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.8667p=
+x">C=C3=A1c thi=E1=BA=BFt b=E1=BB=8B =C4=91i=E1=BB=87n t=E1=BB=AD</span></p=
+><p style=3D"margin:0cm 0cm 6pt 54pt;line-height:18.4px;font-size:12pt;font=
+-family:Arial,&quot;sans-serif&quot;"><span lang=3D"EN-GB" style=3D"font-si=
+ze:11pt;line-height:16.8667px;font-family:Symbol;color:rgb(107,181,82)">=C2=
+=B7<span style=3D"font-variant-numeric:normal;font-variant-east-asian:norma=
+l;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Ti=
+mes New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+</span></span><span lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.8=
+667px">T=E1=BB=AB =C4=91i=E1=BB=83n, s=C3=A1ch v=C3=A0 c=C3=A1c t=C3=A0i li=
+=E1=BB=87u in.</span></p><p style=3D"margin:0cm 0cm 6pt 54pt;line-height:18=
+.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><span lang=3D=
+"EN-GB" style=3D"font-size:11pt;line-height:16.8667px;font-family:Symbol;co=
+lor:rgb(107,181,82)">=C2=B7<span style=3D"font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;font-size:7pt;line-height:nor=
+mal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0</span></span><span lang=3D"EN-GB" style=3D"font-si=
+ze:11pt;line-height:16.8667px">Ca=CC=81c ta=CC=80i li=C3=AA=CC=A3u ho=C4=83=
+=CC=A3c ghi chu=CC=81 =C6=A1=CC=89 b=C3=A2=CC=81t c=C6=B0=CC=81 hi=CC=80nh =
+th=C6=B0=CC=81c na=CC=80o</span></p><p style=3D"text-indent:0cm;margin:0cm =
+0cm 6pt 54pt;line-height:18.4px;font-size:12pt;font-family:Arial,&quot;sans=
+-serif&quot;"><span lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.8=
+667px">=C2=A0</span></p><p style=3D"margin:0cm 0cm 6pt;line-height:21.4667p=
+x;font-size:14pt;font-family:Arial,&quot;sans-serif&quot;;color:rgb(35,8,89=
+);font-weight:bold"><span lang=3D"EN-GB" style=3D"font-size:12pt;line-heigh=
+t:18.4px">Gian l=C3=A2=CC=A3n thi c=C6=B0=CC=89</span></p><p style=3D"margi=
+n:26pt 0cm 6pt;line-height:21.4667px;font-size:14pt;font-family:Arial,&quot=
+;sans-serif&quot;;color:rgb(35,8,89);font-weight:bold"><span lang=3D"VI" st=
+yle=3D"font-size:11pt;line-height:16.8667px;color:black;font-weight:normal"=
+>T=C3=A2=CC=81t ca=CC=89 ca=CC=81c tr=C6=B0=C6=A1=CC=80ng h=C6=A1=CC=A3p gi=
+an l=C3=A2=CC=A3n bi=CC=A3 pha=CC=81t hi=C3=AA=CC=A3n tr=C6=B0=C6=A1=CC=81c=
+, trong ho=C4=83=CC=A3c sau ky=CC=80 thi Aptis ESOL =C4=91=C3=AA=CC=80u se=
+=CC=83 bi=CC=A3 hu=CC=89y k=C3=AA=CC=81t qua=CC=89 thi va=CC=80 co=CC=81 kh=
+a=CC=89 n=C4=83ng bi=CC=A3 c=C3=A2=CC=81m thi trong vo=CC=80ng m=C3=B4=CC=
+=A3t n=C4=83m.</span><span lang=3D"VI" style=3D"font-size:11pt;line-height:=
+16.8667px;color:black;font-weight:normal">=C2=A0</span><span lang=3D"VI" st=
+yle=3D"font-size:11pt;line-height:16.8667px;color:black;font-weight:normal"=
+>Vui lo=CC=80ng ti=CC=80m hi=C3=AA=CC=89u th=C3=AAm</span><span lang=3D"VI"=
+ style=3D"font-size:11pt;line-height:16.8667px;color:black;font-weight:norm=
+al">=C2=A0</span><span lang=3D"EN-GB"><a href=3D"https://www.britishcouncil=
+.vn/thi/aptis/ket-qua" target=3D"_blank" style=3D"color:rgb(255,0,200)"><sp=
+an lang=3D"EN-US" style=3D"font-size:11pt;line-height:16.8667px">Quy =C4=91=
+i=CC=A3nh v=C3=AA=CC=80 vi=C3=AA=CC=A3c hu=CC=89y k=C3=AA=CC=81t qua=CC=89 =
+thi va=CC=80 c=C3=A2=CC=81m thi Aptis ESOL.</span></a></span><span style=3D=
+"font-size:11pt;line-height:16.8667px;color:black"></span></p><p style=3D"m=
+argin:26pt 0cm 6pt;line-height:21.4667px;font-size:14pt;font-family:Arial,&=
+quot;sans-serif&quot;;color:rgb(35,8,89);font-weight:bold"><span lang=3D"EN=
+-GB" style=3D"font-size:12pt;line-height:18.4px">L=C6=B0u =C3=BD v=E1=BB=81=
+ ch=E1=BB=A9ng ch=E1=BB=89 Aptis ESOL</span></p><p class=3D"MsoNormal" styl=
+e=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size:12pt;font-family:Arial=
+,&quot;sans-serif&quot;"><span lang=3D"VI" style=3D"font-size:11pt;line-hei=
+ght:16.8667px">Ch=E1=BB=A9ng ch=E1=BB=89 Aptis c=E1=BB=A7a b=E1=BA=A1n s=E1=
+=BA=BD c=C3=B3 sau ng=C3=A0y thi=C2=A0<font color=3D"#ff0000">kho=E1=BA=A3n=
+g 10 ng=C3=A0y</font>=C2=A0kh=C3=B4ng k=E1=BB=83 ng=C3=A0y L=E1=BB=85 v=C3=
+=A0 cu=E1=BB=91i tu=E1=BA=A7n. Vui l=C3=B2ng li=C3=AAn h=E1=BB=87=C2=A0<spa=
+n style=3D"color:rgb(234,0,52)">S=C4=90T: 0325.21.41.91=C2=A0</span>=C4=91=
+=E1=BB=83 =C4=91=C6=B0=E1=BB=A3c h=C6=B0=E1=BB=9Bng d=E1=BA=ABn v=E1=BB=81 =
+vi=E1=BB=87c nh=E1=BA=ADn ch=E1=BB=A9ng ch=E1=BB=89 Aptis.<span style=3D"co=
+lor:rgb(234,0,52)"></span></span></p><p class=3D"MsoNormal" style=3D"margin=
+:0cm 0cm 6pt;line-height:18.4px;font-size:12pt;font-family:Arial,&quot;sans=
+-serif&quot;"><span style=3D"font-size:11pt">C=C3=A1c t=E1=BB=95 ch=E1=BB=
+=A9c c=C3=B4ng nh=E1=BA=ADn ch=E1=BB=A9ng ch=E1=BB=89 Aptis ESOL c=C3=B3 th=
+=E1=BB=83 y=C3=AAu c=E1=BA=A7u h=E1=BA=ADu ki=E1=BB=83m mi=E1=BB=85n ph=C3=
+=AD k=E1=BA=BFt qu=E1=BA=A3 thi Aptis c=E1=BB=A7a th=C3=AD sinh trong v=C3=
+=B2ng hai n=C4=83m k=E1=BB=83 t=E1=BB=AB ng=C3=A0y thi. C=C3=A1c t=E1=BB=95=
+ ch=E1=BB=A9c c=C3=B3 th=E1=BB=83 g=E1=BB=ADi y=C3=AAu c=E1=BA=A7u h=E1=BA=
+=ADu ki=E1=BB=83m tr=E1=BB=B1c ti=E1=BA=BFp =C4=91=E1=BA=BFn H=E1=BB=99i =
+=C4=91=E1=BB=93ng Anh theo =C4=91=E1=BB=8Ba ch=E1=BB=89 email:</span><br></=
+p><p style=3D"margin:0cm 0cm 0.0001pt 49.65pt;line-height:18.4px;font-size:=
+12pt;font-family:Arial,&quot;sans-serif&quot;"><span lang=3D"VI" style=3D"f=
+ont-size:11pt;line-height:16.8667px;font-family:Symbol;color:rgb(107,181,82=
+)">=C2=B7<span style=3D"font-variant-numeric:normal;font-variant-east-asian=
+:normal;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&q=
+uot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0</span></span><span lang=3D"VI" style=3D"font-size:11pt;line-height:1=
+6.8667px">=C4=90=E1=BB=91i v=E1=BB=9Bi th=C3=AD sinh thi Aptis =E1=BB=9F H=
+=C3=A0 N=E1=BB=99i ho=E1=BA=B7c c=C3=A1c t=E1=BB=89nh mi=E1=BB=81n B=E1=BA=
+=AFc v=C3=A0 mi=E1=BB=81n Trung=C2=A0</span><span lang=3D"VI"><a href=3D"ma=
+ilto:exams.hanoi@britishcouncil.org.vn" target=3D"_blank" style=3D"color:rg=
+b(255,0,200)"><span style=3D"font-size:11pt;line-height:16.8667px">exams.ha=
+noi@britishcouncil.org.vn</span></a></span><span lang=3D"VI" style=3D"font-=
+size:11pt;line-height:16.8667px">=C2=A0=C2=A0=C2=A0</span></p><p style=3D"m=
+argin:0cm 0cm 6pt 49.65pt;line-height:18.4px;font-size:12pt;font-family:Ari=
+al,&quot;sans-serif&quot;"><span lang=3D"VI" style=3D"font-size:11pt;line-h=
+eight:16.8667px;font-family:Symbol;color:rgb(107,181,82)">=C2=B7<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span>=
+<span lang=3D"VI" style=3D"font-size:11pt;line-height:16.8667px">=C4=90=E1=
+=BB=91i v=E1=BB=9Bi th=C3=AD sinh thi Aptis =E1=BB=9F H=E1=BB=93 ch=C3=AD M=
+inh ho=E1=BA=B7c c=C3=A1c t=E1=BB=89nh ph=C3=ADa Nam:=C2=A0</span><span lan=
+g=3D"VI"><a href=3D"mailto:exams.hcmc@britishcouncil.org.vn" target=3D"_bla=
+nk" style=3D"color:rgb(255,0,200)"><span style=3D"font-size:11pt;line-heigh=
+t:16.8667px">exams.hcmc@britishcouncil.org.vn</span></a></span><span lang=
+=3D"VI" style=3D"font-size:11pt;line-height:16.8667px">.</span></p><p style=
+=3D"margin:26pt 0cm 6pt;line-height:21.4667px;font-size:14pt;font-family:Ar=
+ial,&quot;sans-serif&quot;;color:rgb(35,8,89);font-weight:bold"><span lang=
+=3D"VI" style=3D"font-size:12pt;line-height:18.4px">Chu=E1=BA=A9n b=E1=BB=
+=8B cho k=E1=BB=B3 thi</span></p><p class=3D"MsoNormal" style=3D"margin:0cm=
+ 0cm 6pt;line-height:18.4px;font-size:12pt;font-family:Arial,&quot;sans-ser=
+if&quot;"><span lang=3D"VI" style=3D"font-size:11pt;line-height:16.8667px">=
+H=C3=A3y chu=E1=BA=A9n b=E1=BB=8B cho k=E1=BB=B3 thi th=E1=BA=ADt t=E1=BB=
+=91t v=E1=BB=9Bi c=C3=A1c b=C6=B0=E1=BB=9Bc sau:</span></p><p style=3D"marg=
+in:0cm 0cm 6pt 54pt;line-height:18.4px;font-size:12pt;font-family:Arial,&qu=
+ot;sans-serif&quot;"><span lang=3D"EN-GB" style=3D"font-size:11pt;line-heig=
+ht:16.8667px;font-family:Symbol;color:rgb(107,181,82)">=C2=B7<span style=3D=
+"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch:no=
+rmal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quo=
+t;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span><b>=
+<span lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.8667px">T=E1=BA=
+=A3i v=E1=BB=81 cu=E1=BB=91n H=C6=B0=E1=BB=9Bng d=E1=BA=ABn cho Th=C3=AD si=
+nh</span></b><span lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.86=
+67px">=C2=A0=C2=A0</span><span lang=3D"EN-GB"><a href=3D"https://www.britis=
+hcouncil.org/sites/default/files/aptis_candidate_guide_2020_a4_final.pdf" t=
+arget=3D"_blank" style=3D"color:rgb(255,0,200)"><span style=3D"font-size:11=
+pt;line-height:16.8667px">Aptis ESOL General</span></a></span><span lang=3D=
+"EN-GB" style=3D"font-size:11pt;line-height:16.8667px">,=C2=A0</span><span =
+lang=3D"EN-GB"><a href=3D"https://www.britishcouncil.org/sites/default/file=
+s/aptis_advanced_candidate_guide_2020_a4_final.pdf" target=3D"_blank" style=
+=3D"color:rgb(255,0,200)"><span style=3D"font-size:11pt;line-height:16.8667=
+px">Aptis ESOL Advanced</span></a></span><span lang=3D"EN-GB" style=3D"font=
+-size:11pt;line-height:16.8667px">,=C2=A0</span><span lang=3D"EN-GB"><a hre=
+f=3D"https://www.britishcouncil.org/sites/default/files/aptis_teachers_cand=
+idate_guide_2021_a4_0.pdf" target=3D"_blank" style=3D"color:rgb(255,0,200)"=
+><span style=3D"font-size:11pt;line-height:16.8667px">Aptis ESOL for Teache=
+rs</span></a></span><span lang=3D"EN-GB" style=3D"font-size:11pt;line-heigh=
+t:16.8667px">=C2=A0candidate guide<span style=3D"color:rgb(234,0,52)"></spa=
+n></span></p><p style=3D"margin:0cm 0cm 6pt 54pt;line-height:18.4px;font-si=
+ze:12pt;font-family:Arial,&quot;sans-serif&quot;"><span style=3D"color:rgb(=
+255,0,200);text-decoration-line:underline"><span lang=3D"EN-GB" style=3D"fo=
+nt-size:11pt;line-height:16.8667px;font-family:Symbol;color:rgb(107,181,82)=
+;text-decoration-line:none">=C2=B7<span style=3D"font-variant-numeric:norma=
+l;font-variant-east-asian:normal;font-stretch:normal;font-size:7pt;line-hei=
+ght:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span></span><b><span lang=3D"EN-G=
+B" style=3D"font-size:11pt;line-height:16.8667px">L=C3=A0m th=E1=BB=AD b=C3=
+=A0i thi m=E1=BA=ABu=C2=A0</span></b><span lang=3D"EN-GB"><a href=3D"https:=
+//www.britishcouncil.org/exam/aptis/practice-materials" target=3D"_blank" s=
+tyle=3D"color:rgb(255,0,200)"><span style=3D"font-size:11pt;line-height:16.=
+8667px">t=E1=BA=A1i =C4=91=C3=A2y</span></a></span><span lang=3D"EN-GB" sty=
+le=3D"font-size:11pt;line-height:16.8667px"><span style=3D"color:rgb(255,0,=
+200);text-decoration-line:underline"></span></span></p><p style=3D"margin:0=
+cm 0cm 6pt 54pt;line-height:18.4px;font-size:12pt;font-family:Arial,&quot;s=
+ans-serif&quot;"><span lang=3D"EN-GB" style=3D"font-size:11pt;line-height:1=
+6.8667px;font-family:Symbol;color:rgb(107,181,82)">=C2=B7<span style=3D"fon=
+t-variant-numeric:normal;font-variant-east-asian:normal;font-stretch:normal=
+;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span><b><spa=
+n lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.8667px">Xem th=C3=
+=AAm c=C3=A1c video gi=E1=BB=9Bi thi=E1=BB=87u v=E1=BB=81 b=C3=A0i thi</spa=
+n></b><span lang=3D"EN-GB" style=3D"font-size:11pt;line-height:16.8667px">:=
+=C2=A0</span><span lang=3D"EN-GB"><a href=3D"https://www.youtube.com/watch?=
+v=3Dwumg5p4xeJY&amp;list=3DPLU0GJ8GLe_up4zes7rZOdt954f3EUaNYw" target=3D"_b=
+lank" style=3D"color:rgb(255,0,200)"><span style=3D"font-size:11pt;line-hei=
+ght:16.8667px">Aptis ESOL General</span></a></span><span lang=3D"EN-GB" sty=
+le=3D"font-size:11pt;line-height:16.8667px">=C2=A0/=C2=A0</span><span lang=
+=3D"EN-GB"><a href=3D"https://www.youtube.com/watch?v=3Dk-eJbjuwMGM&amp;lis=
+t=3DPLU0GJ8GLe_uqhTPcp5b9Ur4BKn6YuSrWe" target=3D"_blank" style=3D"color:rg=
+b(255,0,200)"><span style=3D"font-size:11pt;line-height:16.8667px">Aptis ES=
+OL Advanced</span></a></span><span lang=3D"EN-GB" style=3D"font-size:11pt;l=
+ine-height:16.8667px">.<span style=3D"color:rgb(234,0,52)"></span></span></=
+p><p style=3D"text-indent:0cm;margin:0cm 0cm 6pt 54pt;line-height:18.4px;fo=
+nt-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><span lang=3D"EN-GB"=
+ style=3D"font-size:11pt;line-height:16.8667px;color:rgb(234,0,52)">=C2=A0<=
+/span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:18=
+.4px;font-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><span lang=3D=
+"VI" style=3D"font-size:11pt;line-height:16.8667px">Ch=C3=BAc b=E1=BA=A1n h=
+o=C3=A0n th=C3=A0nh t=E1=BB=91t k=E1=BB=B3 thi c=E1=BB=A7a m=C3=ACnh</span>=
+</p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:18.4px;f=
+ont-size:12pt;font-family:Arial,&quot;sans-serif&quot;"><span lang=3D"VI" s=
+tyle=3D"font-size:11pt;line-height:16.8667px">=C2=A0</span></p><p class=3D"=
+MsoNormal" style=3D"margin:0cm 0cm 6pt;line-height:18.4px;font-size:12pt;fo=
+nt-family:Arial,&quot;sans-serif&quot;"><i><span lang=3D"VI" style=3D"font-=
+size:11pt;line-height:16.8667px">Tr=C3=A2n tr=E1=BB=8Dng,</span></i></p><di=
+v><br></div><span class=3D"gmail_signature_prefix">-- </span><br><div dir=
+=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div =
+dir=3D"ltr"><table cellspacing=3D"0" cellpadding=3D"0" dir=3D"ltr" style=3D=
+"table-layout:fixed;font-size:11pt;font-family:Calibri;width:0px"><colgroup=
+><col width=3D"118"><col width=3D"350"></colgroup><tbody><tr style=3D"heigh=
+t:20px"><td style=3D"width:118px;height:20px;overflow:hidden;vertical-align=
+:middle"><img width=3D"86" height=3D"96" src=3D"https://ci3.googleuserconte=
+nt.com/mail-sig/AIorK4wq_wBgQSw2hFPAoAnymMPb5mbBZni7y5FE_TK-QPhjc3oAZwPa_Ie=
+8TPa9n0qbls4RTxEKJ3g"></td><td style=3D"overflow:hidden;padding:0px 3px;ver=
+tical-align:middle"><span style=3D"font-size:11pt;font-family:Calibri,Arial=
+">Educational Testing and Evaluation Vietnamietnam (ETE Vi=E1=BB=87t Nam)<b=
+r>=F0=9F=8C=8E Website: </span><span style=3D"font-size:11pt;font-family:Ca=
+libri,Arial;color:rgb(17,85,204)"><a href=3D"https://aptisete.com/" target=
+=3D"_blank">https://aptisete.com/</a></span><span style=3D"font-size:11pt;f=
+ont-family:Calibri,Arial"><br>=F0=9F=93=B1 Hotline/Zalo: (+84) 032-521-4191=
+<br>=F0=9F=93=8D =C4=90=E1=BB=8Ba ch=E1=BB=89: Nh=C3=A0 36 Galaxy 6, Galaxy=
+ V=E1=BA=A1n Ph=C3=BAc, S=E1=BB=91 69 =C4=90=C6=B0=E1=BB=9Dng T=E1=BB=91 H=
+=E1=BB=AFu, Ph=C6=B0=E1=BB=9Dng V=E1=BA=A1n Ph=C3=BAc Qu=E1=BA=ADn H=C3=A0 =
+=C4=90=C3=B4ng, H=C3=A0 N=E1=BB=99i.</span></td></tr></tbody></table></div>=
+</div></div>
+
+--0000000000004e6f3905f6e846d9--

@@ -8,9 +8,9 @@ $(document).ready(function () {
 
 
     $("#box-action-header").click(function(){
-            // Tạo một mảng để lưu trữ danh sách email được chọn
+        // Tạo một mảng để lưu trữ danh sách email được chọn
+        debugger
         var selectedEmails = [];
-
         // Duyệt qua tất cả các checkbox
         $("#left-content-list-email-linkanalysis input[type='checkbox']").each(function() {
         // Kiểm tra nếu checkbox được chọn
@@ -38,8 +38,7 @@ $(document).ready(function () {
                 .append("svg")  
                 .style("width", width)
                 .style("height", height)  
-
-                  // Xác định độ rộng và chiều cao của canvas
+                // Xác định độ rộng và chiều cao của canvas
                 var width = svg.node().clientWidth;
                 var height = svg.node().clientHeight;
                 // Thiết lập thông tin về đồ thị (nodes và edges) từ dữ liệu linkAnalysisData
@@ -50,11 +49,11 @@ $(document).ready(function () {
                 });
 
               var simulation = d3.forceSimulation(nodes)
-              .force("link", d3.forceLink(edges).id(function(d) { return d.id; }).distance(200)) // Thay đổi giá trị distance
+              .force("link", d3.forceLink(edges).id(function(d) { return d.id; }).distance(100)) // Thay đổi giá trị distance
               .force("charge", d3.forceManyBody().strength(-3500))
-              .force("center", d3.forceCenter(width / 2, height / 2))
-              .force("x", d3.forceX(width / 2).strength(0.3)) // Giới hạn vị trí x của các node trong khung
-              .force("y", d3.forceY(height / 2).strength(0.5)); // Giới hạn vị trí y của các node trong khung
+              .force("center", d3.forceCenter((width / 2)-100, height / 2))
+              .force("x", d3.forceX(width / 2).strength(0.5)) // Giới hạn vị trí x của các node trong khung
+              .force("y", d3.forceY(height / 2).strength(0.8)); // Giới hạn vị trí y của các node trong khung
 
               simulation.on("tick", function() {
                 // Cập nhật vị trí của các cạnh và nút dựa trên thông tin của simulation
@@ -84,7 +83,7 @@ $(document).ready(function () {
                 var circle_text = linkGroup.append("circle")
                   .attr("class", "count-circle")
                   .style("fill", "blue") // Đổi màu của hình tròn
-                  .attr("r", 10); // Đặt bán kính của hình tròn
+                  .attr("r", 7); // Đặt bán kính của hình tròn
                 var text_count = linkGroup.append("text")
                   .attr("class", "counttext")
                   .style("text-anchor", "middle") // Căn giữa theo trục x
@@ -106,15 +105,13 @@ $(document).ready(function () {
                 .attr("xlink:href", personImageUrl)  // Đường dẫn đến hình ảnh của người
                 .attr("x", -10)  // Đặt vị trí x của hình ảnh
                 .attr("y", -10)  // Đặt vị trí y của hình ảnh
-                .attr("width", 40)  // Đặt chiều rộng của hình ảnh
-                .attr("height", 40);  // Đặt chiều cao của hình ảnh
-                
+                .attr("width", 20)  // Đặt chiều rộng của hình ảnh
+                .attr("height", 20);  // Đặt chiều cao của hình ảnh
               // Hiển thị tên của mỗi node
               node.append("text")
                 .attr("dx", 0) // Dịch chuyển vị trí của text
-                .attr("dy", -20)
+                .attr("dy", -10)
                 .text(function(d) { return d.id; });
-              
               // Thiết lập sự kiện khi di chuyển đồ thị
 
             },

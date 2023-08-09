@@ -1,9 +1,22 @@
 * {
     box-sizing: border-box;
+
+  }
+  body{
+    font-size: 16px !important;
+    height:100%  !important;
+    width: 100% !important;
+    line-height: unset;
   }
 .header{
  border-bottom: 1px solid rgba(58, 57, 57, 0.3);
  height: 57px;
+}
+.content{
+    height: calc(100vh - 57px - 80px);
+    border-bottom: 1px solid rgba(58, 57, 57, 0.3);
+    background-color: #fff !important;
+    overflow: hidden;
 }
 .footer {
     height: 80px;
@@ -12,6 +25,24 @@
     background-color: rgb(231, 231, 231);
     color: white;
   }
+.header-content{
+    border-bottom: 1px solid rgba(58, 57, 57, 0.3);
+    height: 50px;
+}
+.row-content{
+    width: 100%;
+    height: calc(100% - 50px);
+}
+
+.header-content-title{
+    padding: 0px 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #3d7ec1;
+}
+
+
 .icon-open{
     color: #e9c12f;
 }
@@ -20,6 +51,9 @@
 }
 .icon-extract{
     color: rgb(250, 115, 194);
+}
+.icon-options{
+    color: rgb(217 22 40);;
 }
 #list-menu-top .nav-item:hover{
     background-color: #95eef5;
@@ -35,7 +69,9 @@
     height: 40px;
 }
 
-
+.item-action:hover {
+    background-color: rgba(192, 191, 191, 0.836);
+  }
 
 .list_export:hover{
     background-color: #dddddd;
@@ -70,12 +106,7 @@
     text-align: left;
     background-color: rgba(192, 191, 191, 0.836);
 }
-.content{
-    height: calc(100vh - 57px - 80px);
-    border-bottom: 1px solid rgba(58, 57, 57, 0.3);
-    background-color: #f0f2f5 !important;
-    overflow: hidden;
-}
+
 
 .text_footer{
     color: black;
@@ -88,16 +119,6 @@
 }
 
 /* ==========================EXPORT==================== */
-#name-export{
-    padding: 0px 10px;
-    height:100%;
-    display: flex;
-    align-items: center;
-    color: #3d7ec1;
-}
-
-  
-
 #box-save-close{
     padding: 0px;
     height:100%; 
@@ -142,4 +163,24 @@
 
 .box-extract:hover {
     background-color: rgba(226, 226, 226, 0.884);
+}
+
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.list-group-item-action:focus, .list-group-item-action:hover {
+    z-index: 1;
+    color: var(--bs-list-group-action-hover-color);
+    text-decoration: none;
+    background-color: #e9e9e9c7;
+}
+
+.bg-gradient-info{
+    background-image: linear-gradient(195deg, #49a3f1 0%, #1A73E8 100%)
+}
+
+.border-radius-lg{
+    border-radius: .5rem;
 }

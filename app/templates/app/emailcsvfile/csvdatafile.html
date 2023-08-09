@@ -1,8 +1,9 @@
 {% extends 'app/base.html' %}
 {%load static%}
 {% block main-content %}
+<link rel="stylesheet" href="{%static 'app/css/analysis.css'%}" />
 
-    <div style="position: relative;--bs-gutter-x: unset;" class="row row-content-emailcsvfile">
+    <div class="content-offcanvas">
         <div class="offcanvas offcanvas-start w-25" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false" style="position: absolute;width: 15%!important;">
             <div class="offcanvas-header">
                 <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Menu</h6>
@@ -35,36 +36,14 @@
                             <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline">Persons</span> 
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle  text-truncate" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Bootstrap</span>
-                        </a>
-                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
-                            <li><a class="dropdown-item" href="#">New project...</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-truncate">
-                            <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline">Products</span>
-                        </a>
-                    </li>
-
                 </ul>
             </div>
         </div>
 
-        <div class="content-csvdatafile">
-            <button class="btn float-end btn-menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+            <button class="btn float-end btn-offcanvas" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
                 <i class="bi bi-arrow-right-square-fill fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
             </button>
             {% block content-csvdatafile%} {% endblock content-csvdatafile%}
-        </div>
     </div>
     
 {% endblock main-content %}

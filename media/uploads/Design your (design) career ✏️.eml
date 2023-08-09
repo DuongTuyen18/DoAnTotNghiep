@@ -1,0 +1,1113 @@
+Delivered-To: dvt18012000@gmail.com
+Received: by 2002:a05:7300:8ba4:b0:78:e3ca:c401 with SMTP id a36csp1250946dys;
+        Mon, 3 Oct 2022 04:39:49 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM4yMeHjaq9ItCN6cM8OEEzG843XtUHOdkUWKt9+3JblqUnGa0DQdKZqhgFYXAgyb+sPJdbE
+X-Received: by 2002:a05:6214:d83:b0:4af:9720:27f6 with SMTP id e3-20020a0562140d8300b004af972027f6mr15805560qve.61.1664797189194;
+        Mon, 03 Oct 2022 04:39:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1664797189; cv=none;
+        d=google.com; s=arc-20160816;
+        b=geq2Z4GFysGf3XK0LxktQucqoQkZMBMPD1wWK+/8UUvF+arrRbgigtDXYrnF7as574
+         KfR698EQ6L1092vNNf9+agdT2aaA1Q2YuLWQxuMPWiJGBNpTZdaNBg/j37sUKXa4RqTc
+         XpNadyvAZzge0jDrc3CSLe6LYqZp6JnKTqjvXZrYOrgezitav1EexAWlXPIy6xoN/cXk
+         +zgQWqKR06RrNaHh8bX5COCFlxaObNJcE7ga3OGsEIQgO5GU4l8OSOczvdEwqkOqJgNQ
+         CWHSekxjTHOMlAO1MZkjeycHImvD65hfDeeuuLIarGabwGYHe+f+Hb4FApVAsV49tdbP
+         IGDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:reply-to:to:from:subject:mime-version:date:sender
+         :dkim-signature:dkim-signature;
+        bh=8EhkfYwtK1WXUnvr2mCOGEbd69LxPVk0LZ5fY9cDyZM=;
+        b=TOhSqvBpL3Wwjav6vmyllBFrPBeoFfquMkAETOBKlujajfFh1Bw98tvz35DQsQOrUD
+         nswf3YebYHw7IfThWpxmlvIjLi2sCnQyVkz1VdtXT3NgCu8w5sIZCtECK+5gaNO/y+sE
+         tYbIc0eeNGYdgXCGzQxFdNQoGBYrXJcP+M0KZgFkGQiifvvtWZlnifwQFai9vj+lJKzb
+         fOC3fWJJRzcu0194/ZHXRZQxLrjhyxVT3s4vIo5Uvm0T4mbimeJoekRD92hxlxsiu+Lu
+         nDv5SAngqijPntseYQp9gVJAH88EDn8PM8xaXGVpHJUy7S/WvlVOAY7bGOqtZTWb2J/H
+         CFHw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@n.dribbble.com header.s=mailo header.b=dGnHEMPS;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=jL1QqG+I;
+       spf=pass (google.com: domain of bounce+cee00c.d62726-dvt18012000=gmail.com@n.dribbble.com designates 69.72.39.54 as permitted sender) smtp.mailfrom="bounce+cee00c.d62726-dvt18012000=gmail.com@n.dribbble.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=n.dribbble.com
+Return-Path: <bounce+cee00c.d62726-dvt18012000=gmail.com@n.dribbble.com>
+Received: from m39-54.mailgun.net (m39-54.mailgun.net. [69.72.39.54])
+        by mx.google.com with UTF8SMTPS id 5-20020a05621420e500b004af9da76dd2si309540qvk.255.2022.10.03.04.39.48
+        for <dvt18012000@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Oct 2022 04:39:49 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce+cee00c.d62726-dvt18012000=gmail.com@n.dribbble.com designates 69.72.39.54 as permitted sender) client-ip=69.72.39.54;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@n.dribbble.com header.s=mailo header.b=dGnHEMPS;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=jL1QqG+I;
+       spf=pass (google.com: domain of bounce+cee00c.d62726-dvt18012000=gmail.com@n.dribbble.com designates 69.72.39.54 as permitted sender) smtp.mailfrom="bounce+cee00c.d62726-dvt18012000=gmail.com@n.dribbble.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=n.dribbble.com
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=n.dribbble.com; q=dns/txt;
+ s=mailo; t=1664797188; x=1664883588; h=Message-Id: Reply-To: To: To:
+ From: From: Subject: Subject: Content-Type: Mime-Version: Date: Sender:
+ Sender: X-Feedback-Id; bh=8EhkfYwtK1WXUnvr2mCOGEbd69LxPVk0LZ5fY9cDyZM=;
+ b=dGnHEMPS0JYXJPWB6irPlrCcko3IIXmi6Cm16UUnMofQ3hhEy1U1wX/sKh9DGEZ90F3I87eH
+ pDck2vozojfHDZ5TC3JDCZk9M/7IKEHjy50NcdojmSzw8m5AVsRmlNZf8JP2TaT4qAhBdM1q
+ TXTSA6fp9r4iarTbX3TwGNlgdHM=
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mailgun.org; q=dns/txt; s=mg;
+ t=1664797188; x=1664883588; h=Message-Id: Reply-To: To: To: From: From:
+ Subject: Subject: Content-Type: Mime-Version: Date: Sender: Sender:
+ X-Feedback-Id; bh=8EhkfYwtK1WXUnvr2mCOGEbd69LxPVk0LZ5fY9cDyZM=; b=jL1QqG+Injv3QRJQV4kwMb+yfIAeajxEPIJFnwYxb1aniLKSLKVcI/HQ4pZPkDHIMZ9xnj96
+ UGfa83Rqi2ax1SyUyhgjMG/wUexT04Cl0aWBE1Vy6gTlwC2Wwxww+GDevmb7ohXl3mh4Vnoo
+ 1mH52aJTX+N3e1Ic2yYSA58PxFQ=
+X-Feedback-Id: 5e3ca0717add368f8a907820:mailgun
+X-Mailgun-Sending-Ip: 69.72.39.54
+X-Mailgun-Sid: WyJjZTNhZSIsImR2dDE4MDEyMDAwQGdtYWlsLmNvbSIsImQ2MjcyNiJd
+Received: from <unknown> (<unknown> []) by 7e13be1838ef with HTTP id
+ 633aca04babecc9387131145; Mon, 03 Oct 2022 11:39:48 GMT
+Sender: no-reply@n.dribbble.com
+Date: Mon, 03 Oct 2022 11:39:48 +0000
+Mime-Version: 1.0
+Content-Type: multipart/alternative; boundary="09e4b46246c85bda2d51ba7f1cfe1163302fd271cc4938899bd8d477cc3e"
+Subject: =?UTF-8?q?Design_your_(design)_career_=E2=9C=8F=EF=B8=8F?=
+From: Dribbble <no-reply@n.dribbble.com>
+To: dvt18012000@gmail.com
+X-Mailgun-Tag: vero
+X-Mailgun-Tag: vero-1003734-1093367
+X-Mailgun-Track-Opens: true
+X-Mailgun-Track-Clicks: true
+Reply-To: no-reply@n.dribbble.com
+X-Mailgun-Variables: =?UTF-8?q?{"campaign[campaign=5Fid]":_"1003734",_"campaign[email=5Fsubjec?=
+ =?UTF-8?q?t]":_"Design_your_(design)_career_=E2=9C=8F=EF=B8=8F",_"campaig?=
+ =?UTF-8?q?n[project=5Fname]":_"Dribbble",_"campaign[recipient=5Fdomain]":?=
+ =?UTF-8?q?_"gmail.com",_"campaign[subject]":_"Design_your_(design)_career?=
+ =?UTF-8?q?_=E2=9C=8F=EF=B8=8F",_"campaign[template=5Fname]":_"",_"campaig?=
+ =?UTF-8?q?n[type]":_"Newsletter",_"campaign[variation]":_"Control"}?=
+Message-Id: <20221003113948.ff36df3812266d6c@n.dribbble.com>
+
+--09e4b46246c85bda2d51ba7f1cfe1163302fd271cc4938899bd8d477cc3e
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+A little something for everyone. =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=
+=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=
+=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =
+=E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C =E2=80=8C
+
+Dribbble logo ( https://email.n.dribbble.com/c/eJytUtuO2jAQ_RrnBYEcOzjOQx5Y=
+Aq3YLqUVLVVfIseegGluMk5Y9uvrRFDyAZUieXxmzpkznkhRNkIfKzR_MSB1o6GyqapLoR2UxEc=
+XFDNZlx7EPmNBGIU-556KFSMhYZ580jthtLC6HnjLurKmLjwdE0yIjzH1fRoFfJbnlKmccp8Qxh=
+STKMDVTBmdZVkBQ6NTzCOOQ0ookURFoQi5zEnAgrmv8oiynHkmVp31OfYJxtgpPF0W8cna5oLoA=
+pG1-8bKiK5bW6bSWXNDIpqcQCgw06I-1oiwIfcYhybKZCmoNq3gerlnL3VrJLhcB-bBKEHp1kkn=
+0Hu4gxZMD20dtQDrbg7vOalWvfLIO5mP3D-qnMPO1b1FxepLOP322rbqXL6XH4cfv17JIX-3m-4=
+j7a7toe5gsduuPs0Vz_mZrEodLYpdhL9ef8Nyn96sqDntErsjP5v99Q8Owrcu-Zxt9unu-0Zubd=
+-fJuMlXtrsDNL2K0zg4rDJzQ09QYSr4YpINJHCADhsRVC0RHyNVmv0wl0wFnqE_chOrP8DQhqMK=
+xpT963SSpQw9Luvalxjb82Qe77kODs8efrfLFsom0JY-OfIs3G_j_sxvc_gzohSFv4FhjgLeA )
+
+Take the first step toward your design career
+
+UI Design Course ( https://email.n.dribbble.com/c/eJytUtuOmzAQ_Rp4iYiMzcU88=
+JANSatsN81WaVP1BYE97DrFgMCQzX59bZZs-IBKSJ45c-bMDZbJJhMvleU_tMBEI6BSKa9lJjSU=
+xC_aKJesljbEbhB4YRS6lNo85gEOcWCze_qQtSJToh7z1nWl2rq0RYwRxi5CxHVJ5NFlUZCAF4S=
+6GAcBD5jloWrJW5HneQljodfYL0JMI-LjAOV-gTjNMYvcgiNwMUIes9uYD8qlyLhIK9y7LONXpZ=
+rOIisLb_U3V9Yuq_u2g05bvXA4dKZzsuWi04FKWSTR8AfHwb5TF4WFg17J9HNMkvA2T4H3aQWXb=
+op2OoOBjg3Q1hMmgYteagxMbzcZvRUY67CP_Uy4gtZQ91qyBKU9jRutVHBTcTYr9mfT3lhabNC8=
+p6jcfAud58e-52f5Jt9PP38_4lPxpnbDezpc-lM9wOqw33zxOS3oGW-kiFblIULfL39gfUyvKqs=
+pGRJ1wL-a4-Uv8sKnIfma747p4ceO7ZWpT5L50bs-PwNT5uTJuM7FVS9jYWE6bRdHC5a1ABrbYC=
+taW3RrbbbWA9XGXOhmmpG1mPljQuLNGU1bm1JplUkY602nnXPUtRlj903Oo-Mp0v_WsgLZlJmCz=
+45sFZt7TI8zzaDfiJAg_AeQNBxd )
+
+LEARN UI DESIGN THIS JANUARY
+
+Time to start planning your New Year's resolutions! Hoping to learn some ne=
+w skills? Now=E2=80=99s your chance to enroll in Dribbble=E2=80=99s immersi=
+ve 4-Week Introduction to UI Design Course ( https://email.n.dribbble.com/c=
+/eJytUsGOmzAQ_Rq4RInMOBhz4JANpFW2m2artKl6QWAPu04hIDBks19fw5KG3isheXjzPG_mjU=
+VSVIl6OVvuQ41CVQrPOpZlkSgDhcGLCfKFKAsbA4exped7Due2DCQDD5gt7te7pFaJVuVwb12ed=
+V3mtgqAADiEUMeh_pIvsowymVHuADAmmbCW5LyQtUrTNMdB6DWgiXDQoYwBSJFihr6b-ki5AFdI=
+nlC7DmSnHU4cIISYCvcu8-BV66qx6MqCjfmmlc2vKNu6wcZErZpLbPrO6UaqxiTO2qKhgT84c3D=
+nZZZZwFpdxI3BBJp8h3U5YgVK1RYGw159BIWZG4dK4sOBG37ziYYOWRBYAMSRbMVgWLzDS5Oj1l=
+iPdBP1lf_Be-lYSQNPhwd3Mv6NZbQ7w3vy8-iLN39-bFt5Kt6K9-P3n49wzN70tnuPu0t7LDtc7=
+XfRJ1fyjJ8gKpS_yvc--Xr5hetDfNVJyWkX6j38qA6X32TpPXXh53R7iPfftmKne30aTl9B06Yn=
+FLp_A-Hg7-xqvJtZwEe7wZ-JpEY0WASWv7b4xoo21gM3wbTQLexHNsX6J-TR5ZRR1WUvFZ-TAge=
+9cddTjr5WQ-7u5DQ7bC7-by1rLKo80fi3I1sH_T7GYz7OYE6fUub9AVtaIm4 ) starting on =
+January 9, 2023.
+
+* =F0=9F=8E=A8 Master Figma & FigJam fundamentals
+* =E2=9C=8F=EF=B8=8F Learn key user interface design principles
+* =E2=9A=99=EF=B8=8F Apply UI design processes & workflows
+* =F0=9F=93=9A Create clear, well-structured UI libraries
+* =E2=9C=A8 Develop realistic and fully-functional prototypes!
+
+* =F0=9F=8E=A8 Master Figma & FigJam fundamentals
+* =E2=9C=8F=EF=B8=8F Learn key user interface design principles
+* =E2=9A=99=EF=B8=8F Apply UI design processes & workflows
+* =F0=9F=93=9A Create clear, well-structured UI libraries
+* =E2=9C=A8 Develop realistic and fully-functional prototypes!
+
+With our flexible curriculum, you can learn design on your own schedule, wi=
+th support from a dedicated design mentor.
+
+Reserve your spot
+( https://email.n.dribbble.com/c/eJytUtuOmzAQ_Rp4iYiMzcU88JANSatsN81WaVP1BY=
+E97DrFgMCQzX59bZZs-IBKSJ45c-bMDZbJJhMvleU_tMBEI6BSKa9lJjSUxC_aKJesljbEbhB4Y=
+RS6lNo85gEOcWCze_qQtSJToh7z1nWl2rq0RYwRxi5CxHVJ5NFlUZCAF4S6GAcBD5jloWrJW5Hn=
+eQljodfYL0JMI-LjAOV-gTjNMYvcgiNwMUIes9uYD8qlyLhIK9y7LONXpZrOIisLb_U3V9Yuq_u=
+2g05bvXA4dKZzsuWi04FKWSTR8AfHwb5TF4WFg17J9HNMkvA2T4H3aQWXbop2OoOBjg3Q1hMmgY=
+teagxMbzcZvRUY67CP_Uy4gtZQ91qyBKU9jRutVHBTcTYr9mfT3lhabNC8p6jcfAud58e-52f5J=
+t9PP38_4lPxpnbDezpc-lM9wOqw33zxOS3oGW-kiFblIULfL39gfUyvKqspGRJ1wL-a4-Uv8sKn=
+Ifma747p4ceO7ZWpT5L50bs-PwNT5uTJuM7FVS9jYWE6bRdHC5a1ABrbYCtaW3RrbbbWA9XGXOh=
+mmpG1mPljQuLNGU1bm1JplUkY602nnXPUtRlj903Oo-Mp0v_WsgLZlJmCz45sFZt7TI8zzaDfiJ=
+Ag_AeQNBxd )
+
+Meet Your Instructor
+
+In our 4-Week Intro to UI Design Course ( https://email.n.dribbble.com/c/eJ=
+ytUtuOmzAQ_Rp4iYiMzcU88JANSatsN81WaVP1BYE97DrFgMCQzX59bZZs-IBKSJ45c-bMDZbJJ=
+hMvleU_tMBEI6BSKa9lJjSUxC_aKJesljbEbhB4YRS6lNo85gEOcWCze_qQtSJToh7z1nWl2rq0=
+RYwRxi5CxHVJ5NFlUZCAF4S6GAcBD5jloWrJW5HneQljodfYL0JMI-LjAOV-gTjNMYvcgiNwMUI=
+es9uYD8qlyLhIK9y7LONXpZrOIisLb_U3V9Yuq_u2g05bvXA4dKZzsuWi04FKWSTR8AfHwb5TF4=
+WFg17J9HNMkvA2T4H3aQWXbop2OoOBjg3Q1hMmgYteagxMbzcZvRUY67CP_Uy4gtZQ91qyBKU9j=
+RutVHBTcTYr9mfT3lhabNC8p6jcfAud58e-52f5Jt9PP38_4lPxpnbDezpc-lM9wOqw33zxOS3o=
+GW-kiFblIULfL39gfUyvKqspGRJ1wL-a4-Uv8sKnIfma747p4ceO7ZWpT5L50bs-PwNT5uTJuM7=
+FVS9jYWE6bRdHC5a1ABrbYCtaW3RrbbbWA9XGXOhmmpG1mPljQuLNGU1bm1JplUkY602nnXPUtR=
+lj903Oo-Mp0v_WsgLZlJmCz45sFZt7TI8zzaDfiJAg_AeQNBxd ), you=E2=80=99ll learn =
+from the very best in the industry. Students enjoy weekly on-demand lessons=
+ from Metalab=E2=80=99s very own Daniele Buffa.
+
+Student Spotlight ( https://email.n.dribbble.com/c/eJytUtuOmzAQ_Rp4iYiMzcU8=
+8JANSatsN81WaVP1BYE97DrFgMCQzX59bZZs-IBKSJ45c-bMDZbJJhMvleU_tMBEI6BSKa9lJjS=
+UxC_aKJesljbEbhB4YRS6lNo85gEOcWCze_qQtSJToh7z1nWl2rq0RYwRxi5CxHVJ5NFlUZCAF4=
+S6GAcBD5jloWrJW5HneQljodfYL0JMI-LjAOV-gTjNMYvcgiNwMUIes9uYD8qlyLhIK9y7LONXp=
+ZrOIisLb_U3V9Yuq_u2g05bvXA4dKZzsuWi04FKWSTR8AfHwb5TF4WFg17J9HNMkvA2T4H3aQWX=
+bop2OoOBjg3Q1hMmgYteagxMbzcZvRUY67CP_Uy4gtZQ91qyBKU9jRutVHBTcTYr9mfT3lhabNC=
+8p6jcfAud58e-52f5Jt9PP38_4lPxpnbDezpc-lM9wOqw33zxOS3oGW-kiFblIULfL39gfUyvKq=
+spGRJ1wL-a4-Uv8sKnIfma747p4ceO7ZWpT5L50bs-PwNT5uTJuM7FVS9jYWE6bRdHC5a1ABrbY=
+CtaW3RrbbbWA9XGXOhmmpG1mPljQuLNGU1bm1JplUkY602nnXPUtRlj903Oo-Mp0v_WsgLZlJmC=
+z45sFZt7TI8zzaDfiJAg_AeQNBxd )
+
+Daniele Buffa, Principal Designer @Metalab
+
+As the Principal Designer at world-renowned Product Agency, Metalab ( https=
+://email.n.dribbble.com/c/eJytUsFymzAQ_Rpx8cSDJIzEgYNj7HacxnU7TtzphQFpSeQiY=
+GSB43x9BSUxH9AZZqR9u3pv3y4i002mXiq0uDcgVKOgsqmsdaYclMQv7lLORa09iHEYBiximHNP=
+xjIkjISeuD3vMqMyq-rh3aqurKlLT8XEJwT7PsWYRgGfFwUNZUE5JiQMZShQ4FdzaVSe5yUMQq-=
+xk8HAsZByQQmPZFhgWogcMAsYZZh5JpadxdzHxPd9x3DrsoxfrW3OiC4R2bhvyuxCDTYrsxzRTW=
+t1-tk8TaTJU5BtWsHljEjYZ891awS4XAemHjENUrXaYdArjqBwXt3UHCr-uR5xC6Yv3TnKEqyLH=
+N5zpUr2ihMHZDHx8FHlyDpX9xiV62_s7sdD28qTftPvx6dfD-RYvNlt9552l_ZYd7Dc79ZfFpIX=
+_ETWWkXLch_53y-_YXVIrzarOe0SuyfPzeHyxw_YY5d8zbeHdP9zK3a216fJdJXnNj-BsP0iEzg=
+7bHZ1w5ghwuUQIhLNRGYAHLYmKFohvkHrDbrn7jIl-rj2lh1Z_x8wGkwrGlP3UmmVaRj0xoVNa-=
+y1GXK3SU6zwyrS_9ayBd2UmYXPjjwb9_sYj7vRgzsjSkP2FxGhDfo ), Daniele Buffa spec=
+ializes in visual, motion, and interaction design. Aside from Google, Sony =
+Music, Headspace, and Business Insider, Daniele has worked with a variety o=
+f design-forward brands and clients.
+
+=F0=9F=8E=81 Save 25% on UI Design
+
+For a limited time, save 25% on your registration for Dribbble's UI Design =
+Course. The course starts on January 9, 2023, but the discount won=E2=80=99=
+t last!
+
+Enroll & Save ( https://email.n.dribbble.com/c/eJytUtuOmzAQ_Rp4iYiMzcU88JAN=
+SatsN81WaVP1BYE97DrFgMCQzX59bZZs-IBKSJ45c-bMDZbJJhMvleU_tMBEI6BSKa9lJjSUxC_=
+aKJesljbEbhB4YRS6lNo85gEOcWCze_qQtSJToh7z1nWl2rq0RYwRxi5CxHVJ5NFlUZCAF4S6GA=
+cBD5jloWrJW5HneQljodfYL0JMI-LjAOV-gTjNMYvcgiNwMUIes9uYD8qlyLhIK9y7LONXpZrOI=
+isLb_U3V9Yuq_u2g05bvXA4dKZzsuWi04FKWSTR8AfHwb5TF4WFg17J9HNMkvA2T4H3aQWXbop2=
+OoOBjg3Q1hMmgYteagxMbzcZvRUY67CP_Uy4gtZQ91qyBKU9jRutVHBTcTYr9mfT3lhabNC8p6j=
+cfAud58e-52f5Jt9PP38_4lPxpnbDezpc-lM9wOqw33zxOS3oGW-kiFblIULfL39gfUyvKqspGR=
+J1wL-a4-Uv8sKnIfma747p4ceO7ZWpT5L50bs-PwNT5uTJuM7FVS9jYWE6bRdHC5a1ABrbYCtaW=
+3RrbbbWA9XGXOhmmpG1mPljQuLNGU1bm1JplUkY602nnXPUtRlj903Oo-Mp0v_WsgLZlJmCz45s=
+FZt7TI8zzaDfiJAg_AeQNBxd )
+
+Go further with Product Design
+
+Product Design ( https://email.n.dribbble.com/c/eJytUttuozAQ_Rp4iYiMTbg88JC=
+GZFfpNpuusptqXxDYQ-ssNxlDmn79DoQ0fEAlJI_PHJ-ZOQNPijqRr6WxeFDAZS2h1LGoikQiFI=
+WvGORzXhUmhLbrOl7g2b5vilC41KOuye_Pu0TJRMtqeLeqSq2q3JQhJZTahDDbZoHjz7OMuSJjv=
+k2p6wqXGw4p50LJNE1zGAq9hQFzBE9S5gJgCIxkjkhSx_GIBwEhwlSh6LTtE5sSQlDh3mUevmld=
+NwZbGnSD31QZr7xqVQMNRrWqRMu1JaDp22cbIRvMltpg0RWzrmSLLawqywzqtrqIP-dFlkpjEG1=
+cwrkZsw2-4IC5DlQ1YgUI2RaIQd_kTQbtgaEWvxo14hpUT92hZA4ab4j3WrEUfcXJ0HQxGfvGQr=
+EOeU9Bvv7hWc-PbStOxXvxcfz98kiP2bvedh9xd26PVQfL_W79bSH8zD_RdSGDZb4PyM_zX1gd4=
+otOKp91kd7TP_Xh_I843lMXfU-3h3j_a8t3uq_Poun2mzY9Adf97qPBvtkFzZgZ1B8dpsGMJwoA=
+sTU1gpXhb4z1xnjwMZgK3cJ-ZBTrfx2POVMGrq4vFZdJAUO9ccdTjr7UQ-7u5DQ7rCL-spY1FHW=
+eaPjsyNRhv4_xsMYZ8AwYc73_IYUgsw )
+
+TRANSFORM YOUR DESIGN CAREER
+
+Exciting news, designers! Back by popular demand, Dribbble's 16-Week Certif=
+ied Product Design Course ( https://email.n.dribbble.com/c/eJytUttuozAQ_Rp4=
+iYiMTbg88JCGZFfpNpuusptqXxDYQ-ssNxlDmn79DoQ0fEAlJI_PHJ-ZOQNPijqRr6WxeFDAZS2=
+h1LGoikQiFIWvGORzXhUmhLbrOl7g2b5vilC41KOuye_Pu0TJRMtqeLeqSq2q3JQhJZTahDDbZo=
+Hjz7OMuSJjvk2p6wqXGw4p50LJNE1zGAq9hQFzBE9S5gJgCIxkjkhSx_GIBwEhwlSh6LTtE5sSQ=
+lDh3mUevmldNwZbGnSD31QZr7xqVQMNRrWqRMu1JaDp22cbIRvMltpg0RWzrmSLLawqywzqtrqI=
+P-dFlkpjEG1cwrkZsw2-4IC5DlQ1YgUI2RaIQd_kTQbtgaEWvxo14hpUT92hZA4ab4j3WrEUfcX=
+J0HQxGfvGQrEOeU9Bvv7hWc-PbStOxXvxcfz98kiP2bvedh9xd26PVQfL_W79bSH8zD_RdSGDZb=
+4PyM_zX1gd4otOKp91kd7TP_Xh_I843lMXfU-3h3j_a8t3uq_Poun2mzY9Adf97qPBvtkFzZgZ1=
+B8dpsGMJwoAsTU1gpXhb4z1xnjwMZgK3cJ-ZBTrfx2POVMGrq4vFZdJAUO9ccdTjr7UQ-7u5DQ7=
+rCL-spY1FHWeaPjsyNRhv4_xsMYZ8AwYc73_IYUgsw ) is relaunching on February 20,=
+ 2023.
+
+Curriculum highlights include:
+
+* =F0=9F=A4=94 Design thinking
+* =F0=9F=91=A9=E2=80=8D=F0=9F=92=BB UX and UI research
+* =F0=9F=91=BE Wireframes, flow diagrams & prototypes
+* =E2=9C=8F=EF=B8=8F Designing in Figma
+* =F0=9F=92=BC Career prep
+
+* =F0=9F=A4=94 Design thinking
+* =F0=9F=91=A9=E2=80=8D=F0=9F=92=BB UX and UI research
+* =F0=9F=91=BE Wireframes, flow diagrams & prototypes
+* =E2=9C=8F=EF=B8=8F Designing in Figma
+* =F0=9F=92=BC Career prep
+
+Get 35% off! ( https://email.n.dribbble.com/c/eJytUttuozAQ_Rp4iYiMTbg88JCGZ=
+FfpNpuusptqXxDYQ-ssNxlDmn79DoQ0fEAlJI_PHJ-ZOQNPijqRr6WxeFDAZS2h1LGoikQiFIWv=
+GORzXhUmhLbrOl7g2b5vilC41KOuye_Pu0TJRMtqeLeqSq2q3JQhJZTahDDbZoHjz7OMuSJjvk2=
+p6wqXGw4p50LJNE1zGAq9hQFzBE9S5gJgCIxkjkhSx_GIBwEhwlSh6LTtE5sSQlDh3mUevmldNw=
+ZbGnSD31QZr7xqVQMNRrWqRMu1JaDp22cbIRvMltpg0RWzrmSLLawqywzqtrqIP-dFlkpjEG1cw=
+rkZsw2-4IC5DlQ1YgUI2RaIQd_kTQbtgaEWvxo14hpUT92hZA4ab4j3WrEUfcXJ0HQxGfvGQrEO=
+eU9Bvv7hWc-PbStOxXvxcfz98kiP2bvedh9xd26PVQfL_W79bSH8zD_RdSGDZb4PyM_zX1gd4ot=
+OKp91kd7TP_Xh_I843lMXfU-3h3j_a8t3uq_Poun2mzY9Adf97qPBvtkFzZgZ1B8dpsGMJwoAsT=
+U1gpXhb4z1xnjwMZgK3cJ-ZBTrfx2POVMGrq4vFZdJAUO9ccdTjr7UQ-7u5DQ7rCL-spY1FHWea=
+PjsyNRhv4_xsMYZ8AwYc73_IYUgsw )
+
+Speak with an Admissions Advisor
+
+Have questions about Dribbble=E2=80=99s courses? Book a call with an Admiss=
+ions Advisor or send us a message at education@dribbble.com to learn more.
+
+Book a call ( https://email.n.dribbble.com/c/eJytUtuOmzAQ_RrzEiUyNjHwwEM2kF=
+bZbppWaVP1BRl72HXKTWDIZr--NmU3fEAlS545M54zZ8aClw1XzxVaP7QgVKOg0qmsS64MFEfPx=
+ihWoi4diFzGPD_03SBwZCQZ8QlzxP35wFvFtarHd9u60m1dOCoimBAXY-q6NPSCVZ5TJnMauIQw=
+JplAHq5WslVZlhUwEr1EMqN-HnKZeTnmIASjvpuJjIWcE8HE2mkjOWg3wC7BGJsK9y6L6EXrpkN=
+0g8jOHMELqGRxs0HjXqDrlOBLw04R3fW6TD8U0Fi2WQqyTyu4dogwG-3qvhVgYgO09YSVIFVfGg=
+ws7QQKI9iMzqDin_QJ19Da1IMpWYA2nsFtrVRJyziTQdYzIe9Zpthg8p7CIvniL7899r28lK_l2=
+_nHr0dyzl_1fnhLh2t_rgfYHA_Jp7UM8uBCklKFm-IY4q_X37A9pTfN64AOsT6Sn83p-gd7_tMQ=
+f872p_T4fS8O2vLTeL7Prs8uILTdZgydwRY3M4wFIoEcXUTCheAtgMESgsItCnYo2aGHwBjzQu-=
+mlWyK2c_gU2-e0bS1pUorXsLIN_2HeY6-NWPsPsl5dFxF-t9a1lA2Bdfw0ZGjI7uP6VpOGswdUs=
+r8v8XGEHo )
+
+Watch the recording: No-code NFTs
+
+Creating NFTs ( https://email.n.dribbble.com/c/eJytkk2PmzAQhn-NuUSLjM2HOXDI=
+BtIq203TKG1WvSBjDxtSCAgMJPvrayhp6L0SkofH43n9zljwouLZ-wU5zzWIrMrgomJZFjzTKAz=
+edZCboiwMCCzXtT3fsxgzZCBd4hHXEI_jHa8zrrJyPLcqL6oucyMLCCbEwphaFvVtZqYpdWVKmU=
+WI60pXIBtfTFlnSZLkMAqdAqm5xz3sE8kTyRJpSccjHJxEelYKYNSB7JTFsEUwxrrC45Z5cFKqa=
+hBdIrLWX9_35q1sVZuMxQfClTghuu4QDc_x_k1de5rsI0RcpYnj4EaHrSripmxrAZp1UJcTK0Bm=
+baEZDIoTFNqr7pqm4o_rO7_3hoYWNjExCYkj2YqxSfEW-iYHpaCe0nU0VP6HD9JxJjWeGybOzPI=
+9S2sPll79PPriPX17aVt5Lq7Fx_H72ws5ple16T7irm-PZQfL3Tb65EiWsjOJisxf5jsff-1_wu=
+oQ3xQvGe1CtSM_qkP_C9veaxd-TjaHeLffiK0a9Gk4n3zTJmcQaph7CI1mC93yeoEIk-MvIv5C8=
+BpAs4ggf4XYGkVr9Mx0MC90DwfLutjwbDxqzzOquhyk4gsvYNSbXs48R92qce_RyfnuOLn4v11Z=
+QVHlXMHfGxkqGOYxLU-TB736lLreb7hHHXo )
+
+IN CASE YOU MISSED IT=E2=80=A6
+
+Watch Pablo Stanley's webinar on creating NFTs and smart contracts without =
+coding on Bueno!
+
+This free 1-hour workshop shows how Pablo created well-known NFT collection=
+s, such as Robotos and Humankind, and how creators of all backgrounds can d=
+o the same.
+
+Thanks to our friends at Bueno ( https://email.n.dribbble.com/c/eJytUsGOmzA=
+Q_RrnEiUCGwwcOGRD0irbTdMqbapekI2HDVnAyBjY7NfXsCThAypZsv3med7M8ySsqFj2WiL3SU=
+GSVRmUOhayYJmBovDVHPJlIosZhDaljhd4tu_PRCgo9jCdJY_nLVMZ05kc3q1lqZXMZ1mILYxty=
+yK2TQLHX6YpoSIlvo0xpYImyLHKpVAZ5zyHQegcQioSDB4l3Ohh5ojUdQObC265CabgzFQoWm37=
+lo0tyzIZHlXm4VnrqkZkhfDWrK7rlryBUi6Z0j1Eto0u4lo2KgFEopsywrTHEXaxVYDImsIEO-B=
+ZydQYu7dKooFWQ6Wh4KAWfYsjKRMmXKZ6MVA6qd7qs6wWFeO5HCn39NBXfUtu_DLOGzT5dG7ENa=
+ieuoeuzkGbm8FbUPJTaOoCdic-3FgmWWt4L0G--eYtfjw3jbgU78XH6defZ3xK3_Wu_YjbrjnJF=
+laH_eaLK_zUv-BNkQWr_BBY37u_sD7GV82kT9pIH_Dv6ti9WY730kZf-e4YH37ukr3u9Uk0HYe6=
+4RdIdD8MEdQGm1-N6XOEfTFcEQ7mCVMABttgFKyRv0WbLXryzWGa6HbsWzbJ-lnyiDNlVEr2UnH=
+JChj0xk-dcvS1GmIPJ6fR4Svi_1aymYsqZxruFc102P_HuC3GHsweEEK9fxLBI4Q ) for spon=
+soring this free workshop!
+
+Watch now! ( https://email.n.dribbble.com/c/eJytkk2PmzAQhn-NuUSLjM2HOXDIBtI=
+q203TKG1WvSBjDxtSCAgMJPvrayhp6L0SkofH43n9zljwouLZ-wU5zzWIrMrgomJZFjzTKAzedZ=
+CboiwMCCzXtT3fsxgzZCBd4hHXEI_jHa8zrrJyPLcqL6oucyMLCCbEwphaFvVtZqYpdWVKmUWI6=
+0pXIBtfTFlnSZLkMAqdAqm5xz3sE8kTyRJpSccjHJxEelYKYNSB7JTFsEUwxrrC45Z5cFKqahBd=
+IrLWX9_35q1sVZuMxQfClTghuu4QDc_x_k1de5rsI0RcpYnj4EaHrSripmxrAZp1UJcTK0BmbaE=
+ZDIoTFNqr7pqm4o_rO7_3hoYWNjExCYkj2YqxSfEW-iYHpaCe0nU0VP6HD9JxJjWeGybOzPI9S2=
+sPll79PPriPX17aVt5Lq7Fx_H72ws5ple16T7irm-PZQfL3Tb65EiWsjOJisxf5jsff-1_wuoQ3=
+xQvGe1CtSM_qkP_C9veaxd-TjaHeLffiK0a9Gk4n3zTJmcQaph7CI1mC93yeoEIk-MvIv5C8BpA=
+s4ggf4XYGkVr9Mx0MC90DwfLutjwbDxqzzOquhyk4gsvYNSbXs48R92qce_RyfnuOLn4v11ZQVH=
+lXMHfGxkqGOYxLU-TB736lLreb7hHHXo )
+
+Unsubscribe ( https://email.n.dribbble.com/c/eJytUslu2zAQ_Rr6EiSgSInLQYfEsl=
+s4jesWbl30InAZxXK0QaLkOF9fyrETfUABApyN7808jlFlo_LnCkUPLZi8yaFyqa1LlftQEj97o=
+7gzdTmDOGAs5JIHQsxsbBnhhM3M5_NBtblyeX1-N68r19bFLI8JJiTAmAYBlaG4yzLKbEZFQAhj=
+lhkU4urOtrnWuoAz0T5WAmeYZACRUUobG2nCGQ601FhyAjBrYzu4QOCAYIw9wmeXRbx3rukQvUd=
+k6c8U2buq2rtW5YHwdl91ve6MLwBEl65-gQrRxFjFIkrDDIjOrGZYywhkwBVoS4EzzTXWNuQsk2=
+EYCc0ZV4GQwCLGiTQMEQaD19BDge3NuyCE9a5MP7SiiW116tNpBcfuku3qvjW-k2SAtr7ESrB5X=
+45Q44BXGC_tO4F5F_kSd9COpWsPWYDzno-PWGluR8aJYCSaSHat8mCDr3uSxeIbv_3x2Pf2UL6W=
+b7tffx7JLnt1q-EtHY79rh7gfrNefImsyMSBLMpc3hcbib8f_8J8m56cqgUdErchv5vt8QWH_Gl=
+IvurVNt38XJm1G_lpMt0c_w8HMG7cmwQ6H7s5eTFuEBH27CIib4xqAXxsQZCcI7FEiyV6EN6YAl=
+3NcWQPNq4dp-G0omnrkSqtVAlnvst-TGvcqTnnPpWcZs9fkf63lh2UTaEcfHQ0c_H4H5fr9jKDv=
+yWljP8D_aww4Q ) from this type of email.
+Dribbble Holdings, LTD.
+524 Yates St =E2=80=A2 Victoria CA =E2=80=A2 V8W 1K8
+--09e4b46246c85bda2d51ba7f1cfe1163302fd271cc4938899bd8d477cc3e
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office"><head><titl=
+e>Design your (design) career =E2=9C=8F=EF=B8=8F</title><!--[if !mso]><!-->=
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge"><!--<![endif]-->=
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"><m=
+eta name=3D"viewport" content=3D"width=3Ddevice-width,initial-scale=3D1"><s=
+tyle type=3D"text/css">#outlook a {
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    table,
+    td {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    img {
+      border: 0;
+      height: auto;
+      line-height: 100%;
+      outline: none;
+      text-decoration: none;
+      -ms-interpolation-mode: bicubic;
+    }
+
+    p {
+      display: block;
+      margin: 13px 0;
+    }</style><!--[if mso]>
+        <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+        </xml>
+        <![endif]--><!--[if lte mso 11]>
+        <style type=3D"text/css">
+          .mj-outlook-group-fix { width:100% !important; }
+        </style>
+        <![endif]--><style type=3D"text/css">@media only screen and (min-wi=
+dth:480px) {
+      .mj-column-per-100 {
+        width: 100% !important;
+        max-width: 100%;
+      }
+
+      .mj-column-per-40 {
+        width: 40% !important;
+        max-width: 40%;
+      }
+
+      .mj-column-per-60 {
+        width: 60% !important;
+        max-width: 60%;
+      }
+    }</style><style type=3D"text/css">@media only screen and (max-width:480=
+px) {
+      table.mj-full-width-mobile {
+        width: 100% !important;
+      }
+
+      td.mj-full-width-mobile {
+        width: auto !important;
+      }
+    }</style><style type=3D"text/css">.vdt_styles {}
+
+    a.vdt_link {
+      color: rgb(234, 76, 137);
+    }
+
+    .vdt_hide-on-desktop {
+      display: none !important;
+    }
+
+    .vdt_hide-on-desktop table,
+    .vdt_hide-on-desktop div,
+    .vdt_hide-on-desktop p {}
+
+    @media only screen and (max-width: 480px) {
+      .vdt_hide-on-mobile {
+        display: none !important;
+      }
+
+      .vdt_hide-on-desktop {
+        display: block !important;
+      }
+    }</style></head><body style=3D"word-spacing:normal;background-color:#ff=
+ffff;"><span class=3D"vero-preheader" style=3D"display:none;font-size:1px;c=
+olor:#333333;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflo=
+w:hidden;">A little something for everyone. </span><div class=3D"vero-zwnj-=
+nbsp-padding" style=3D"display:none;max-height:0px;overflow:hidden;">=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;</div>=
+<div style=3D"background-color:#ffffff;"><!--[if mso | IE]><table align=3D"=
+center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"__snippet=
+_unlocked_mjml_1512_85f14da-outlook" style=3D"width:600px;" width=3D"600" >=
+<tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly=
+;"><![endif]--><div class=3D"__snippet_unlocked_mjml_1512_85f14da" style=3D=
+"margin:0px auto;max-width:600px;"><table align=3D"center" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;=
+"><tbody><tr><td style=3D"direction:ltr;font-size:0px;padding:8px;padding-b=
+ottom:0px;padding-left:8px;padding-right:8px;padding-top:0px;text-align:cen=
+ter;"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;w=
+idth:584px;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-group-=
+fix" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline-bl=
+ock;vertical-align:top;width:100%;"><table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=
+=3D"vertical-align:top;padding:0;"><table border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=
+=3D"center" style=3D"font-size:0px;padding:0px;padding-top:40px;padding-rig=
+ht:0px;padding-bottom:16px;padding-left:0px;word-break:break-word;"><table =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" styl=
+e=3D"border-collapse:collapse;border-spacing:0px;"><tbody><tr><td style=3D"=
+width:108px;"><a href=3D"https://email.n.dribbble.com/c/eJytUtuO2jAQ_RrnBYE=
+cOzjOQx5YAq3YLqUVLVVfIseegGluMk5Y9uvrRFDyAZUieXxmzpkznkhRNkIfKzR_MSB1o6Gyqa=
+pLoR2UxEcXFDNZlx7EPmNBGIU-556KFSMhYZ580jthtLC6HnjLurKmLjwdE0yIjzH1fRoFfJbnl=
+Kmccp8QxhSTKMDVTBmdZVkBQ6NTzCOOQ0ookURFoQi5zEnAgrmv8oiynHkmVp31OfYJxtgpPF0W=
+8cna5oLoApG1-8bKiK5bW6bSWXNDIpqcQCgw06I-1oiwIfcYhybKZCmoNq3gerlnL3VrJLhcB-b=
+BKEHp1kkn0Hu4gxZMD20dtQDrbg7vOalWvfLIO5mP3D-qnMPO1b1FxepLOP322rbqXL6XH4cfv1=
+7JIX-3m-4j7a7toe5gsduuPs0Vz_mZrEodLYpdhL9ef8Nyn96sqDntErsjP5v99Q8Owrcu-Zxt9=
+unu-0Zubd-fJuMlXtrsDNL2K0zg4rDJzQ09QYSr4YpINJHCADhsRVC0RHyNVmv0wl0wFnqE_chO=
+rP8DQhqMKxpT963SSpQw9Luvalxjb82Qe77kODs8efrfLFsom0JY-OfIs3G_j_sxvc_gzohSFv4=
+FhjgLeA" target=3D"_blank" class=3D"vdt_link"><img alt=3D"Dribbble logo" he=
+ight=3D"auto" src=3D"https://cdn.dribbble.com/uploads/29185/original/75eac1=
+99517cb3487907ae444d59379c.png?1634922719" style=3D"border:0;display:block;=
+outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" w=
+idth=3D"108"></a></td></tr></tbody></table></td></tr></tbody></table></td><=
+/tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--><=
+/td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><table a=
+lign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D""=
+ style=3D"width:600px;" width=3D"600" ><tr><td style=3D"line-height:0px;fon=
+t-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"margin:=
+0px auto;max-width:600px;"><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;"><tbody=
+><tr><td style=3D"direction:ltr;font-size:0px;padding:10px;padding-bottom:0=
+px;padding-left:10px;padding-right:10px;padding-top:10px;text-align:center;=
+"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;wid=
+th:580px;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-group-fi=
+x" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline-bloc=
+k;vertical-align:top;width:100%;"><table border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D=
+"vertical-align:top;padding:0;"><table border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"c=
+enter" style=3D"font-size:0px;padding:10px;padding-top:20px;padding-right:1=
+0px;padding-bottom:16px;padding-left:10px;word-break:break-word;"><div styl=
+e=3D"font-family:'Helvetica', 'Arial', sans-serif;font-size:14px;line-heigh=
+t:1.4;text-align:center;color:#0D0C22;"><!-- CDATA_OPEN --><span style=3D"f=
+ont-size: 36px;"><strong>Take the first step toward your design career</str=
+ong></span><!-- CDATA_CLOSE --></div></td></tr><tr><td align=3D"center" sty=
+le=3D"font-size:0px;padding:0px;padding-top:10px;padding-right:10px;padding=
+-bottom:0px;padding-left:10px;word-break:break-word;"><table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"border-co=
+llapse:collapse;border-spacing:0px;" class=3D"mj-full-width-mobile"><tbody>=
+<tr><td style=3D"width:560px;" class=3D"mj-full-width-mobile"><a href=3D"ht=
+tps://email.n.dribbble.com/c/eJytUtuOmzAQ_Rp4iYiMzcU88JANSatsN81WaVP1BYE97D=
+rFgMCQzX59bZZs-IBKSJ45c-bMDZbJJhMvleU_tMBEI6BSKa9lJjSUxC_aKJesljbEbhB4YRS6l=
+No85gEOcWCze_qQtSJToh7z1nWl2rq0RYwRxi5CxHVJ5NFlUZCAF4S6GAcBD5jloWrJW5HneQlj=
+odfYL0JMI-LjAOV-gTjNMYvcgiNwMUIes9uYD8qlyLhIK9y7LONXpZrOIisLb_U3V9Yuq_u2g05=
+bvXA4dKZzsuWi04FKWSTR8AfHwb5TF4WFg17J9HNMkvA2T4H3aQWXbop2OoOBjg3Q1hMmgYteag=
+xMbzcZvRUY67CP_Uy4gtZQ91qyBKU9jRutVHBTcTYr9mfT3lhabNC8p6jcfAud58e-52f5Jt9PP=
+38_4lPxpnbDezpc-lM9wOqw33zxOS3oGW-kiFblIULfL39gfUyvKqspGRJ1wL-a4-Uv8sKnIfma=
+747p4ceO7ZWpT5L50bs-PwNT5uTJuM7FVS9jYWE6bRdHC5a1ABrbYCtaW3RrbbbWA9XGXOhmmpG=
+1mPljQuLNGU1bm1JplUkY602nnXPUtRlj903Oo-Mp0v_WsgLZlJmCz45sFZt7TI8zzaDfiJAg_A=
+eQNBxd" target=3D"_blank" class=3D"vdt_link"><img alt=3D"UI Design Course" =
+height=3D"auto" src=3D"https://getvero.nyc3.cdn.digitaloceanspaces.com/uplo=
+ads/51bf572da463ed48502d491082a2c01e/fullsize/3dfb0b43-7cf4-44b6-9abc-3c4fd=
+ddfe7ed-image1-pichi.png" style=3D"border:0;border-radius:10px;display:bloc=
+k;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"=
+ width=3D"560"></a></td></tr></tbody></table></td></tr><tr><td align=3D"cen=
+ter" style=3D"font-size:0px;padding:10px;padding-top:30px;padding-right:10p=
+x;padding-bottom:10px;padding-left:10px;word-break:break-word;"><div style=
+=3D"font-family:'Helvetica', 'Arial', sans-serif;font-size:14px;line-height=
+:1.6;text-align:center;color:#0D0C22;"><!-- CDATA_OPEN --><span style=3D"co=
+lor: #ea4c89;"><strong><span style=3D"font-size: 18px;">LEARN UI DESIGN THI=
+S JANUARY<br></span></strong></span><!-- CDATA_CLOSE --></div></td></tr><tr=
+><td align=3D"center" style=3D"font-size:0px;padding:0px;padding-top:0px;pa=
+dding-right:10px;padding-bottom:0px;padding-left:10px;word-break:break-word=
+;"><div style=3D"font-family:'Helvetica', 'Arial', sans-serif;font-size:16p=
+x;line-height:1.7;text-align:center;color:#0D0C22;"><!-- CDATA_OPEN --><p>T=
+ime to start planning your New Year's resolutions! Hoping to learn some new=
+ skills? Now=E2=80=99s your chance to enroll in Dribbble=E2=80=99s immersiv=
+e <a class=3D"vdt_link" href=3D"https://email.n.dribbble.com/c/eJytUsGOmzAQ=
+_Rq4RInMOBhz4JANpFW2m2artKl6QWAPu04hIDBks19fw5KG3isheXjzPG_mjUVSVIl6OVvuQ41=
+CVQrPOpZlkSgDhcGLCfKFKAsbA4exped7Due2DCQDD5gt7te7pFaJVuVwb12edV3mtgqAADiEUM=
+eh_pIvsowymVHuADAmmbCW5LyQtUrTNMdB6DWgiXDQoYwBSJFihr6b-ki5AFdInlC7DmSnHU4cI=
+ISYCvcu8-BV66qx6MqCjfmmlc2vKNu6wcZErZpLbPrO6UaqxiTO2qKhgT84c3DnZZZZwFpdxI3B=
+BJp8h3U5YgVK1RYGw159BIWZG4dK4sOBG37ziYYOWRBYAMSRbMVgWLzDS5Oj1liPdBP1lf_Be-l=
+YSQNPhwd3Mv6NZbQ7w3vy8-iLN39-bFt5Kt6K9-P3n49wzN70tnuPu0t7LDtc7XfRJ1fyjJ8gKp=
+S_yvc--Xr5hetDfNVJyWkX6j38qA6X32TpPXXh53R7iPfftmKne30aTl9B06YnFLp_A-Hg7-xqv=
+JtZwEe7wZ-JpEY0WASWv7b4xoo21gM3wbTQLexHNsX6J-TR5ZRR1WUvFZ-TAge9cddTjr5WQ-7u=
+5DQ7bC7-by1rLKo80fi3I1sH_T7GYz7OYE6fUub9AVtaIm4" target=3D"_blank" rel=3D"n=
+oopener">4-Week Introduction to UI Design Course</a> starting on January 9,=
+ 2023.&nbsp;</p><!-- CDATA_CLOSE --></div></td></tr><tr><td align=3D"left" =
+class=3D"vdt_hide-on-mobile" style=3D"font-size:0px;padding:0px;padding-top=
+:0px;padding-right:80px;padding-bottom:0px;padding-left:80px;word-break:bre=
+ak-word;"><div style=3D"font-family:'Helvetica', 'Arial', sans-serif;font-s=
+ize:16px;line-height:1.7;text-align:left;color:#0D0C22;"><!-- CDATA_OPEN --=
+><ul><li>=F0=9F=8E=A8 Master Figma &amp; FigJam fundamentals</li><li>=E2=9C=
+=8F=EF=B8=8F Learn key user interface design principles</li><li>=E2=9A=99=
+=EF=B8=8F Apply UI design processes &amp; workflows</li><li>=F0=9F=93=9A Cr=
+eate clear, well-structured UI libraries</li><li>=E2=9C=A8 Develop realisti=
+c and fully-functional prototypes!</li></ul><!-- CDATA_CLOSE --></div></td>=
+</tr><tr><td align=3D"left" class=3D"vdt_hide-on-desktop" style=3D"font-siz=
+e: 0px; padding: 0px; padding-top: 0px; padding-right: 10px; padding-bottom=
+: 0px; padding-left: 10px; word-break: break-word; display: none;"><div sty=
+le=3D"font-family: 'Helvetica', 'Arial', sans-serif; font-size: 16px; line-=
+height: 1.7; text-align: left; color: #0D0C22;"><!-- CDATA_OPEN --><ul><li>=
+=F0=9F=8E=A8 Master Figma &amp; FigJam fundamentals</li><li>=E2=9C=8F=EF=B8=
+=8F Learn key user interface design principles</li><li>=E2=9A=99=EF=B8=8F A=
+pply UI design processes &amp; workflows</li><li>=F0=9F=93=9A Create clear,=
+ well-structured UI libraries</li><li>=E2=9C=A8 Develop realistic and fully=
+-functional prototypes!</li></ul><!-- CDATA_CLOSE --></div></td></tr><tr><t=
+d align=3D"center" style=3D"font-size:0px;padding:0px;padding-top:0px;paddi=
+ng-right:10px;padding-bottom:0px;padding-left:10px;word-break:break-word;">=
+<div style=3D"font-family:'Helvetica', 'Arial', sans-serif;font-size:16px;l=
+ine-height:1.7;text-align:center;color:#0D0C22;"><!-- CDATA_OPEN --><p>With=
+ our flexible curriculum, you can learn design on your own schedule, with s=
+upport from a dedicated design mentor.&nbsp;</p><!-- CDATA_CLOSE --></div><=
+/td></tr><tr><td align=3D"center" vertical-align=3D"middle" style=3D"font-s=
+ize:0px;padding:0px;padding-top:30px;padding-right:20px;padding-bottom:30px=
+;padding-left:20px;word-break:break-word;"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"border-collapse:sep=
+arate;line-height:100%;"><tr><td align=3D"center" bgcolor=3D"#EA4C89" role=
+=3D"presentation" style=3D"border:none;border-radius:8px;cursor:auto;mso-pa=
+dding-alt:10px 25px;background:#EA4C89;" valign=3D"middle"><a href=3D"https=
+://email.n.dribbble.com/c/eJytUtuOmzAQ_Rp4iYiMzcU88JANSatsN81WaVP1BYE97DrFg=
+MCQzX59bZZs-IBKSJ45c-bMDZbJJhMvleU_tMBEI6BSKa9lJjSUxC_aKJesljbEbhB4YRS6lNo8=
+5gEOcWCze_qQtSJToh7z1nWl2rq0RYwRxi5CxHVJ5NFlUZCAF4S6GAcBD5jloWrJW5HneQljodf=
+YL0JMI-LjAOV-gTjNMYvcgiNwMUIes9uYD8qlyLhIK9y7LONXpZrOIisLb_U3V9Yuq_u2g05bvX=
+A4dKZzsuWi04FKWSTR8AfHwb5TF4WFg17J9HNMkvA2T4H3aQWXbop2OoOBjg3Q1hMmgYteagxMb=
+zcZvRUY67CP_Uy4gtZQ91qyBKU9jRutVHBTcTYr9mfT3lhabNC8p6jcfAud58e-52f5Jt9PP38_=
+4lPxpnbDezpc-lM9wOqw33zxOS3oGW-kiFblIULfL39gfUyvKqspGRJ1wL-a4-Uv8sKnIfma747=
+p4ceO7ZWpT5L50bs-PwNT5uTJuM7FVS9jYWE6bRdHC5a1ABrbYCtaW3RrbbbWA9XGXOhmmpG1mP=
+ljQuLNGU1bm1JplUkY602nnXPUtRlj903Oo-Mp0v_WsgLZlJmCz45sFZt7TI8zzaDfiJAg_AeQN=
+Bxd" style=3D"display:inline-block;background:#EA4C89;color:#ffffff;font-fa=
+mily:'Helvetica', 'Arial', sans-serif;font-size:15px;font-weight:normal;lin=
+e-height:1.75;margin:0;text-decoration:none;text-transform:none;padding:10p=
+x 25px;mso-padding-alt:0px;border-radius:8px;" target=3D"_blank" class=3D"v=
+dt_link"><!-- CDATA_OPEN --><strong>Reserve your spot</strong><br><!-- CDAT=
+A_CLOSE --></a></td></tr></table></td></tr></tbody></table></td></tr></tbod=
+y></table></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr><=
+/tbody></table></div><!--[if mso | IE]></td></tr></table><table align=3D"ce=
+nter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"__snippet_u=
+nlocked_mjml_3061_68be43c-outlook" style=3D"width:600px;" width=3D"600" ><t=
+r><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"=
+><![endif]--><div class=3D"__snippet_unlocked_mjml_3061_68be43c" style=3D"m=
+argin:0px auto;max-width:600px;"><table align=3D"center" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;">=
+<tbody><tr><td style=3D"direction:ltr;font-size:0px;padding:20px;padding-bo=
+ttom:10px;padding-left:20px;padding-right:20px;padding-top:10px;text-align:=
+center;"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:to=
+p;width:560px;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-gro=
+up-fix" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline=
+-block;vertical-align:top;width:100%;"><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td sty=
+le=3D"vertical-align:top;padding:0;"><table border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=
+=3D"center" style=3D"font-size:0px;padding:10px;padding-top:30px;padding-ri=
+ght:10px;padding-bottom:10px;padding-left:10px;word-break:break-word;"><div=
+ style=3D"font-family:'Helvetica', 'Arial', sans-serif;font-size:16px;line-=
+height:1.4;text-align:center;color:#0D0C22;"><!-- CDATA_OPEN --><span style=
+=3D"font-size: 24px; color: #000000;"><strong>Meet Your Instructor</strong>=
+</span><!-- CDATA_CLOSE --></div></td></tr><tr><td align=3D"center" style=
+=3D"font-size:0px;padding:10px;padding-top:10px;padding-right:20px;padding-=
+bottom:10px;padding-left:20px;word-break:break-word;"><div style=3D"font-fa=
+mily:'Helvetica', 'Arial', sans-serif;font-size:16px;line-height:1.7;text-a=
+lign:center;color:#0D0C22;"><!-- CDATA_OPEN --><p>In our <a class=3D"vdt_li=
+nk" href=3D"https://email.n.dribbble.com/c/eJytUtuOmzAQ_Rp4iYiMzcU88JANSats=
+N81WaVP1BYE97DrFgMCQzX59bZZs-IBKSJ45c-bMDZbJJhMvleU_tMBEI6BSKa9lJjSUxC_aKJe=
+sljbEbhB4YRS6lNo85gEOcWCze_qQtSJToh7z1nWl2rq0RYwRxi5CxHVJ5NFlUZCAF4S6GAcBD5=
+jloWrJW5HneQljodfYL0JMI-LjAOV-gTjNMYvcgiNwMUIes9uYD8qlyLhIK9y7LONXpZrOIisLb=
+_U3V9Yuq_u2g05bvXA4dKZzsuWi04FKWSTR8AfHwb5TF4WFg17J9HNMkvA2T4H3aQWXbop2OoOB=
+jg3Q1hMmgYteagxMbzcZvRUY67CP_Uy4gtZQ91qyBKU9jRutVHBTcTYr9mfT3lhabNC8p6jcfAu=
+d58e-52f5Jt9PP38_4lPxpnbDezpc-lM9wOqw33zxOS3oGW-kiFblIULfL39gfUyvKqspGRJ1wL=
+-a4-Uv8sKnIfma747p4ceO7ZWpT5L50bs-PwNT5uTJuM7FVS9jYWE6bRdHC5a1ABrbYCtaW3Rrb=
+bbWA9XGXOhmmpG1mPljQuLNGU1bm1JplUkY602nnXPUtRlj903Oo-Mp0v_WsgLZlJmCz45sFZt7=
+TI8zzaDfiJAg_AeQNBxd" target=3D"_blank" rel=3D"noopener">4-Week Intro to UI=
+ Design Course</a>, you=E2=80=99ll learn from the very best in the industry=
+=2E Students enjoy weekly on-demand lesso=
+ns from Metalab=E2=80=99s very own <=
+strong>Daniele Buffa</strong>.<span style=3D"color: #ea4c89;"><br></span></=
+p><!-- CDATA_CLOSE --></div></td></tr></tbody></table></td></tr></tbody></t=
+able></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbod=
+y></table></div><!--[if mso | IE]></td></tr></table><table align=3D"center"=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"__snippet_unlock=
+ed_mjml_3062_0bc5724-outlook" style=3D"width:600px;" width=3D"600" ><tr><td=
+ style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![e=
+ndif]--><div class=3D"__snippet_unlocked_mjml_3062_0bc5724" style=3D"margin=
+:0px auto;max-width:600px;"><table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;"><tbod=
+y><tr><td style=3D"direction:ltr;font-size:0px;padding:20px;padding-bottom:=
+40px;padding-left:20px;padding-right:20px;padding-top:10px;text-align:cente=
+r;"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;wid=
+th:224px;" ><![endif]--><div class=3D"mj-column-per-40 mj-outlook-group-fix=
+" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline-block=
+;vertical-align:top;width:100%;"><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"=
+vertical-align:top;padding:0;"><table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"ce=
+nter" style=3D"font-size:0px;padding:0px;padding-top:0px;padding-right:10px=
+;padding-bottom:20px;padding-left:10px;word-break:break-word;"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"=
+border-collapse:collapse;border-spacing:0px;" class=3D"mj-full-width-mobile=
+"><tbody><tr><td style=3D"width:204px;" class=3D"mj-full-width-mobile"><a h=
+ref=3D"https://email.n.dribbble.com/c/eJytUtuOmzAQ_Rp4iYiMzcU88JANSatsN81Wa=
+VP1BYE97DrFgMCQzX59bZZs-IBKSJ45c-bMDZbJJhMvleU_tMBEI6BSKa9lJjSUxC_aKJesljbE=
+bhB4YRS6lNo85gEOcWCze_qQtSJToh7z1nWl2rq0RYwRxi5CxHVJ5NFlUZCAF4S6GAcBD5jloWr=
+JW5HneQljodfYL0JMI-LjAOV-gTjNMYvcgiNwMUIes9uYD8qlyLhIK9y7LONXpZrOIisLb_U3V9=
+Yuq_u2g05bvXA4dKZzsuWi04FKWSTR8AfHwb5TF4WFg17J9HNMkvA2T4H3aQWXbop2OoOBjg3Q1=
+hMmgYteagxMbzcZvRUY67CP_Uy4gtZQ91qyBKU9jRutVHBTcTYr9mfT3lhabNC8p6jcfAud58e-=
+52f5Jt9PP38_4lPxpnbDezpc-lM9wOqw33zxOS3oGW-kiFblIULfL39gfUyvKqspGRJ1wL-a4-U=
+v8sKnIfma747p4ceO7ZWpT5L50bs-PwNT5uTJuM7FVS9jYWE6bRdHC5a1ABrbYCtaW3RrbbbWA9=
+XGXOhmmpG1mPljQuLNGU1bm1JplUkY602nnXPUtRlj903Oo-Mp0v_WsgLZlJmCz45sFZt7TI8zz=
+aDfiJAg_AeQNBxd" target=3D"_blank" class=3D"vdt_link"><img alt=3D"Student S=
+potlight" height=3D"auto" src=3D"https://getvero.nyc3.cdn.digitaloceanspace=
+s.com/uploads/51bf572da463ed48502d491082a2c01e/fullsize/a68a46aa-73e8-4520-=
+aa62-6a5f441b8a3a-image6-pichi.png" style=3D"border:0;border-radius:10px;di=
+splay:block;outline:none;text-decoration:none;height:auto;width:100%;font-s=
+ize:13px;" width=3D"204"></a></td></tr></tbody></table></td></tr></tbody></=
+table></td></tr></tbody></table></div><!--[if mso | IE]></td><td class=3D""=
+ style=3D"vertical-align:top;width:336px;" ><![endif]--><div class=3D"mj-co=
+lumn-per-60 mj-outlook-group-fix" style=3D"font-size:0px;text-align:left;di=
+rection:ltr;display:inline-block;vertical-align:top;width:100%;"><table bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=
+=3D"100%"><tbody><tr><td style=3D"vertical-align:top;padding:0;"><table bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=
+=3D"100%"><tbody><tr><td align=3D"left" style=3D"font-size:0px;padding:10px=
+;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:10px;wor=
+d-break:break-word;"><div style=3D"font-family:'Helvetica', 'Arial', sans-s=
+erif;font-size:16px;line-height:1.5;text-align:left;color:#0D0C22;"><!-- CD=
+ATA_OPEN --><strong>Daniele Buffa, Principal Designer @Metalab</strong><br>=
+<strong><!-- CDATA_CLOSE --></strong></div></td></tr><tr><td align=3D"left"=
+ style=3D"font-size:0px;padding:10px;padding-top:10px;padding-right:10px;pa=
+dding-bottom:10px;padding-left:10px;word-break:break-word;"><div style=3D"f=
+ont-family:'Helvetica', 'Arial', sans-serif;font-size:16px;line-height:1.7;=
+text-align:left;color:#0D0C22;"><!-- CDATA_OPEN --><span style=3D"font-size=
+: 16px;">As the Principal Designer at world-renowned Product Agency, <a cla=
+ss=3D"vdt_link" href=3D"https://email.n.dribbble.com/c/eJytUsFymzAQ_Rpx8cSD=
+JIzEgYNj7HacxnU7TtzphQFpSeQiYGSB43x9BSUxH9AZZqR9u3pv3y4i002mXiq0uDcgVKOgsqm=
+sdaYclMQv7lLORa09iHEYBiximHNPxjIkjISeuD3vMqMyq-rh3aqurKlLT8XEJwT7PsWYRgGfFw=
+UNZUE5JiQMZShQ4FdzaVSe5yUMQq-xk8HAsZByQQmPZFhgWogcMAsYZZh5JpadxdzHxPd9x3Drs=
+oxfrW3OiC4R2bhvyuxCDTYrsxzRTWt1-tk8TaTJU5BtWsHljEjYZ891awS4XAemHjENUrXaYdAr=
+jqBwXt3UHCr-uR5xC6Yv3TnKEqyLHN5zpUr2ihMHZDHx8FHlyDpX9xiV62_s7sdD28qTftPvx6d=
+fD-RYvNlt9552l_ZYd7Dc79ZfFpIX_ETWWkXLch_53y-_YXVIrzarOe0SuyfPzeHyxw_YY5d8zb=
+eHdP9zK3a216fJdJXnNj-BsP0iEzg7bHZ1w5ghwuUQIhLNRGYAHLYmKFohvkHrDbrn7jIl-rj2l=
+h1Z_x8wGkwrGlP3UmmVaRj0xoVNa-y1GXK3SU6zwyrS_9ayBd2UmYXPjjwb9_sYj7vRgzsjSkP2=
+FxGhDfo" target=3D"_blank" rel=3D"noopener">Metalab</a>, Daniele Buffa spec=
+ializes in visual, motion, and interaction design. Aside from Google, Sony =
+Music, Headspace, and Business Insider, Daniele has worked with a variety o=
+f design-forward brands and clients.&nbsp;</span><!-- CDATA_CLOSE --></div>=
+</td></tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]=
+></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso =
+| IE]></td></tr></table><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" class=3D"" style=3D"width:600px;" width=3D"600" ><tr>=
+<td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><=
+![endif]--><div style=3D"background:#f8f8f8;background-color:#f8f8f8;margin=
+:0px auto;border-radius:10px;max-width:600px;"><table align=3D"center" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D=
+"background:#f8f8f8;background-color:#f8f8f8;width:100%;border-radius:10px;=
+"><tbody><tr><td style=3D"direction:ltr;font-size:0px;padding:20px;padding-=
+bottom:30px;padding-left:20px;padding-right:20px;padding-top:30px;text-alig=
+n:center;"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:=
+top;width:560px;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-g=
+roup-fix" style=3D"font-size:0px;text-align:left;direction:ltr;display:inli=
+ne-block;vertical-align:top;width:100%;"><table border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td s=
+tyle=3D"vertical-align:top;padding:0;"><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td ali=
+gn=3D"left" style=3D"font-size:0px;padding:10px;padding-top:10px;padding-ri=
+ght:20px;padding-bottom:10px;padding-left:20px;word-break:break-word;"><div=
+ style=3D"font-family:'Helvetica', 'Arial', sans-serif;font-size:14px;line-=
+height:1.5;text-align:left;color:#0D0C22;"><!-- CDATA_OPEN --><span style=
+=3D"font-size: 24px;"><strong>=F0=9F=8E=81&nbsp; Save 25% on UI Design&nbsp=
+;</strong></span><!-- CDATA_CLOSE --></div></td></tr><tr><td align=3D"left"=
+ style=3D"font-size:0px;padding:10px;padding-top:10px;padding-right:20px;pa=
+dding-bottom:10px;padding-left:20px;word-break:break-word;"><div style=3D"f=
+ont-family:'Helvetica', 'Arial', sans-serif;font-size:14px;line-height:1.7;=
+text-align:left;color:#0D0C22;"><!-- CDATA_OPEN --><span style=3D"font-size=
+: 16px;">For a limited time, save 25% on your registration for Dribbble's U=
+I Design Course. The course starts on January 9, 2023, but the discount won=
+=E2=80=99t last!</span><!-- CDATA_CLOSE --></div></td></tr><tr><td align=3D=
+"left" vertical-align=3D"middle" style=3D"font-size:0px;padding:0px;padding=
+-top:10px;padding-right:20px;padding-bottom:0px;padding-left:20px;word-brea=
+k:break-word;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"border-collapse:separate;line-height:100%;"><tr>=
+<td align=3D"center" bgcolor=3D"#939393" role=3D"presentation" style=3D"bor=
+der:none;border-radius:8px;cursor:auto;mso-padding-alt:10px 25px;background=
+:#939393;" valign=3D"middle"><a href=3D"https://email.n.dribbble.com/c/eJyt=
+UtuOmzAQ_Rp4iYiMzcU88JANSatsN81WaVP1BYE97DrFgMCQzX59bZZs-IBKSJ45c-bMDZbJJhM=
+vleU_tMBEI6BSKa9lJjSUxC_aKJesljbEbhB4YRS6lNo85gEOcWCze_qQtSJToh7z1nWl2rq0RY=
+wRxi5CxHVJ5NFlUZCAF4S6GAcBD5jloWrJW5HneQljodfYL0JMI-LjAOV-gTjNMYvcgiNwMUIes=
+9uYD8qlyLhIK9y7LONXpZrOIisLb_U3V9Yuq_u2g05bvXA4dKZzsuWi04FKWSTR8AfHwb5TF4WF=
+g17J9HNMkvA2T4H3aQWXbop2OoOBjg3Q1hMmgYteagxMbzcZvRUY67CP_Uy4gtZQ91qyBKU9jRu=
+tVHBTcTYr9mfT3lhabNC8p6jcfAud58e-52f5Jt9PP38_4lPxpnbDezpc-lM9wOqw33zxOS3oGW=
+-kiFblIULfL39gfUyvKqspGRJ1wL-a4-Uv8sKnIfma747p4ceO7ZWpT5L50bs-PwNT5uTJuM7FV=
+S9jYWE6bRdHC5a1ABrbYCtaW3RrbbbWA9XGXOhmmpG1mPljQuLNGU1bm1JplUkY602nnXPUtRlj=
+903Oo-Mp0v_WsgLZlJmCz45sFZt7TI8zzaDfiJAg_AeQNBxd" style=3D"display:inline-b=
+lock;background:#939393;color:#ffffff;font-family:'Helvetica', 'Arial', san=
+s-serif;font-size:16px;font-weight:normal;line-height:1.7;margin:0;text-dec=
+oration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;bord=
+er-radius:8px;" target=3D"_blank" class=3D"vdt_link"><!-- CDATA_OPEN --><st=
+rong>Enroll &amp; Save</strong><!-- CDATA_CLOSE --></a></td></tr></table></=
+td></tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]><=
+/td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso | =
+IE]></td></tr></table><table align=3D"center" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" class=3D"__snippet_unlocked_mjml_3061_68be43c-outlook" =
+style=3D"width:600px;" width=3D"600" ><tr><td style=3D"line-height:0px;font=
+-size:0px;mso-line-height-rule:exactly;"><![endif]--><div class=3D"__snippe=
+t_unlocked_mjml_3061_68be43c" style=3D"margin:0px auto;max-width:600px;"><t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"width:100%;"><tbody><tr><td style=3D"direction:l=
+tr;font-size:0px;padding:20px;padding-bottom:10px;padding-left:20px;padding=
+-right:20px;padding-top:30px;text-align:center;"><!--[if mso | IE]><table r=
+ole=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><=
+td class=3D"" style=3D"vertical-align:top;width:560px;" ><![endif]--><div c=
+lass=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-size:0px;text=
+-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100=
+%;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"present=
+ation" width=3D"100%"><tbody><tr><td style=3D"vertical-align:top;padding:0;=
+"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"font-size:0px;=
+padding:10px;padding-top:30px;padding-right:10px;padding-bottom:30px;paddin=
+g-left:10px;word-break:break-word;"><div style=3D"font-family:'Helvetica', =
+'Arial', sans-serif;font-size:36px;line-height:1.4;text-align:center;color:=
+#0D0C22;"><!-- CDATA_OPEN --><span style=3D"font-size: 24px; color: #000000=
+;"><strong><span style=3D"font-size: 36px;">Go further with Product Design<=
+/span><br></strong></span><!-- CDATA_CLOSE --></div></td></tr><tr><td align=
+=3D"center" style=3D"font-size:0px;padding:0px;word-break:break-word;"><tab=
+le border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" s=
+tyle=3D"border-collapse:collapse;border-spacing:0px;" class=3D"mj-full-widt=
+h-mobile"><tbody><tr><td style=3D"width:560px;" class=3D"mj-full-width-mobi=
+le"><a href=3D"https://email.n.dribbble.com/c/eJytUttuozAQ_Rp4iYiMTbg88JCGZ=
+FfpNpuusptqXxDYQ-ssNxlDmn79DoQ0fEAlJI_PHJ-ZOQNPijqRr6WxeFDAZS2h1LGoikQiFIWv=
+GORzXhUmhLbrOl7g2b5vilC41KOuye_Pu0TJRMtqeLeqSq2q3JQhJZTahDDbZoHjz7OMuSJjvk2=
+p6wqXGw4p50LJNE1zGAq9hQFzBE9S5gJgCIxkjkhSx_GIBwEhwlSh6LTtE5sSQlDh3mUevmldNw=
+ZbGnSD31QZr7xqVQMNRrWqRMu1JaDp22cbIRvMltpg0RWzrmSLLawqywzqtrqIP-dFlkpjEG1cw=
+rkZsw2-4IC5DlQ1YgUI2RaIQd_kTQbtgaEWvxo14hpUT92hZA4ab4j3WrEUfcXJ0HQxGfvGQrEO=
+eU9Bvv7hWc-PbStOxXvxcfz98kiP2bvedh9xd26PVQfL_W79bSH8zD_RdSGDZb4PyM_zX1gd4ot=
+OKp91kd7TP_Xh_I843lMXfU-3h3j_a8t3uq_Poun2mzY9Adf97qPBvtkFzZgZ1B8dpsGMJwoAsT=
+U1gpXhb4z1xnjwMZgK3cJ-ZBTrfx2POVMGrq4vFZdJAUO9ccdTjr7UQ-7u5DQ7rCL-spY1FHWea=
+PjsyNRhv4_xsMYZ8AwYc73_IYUgsw" target=3D"_blank" class=3D"vdt_link"><img al=
+t=3D"Product Design" height=3D"auto" src=3D"https://getvero.nyc3.cdn.digita=
+loceanspaces.com/uploads/51bf572da463ed48502d491082a2c01e/fullsize/e15f2ef8=
+-fc8f-4f97-83ea-0822ec62052a-image2-pichi.png" style=3D"border:0;display:bl=
+ock;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px=
+;" width=3D"560"></a></td></tr></tbody></table></td></tr><tr><td align=3D"c=
+enter" style=3D"font-size:0px;padding:10px;padding-top:30px;padding-right:1=
+0px;padding-bottom:10px;padding-left:10px;word-break:break-word;"><div styl=
+e=3D"font-family:'Helvetica', 'Arial', sans-serif;font-size:14px;line-heigh=
+t:1.6;text-align:center;color:#0D0C22;"><!-- CDATA_OPEN --><span style=3D"c=
+olor: #ea4c89;"><strong><span style=3D"font-size: 18px;">TRANSFORM YOUR DES=
+IGN CAREER<br></span></strong></span><!-- CDATA_CLOSE --></div></td></tr><t=
+r><td align=3D"center" style=3D"font-size:0px;padding:10px;padding-top:0px;=
+padding-right:20px;padding-bottom:0px;padding-left:20px;word-break:break-wo=
+rd;"><div style=3D"font-family:'Helvetica', 'Arial', sans-serif;font-size:1=
+6px;line-height:1.7;text-align:center;color:#0D0C22;"><!-- CDATA_OPEN --><p=
+>Exciting news, designers! Back by popular demand, Dribbble's <a class=3D"v=
+dt_link" href=3D"https://email.n.dribbble.com/c/eJytUttuozAQ_Rp4iYiMTbg88JC=
+GZFfpNpuusptqXxDYQ-ssNxlDmn79DoQ0fEAlJI_PHJ-ZOQNPijqRr6WxeFDAZS2h1LGoikQiFI=
+WvGORzXhUmhLbrOl7g2b5vilC41KOuye_Pu0TJRMtqeLeqSq2q3JQhJZTahDDbZoHjz7OMuSJjv=
+k2p6wqXGw4p50LJNE1zGAq9hQFzBE9S5gJgCIxkjkhSx_GIBwEhwlSh6LTtE5sSQlDh3mUevmld=
+NwZbGnSD31QZr7xqVQMNRrWqRMu1JaDp22cbIRvMltpg0RWzrmSLLawqywzqtrqIP-dFlkpjEG1=
+cwrkZsw2-4IC5DlQ1YgUI2RaIQd_kTQbtgaEWvxo14hpUT92hZA4ab4j3WrEUfcXJ0HQxGfvGQr=
+EOeU9Bvv7hWc-PbStOxXvxcfz98kiP2bvedh9xd26PVQfL_W79bSH8zD_RdSGDZb4PyM_zX1gd4=
+otOKp91kd7TP_Xh_I843lMXfU-3h3j_a8t3uq_Poun2mzY9Adf97qPBvtkFzZgZ1B8dpsGMJwoA=
+sTU1gpXhb4z1xnjwMZgK3cJ-ZBTrfx2POVMGrq4vFZdJAUO9ccdTjr7UQ-7u5DQ7rCL-spY1FHW=
+eaPjsyNRhv4_xsMYZ8AwYc73_IYUgsw" target=3D"_blank" rel=3D"noopener">16-Week=
+ Certified Product Design Course</a> is relaunching on February 20, 2023.&n=
+bsp;<span style=3D"color: #ea4c89;"><br></span></p><!-- CDATA_CLOSE --></di=
+v></td></tr><tr><td align=3D"center" style=3D"font-size:0px;padding:10px;wo=
+rd-break:break-word;"><div style=3D"font-family:'Helvetica', 'Arial', sans-=
+serif;font-size:16px;line-height:1;text-align:center;color:#0D0C22;"><!-- C=
+DATA_OPEN --><strong>Curriculum highlights include:</strong><!-- CDATA_CLOS=
+E --></div></td></tr><tr><td align=3D"left" class=3D"vdt_hide-on-desktop" s=
+tyle=3D"font-size: 0px; padding: 0px; padding-top: 0px; padding-right: 10px=
+; padding-bottom: 0px; padding-left: 10px; word-break: break-word; display:=
+ none;"><div style=3D"font-family: 'Helvetica', 'Arial', sans-serif; font-s=
+ize: 16px; line-height: 1.7; text-align: left; color: #0D0C22;"><!-- CDATA_=
+OPEN --><ul><li>=F0=9F=A4=94 Design thinking</li><li>=F0=9F=91=A9=E2=80=8D=
+=F0=9F=92=BB UX and UI research</li><li>=F0=9F=91=BE Wireframes, flow diagr=
+ams &amp; prototypes</li><li>=E2=9C=8F=EF=B8=8F Designing in Figma</li><li>=
+=F0=9F=92=BC Career prep</li></ul><!-- CDATA_CLOSE --></div></td></tr><tr><=
+td align=3D"left" class=3D"vdt_hide-on-mobile" style=3D"font-size:0px;paddi=
+ng:0px;padding-top:0px;padding-right:100px;padding-bottom:0px;padding-left:=
+100px;word-break:break-word;"><div style=3D"font-family:'Helvetica', 'Arial=
+', sans-serif;font-size:16px;line-height:1.7;text-align:left;color:#0D0C22;=
+"><!-- CDATA_OPEN --><ul><li>=F0=9F=A4=94 Design thinking</li><li>=F0=9F=91=
+=A9=E2=80=8D=F0=9F=92=BB UX and UI research</li><li>=F0=9F=91=BE Wireframes=
+, flow diagrams &amp; prototypes</li><li>=E2=9C=8F=EF=B8=8F Designing in Fi=
+gma</li><li>=F0=9F=92=BC Career prep</li></ul><!-- CDATA_CLOSE --></div></t=
+d></tr><tr><td align=3D"center" vertical-align=3D"middle" style=3D"font-siz=
+e:0px;padding:0px;padding-top:10px;padding-right:20px;padding-bottom:40px;p=
+adding-left:20px;word-break:break-word;"><table border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" style=3D"border-collapse:separa=
+te;line-height:100%;"><tr><td align=3D"center" bgcolor=3D"#EA4C89" role=3D"=
+presentation" style=3D"border:none;border-radius:8px;cursor:auto;mso-paddin=
+g-alt:10px 25px;background:#EA4C89;" valign=3D"middle"><a href=3D"https://e=
+mail.n.dribbble.com/c/eJytUttuozAQ_Rp4iYiMTbg88JCGZFfpNpuusptqXxDYQ-ssNxlDm=
+n79DoQ0fEAlJI_PHJ-ZOQNPijqRr6WxeFDAZS2h1LGoikQiFIWvGORzXhUmhLbrOl7g2b5vilC4=
+1KOuye_Pu0TJRMtqeLeqSq2q3JQhJZTahDDbZoHjz7OMuSJjvk2p6wqXGw4p50LJNE1zGAq9hQF=
+zBE9S5gJgCIxkjkhSx_GIBwEhwlSh6LTtE5sSQlDh3mUevmldNwZbGnSD31QZr7xqVQMNRrWqRM=
+u1JaDp22cbIRvMltpg0RWzrmSLLawqywzqtrqIP-dFlkpjEG1cwrkZsw2-4IC5DlQ1YgUI2RaIQ=
+d_kTQbtgaEWvxo14hpUT92hZA4ab4j3WrEUfcXJ0HQxGfvGQrEOeU9Bvv7hWc-PbStOxXvxcfz9=
+8kiP2bvedh9xd26PVQfL_W79bSH8zD_RdSGDZb4PyM_zX1gd4otOKp91kd7TP_Xh_I843lMXfU-=
+3h3j_a8t3uq_Poun2mzY9Adf97qPBvtkFzZgZ1B8dpsGMJwoAsTU1gpXhb4z1xnjwMZgK3cJ-ZB=
+Trfx2POVMGrq4vFZdJAUO9ccdTjr7UQ-7u5DQ7rCL-spY1FHWeaPjsyNRhv4_xsMYZ8AwYc73_I=
+YUgsw" style=3D"display:inline-block;background:#EA4C89;color:#ffffff;font-=
+family:'Helvetica', 'Arial', sans-serif;font-size:15px;font-weight:normal;l=
+ine-height:1.75;margin:0;text-decoration:none;text-transform:none;padding:1=
+0px 25px;mso-padding-alt:0px;border-radius:8px;" target=3D"_blank" class=3D=
+"vdt_link"><!-- CDATA_OPEN --><span style=3D"font-size: 16px;"><strong>Get =
+35% off!</strong></span><!-- CDATA_CLOSE --></a></td></tr></table></td></tr=
+></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]></td></t=
+r></table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></t=
+d></tr></table><table align=3D"center" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" class=3D"" style=3D"width:600px;" width=3D"600" ><tr><td style=
+=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-=
+-><div style=3D"background:#f8f8f8;background-color:#f8f8f8;margin:0px auto=
+;border-radius:10px;max-width:600px;"><table align=3D"center" border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"backgrou=
+nd:#f8f8f8;background-color:#f8f8f8;width:100%;border-radius:10px;"><tbody>=
+<tr><td style=3D"direction:ltr;font-size:0px;padding:20px;padding-bottom:30=
+px;padding-left:20px;padding-right:20px;padding-top:30px;text-align:center;=
+"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;wid=
+th:560px;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-group-fi=
+x" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline-bloc=
+k;vertical-align:top;width:100%;"><table border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D=
+"vertical-align:top;padding:0;"><table border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"l=
+eft" style=3D"font-size:0px;padding:10px;padding-top:10px;padding-right:20p=
+x;padding-bottom:10px;padding-left:20px;word-break:break-word;"><div style=
+=3D"font-family:'Helvetica', 'Arial', sans-serif;font-size:14px;line-height=
+:1.5;text-align:left;color:#0D0C22;"><!-- CDATA_OPEN --><span style=3D"font=
+-size: 24px;"><strong>Speak with an Admissions Advisor</strong></span><!-- =
+CDATA_CLOSE --></div></td></tr><tr><td align=3D"left" style=3D"font-size:0p=
+x;padding:10px;padding-top:10px;padding-right:20px;padding-bottom:10px;padd=
+ing-left:20px;word-break:break-word;"><div style=3D"font-family:'Helvetica'=
+, 'Arial', sans-serif;font-size:14px;line-height:1.7;text-align:left;color:=
+#0D0C22;"><!-- CDATA_OPEN --><span style=3D"font-size: 16px;">Have question=
+s about Dribbble=E2=80=99s courses? Book a call with an Admissions Advisor =
+or send us a message at <span style=3D"color: #ea4c89;"><a class=3D"vdt_lin=
+k" style=3D"color: #ea4c89;" href=3D"mailto:education@dribbble.com">educati=
+on@dribbble.com</a></span> to learn more.&nbsp;</span><!-- CDATA_CLOSE --><=
+/div></td></tr><tr><td align=3D"left" vertical-align=3D"middle" style=3D"fo=
+nt-size:0px;padding:0px;padding-top:10px;padding-right:20px;padding-bottom:=
+0px;padding-left:20px;word-break:break-word;"><table border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"border-collapse:s=
+eparate;line-height:100%;"><tr><td align=3D"center" bgcolor=3D"#939393" rol=
+e=3D"presentation" style=3D"border:none;border-radius:8px;cursor:auto;mso-p=
+adding-alt:10px 25px;background:#939393;" valign=3D"middle"><a href=3D"http=
+s://email.n.dribbble.com/c/eJytUtuOmzAQ_RrzEiUyNjHwwEM2kFbZbppWaVP1BRl72HXK=
+TWDIZr--NmU3fEAlS545M54zZ8aClw1XzxVaP7QgVKOg0qmsS64MFEfPxihWoi4diFzGPD_03SB=
+wZCQZ8QlzxP35wFvFtarHd9u60m1dOCoimBAXY-q6NPSCVZ5TJnMauIQwJplAHq5WslVZlhUwEr=
+1EMqN-HnKZeTnmIASjvpuJjIWcE8HE2mkjOWg3wC7BGJsK9y6L6EXrpkN0g8jOHMELqGRxs0HjX=
+qDrlOBLw04R3fW6TD8U0Fi2WQqyTyu4dogwG-3qvhVgYgO09YSVIFVfGgws7QQKI9iMzqDin_QJ=
+19Da1IMpWYA2nsFtrVRJyziTQdYzIe9Zpthg8p7CIvniL7899r28lK_l2_nHr0dyzl_1fnhLh2t=
+_rgfYHA_Jp7UM8uBCklKFm-IY4q_X37A9pTfN64AOsT6Sn83p-gd7_tMQf872p_T4fS8O2vLTeL=
+7Prs8uILTdZgydwRY3M4wFIoEcXUTCheAtgMESgsItCnYo2aGHwBjzQu-mlWyK2c_gU2-e0bS1p=
+UorXsLIN_2HeY6-NWPsPsl5dFxF-t9a1lA2Bdfw0ZGjI7uP6VpOGswdUsr8v8XGEHo" style=
+=3D"display:inline-block;background:#939393;color:#ffffff;font-family:'Helv=
+etica', 'Arial', sans-serif;font-size:16px;font-weight:normal;line-height:1=
+=2E7;margin:0;text-decoration:none;text-t=
+ransform:none;padding:10px 25px;mso-=
+padding-alt:0px;border-radius:8px;" target=3D"_blank" class=3D"vdt_link"><!=
+-- CDATA_OPEN --><strong>Book a call</strong><!-- CDATA_CLOSE --></a></td><=
+/tr></table></td></tr></tbody></table></td></tr></tbody></table></div><!--[=
+if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div>=
+<!--[if mso | IE]></td></tr></table><table align=3D"center" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" class=3D"__snippet_unlocked_mjml_3061_68b=
+e43c-outlook" style=3D"width:600px;" width=3D"600" ><tr><td style=3D"line-h=
+eight:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div cla=
+ss=3D"__snippet_unlocked_mjml_3061_68be43c" style=3D"margin:0px auto;max-wi=
+dth:600px;"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" role=3D"presentation" style=3D"width:100%;"><tbody><tr><td style=
+=3D"direction:ltr;font-size:0px;padding:20px;padding-bottom:10px;padding-le=
+ft:20px;padding-right:20px;padding-top:30px;text-align:center;"><!--[if mso=
+ | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;width:560px;" ><![=
+endif]--><div class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"fon=
+t-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-alig=
+n:top;width:100%;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"vertical-align=
+:top;padding:0;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"center" style=3D=
+"font-size:0px;padding:10px;padding-top:30px;padding-right:10px;padding-bot=
+tom:20px;padding-left:10px;word-break:break-word;"><div style=3D"font-famil=
+y:'Helvetica', 'Arial', sans-serif;font-size:36px;line-height:1.4;text-alig=
+n:center;color:#0D0C22;"><!-- CDATA_OPEN --><span style=3D"font-size: 24px;=
+ color: #000000;"><strong><span style=3D"font-size: 36px;">Watch the record=
+ing: No-code NFTs</span><br></strong></span><!-- CDATA_CLOSE --></div></td>=
+</tr><tr><td align=3D"center" style=3D"font-size:0px;padding:0px;word-break=
+:break-word;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"border-collapse:collapse;border-spacing:0px;" cl=
+ass=3D"mj-full-width-mobile"><tbody><tr><td style=3D"width:560px;" class=3D=
+"mj-full-width-mobile"><a href=3D"https://email.n.dribbble.com/c/eJytkk2Pmz=
+AQhn-NuUSLjM2HOXDIBtIq203TKG1WvSBjDxtSCAgMJPvrayhp6L0SkofH43n9zljwouLZ-wU5z=
+zWIrMrgomJZFjzTKAzedZCboiwMCCzXtT3fsxgzZCBd4hHXEI_jHa8zrrJyPLcqL6oucyMLCCbE=
+wphaFvVtZqYpdWVKmUWI60pXIBtfTFlnSZLkMAqdAqm5xz3sE8kTyRJpSccjHJxEelYKYNSB7JT=
+FsEUwxrrC45Z5cFKqahBdIrLWX9_35q1sVZuMxQfClTghuu4QDc_x_k1de5rsI0RcpYnj4EaHrS=
+ripmxrAZp1UJcTK0BmbaEZDIoTFNqr7pqm4o_rO7_3hoYWNjExCYkj2YqxSfEW-iYHpaCe0nU0V=
+P6HD9JxJjWeGybOzPI9S2sPll79PPriPX17aVt5Lq7Fx_H72ws5ple16T7irm-PZQfL3Tb65EiW=
+sjOJisxf5jsff-1_wuoQ3xQvGe1CtSM_qkP_C9veaxd-TjaHeLffiK0a9Gk4n3zTJmcQaph7CI1=
+mC93yeoEIk-MvIv5C8BpAs4ggf4XYGkVr9Mx0MC90DwfLutjwbDxqzzOquhyk4gsvYNSbXs48R9=
+2qce_RyfnuOLn4v11ZQVHlXMHfGxkqGOYxLU-TB736lLreb7hHHXo" target=3D"_blank" cl=
+ass=3D"vdt_link"><img alt=3D"Creating NFTs" height=3D"auto" src=3D"https://=
+getvero.nyc3.cdn.digitaloceanspaces.com/uploads/51bf572da463ed48502d491082a=
+2c01e/fullsize/b4ee934a-299f-4fb9-a9e0-329c16128156-image4-pichi.png" style=
+=3D"border:0;display:block;outline:none;text-decoration:none;height:auto;wi=
+dth:100%;font-size:13px;" width=3D"560"></a></td></tr></tbody></table></td>=
+</tr><tr><td align=3D"center" style=3D"font-size:0px;padding:10px;padding-t=
+op:30px;padding-right:10px;padding-bottom:10px;padding-left:10px;word-break=
+:break-word;"><div style=3D"font-family:'Helvetica', 'Arial', sans-serif;fo=
+nt-size:14px;line-height:1.6;text-align:center;color:#0D0C22;"><!-- CDATA_O=
+PEN --><span style=3D"color: #ea4c89;"><strong><span style=3D"font-size: 18=
+px;">IN CASE YOU MISSED IT=E2=80=A6<br></span></strong></span><!-- CDATA_CL=
+OSE --></div></td></tr><tr><td align=3D"center" style=3D"font-size:0px;padd=
+ing:10px;padding-top:0px;padding-right:20px;padding-bottom:0px;padding-left=
+:20px;word-break:break-word;"><div style=3D"font-family:'Helvetica', 'Arial=
+', sans-serif;font-size:16px;line-height:1.7;text-align:center;color:#0D0C2=
+2;"><!-- CDATA_OPEN --><p>Watch Pablo Stanley's webinar on creating NFTs an=
+d smart contracts without coding on Bueno!<br><br>This free 1-hour workshop=
+ shows how Pablo created well-known NFT collections, such as Robotos and Hu=
+mankind, and how creators of all backgrounds can do the same.<br><br><span =
+style=3D"color: #34495e;"><em>Thanks to our friends at <span style=3D"color=
+: #ea4c89;"><a class=3D"vdt_link" style=3D"color: #ea4c89;" href=3D"https:/=
+/email.n.dribbble.com/c/eJytUsGOmzAQ_RrnEiUCGwwcOGRD0irbTdMqbapekI2HDVnAyBj=
+Y7NfXsCThAypZsv3med7M8ySsqFj2WiL3SUGSVRmUOhayYJmBovDVHPJlIosZhDaljhd4tu_PRC=
+go9jCdJY_nLVMZ05kc3q1lqZXMZ1mILYxtyyK2TQLHX6YpoSIlvo0xpYImyLHKpVAZ5zyHQegcQ=
+ioSDB4l3Ohh5ojUdQObC265CabgzFQoWm37lo0tyzIZHlXm4VnrqkZkhfDWrK7rlryBUi6Z0j1E=
+to0u4lo2KgFEopsywrTHEXaxVYDImsIEO-BZydQYu7dKooFWQ6Wh4KAWfYsjKRMmXKZ6MVA6qd7=
+qs6wWFeO5HCn39NBXfUtu_DLOGzT5dG7ENaieuoeuzkGbm8FbUPJTaOoCdic-3FgmWWt4L0G--e=
+Ytfjw3jbgU78XH6defZ3xK3_Wu_YjbrjnJFlaH_eaLK_zUv-BNkQWr_BBY37u_sD7GV82kT9pIH=
+_Dv6ti9WY730kZf-e4YH37ukr3u9Uk0HYe64RdIdD8MEdQGm1-N6XOEfTFcEQ7mCVMABttgFKyR=
+v0WbLXryzWGa6HbsWzbJ-lnyiDNlVEr2UnHJChj0xk-dcvS1GmIPJ6fR4Svi_1aymYsqZxruFc1=
+02P_HuC3GHsweEEK9fxLBI4Q" target=3D"_blank" rel=3D"noopener">Bueno</a></spa=
+n> for sponsoring this free workshop!</em></span><span style=3D"color: #ea4=
+c89;"><br></span></p><!-- CDATA_CLOSE --></div></td></tr><tr><td align=3D"c=
+enter" vertical-align=3D"middle" style=3D"font-size:0px;padding:0px;padding=
+-top:30px;padding-right:20px;padding-bottom:40px;padding-left:20px;word-bre=
+ak:break-word;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" rol=
+e=3D"presentation" style=3D"border-collapse:separate;line-height:100%;"><tr=
+><td align=3D"center" bgcolor=3D"#EA4C89" role=3D"presentation" style=3D"bo=
+rder:none;border-radius:8px;cursor:auto;mso-padding-alt:10px 25px;backgroun=
+d:#EA4C89;" valign=3D"middle"><a href=3D"https://email.n.dribbble.com/c/eJy=
+tkk2PmzAQhn-NuUSLjM2HOXDIBtIq203TKG1WvSBjDxtSCAgMJPvrayhp6L0SkofH43n9zljwou=
+LZ-wU5zzWIrMrgomJZFjzTKAzedZCboiwMCCzXtT3fsxgzZCBd4hHXEI_jHa8zrrJyPLcqL6ouc=
+yMLCCbEwphaFvVtZqYpdWVKmUWI60pXIBtfTFlnSZLkMAqdAqm5xz3sE8kTyRJpSccjHJxEelYK=
+YNSB7JTFsEUwxrrC45Z5cFKqahBdIrLWX9_35q1sVZuMxQfClTghuu4QDc_x_k1de5rsI0RcpYn=
+j4EaHrSripmxrAZp1UJcTK0BmbaEZDIoTFNqr7pqm4o_rO7_3hoYWNjExCYkj2YqxSfEW-iYHpa=
+Ce0nU0VP6HD9JxJjWeGybOzPI9S2sPll79PPriPX17aVt5Lq7Fx_H72ws5ple16T7irm-PZQfL3=
+Tb65EiWsjOJisxf5jsff-1_wuoQ3xQvGe1CtSM_qkP_C9veaxd-TjaHeLffiK0a9Gk4n3zTJmcQ=
+aph7CI1mC93yeoEIk-MvIv5C8BpAs4ggf4XYGkVr9Mx0MC90DwfLutjwbDxqzzOquhyk4gsvYNS=
+bXs48R92qce_RyfnuOLn4v11ZQVHlXMHfGxkqGOYxLU-TB736lLreb7hHHXo" style=3D"disp=
+lay:inline-block;background:#EA4C89;color:#ffffff;font-family:'Helvetica', =
+'Arial', sans-serif;font-size:15px;font-weight:normal;line-height:1.75;marg=
+in:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding=
+-alt:0px;border-radius:8px;" target=3D"_blank" class=3D"vdt_link"><!-- CDAT=
+A_OPEN --><span style=3D"font-size: 16px;"><strong>Watch now!</strong></spa=
+n><!-- CDATA_CLOSE --></a></td></tr></table></td></tr></tbody></table></td>=
+</tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]-->=
+</td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><table =
+align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+" style=3D"width:600px;" width=3D"600" ><tr><td style=3D"line-height:0px;fo=
+nt-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"margin=
+:0px auto;max-width:600px;"><table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;"><tbod=
+y><tr><td style=3D"direction:ltr;font-size:0px;padding:20px;padding-bottom:=
+24px;padding-left:8px;padding-right:8px;padding-top:48px;text-align:center;=
+"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;wid=
+th:584px;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-group-fi=
+x" style=3D"font-size:0px;text-align:left;direction:ltr;display:inline-bloc=
+k;vertical-align:top;width:100%;"><table border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D=
+"vertical-align:top;padding:0;"><table border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td align=3D"c=
+enter" style=3D"font-size:0px;padding:10px;word-break:break-word;"><div sty=
+le=3D"font-family:'Helvetica', 'Arial', sans-serif;font-size:14px;line-heig=
+ht:1.5;text-align:center;color:#9E9EA7;"><!-- CDATA_OPEN --><p><a class=3D"=
+vdt_link" href=3D"https://email.n.dribbble.com/c/eJytUslu2zAQ_Rr6EiSgSInLQY=
+fEsls4jesWbl30InAZxXK0QaLkOF9fyrETfUABApyN7808jlFlo_LnCkUPLZi8yaFyqa1LlftQE=
+j97o7gzdTmDOGAs5JIHQsxsbBnhhM3M5_NBtblyeX1-N68r19bFLI8JJiTAmAYBlaG4yzLKbEZF=
+QAhjlhkU4urOtrnWuoAz0T5WAmeYZACRUUobG2nCGQ601FhyAjBrYzu4QOCAYIw9wmeXRbx3ruk=
+QvUdk6c8U2buq2rtW5YHwdl91ve6MLwBEl65-gQrRxFjFIkrDDIjOrGZYywhkwBVoS4EzzTXWNu=
+Qsk2EYCc0ZV4GQwCLGiTQMEQaD19BDge3NuyCE9a5MP7SiiW116tNpBcfuku3qvjW-k2SAtr7ES=
+rB5X45Q44BXGC_tO4F5F_kSd9COpWsPWYDzno-PWGluR8aJYCSaSHat8mCDr3uSxeIbv_3x2Pf2=
+UL6Wb7tffx7JLnt1q-EtHY79rh7gfrNefImsyMSBLMpc3hcbib8f_8J8m56cqgUdErchv5vt8QW=
+H_GlIvurVNt38XJm1G_lpMt0c_w8HMG7cmwQ6H7s5eTFuEBH27CIib4xqAXxsQZCcI7FEiyV6EN=
+6YAl3NcWQPNq4dp-G0omnrkSqtVAlnvst-TGvcqTnnPpWcZs9fkf63lh2UTaEcfHQ0c_H4H5fr9=
+jKDvyWljP8D_aww4Q">Unsubscribe</a> from this type of email.<br>Dribbble Hol=
+dings, LTD.<br>524 Yates St =E2=80=A2 Victoria CA =E2=80=A2 V8W 1K8</p><!--=
+ CDATA_CLOSE --></div></td></tr></tbody></table></td></tr></tbody></table><=
+/div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></ta=
+ble></div><!--[if mso | IE]></td></tr></table><![endif]--></div><img width=
+=3D"1px" height=3D"1px" alt=3D"" src=3D"https://email.n.dribbble.com/o/eJyl=
+UMtuwyAQ_Bp8iRrxMoYDl7yO_QULw5JS2cbCJFX-vthKW1fqracdZkY7w1ozTCZcR1QfEtgwBRh=
+z6-JgQqFO-lpAv7dxqOyPERaynW_dO9i8uE4wF2X3iLe0Q1S69Ymo2lmTAAp3pkgdkbyg8wUdZA=
+GV007Qhort3rtJweQQ1-RjHHOKfRU0xZQSjBkhTHG5954J55kklArhhEUcj3uXQtd1PaxV37RUS=
+jKiasDecgXeUtcZQy2vPa49b7ap__tH0u6eicSEYoxLlT8PNqW4RLSjGWDNebbdevJjWrVX-Jh7=
+yBlSBZoIwRvVECl_WWGYepPhe99W_IJtcIu0HK5hvMr6Dik-x8uTLVMxJppPIr6jHg"></body>=
+</html>
+
+--09e4b46246c85bda2d51ba7f1cfe1163302fd271cc4938899bd8d477cc3e--

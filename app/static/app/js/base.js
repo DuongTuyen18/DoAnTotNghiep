@@ -66,14 +66,12 @@ $(document).ready(function () {
     // Thêm class 'active' vào mục được click
     $(this).addClass("active");
   });
+
+
   $(".list-file-email .item-file-email").click(function () {
     localStorage.setItem("activeTab", $(this).attr("id"));
-    localStorage.setItem("activeTab_menucontent", "inforemail_content");
   });
 
-  $("#list-menu-right-content .nav-item .nav-link").click(function () {
-    localStorage.setItem("activeTab_menucontent", $(this).attr("id"));
-  });
 
 
 

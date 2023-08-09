@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .utils import list_from_by_to,find_most_sent_emails, find_most_received_emails, count_emails_received_by_email, count_emails_sent_by_email, count_spam_emails, list_from_extract_phone_number, list_bcc_extract_email_address, list_cc_extract_email_address, list_to_extract_email_address, list_from_extract_email_address, convert_eml_to_html, list_to_by_from, check_email_availability,find_links_by_emails,get_list_from_and_to,convert_graph_to_json,create_link_analysis,wordcloud_view,List_Infor_Email_Eml,get_list_from,inforEmail,convert_eml_to_csv,clear_folder_in_media,read_csv_file,convert_csv_to_dataframe,get_data_day_statistical,get_data_month_statistical,get_data_year_statistical,get_list_to
+from .utils import *
 import os
 import zipfile
 import email
@@ -12,12 +12,13 @@ import json
 from django.http import JsonResponse
 import pandas as pd
 import networkx as nx
+from datetime import datetime,timedelta
+
 folder_name = ''
 filecsv_name = ''
 path_file_export = ''
 def check_email(request):
     email = request.GET.get('sender_email')
-    print(email)
     if email:
         is_available = check_email_availability(email)
         response = {'available': is_available}
@@ -47,7 +48,7 @@ def choosefolder(request):
             with open(os.path.join(upload_path, file_name), 'wb+') as destination:
                 for chunk in file.chunks():
                     destination.write(chunk)
-        return redirect("emaildatafile")
+        return redirect("analysis")
     
 def export_csv(request):
     global folder_name
@@ -168,7 +169,7 @@ def link_analysis(request):
     return render(request,'app/emailcsvfile/link_analysis.html',context)
 
     
-def persons(request):
+def persons_csv(request):
     global filecsv_name
     #folder_path = Path(folder_path)
     csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
@@ -198,6 +199,7 @@ def person_detail(request, email):
     # Lấy ra danh sách các email nhận thư từ email truyền vào
     list_received = list_to_by_from(data_detail,email)
     list_sent =list_from_by_to(data_detail,email)
+    list_display_name = get_display_names_by_email(data_detail,email)
     context = {
         'filecsv_name': filecsv_name,
         'list_form_and_to': list_form_and_to, 
@@ -209,13 +211,59 @@ def person_detail(request, email):
         'list_most_sent_emails': list_most_sent_emails,
         'most_sent_count': most_sent_count,
         'list_received' : list_received,
-        'list_sent': list_sent
+        'list_sent': list_sent,
+        'list_display_name': list_display_name
         }
     return render(request,'app/emailcsvfile/persons/person_detail.html',context)
 
-def link_analysis_choose_email(request):
+
+
+def person_sent(request, email):
     global filecsv_name
     #folder_path = Path(folder_path)
+    csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
+    path_file_csv = os.path.join(csv_file_path, filecsv_name) 
+    data_detail = convert_csv_to_dataframe(path_file_csv)
+    list_form_and_to = get_list_from_and_to(data_detail)
+    list_email_sent = data_detail[data_detail['Sender_email'] == email]
+    # Chuyển đổi định dạng ngày tháng trong danh sách
+    list_received = list_to_by_from(data_detail,email)
+
+    daterangetype = request.GET.get('daterangetype')
+    todisplay = request.GET.get('todisplay')
+   
+    if daterangetype:
+        if daterangetype != "all_date":
+            if daterangetype == "older_than_week":
+                now = datetime.now()
+                from_date = now - timedelta(days=7)
+                
+            elif daterangetype == "older_than_month":
+                now = datetime.now()
+                from_date = now - timedelta(days=30)
+            elif daterangetype == "older_than_year":
+                now = datetime.now()
+                from_date = now - timedelta(days=365)
+            from_date = pd.to_datetime(from_date)
+            # Lọc các dòng có cột "Date" nằm trong khoảng từ "from-date" đến "to-date"
+            list_email_sent = list_email_sent[(list_email_sent['Date'] >= from_date)]
+    if todisplay:
+        if todisplay != "null_email":
+            list_email_sent = list_email_sent[(list_email_sent['To'] == todisplay)]
+
+    list_email_sent['Date'] = list_email_sent['Date'].dt.strftime('%d/%m/%Y')  # Chuyển đổi thành chuỗi với định dạng 'dd/mm/yyyy'
+    list_email_sent = list_email_sent.to_dict('records')
+    context ={
+        'filecsv_name': filecsv_name,
+        'list_form_and_to': list_form_and_to, 
+        'email': email,
+        'list_email_sent' : list_email_sent,
+        'list_received' : list_received
+    }
+    return render(request,'app/emailcsvfile/persons/person_sent.html',context)
+
+def link_analysis_choose_email(request):
+    global filecsv_name
     csv_file_path = os.path.join(settings.MEDIA_ROOT, 'csv_file')
     path_file_csv = os.path.join(csv_file_path, filecsv_name) 
     data_detail = convert_csv_to_dataframe(path_file_csv)
@@ -237,9 +285,7 @@ def get_list_to_by_from(request):
     path_file_csv = os.path.join(csv_file_path, filecsv_name) 
     data_detail = convert_csv_to_dataframe(path_file_csv)
     sender_email = request.GET.get('sender_email')
-    print("email: "+sender_email)
     list_to = list_to_by_from(data_detail,sender_email)
-    print(list_to)
     return JsonResponse({'list_to_by_from': list_to})
 
 def dashboard_csv(request):
@@ -344,14 +390,13 @@ def csvdatafile(request):
 
 def emaildatafile(request):
     global folder_name
-    #folder_path = Path(folder_path)
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
     data=List_Infor_Email_Eml(folder_path)
     if not data:
         return redirect("base") 
     else:   
         context = {'list_email':data,'folder_name':folder_name}
-        return render(request,'app/emaildatafile.html',context)
+        return render(request,'app/analysis/home_analysis/emaildatafile.html',context)
     
 
 def home(request):
@@ -359,7 +404,7 @@ def home(request):
 
 
 
-def inforemail_content(request, filename):
+def inforemail_content(request,filename ,mesageid):
     global folder_name
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
     data=List_Infor_Email_Eml(folder_path)
@@ -368,11 +413,11 @@ def inforemail_content(request, filename):
     else:   
         eml_file_path = folder_path+"\\"+filename
         infor_email = inforEmail(eml_file_path)
-        context = {'list_email':data,'infor_email': infor_email,'file_name':filename,'folder_name':folder_name}
-        return render(request, 'app/inforEmaildatafile_content.html', context)
+        context = {'list_email':data,'infor_email': infor_email,'mesageid': mesageid,'file_name':filename,'folder_name':folder_name}
+        return render(request, 'app/analysis/home_analysis/inforEmaildatafile_content.html', context)
 
     
-def inforemail_massageheader(request, filename):
+def inforemail_massageheader(request, filename, mesageid):
     global folder_name
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
     data=List_Infor_Email_Eml(folder_path)
@@ -381,10 +426,10 @@ def inforemail_massageheader(request, filename):
     else: 
         eml_file_path =folder_path+"\\"+filename
         infor_email = inforEmail(eml_file_path)
-        context = {'list_email':data,'infor_email': infor_email,'file_name':filename,'folder_name':folder_name}
-        return render(request, 'app/inforEmaildatafile_massageheader.html', context)
+        context = {'list_email':data,'infor_email': infor_email,'mesageid': mesageid, 'file_name': filename,'folder_name': folder_name}
+        return render(request, 'app/analysis/home_analysis/inforEmaildatafile_massageheader.html', context)
 
-def inforemail_hexview(request, filename):
+def inforemail_hexview(request, filename, mesageid):
     global folder_name
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
     data=List_Infor_Email_Eml(folder_path)
@@ -393,8 +438,8 @@ def inforemail_hexview(request, filename):
     else: 
         eml_file_path = folder_path+"\\"+filename
         infor_email = inforEmail(eml_file_path)
-        context = {'list_email':data,'infor_email': infor_email,'file_name':filename,'folder_name':folder_name}
-        return render(request, 'app/inforEmaildatafile_hexview.html', context)
+        context = {'list_email':data,'infor_email': infor_email,'file_name': filename,'mesageid': mesageid,'folder_name': folder_name}
+        return render(request, 'app/analysis/home_analysis/inforEmaildatafile_hexview.html', context)
 
 def read_files_in_folder(request):
     folder_path = "D:\\hoc tap\\DoAn\\ProjectDoAn\\EmailForensicTool\\media\\uploads\\"
@@ -434,6 +479,17 @@ def extract_phone_number(request):
         context = {'list_email':data,'folder_name':folder_name}
         return render(request,'app/extract/phone_number.html',context)
 
+def extract_links(request):
+    global folder_name
+    global path_file_export
+    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(upload_path)
+    if not data:
+        return redirect("base")
+    else:
+        context = {'list_email':data,'folder_name':folder_name}
+        return render(request,'app/extract/email_links.html',context)
+    
 def save_extract_email_address(request):
     global folder_name
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
@@ -464,6 +520,21 @@ def save_extract_phone_number(request):
                 return response
         return HttpResponse('File not found.', status=404)
     
+def save_extract_links(request):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    path_file_extract = os.path.join(settings.MEDIA_ROOT, 'extract/links.txt')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base")
+    else:   
+        if os.path.exists(path_file_extract):
+            with open(path_file_extract, 'rb') as file:
+                response = HttpResponse(file.read(), content_type='text')
+                response['Content-Disposition'] = 'attachment; filename="'+folder_name+'_links.txt"'
+                return response
+        return HttpResponse('File not found.', status=404)
+
 def action_extract_email_address(request):
     select_from = request.GET.get('select_from')
     select_to = request.GET.get('select_to')
@@ -519,7 +590,7 @@ def action_extract_phone_number(request):
     phone_number =[]
 
     if data:
-        phone_number = list_from_extract_phone_number(upload_path)
+        phone_number = list_extract_phone_number(upload_path)
     # Tạo một set để lưu trữ các địa chỉ email duy nhất
     unique_phone_number = set(phone_number)
 
@@ -542,14 +613,251 @@ def action_extract_phone_number(request):
     # Trả về JsonResponse
     return JsonResponse(json_data, safe=False)
 
-def view_content(request):
-    if request.method == 'POST':
-        folder = request.FILES.get('folder', None)
-        if folder is not None:
-            # folder_path = folder.temporary_file_path()
-            # Xử lý đường dẫn của thư mục ở đây
-            return HttpResponse(f'Đã chọn thư mục: {folder}')
-    return render(request, 'app/home.html')
+def action_extract_links(request):
+    global folder_name
+    global path_file_export
+    upload_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data = List_Infor_Email_Eml(upload_path)
+    links = []
+    if data:
+        links = list_extract_links(upload_path)
+    # Tạo một set để lưu trữ các đường link duy nhất
+    unique_links = set(links)
+    # Chuyển đổi set thành danh sách
+    list_links = list(unique_links)
+    extract_path = os.path.join(settings.MEDIA_ROOT, 'extract')
+    extract_file_path = os.path.join(extract_path, 'links.txt')
+    # Kiểm tra nếu thư mục chưa tồn tại
+    if not os.path.exists(extract_path):
+        # Tạo thư mục mới
+        os.makedirs(extract_path)
+    # Ghi danh sách đường link vào file
+    with open(extract_file_path, 'w') as file:
+        for link in list_links:
+            file.write(link + '\n')
+    # Chuyển đổi danh sách thành chuỗi JSON
+    json_data = json.dumps(list_links)
+    # Trả về JsonResponse
+    return JsonResponse(json_data, safe=False)
+
+################################################################## ANALYSIS ##################################################################
+
+def analysis(request):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base") 
+    else:   
+        context = {'list_email':data,'folder_name':folder_name}
+        return render(request,'app/analysis/home_analysis/emaildatafile.html',context)
+
+
+def dashboard(request):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base") 
+    else:   
+        data_detail = convert_eml_to_dataframe(folder_path)
+        data_day_statistical = get_data_day_statistical(data_detail)
+        data_month_dtatistical = get_data_month_statistical(data_detail)
+        data_year_dtatistical = get_data_year_statistical(data_detail)
+        data_day_statistical_json = json.dumps(data_day_statistical.to_dict('records'))
+        data_month_statistical_json = json.dumps(data_month_dtatistical.to_dict('records'))
+        data_year_statistical_json = json.dumps(data_year_dtatistical.to_dict('records'))
+        top_senders =get_top_senders(data_detail)
+        top_senders = top_senders.to_dict('records')
+        top_receive=get_top_receive(data_detail)
+        top_receive = top_receive.to_dict('records')
+        context = {
+            'folder_name': folder_name,
+            'data_day_statistical_json': data_day_statistical_json,
+            'data_month_statistical_json': data_month_statistical_json,
+            'data_year_statistical_json': data_year_statistical_json,
+            'top_senders' : top_senders,
+            'top_receive': top_receive
+            }
+        return render(request,'app/analysis/dashboard.html',context)
+def tabledataframe(request):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base") 
+    else:  
+        keyword_search = request.GET.get('keyword_search')
+        # Lấy giá trị từ ô nhập liệu "from-date"
+        from_date = request.GET.get('from_date')
+        to_date = request.GET.get('to_date')
+        data_detail = convert_eml_to_dataframe(folder_path)
+        if keyword_search:
+            # Tạo điều kiện lọc cho các cột "From", "To", "Subject", và "Content"
+            condition = (
+                data_detail['file'].str.contains(keyword_search, case=False, na=False) |
+                data_detail['From'].str.contains(keyword_search, case=False, na=False) |
+                data_detail['To'].str.contains(keyword_search, case=False, na=False) |
+                data_detail['Subject'].str.contains(keyword_search, case=False, na=False) |
+                data_detail['Content'].str.contains(keyword_search, case=False, na=False)
+            )
+            # Lọc dữ liệu theo điều kiện
+            data_detail = data_detail[condition]
+        if from_date and to_date:
+            # Chuyển giá trị từ ô nhập liệu "from-date" và "to-date" thành kiểu datetime
+            from_date = pd.to_datetime(from_date)
+            to_date = pd.to_datetime(to_date)
+            # Lọc các dòng có cột "Date" nằm trong khoảng từ "from-date" đến "to-date"
+            data_detail = data_detail[(data_detail['Date'] >= from_date) & (data_detail['Date'] <= to_date)]
+        # Chuyển đổi DataFrame thành danh sách dict
+        data_list = data_detail.to_dict('records')
+        paginator = Paginator(data_list, 12)  # mỗi trang có tối đa 12 phần tử
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'folder_name': folder_name,
+            'page_obj': page_obj
+            }
+        return render(request, 'app/analysis/tabledataframe.html', context)
+    
+def linkanalysis(request):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base") 
+    else:  
+        data_detail = convert_eml_to_dataframe(folder_path)
+        list_form_and_to = get_list_from_and_to(data_detail)
+        context = {'folder_name':folder_name,'list_form_and_to':list_form_and_to}
+        return render(request,'app/analysis/linkanalysis.html',context)
+
+def linkanalysisjson(request):
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data_detail = convert_eml_to_dataframe(folder_path)
+    list_email = request.GET.getlist('list_email[]')
+    link_analysis_data, link_counts = find_links_by_emails(data_detail,list_email)
+    link_analysis_data_int = nx.Graph()
+    for u, v, attr in link_analysis_data.edges(data=True):
+        attr['count'] = int(attr['count'])
+        link_analysis_data_int.add_edge(u, v, **attr)
+    link_analysis_json = convert_graph_to_json(link_analysis_data)
+    return JsonResponse(link_analysis_json, safe=False)
+
+def persons(request):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base") 
+    else:  
+        data_detail = convert_eml_to_dataframe(folder_path)
+        keyword_search = request.GET.get('keyword_search')
+        if keyword_search:
+            list_form_and_to = get_list_from_and_to(data_detail, keyword_search=keyword_search)
+        else:
+            list_form_and_to = get_list_from_and_to(data_detail)
+        context = {'folder_name':folder_name,'list_form_and_to':list_form_and_to}
+        return render(request,'app/analysis/persons_analysis/persons.html',context)
+    
+def personinfor(request, email):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base") 
+    else:  
+        data_detail = convert_eml_to_dataframe(folder_path)
+        list_form_and_to = get_list_from_and_to(data_detail)
+        count_emails_sent = count_emails_sent_by_email(data_detail, email)
+        count_emails_received = count_emails_received_by_email(data_detail, email)
+        # lấy ra danh sách email mà email truyền vào gửi nhiều thư đến nhất
+        list_most_received_emails, most_received_count = find_most_received_emails(data_detail, email)
+        # lấy ra danh sách email mà gửi nhiều thư đến email truyền vào nhất
+        list_most_sent_emails, most_sent_count = find_most_sent_emails(data_detail, email)
+        # Lấy ra danh sách các email nhận thư từ email truyền vào
+        list_received = list_to_by_from(data_detail,email)
+        list_sent =list_from_by_to(data_detail,email)
+        list_display_name = get_display_names_by_email(data_detail,email)
+        context = {
+            'folder_name': folder_name,
+            'list_form_and_to': list_form_and_to, 
+            'email': email, 
+            'count_emails_sent' : count_emails_sent,
+            'count_emails_received': count_emails_received,
+            'list_most_received_emails': list_most_received_emails,
+            'most_received_count': most_received_count,
+            'list_most_sent_emails': list_most_sent_emails,
+            'most_sent_count': most_sent_count,
+            'list_received' : list_received,
+            'list_sent': list_sent,
+            'list_display_name': list_display_name
+            }
+        return render(request,'app/analysis/persons_analysis/personinfor.html',context)
+
+def personsent(request, email):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base") 
+    else:  
+        data_detail = convert_eml_to_dataframe(folder_path)
+        list_form_and_to = get_list_from_and_to(data_detail)
+        list_email_sent = data_detail[data_detail['Sender_email'] == email]
+        # Chuyển đổi định dạng ngày tháng trong danh sách
+        list_received = list_to_by_from(data_detail,email)
+        daterangetype = request.GET.get('daterangetype')
+        todisplay = request.GET.get('todisplay')
+        if daterangetype:
+            if daterangetype != "all_date":
+                if daterangetype == "older_than_week":
+                    now = datetime.now()
+                    from_date = now - timedelta(days=7)
+                    
+                elif daterangetype == "older_than_month":
+                    now = datetime.now()
+                    from_date = now - timedelta(days=30)
+                elif daterangetype == "older_than_year":
+                    now = datetime.now()
+                    from_date = now - timedelta(days=365)
+                from_date = pd.to_datetime(from_date)
+                # Lọc các dòng có cột "Date" nằm trong khoảng từ "from-date" đến "to-date"
+                list_email_sent = list_email_sent[(list_email_sent['Date'] >= from_date)]
+        if todisplay:
+            if todisplay != "null_email":
+                list_email_sent = list_email_sent[(list_email_sent['To'] == todisplay)]
+        list_email_sent['Date'] = list_email_sent['Date'].dt.strftime('%d/%m/%Y')  # Chuyển đổi thành chuỗi với định dạng 'dd/mm/yyyy'
+        list_email_sent = list_email_sent.to_dict('records')
+        context ={
+            'folder_name': folder_name,
+            'list_form_and_to': list_form_and_to, 
+            'email': email,
+            'list_email_sent' : list_email_sent,
+            'list_received' : list_received
+        }
+        return render(request,'app/analysis/persons_analysis/personsent.html',context)
+    
+def personsentemail(request, email, mesageid):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base") 
+    else:  
+        data_detail = convert_eml_to_dataframe(folder_path)
+        list_form_and_to = get_list_from_and_to(data_detail)
+        email_by_masageid = data_detail[(data_detail['MessageID'] == mesageid)]
+        email_by_masageid = email_by_masageid.to_dict('records')
+        context = {
+            'folder_name':folder_name,
+            'list_form_and_to':list_form_and_to,
+            'email': email,
+            'email_by_masageid':email_by_masageid
+        }
+        return render(request,'app/analysis/persons_analysis/emailbymasageid.html',context)
+################################################################## END ANALYSIS ##################################################################
+
 
 def clearfilefolders(request):
     clear_folder_in_media('uploads')
