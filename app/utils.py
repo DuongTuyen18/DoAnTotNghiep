@@ -1,4 +1,5 @@
 import os
+import io
 import csv
 from email.utils import parseaddr
 from email.parser import Parser
@@ -109,7 +110,9 @@ def list_to_by_from(data_detail,sender_email):
         to = row['To']
         count = row['Count']
         result_list.append({'sender_email': sender, 'to': to, 'counts': count})
-    return result_list
+    # Sắp xếp danh sách theo trường 'counts' giảm dần   
+    sorted_result_list = sorted(result_list, key=lambda x: x['counts'], reverse=True)
+    return sorted_result_list
 
 def list_from_by_to(data_detail,received_emails):
     filtered_data = data_detail[data_detail['To'] == received_emails]
@@ -120,7 +123,9 @@ def list_from_by_to(data_detail,received_emails):
         to = row['To']
         count = row['Count']
         result_list.append({'sender_email': sender, 'to': to, 'counts': count})
-    return result_list
+        # Sắp xếp danh sách theo trường 'counts' giảm dần   
+    sorted_result_list = sorted(result_list, key=lambda x: x['counts'], reverse=True)
+    return sorted_result_list
 
 def get_list_from(data_detail):
     list_from = data_detail.groupby(['Sender_name', 'Sender_email']).size().reset_index()
@@ -207,6 +212,22 @@ def get_data_year_statistical(data_detail):
     year_statistical["counts"] = year_statistical["counts"].fillna(0)
     return year_statistical
 
+def get_date_statistical(data_detail, email):
+    data_date_statistical = pd.DataFrame()
+    date_statistical = pd.DataFrame()
+    # Tạo điều kiện kiểm tra
+    condition = (data_detail['Sender_email'] == email) | (data_detail['To'] == email)
+    # Lọc dữ liệu dựa trên điều kiện
+    filtered_data = data_detail[condition].sort_values(by="Date", ascending=True)
+    data_date_statistical["Date"] = filtered_data['Date'].apply(lambda x: x.strftime("%d/%m/%Y"))
+    date_statistical["Date"] = data_date_statistical["Date"].unique()  # Lấy danh sách các ngày tháng năm duy nhất
+    print(date_statistical)
+    # Tính số lần xuất hiện của mỗi ngày tháng năm
+    date_statistical["counts"] = date_statistical["Date"].map(data_date_statistical["Date"].value_counts())
+    date_statistical["counts"] = date_statistical["counts"].fillna(0)
+    return date_statistical
+
+
 def wordcloud_view(data_detail):
     # Chuỗi văn bản đầu vào
     text = ' '.join(data_detail['Content'])
@@ -245,7 +266,7 @@ def create_link_analysis(data_detail):
         G.add_edge(sender_email, to)
     return G,link_counts
 
-def find_links_by_emails(data_detail, email_list):
+def find_links_by_list_email(data_detail, email_list):
     # Tạo một danh sách chứa tất cả các email trong email_list
     all_emails = set(email_list)
     # Tạo đồ thị và thêm các email trong danh sách này vào đồ thị là các nút
@@ -265,6 +286,37 @@ def find_links_by_emails(data_detail, email_list):
         G.add_edge(sender_email, to)
         G.edges[sender_email, to]['count'] = count
     return G, link_counts
+
+def find_links_by_single_email(data_detail, base_email):
+    # Tạo danh sách chứa tất cả các email, bao gồm email truyền vào và các email liên quan
+    all_emails = set([base_email])
+    all_related_emails = set(data_detail[data_detail['Sender_email'] == base_email]['To']).union(data_detail[data_detail['To'] == base_email]['Sender_email'])
+    all_emails.update(all_related_emails)
+
+    # Tạo đồ thị và thêm các email vào đồ thị là các nút
+    G = nx.Graph()
+    G.add_nodes_from(all_emails)
+
+    # Lọc ra các dòng có email liên quan đến base_email (gửi và nhận thư)
+    filtered_data = data_detail[(data_detail['Sender_email'] == base_email) | (data_detail['To'] == base_email)]
+
+    # Xác định danh sách các liên kết chỉ giữa email liên quan đến base_email và các email khác
+    links = filtered_data[['Sender_email', 'To']].values.tolist()
+
+    # Đếm số lần xuất hiện của mỗi liên kết
+    link_counts = pd.DataFrame(links, columns=['Sender_email', 'To']).value_counts()
+
+    # Thêm các liên kết vào đồ thị là các cạnh
+    for link in links:
+        sender_email, to = link
+        count = link_counts[(link_counts.index.get_level_values('Sender_email') == sender_email) & (link_counts.index.get_level_values('To') == to)].values[0]
+        G.add_edge(sender_email, to)
+        G.edges[sender_email, to]['count'] = count
+
+    return G, link_counts
+
+
+
 
 def is_spam_email(email):
     # Các quy tắc đơn giản để phát hiện email thư rác
@@ -373,6 +425,17 @@ def inforEmail(file_path):
             subject_decoded += part[0].decode(part[1] or 'utf-8')
         else:
             subject_decoded += part[0]
+
+    email_content_text = ''
+    for part in eml_message.walk():
+        if part.get_content_type() in ["text/plain", "text/html"]:
+            # Lấy nội dung của phần tử
+            part_content = part.get_payload(decode=True).decode('utf-8', errors='ignore')
+            # Chuyển đổi nội dung HTML thành văn bản thuần túy
+            text_content = html2text.html2text(part_content)
+            # Thêm nội dung vào biến lưu trữ
+            email_content_text += text_content
+
     email_content = ''
     for part in eml_message.walk():
         content_type = part.get_content_type()
@@ -384,7 +447,7 @@ def inforEmail(file_path):
                 email_content += part.get_payload(decode=True).decode(charset)
             else:
                 email_content += part.get_payload(decode=True).decode('utf-8', errors='ignore')
-    data = {'file_name': file_path,'message_header':message_header,'hex_data':hex_view,'subject_email': subject_decoded, 'from_email' : from_email, 'sender_name' : sender_name, 'date_email' : date_email,'to':to,'cc':cc, 'email_content' : email_content}
+    data = {'file_name': file_path,'message_header':message_header,'hex_data':hex_view,'subject_email': subject_decoded, 'from_email' : from_email, 'sender_name' : sender_name, 'date_email' : date_email,'to':to,'cc':cc,'email_content_text':email_content_text ,'email_content' : email_content}
     return data
 
 def clear_folder_in_media(folder_name):
@@ -733,4 +796,10 @@ def get_top_receive(data_detail):
     top_5_receive_names_data.columns = ['To', 'Count']
     return top_5_receive_names_data
 
-# Ví dụ sử dụng hàm get_top_send
+def create_wordcloud(text):
+    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+    # Lưu word cloud dưới dạng hình ảnh và chuyển thành base64
+    img = io.BytesIO()
+    wordcloud.to_image().save(img, format='PNG')
+    img_base64 = base64.b64encode(img.getvalue()).decode('utf-8')
+    return img_base64

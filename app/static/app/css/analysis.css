@@ -98,6 +98,10 @@
     font-weight: 500;
 }
 
+.weight-600{
+    font-weight: 600;
+}
+
 .tooltip {
     position: absolute;
     background-color: white;
@@ -105,4 +109,19 @@
     padding: 10px;
     opacity: 0; /* Ban đầu ẩn tooltip */
     pointer-events: none; /* Để tooltip không ảnh hưởng tới sự kiện chuột của nút */
+}
+
+.icon-lg{
+    width: 64px;
+    height: 64px;
+}
+
+.height-400{
+    height: 400px;
+}
+
+.card_email{
+    height: 156px;
+    color: inherit;
+    text-decoration: none;
 }

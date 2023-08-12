@@ -149,7 +149,7 @@
             </thead>
             <tbody>
               {% for row in page_obj %}
-              <tr class="item-action cursor-pointer" data-bs-toggle="offcanvas" onclick="view_datafram_detail(`{{ row.file}}`,`{{ row.MassageID}}`,`{{ row.Date}}`,`{{ row.Sender_name}}`,`{{ row.Sender_email}}`,`{{ row.To}}`,`{{ row.Subject}}`,`{{ row.MimeVersion}}`,`{{ row.ContentType}}`,`{{ row.ContentTransferEncoding}}`,`{{ row.Xcc}}`,`{{ row.Xbcc}}`,`{{ row.Content}}`)" data-bs-target="#offcanvas_datatable_detail">
+              <tr class="item-action cursor-pointer" data-bs-toggle="offcanvas" onclick="view_datafram_detail(`{{ row.file}}`,`{{ row.MessageID}}`,`{{ row.Date}}`,`{{ row.Sender_name}}`,`{{ row.Sender_email}}`,`{{ row.To}}`,`{{ row.Subject}}`,`{{ row.MimeVersion}}`,`{{ row.ContentType}}`,`{{ row.ContentTransferEncoding}}`,`{{ row.Xcc}}`,`{{ row.Xbcc}}`,`{{ row.Content}}`)" data-bs-target="#offcanvas_datatable_detail">
                 <td>{{ row.file}}</td>
                 <td>{{ row.MessageID }}</td>
                 <td>{{ row.Date }}</td>
@@ -233,10 +233,10 @@
           }
           window.location.href = currentUrl;
         }
-        function view_datafram_detail( file_name, MassageID, Date, Sender_name, Sender_email, To, Subject, MimeVersion, ContentType, ContentTransferEncoding, Xcc, Xbcc, Content) 
+        function view_datafram_detail( file_name, MessageID, Date, Sender_name, Sender_email, To, Subject, MimeVersion, ContentType, ContentTransferEncoding, Xcc, Xbcc, Content) 
         {
           $("#dataframe_filename").text(file_name);
-          $("#dataframe_message_id").text(MassageID);
+          $("#dataframe_message_id").text(MessageID);
           $("#dataframe_date").text(Date);
           $("#dataframe_sender_name").text(Sender_name);
           $("#dataframe_sender_email").text(Sender_email);

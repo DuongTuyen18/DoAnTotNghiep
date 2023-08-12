@@ -177,10 +177,42 @@
     background-color: #e9e9e9c7;
 }
 
+
+/* ========================================DASHBOARD================================================ */
 .bg-gradient-info{
     background-image: linear-gradient(195deg, #49a3f1 0%, #1A73E8 100%)
 }
 
 .border-radius-lg{
     border-radius: .5rem;
+}
+
+.bg-gradient-primary{
+    background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+}
+
+.bg-gradient-success{
+    background-image: linear-gradient(195deg, #66BB6A 0%, #43A047 100%);
+}
+
+.bg-gradient-dark{
+    background-image: linear-gradient(195deg, #42424a 0%, #191919 100%);
+}
+
+.icon-lg i {
+    top: 31%;
+    font-size: 1.5rem;
+}
+.icon-shape i {
+    color: #fff;
+    opacity: 0.8;
+    top: 11px;
+    position: relative;
+}
+
+.icon {
+    display: inline-block;
+    color: #111111;
+    height: 1em;
+    width: 1em;
 }

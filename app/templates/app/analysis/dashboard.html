@@ -15,7 +15,7 @@
           <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
             <div class="card z-index-2">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                <div class="bg-gradient-primary background-chart-day shadow-primary border-radius-lg py-3 pe-1" >
+                <div class="bg-gradient-primary  shadow-primary border-radius-lg py-3 pe-1" >
                   <div class="chart">
                     <canvas id="chart-day" class="chart-canvas" height="170"></canvas>
                   </div>
@@ -32,7 +32,7 @@
           <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
             <div class="card z-index-2">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                <div class="bg-gradient-primary background-chart-month shadow-primary border-radius-lg py-3 pe-1">
+                <div class="bg-gradient-success shadow-primary border-radius-lg py-3 pe-1">
                   <div class="chart">
                     <canvas id="chart-month" class="chart-canvas" height="170"></canvas>
                   </div>
@@ -49,7 +49,7 @@
           <div class="box-chart col-lg-4 col-md-6 mt-4 mb-4">
             <div class="card z-index-2">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                <div class="bg-gradient-primary background-chart-year shadow-primary border-radius-lg py-3 pe-1">
+                <div class="bg-gradient-dark shadow-primary border-radius-lg py-3 pe-1">
                   <div class="chart">
                     <canvas id="chart-year" class="chart-canvas" height="170"></canvas>
                   </div>
@@ -77,15 +77,13 @@
                   <table class="table align-items-center mb-0">
                     <thead>
                       <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Số lần gửi</th>
-                        <th class="text-secondary opacity-7"></th>
+                        <th class="text-uppercase text-secondary text-xxs ">Email</th>
+                        <th class="text-uppercase text-secondary text-xxs ">Số lần gửi</th>
+                        <th class="text-secondary"></th>
                       </tr>
-
                     </thead>
                     <tbody>
                     {% for senders in top_senders %}
-
                       <tr>
                         <td>
                           <div class="d-flex px-2 py-1">
@@ -95,7 +93,11 @@
                           </div>
                         </td>
                         <td>
-                          <p class="text-xs text-secondary mb-0">{{senders.Count}}</p>
+                          <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                              <p class="text-xs text-secondary mb-0">{{senders.Count}}</p>
+                            </div>
+                          </div>
                         </td>
                         <td class="align-middle">
                           <a href="{%url 'personinfor' senders.Sender_email%}"  class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -123,9 +125,9 @@
                   <table class="table align-items-center mb-0">
                     <thead>
                       <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Số lần nhận</th>
-                        <th class="text-secondary opacity-7"></th>
+                        <th class="text-uppercase text-secondary text-xxs">Email</th>
+                        <th class="text-uppercase text-secondary text-xxs">Số lần nhận</th>
+                        <th class="text-secondary"></th>
                       </tr>
 
                     </thead>
@@ -141,7 +143,11 @@
                           </div>
                         </td>
                         <td>
-                          <p class="text-xs text-secondary mb-0">{{receive.Count}}</p>
+                          <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                              <p class="text-xs text-secondary mb-0">{{receive.Count}}</p>
+                            </div>
+                          </div>
                         </td>
                         <td class="align-middle">
                           <a href="{%url 'personinfor' receive.To%}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -167,8 +173,8 @@
       <script>
         $(document).ready(function () {
           Load_chart_day();
-          Load_month_day();
-          Load_year_day();
+          Load_chart_month();
+          Load_chart_year();
         });
         function Load_chart_day(){
           var data_day_statistical = JSON.parse("{{ data_day_statistical_json|escapejs }}");
@@ -257,7 +263,7 @@
             },
           });
         }
-        function Load_month_day(){
+        function Load_chart_month(){
           var data_month_statistical = JSON.parse("{{ data_month_statistical_json|escapejs }}");
       
           // Truy cập các giá trị "Day"
@@ -347,7 +353,7 @@
           });
         }
        
-        function Load_year_day(){
+        function Load_chart_year(){
           var data_year_statistical = JSON.parse("{{ data_year_statistical_json|escapejs }}");
           var labels = data_year_statistical.map((item) => item.Year.toString());
           var data_year = data_year_statistical.map((item) => item.counts);

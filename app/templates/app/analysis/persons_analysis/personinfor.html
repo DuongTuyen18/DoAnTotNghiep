@@ -11,13 +11,13 @@
                 <a class="nav-link" href="{%url 'personsent' email %}" id="person_list_to_nav">Thư đã gửi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{%url 'personsent' email %}" id="person_list_from_nav">Thư đã nhận</a>
+                <a class="nav-link" href="{%url 'personreceive' email %}" id="person_list_receive_nav">Thư đã nhận</a>
             </li>
         </ul>
     </div>
     <div id="content-right-content-person">
-         <div class="row" style="height: 100%; margin: 0px 0px !important;">
-            <div class="col-12 col-xl-12">
+         {% comment %} <div class="row" style="height: 100%; margin: 0px 0px !important;">
+            <div class="col-5 col-xl-5">
               <div class="card-body p-3">
                 <ul class="list-group">
                   <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa chỉ email:</strong> &nbsp;<label id="total_email">{{email}}</label></li>
@@ -31,164 +31,436 @@
                 </ul>
               </div>
             </div>
-          </div>  
-          {% comment %} <div class="container-fluid py-4" style="background-color: #f0f2f5 !important;">
-            <div class="row">
-              <div class="col-lg-4">
+          </div>   {% endcomment %}
+          <div class="container-fluid py-4 h-100" style="background-color: #f0f2f5 !important;">
+            <div class="row mb-4">
+              <div class="col-lg-4" style="height: 350px;" >
                 <div class="row">
-                  <div class="col-xl-12">
-                    <div class="row">
-                      <div class="col-md-6 col-6">
-                        <div class="card">
-                          <div class="card-header mx-4 p-3 text-center">
-                            <div class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
-                              <i class="material-icons opacity-10">account_balance</i>
-                            </div>
-                          </div>
-                          <div class="card-body pt-0 p-3 text-center">
-                            <h6 class="text-center mb-0">Salary</h6>
-                            <span class="text-xs">Belong Interactive</span>
-                            <hr class="horizontal dark my-3">
-                            <h5 class="mb-0">+$2000</h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-6">
-                        <div class="card">
-                          <div class="card-header mx-4 p-3 text-center">
-                            <div class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
-                              <i class="material-icons opacity-10">account_balance_wallet</i>
-                            </div>
-                          </div>
-                          <div class="card-body pt-0 p-3 text-center">
-                            <h6 class="text-center mb-0">Paypal</h6>
-                            <span class="text-xs">Freelance Payment</span>
-                            <hr class="horizontal dark my-3">
-                            <h5 class="mb-0">$455.00</h5>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 mb-lg-0 mb-4">
-                    <div class="card mt-4">
+                  <div class="col-md-12 mb-lg-0 mb-4" style="height: 170px;" >
+                    <div class="card">
                       <div class="card-header pb-0 p-3">
                         <div class="row">
                           <div class="col-6 d-flex align-items-center">
-                            <h6 class="mb-0">Payment Method</h6>
-                          </div>
-                          <div class="col-6 text-end">
-                            <a class="btn bg-gradient-dark mb-0" href="javascript:;"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add New Card</a>
+                            <h6 class="mb-0">Thông tin</h6>
                           </div>
                         </div>
                       </div>
                       <div class="card-body p-3">
                         <div class="row">
-                          <div class="col-md-6 mb-md-0 mb-4">
-                            <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                              <img class="w-10 me-3 mb-0" src="../assets/img/logos/mastercard.png" alt="logo">
-                              <h6 class="mb-0">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852</h6>
-                              <i class="material-icons ms-auto text-dark cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Card">edit</i>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                              <img class="w-10 me-3 mb-0" src="../assets/img/logos/visa.png" alt="logo">
-                              <h6 class="mb-0">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;5248</h6>
-                              <i class="material-icons ms-auto text-dark cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Card">edit</i>
+                          <div class="col-md-12 mb-md-0 mb-4">
+                            <div class="card card-body border card-plain border-radius-lg d-flex">
+                              <span class="mb-2 text-xs">Địa chỉ email: <span class="text-dark ms-sm-2 font-weight-bold">{{email}}</span></span>
+                              <span class="mb-2 text-xs">Tên hiển thị: {% if list_display_name%}<span class="text-dark ms-sm-2 font-weight-bold">{% for display_name in list_display_name %}"{{display_name}}"{% if not forloop.last %}, {% endif %} {% endfor %}</span>{% else %}Không có{% endif %}</span></span>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <div class="col-xl-12 mt-4">
+                    <div class="row">
+                      <div class="col-md-6 col-6">
+                        <a href="{%url 'personreceive' email %}" class="card card_email" >
+                          <div class="card-header text-center">
+                            <div class="icon icon-shape icon-lg bg-gradient-info  shadow text-center border-radius-lg">
+                              <i class="bi bi-envelope-open"></i>
+                            </div>
+                          </div>
+                          <div class="pt-0 text-center">
+                            <h6 class="text-center mb-0 weight-600">Thư gửi đến</h6>
+                            <hr style="margin: 8px 0 !important;"  class="horizontal dark">
+                            <h5 >{{count_emails_received}}</h5>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-md-6 col-6">
+                        <a href="{%url 'personsent' email %}" class="card card_email">
+                          <div class="card-header text-center">
+                            <div class="icon icon-shape icon-lg bg-gradient-success shadow text-center border-radius-lg">
+                              <i class="bi bi-envelope-paper"></i>
+                            </div>
+                          </div>
+                          <div class="pt-0 text-center">
+                            <h6 class="text-center mb-0 weight-600">Thư gửi đi</h6>
+                            <hr style="margin: 8px 0 !important;" class="horizontal dark">
+                            <h5 >{{count_emails_sent}}</h5>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="col-lg-8">
+
+              <div class="col-lg-4" style="height: 350px;">
+                <div class="card h-100">
+                  <div class="card-header pb-0 p-3" style="height: 35px;"> 
+                    <div class="row">
+                      <div class="col-12 d-flex align-items-center">
+                        <h6 class="mb-0">Danh sách email gửi thư</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body p-3" style="height: calc(100% - 35px);">
+                     <div class="table-responsive p-0 h-100">
+                        {% if list_sent%}
+                        <table class="table align-items-center mb-0 ">
+                          <thead>
+                            <tr>
+                              <th class="text-secondary text-xxs">Email</th>
+                              <th class="text-secondary text-xxs">Số lần</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {% for sent in list_sent %}
+                                <tr>
+                                  <td>
+                                    <div class="d-flex px-2 py-1">
+                                      <div class="d-flex flex-column justify-content-center">
+                                        <p class="text-xs text-secondary mb-0">{{sent.sender_email}}</p>
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <p class="text-xs text-secondary mb-0">{{sent.counts}}</p>
+                                  </td>
+                                </tr>
+
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                        {% else %}
+                          <tr>
+                            Dữ liệu trống!
+                          </tr>
+                        {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
                 <div class="card h-100">
                   <div class="card-header pb-0 p-3">
                     <div class="row">
                       <div class="col-6 d-flex align-items-center">
-                        <h6 class="mb-0">Invoices</h6>
-                      </div>
-                      <div class="col-6 text-end">
-                        <button class="btn btn-outline-primary btn-sm mb-0">View All</button>
+                        <h6 class="mb-0">Danh sách email nhận thư</h6>
                       </div>
                     </div>
                   </div>
                   <div class="card-body p-3 pb-0">
-                    <ul class="list-group">
-                      <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                        <div class="d-flex flex-column">
-                          <h6 class="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
-                          <span class="text-xs">#MS-415646</span>
-                        </div>
-                        <div class="d-flex align-items-center text-sm">
-                          $180
-                          <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-icons text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                        </div>
-                      </li>
-                      <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                        <div class="d-flex flex-column">
-                          <h6 class="text-dark mb-1 font-weight-bold text-sm">February, 10, 2021</h6>
-                          <span class="text-xs">#RV-126749</span>
-                        </div>
-                        <div class="d-flex align-items-center text-sm">
-                          $250
-                          <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-icons text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                        </div>
-                      </li>
-                      <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                        <div class="d-flex flex-column">
-                          <h6 class="text-dark mb-1 font-weight-bold text-sm">April, 05, 2020</h6>
-                          <span class="text-xs">#FB-212562</span>
-                        </div>
-                        <div class="d-flex align-items-center text-sm">
-                          $560
-                          <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-icons text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                        </div>
-                      </li>
-                      <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                        <div class="d-flex flex-column">
-                          <h6 class="text-dark mb-1 font-weight-bold text-sm">June, 25, 2019</h6>
-                          <span class="text-xs">#QW-103578</span>
-                        </div>
-                        <div class="d-flex align-items-center text-sm">
-                          $120
-                          <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-icons text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                        </div>
-                      </li>
-                      <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                        <div class="d-flex flex-column">
-                          <h6 class="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
-                          <span class="text-xs">#AR-803481</span>
-                        </div>
-                        <div class="d-flex align-items-center text-sm">
-                          $300
-                          <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-icons text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                        </div>
-                      </li>
-                    </ul>
+                    <div class="table-responsive p-0 h-100">
+                        {% if list_received%}
+                        <table class="table align-items-center mb-0 ">
+                          <thead>
+                            <tr>
+                              <th class="text-secondary text-xxs">Email</th>
+                              <th class="text-secondary text-xxs">Số lần</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for received in list_received %}
+                                <tr>
+                                  <td>
+                                    <div class="d-flex px-2 py-1">
+                                      <div class="d-flex flex-column justify-content-center">
+                                        <p class="text-xs text-secondary mb-0">{{received.to}}</p>
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <p class="text-xs text-secondary mb-0">{{received.counts}}</p>
+                                  </td>
+                                </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                        {% else %}
+                          <tr>
+                            Dữ liệu trống!
+                          </tr>
+                        {% endif %}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div> {% endcomment %}
+            <div class="row">
+              <div class="col-lg-6 col-md-6" style="height: 400px;">
+                <div class="card h-100">
+                  <div class="card-header pb-0">
+                    <div class="row">
+                      <div class="col-lg-12 col-12">
+                        <h6>THỜI GIAN NHẬN VÀ GỬI THƯ</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body p-3">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg h-100 p-3" >
+                      <div class="chart h-100">
+                        <canvas id="chart-date" class="chart-canvas"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6" style="height: 400px;">
+                <div class="card h-100">
+                  <div class="card-header pb-0">
+                    <div class="row">
+                      <div class="col-lg-12 col-12">
+                        <h6>PHÂN TÍCH LIÊN KẾT </h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body p-3">
+                    <div class="h-100">
+                      <div id="canvas_link" style="position: relative;" class="h-100" style="width: 100%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
 <script>
-    // Lấy URL hiện tại
-    debugger;
-    var currentUrl = window.location.href;
-    // Tách đoạn email sau cùng trong URL
-    var email = currentUrl.split('/').pop();
-    var activeTab_menucontent_person = "person_infor_nav";
-    // Kiểm tra nếu có giá trị, thêm class "active" vào thẻ a tương ứng
-    if (email) {
-      $("a[data-email='"+email + "']").addClass("active");
+
+
+    $(document).ready(function () {
+      // Lấy URL hiện tại
+      var currentUrl = window.location.href;
+      // Tách đoạn email sau cùng trong URL
+      var email = currentUrl.split('/').pop();
+      var activeTab_menucontent_person = "person_infor_nav";
+      // Kiểm tra nếu có giá trị, thêm class "active" vào thẻ a tương ứng
+      if (email) {
+        $("a[data-email='"+email + "']").addClass("active");
+      }
+      if (activeTab_menucontent_person) {
+        $('#list-menu-right-content .nav-item a').removeClass('active');
+        $('#' + activeTab_menucontent_person).addClass('active');
+      }
+      Load_chart();
+      Load_linkanalysis(email);
+    });
+    function Load_chart(){
+      var data_date_statistical = JSON.parse("{{ data_date_statistical_json|escapejs }}");
+      var labels = data_date_statistical.map((item) => item.Date.toString());
+      var data_date = data_date_statistical.map((item) => item.counts);
+      var ctx_date = document.getElementById("chart-date").getContext("2d");
+      console.log(labels);
+      new Chart(ctx_date, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Sum",
+              tension: 0.4,
+              borderWidth: 0,
+              borderRadius: 4,
+              borderSkipped: false,
+              backgroundColor: "rgba(255, 255, 255, .8)",
+              data: data_date,
+              maxBarThickness: 6,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+          interaction: {
+            intersect: false,
+            mode: "index",
+          },
+          scales: {
+            y: {
+              grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5],
+                color: "rgba(255, 255, 255, .2)",
+              },
+              ticks: {
+                display: true,
+                autoSkip: false,
+                suggestedMin: 0,
+                suggestedMax: 500,
+                beginAtZero: true,
+                padding: 10,
+                font: {
+                  size: 14,
+                  weight: 300,
+                  family: "Roboto",
+                  style: "normal",
+                  lineHeight: 2,
+                },
+                color: "#fff",
+              },
+            },
+            x: {
+              grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5],
+                color: "rgba(255, 255, 255, .2)",
+              },
+              ticks: {
+                display: true,
+                autoSkip: false,
+                color: "#f8f9fa",
+                padding: 10,
+                font: {
+                  size: 14,
+                  weight: 300,
+                  family: "Roboto",
+                  style: "normal",
+                  lineHeight: 2,
+                },
+              },
+            },
+          },
+        },
+      });
     }
-    if (activeTab_menucontent_person) {
-      $('#list-menu-right-content .nav-item a').removeClass('active');
-      $('#' + activeTab_menucontent_person).addClass('active');
+    function Load_linkanalysis(email){
+      $.ajax({
+        url: "/emaildatafile/linkanalysisjson_single_email",
+        type: "GET",
+        data: {
+          email: email
+          },
+        success: function(response) {
+            var linkAnalysisData = JSON.parse(response);
+            $("#canvas_link").html('');
+            var width = $("#canvas_link").width();
+            var height = $("#canvas_link").height();
+            // Thêm phần tử tooltip vào #canvas_link
+            d3.select("#canvas_link")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0); // Bạn có thể đặt opacity ban đầu là 0
+            // Tạo đối tượng SVG và gán nó cho phần tử có id là "canvas"
+            
+            var svg = d3.select("#canvas_link")
+            .append("svg")  
+            .style("width", width)
+            .style("height", height)  
+
+              // Xác định độ rộng và chiều cao của canvas
+            var width = svg.node().clientWidth;
+            var height = svg.node().clientHeight;
+            // Thiết lập thông tin về đồ thị (nodes và edges) từ dữ liệu linkAnalysisData
+            var nodes = linkAnalysisData.nodes;
+            var edges = linkAnalysisData.links;
+            edges.forEach(function(d) {
+              d.count = + d.count; // Chuyển đổi giá trị count sang kiểu số
+            });
+
+          var simulation = d3.forceSimulation(nodes)
+          .force("link", d3.forceLink(edges).id(function(d) { return d.id; }).distance(100)) // Thay đổi giá trị distance
+          .force("charge", d3.forceManyBody().strength(-3500))
+          .force("center", d3.forceCenter((width / 2)-80, height / 2))
+          .force("x", d3.forceX(width / 2).strength(0.4).x(d => Math.max(0, Math.min(width, d.x)))) // Giới hạn vị trí x của các node trong khung
+          .force("y", d3.forceY(height / 2).strength(1).y(d => Math.max(0, Math.min(height, d.y)))) // Giới hạn vị trí y của các node trong khung
+          
+          simulation.on("tick", function() {
+            // Cập nhật vị trí của các cạnh và nút dựa trên thông tin của simulation
+            link.attr("x1", function(d) { return d.source.x; })
+              .attr("y1", function(d) { return d.source.y; })
+              .attr("x2", function(d) { return d.target.x; })
+              .attr("y2", function(d) { return d.target.y; });
+            text_count.attr("x", function(d) { return (d.source.x + d.target.x) /2; })
+              .attr("y", function(d) { return (d.source.y+d.target.y)/2; });
+            circle_text.attr("cx", function(d) { return (d.source.x + d.target.x) /2; })
+              .attr("cy", function(d) { return (d.source.y+d.target.y)/2; });
+            // Cập nhật vị trí của các node và text
+            node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+          });
+
+          // Tạo một phần tử <g> để nhóm <line> và <text>
+            var linkGroup = svg.selectAll(".link-group")
+            .data(edges)
+            .enter()
+            .append("g")
+            .attr("class", "link-group");
+            // Vẽ cạnh (line)
+            var link = linkGroup.append("line")
+              .attr("class", "link")
+              .style("stroke", "gray")
+              .style("stroke-width", 1);
+            var circle_text = linkGroup.append("circle")
+              .attr("class", "count-circle")
+              .style("fill", "blue") // Đổi màu của hình tròn
+              .attr("r", 8); // Đặt bán kính của hình tròn
+            var text_count = linkGroup.append("text")
+              .attr("class", "counttext")
+              .style("text-anchor", "middle") // Căn giữa theo trục x
+              .style("dominant-baseline", "middle") // Căn giữa theo trục y
+              .style("font-weight", "bold") // Đặt độ đậm
+              .style("font-size", "12px") // Đặt kích thước
+              .style("fill", "white") 
+              .text(function(d) { return d.count; });
+
+          // Vẽ nút (nodes)
+          var node = svg.selectAll(".node")
+            .data(nodes)
+            .enter()
+            .append("g")
+            .attr("class", "node cursor-pointer");
+
+          // Vẽ hình tròn cho mỗi node
+          node.append("image")
+            .attr("xlink:href", personImageUrl)  // Đường dẫn đến hình ảnh của người
+            .attr("x", -10)  // Đặt vị trí x của hình ảnh
+            .attr("y", -10)  // Đặt vị trí y của hình ảnh
+            .attr("width", 20)  // Đặt chiều rộng của hình ảnh
+            .attr("height", 20)  // Đặt chiều cao của hình ảnh\
+            .on("mouseover", function(d) {
+              // Lấy vị trí của node
+              var nodeX = d.x;
+              var nodeY = d.y;
+              // Hiển thị tooltip dưới chân của node
+              d3.select(".tooltip")
+                  .style("opacity", 1)
+                  .html(`Email: ${d.id}`)
+                  .style("left", (nodeX + "px"))
+                  .style("top", (nodeY + 30 + "px")); // Điều chỉnh vị trí dưới chân node
+              })
+              .on("mouseout", function(d) {
+                  // Ẩn tooltip khi di chuột ra khỏi node
+                  d3.select(".tooltip").style("opacity", 0);
+              })
+          
+              .on("click", function(d) {
+                  // Xử lý sự kiện khi nút được click
+                  var email = d.id;  // Đây là giả định bạn lấy email từ d.id, bạn cần điều chỉnh tương ứng
+                  var url = "/emaildatafile/analysis/personinfor/" + email;
+                  window.open(url, '_blank');
+              });
+            
+          // Hiển thị tên của mỗi node
+          node.append("text")
+            .attr("dx", 0) // Dịch chuyển vị trí của text
+            .attr("dy", -10)
+            .text(function(d) { return d.id; });
+          
+
+        },
+        error: function(xhr, errmsg, err) {
+            // Xử lý lỗi nếu có
+            console.log(xhr.status + ": " + xhr.responseText);
+        }
+    });
     }
 </script>
 {% endblock person_right_content %}

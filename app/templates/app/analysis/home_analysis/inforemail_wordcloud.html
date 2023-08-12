@@ -1,0 +1,16 @@
+{% extends 'app/analysis/home_analysis/inforEmaildatafile.html' %}
+{%load static%}
+{% block content-right-content %}
+<img class="img-word-cloud" src="data:image/png;base64,{{ img_base64 }}" alt="Word Cloud">
+<script>
+    $(document).ready(function () {
+        var currentUrl = window.location.href;
+        var messageid = currentUrl.split('/').pop();
+        messageid = decodeURIComponent(messageid);
+        debugger;
+        $("a[data-messageid='"+messageid + "']").addClass("active");
+        $('#list-menu-right-content .nav-item a').removeClass('active');
+        $('#' + "inforemail_wordcloud").addClass('active');
+      })
+</script>
+{% endblock content-right-content %}

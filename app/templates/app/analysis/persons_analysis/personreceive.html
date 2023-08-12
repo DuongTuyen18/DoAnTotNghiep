@@ -20,7 +20,7 @@
     <div id="content-right-content-person">
       
         <div style="padding:10px" class="list-group">
-          <form  id="from_search" action="{% url 'personsent' email %}" method="get" class="d-flex">
+          <form  id="from_search" action="{% url 'personreceive' email %}" method="get" class="d-flex">
             <div class="btn-group mgb-10" role="group" aria-label="Button group with nested dropdown">
 
               <div class="dropdown mgr-10">
@@ -46,25 +46,25 @@
               </div>
 
               <div class="dropdown mgr-10">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="btn_dropdown_choose_received" data-bs-toggle="dropdown" aria-expanded="false">
-                  {% if request.GET.todisplay %}
-                    {% if  request.GET.todisplay == "null_email"%}
-                      Đến
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="btn_dropdown_choose_sent" data-bs-toggle="dropdown" aria-expanded="false">
+                  {% if request.GET.fromdisplay %}
+                    {% if  request.GET.fromdisplay == "null_email"%}
+                      Từ
                     {% else %}
-                      Đến {{request.GET.todisplay}}
+                      Từ {{request.GET.fromdisplay}}
                     {% endif %}
-                  {% else %}Đến {% endif %}</button>
+                  {% else %}Từ {% endif %}</button>
                 </button>
-                <input type="hidden" name="todisplay" id="todisplay" value="{% if request.GET.todisplay %}{{ request.GET.todisplay }}{% else %}null_email{% endif %}"/>
+                <input type="hidden" name="fromdisplay" id="fromdisplay" value="{% if request.GET.fromdisplay %}{{ request.GET.fromdisplay }}{% else %}null_email{% endif %}"/>
                 
-                <ul class="dropdown-menu " aria-labelledby="btn_dropdown_choose_received">
-                    {% if list_received%}
+                <ul class="dropdown-menu " aria-labelledby="btn_dropdown_choose_sent">
+                    {% if list_sent%}
                       <li class="cursor-pointer">
                         <a class=" dropdown-item list-group-item list-group-item-action list-group-item-light border-none" onclick= "changeDropdownChooseEmail('null_email')">Tất cả</a>
                       </li>
-                      {% for received in list_received %}
+                      {% for sent in list_sent %}
                         <li class="cursor-pointer">
-                          <a class=" dropdown-item list-group-item list-group-item-action list-group-item-light border-none" onclick= "changeDropdownChooseEmail('{{received.to}}')">{{received.to}}</a>
+                          <a class=" dropdown-item list-group-item list-group-item-action list-group-item-light border-none" onclick= "changeDropdownChooseEmail('{{sent.sender_email}}')">{{sent.sender_email}}</a>
                         </li>
                       {% endfor %}
                     {% else %}
@@ -79,16 +79,16 @@
 
             </div>
           </form>
-          {% for email_sent in list_email_sent %}
-            <a class="list-group-item list-group-item-action cursor-pointer" onclick="inforemail('{{email_sent.file}}','{{email_sent.MessageID}}')"   aria-current="true">
+          {% for email_receive in list_email_receive %}
+            <a class="list-group-item list-group-item-action cursor-pointer" onclick="inforemail('{{email_receive.file}}','{{email_receive.MessageID}}')"   aria-current="true">
               <div class="d-flex justify-content-between">
-                <span  class="mb-1 display_names"><i style="margin-right: 10px" class="far fa-file-code fa-lg"></i>{{email_sent.To}}</span>
+                <span  class="mb-1 display_names"><i style="margin-right: 10px" class="far fa-file-code fa-lg"></i>{{email_receive.From}}</span>
                 <div class="box_content_email">
-                  <span class="title_email">{{email_sent.Subject}}</span>
+                  <span class="title_email">{{email_receive.Subject}}</span>
                   <span class="Zt">&nbsp;-&nbsp;</span>
-                  <span class="content_email">{{email_sent.Content}}</span>
+                  <span class="content_email">{{email_receive.Content}}</span>
                 </div>
-                <span class="date_time_email">{{ email_sent.Date}}</span>
+                <span class="date_time_email">{{ email_receive.Date}}</span>
               </div>
             </a>
           {% endfor %}
@@ -103,7 +103,7 @@
     var emailSegment = urlParams[0]; // Phần trước ký tự "?"
     // Tách đoạn email từ phần trước ký tự "?"
     var email = emailSegment.split('/').pop();
-    var activeTab_menucontent_person = "person_list_sent_nav";
+    var activeTab_menucontent_person = "person_list_receive_nav";
     // Kiểm tra nếu có giá trị, thêm class "active" vào thẻ a tương ứng
     if (email) {
       $("a[data-email='"+email + "']").addClass("active");
@@ -121,12 +121,12 @@
     function changeDropdownChooseEmail(email){
       debugger
       if(email=="null_email"){
-        $("#btn_dropdown_choose_received").html('Đến ');
+        $("#btn_dropdown_choose_sent").html('Từ ');
       }
       else{
-        $("#btn_dropdown_choose_received").html('Đến ' + email + ' ');
+        $("#btn_dropdown_choose_sent").html('Từ ' + email + ' ');
       }
-      $("#todisplay").val(email);
+      $("#fromdisplay").val(email);
     }
     function submitForm_filter() {
       $("#from_search").submit();

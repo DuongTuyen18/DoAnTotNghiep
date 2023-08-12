@@ -6,7 +6,7 @@
 <div class="header-content">
   <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
-      <a id="name-export" class="navbar-brand header-content-title">{{folder_name}}/Analysis/Persons</a>
+      <a class="navbar-brand header-content-title">{{folder_name}}/Analysis/Persons</a>
     </div>
   </nav>
 </div>
@@ -37,7 +37,7 @@
           </a>
         </div>
         <div id="left-content-list-email-person">
-          {% for email in list_form_and_to%}
+          {% for email in list_from_and_to%}
           <a href="{%url 'personinfor' email%}" data-email = "{{email}}" id="box-emaildress{{ forloop.counter }}" class="list-group-item item-file-email list-group-item-action cursor-pointer" >
             <div class="box-icon-file">
               <i class="far fa-user"></i>

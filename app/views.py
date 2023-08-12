@@ -268,7 +268,7 @@ def link_analysis_choose_email(request):
     path_file_csv = os.path.join(csv_file_path, filecsv_name) 
     data_detail = convert_csv_to_dataframe(path_file_csv)
     list_email = request.GET.getlist('list_email[]')
-    link_analysis_data, link_counts = find_links_by_emails(data_detail,list_email)
+    link_analysis_data, link_counts = find_links_by_list_email(data_detail,list_email)
     link_analysis_data_int = nx.Graph()
     for u, v, attr in link_analysis_data.edges(data=True):
         attr['count'] = int(attr['count'])
@@ -416,6 +416,18 @@ def inforemail_content(request,filename ,mesageid):
         context = {'list_email':data,'infor_email': infor_email,'mesageid': mesageid,'file_name':filename,'folder_name':folder_name}
         return render(request, 'app/analysis/home_analysis/inforEmaildatafile_content.html', context)
 
+def inforemail_wordcloud(request, filename, mesageid):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base")
+    else:   
+        eml_file_path = folder_path+"\\"+filename
+        infor_email = inforEmail(eml_file_path)
+        img_base64 = create_wordcloud(infor_email['email_content_text'])
+        context = {'list_email':data,'infor_email': infor_email,'mesageid': mesageid,'file_name':filename,'folder_name':folder_name,'img_base64': img_base64}
+        return render(request, 'app/analysis/home_analysis/inforemail_wordcloud.html', context)
     
 def inforemail_massageheader(request, filename, mesageid):
     global folder_name
@@ -728,15 +740,27 @@ def linkanalysis(request):
         return redirect("base") 
     else:  
         data_detail = convert_eml_to_dataframe(folder_path)
-        list_form_and_to = get_list_from_and_to(data_detail)
-        context = {'folder_name':folder_name,'list_form_and_to':list_form_and_to}
+        list_from_and_to = get_list_from_and_to(data_detail)
+        context = {'folder_name':folder_name,'list_from_and_to':list_from_and_to}
         return render(request,'app/analysis/linkanalysis.html',context)
 
 def linkanalysisjson(request):
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
     data_detail = convert_eml_to_dataframe(folder_path)
     list_email = request.GET.getlist('list_email[]')
-    link_analysis_data, link_counts = find_links_by_emails(data_detail,list_email)
+    link_analysis_data, link_counts = find_links_by_list_email(data_detail,list_email)
+    link_analysis_data_int = nx.Graph()
+    for u, v, attr in link_analysis_data.edges(data=True):
+        attr['count'] = int(attr['count'])
+        link_analysis_data_int.add_edge(u, v, **attr)
+    link_analysis_json = convert_graph_to_json(link_analysis_data)
+    return JsonResponse(link_analysis_json, safe=False)
+
+def linkanalysisjson_single_email(request):
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data_detail = convert_eml_to_dataframe(folder_path)
+    single_email = request.GET.get('email')
+    link_analysis_data, link_counts = find_links_by_single_email(data_detail, single_email)
     link_analysis_data_int = nx.Graph()
     for u, v, attr in link_analysis_data.edges(data=True):
         attr['count'] = int(attr['count'])
@@ -754,10 +778,10 @@ def persons(request):
         data_detail = convert_eml_to_dataframe(folder_path)
         keyword_search = request.GET.get('keyword_search')
         if keyword_search:
-            list_form_and_to = get_list_from_and_to(data_detail, keyword_search=keyword_search)
+            list_from_and_to = get_list_from_and_to(data_detail, keyword_search=keyword_search)
         else:
-            list_form_and_to = get_list_from_and_to(data_detail)
-        context = {'folder_name':folder_name,'list_form_and_to':list_form_and_to}
+            list_from_and_to = get_list_from_and_to(data_detail)
+        context = {'folder_name':folder_name,'list_from_and_to':list_from_and_to}
         return render(request,'app/analysis/persons_analysis/persons.html',context)
     
 def personinfor(request, email):
@@ -768,7 +792,7 @@ def personinfor(request, email):
         return redirect("base") 
     else:  
         data_detail = convert_eml_to_dataframe(folder_path)
-        list_form_and_to = get_list_from_and_to(data_detail)
+        list_from_and_to = get_list_from_and_to(data_detail)
         count_emails_sent = count_emails_sent_by_email(data_detail, email)
         count_emails_received = count_emails_received_by_email(data_detail, email)
         # lấy ra danh sách email mà email truyền vào gửi nhiều thư đến nhất
@@ -777,11 +801,14 @@ def personinfor(request, email):
         list_most_sent_emails, most_sent_count = find_most_sent_emails(data_detail, email)
         # Lấy ra danh sách các email nhận thư từ email truyền vào
         list_received = list_to_by_from(data_detail,email)
-        list_sent =list_from_by_to(data_detail,email)
+        list_sent = list_from_by_to(data_detail,email)
         list_display_name = get_display_names_by_email(data_detail,email)
+
+        data_date_dtatistical = get_date_statistical(data_detail, email)
+        data_date_statistical_json = json.dumps(data_date_dtatistical.to_dict('records'))
         context = {
             'folder_name': folder_name,
-            'list_form_and_to': list_form_and_to, 
+            'list_from_and_to': list_from_and_to, 
             'email': email, 
             'count_emails_sent' : count_emails_sent,
             'count_emails_received': count_emails_received,
@@ -791,7 +818,8 @@ def personinfor(request, email):
             'most_sent_count': most_sent_count,
             'list_received' : list_received,
             'list_sent': list_sent,
-            'list_display_name': list_display_name
+            'list_display_name': list_display_name,
+            'data_date_statistical_json': data_date_statistical_json
             }
         return render(request,'app/analysis/persons_analysis/personinfor.html',context)
 
@@ -803,7 +831,7 @@ def personsent(request, email):
         return redirect("base") 
     else:  
         data_detail = convert_eml_to_dataframe(folder_path)
-        list_form_and_to = get_list_from_and_to(data_detail)
+        list_from_and_to = get_list_from_and_to(data_detail)
         list_email_sent = data_detail[data_detail['Sender_email'] == email]
         # Chuyển đổi định dạng ngày tháng trong danh sách
         list_received = list_to_by_from(data_detail,email)
@@ -831,13 +859,57 @@ def personsent(request, email):
         list_email_sent = list_email_sent.to_dict('records')
         context ={
             'folder_name': folder_name,
-            'list_form_and_to': list_form_and_to, 
+            'list_from_and_to': list_from_and_to, 
             'email': email,
             'list_email_sent' : list_email_sent,
             'list_received' : list_received
         }
         return render(request,'app/analysis/persons_analysis/personsent.html',context)
-    
+
+def personreceive(request, email):
+    global folder_name
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+    data=List_Infor_Email_Eml(folder_path)
+    if not data:
+        return redirect("base") 
+    else:  
+        data_detail = convert_eml_to_dataframe(folder_path)
+        list_from_and_to = get_list_from_and_to(data_detail)
+        # lấy ra danh sách mà người nhận là email
+        list_email_receive = data_detail[data_detail['To'] == email]
+        # Chuyển đổi định dạng ngày tháng trong danh sách
+        list_sent = list_from_by_to(data_detail,email)
+        daterangetype = request.GET.get('daterangetype')
+        fromdisplay = request.GET.get('fromdisplay')
+        if daterangetype:
+            if daterangetype != "all_date":
+                if daterangetype == "older_than_week":
+                    now = datetime.now()
+                    from_date = now - timedelta(days=7)
+                    
+                elif daterangetype == "older_than_month":
+                    now = datetime.now()
+                    from_date = now - timedelta(days=30)
+                elif daterangetype == "older_than_year":
+                    now = datetime.now()
+                    from_date = now - timedelta(days=365)
+                from_date = pd.to_datetime(from_date)
+                # Lọc các dòng có cột "Date" nằm trong khoảng từ "from-date" đến "to-date"
+                list_email_receive = list_email_receive[(list_email_receive['Date'] >= from_date)]
+        if fromdisplay:
+            if fromdisplay != "null_email":
+                list_email_receive = list_email_receive[(list_email_receive['Sender_email'] == fromdisplay)]
+        list_email_receive['Date'] = list_email_receive['Date'].dt.strftime('%d/%m/%Y')  # Chuyển đổi thành chuỗi với định dạng 'dd/mm/yyyy'
+        list_email_receive = list_email_receive.to_dict('records')
+        context ={
+            'folder_name': folder_name,
+            'list_from_and_to': list_from_and_to, 
+            'email': email,
+            'list_email_receive' : list_email_receive,
+            'list_sent' : list_sent
+        }
+        return render(request,'app/analysis/persons_analysis/personreceive.html',context)
+
 def personsentemail(request, email, mesageid):
     global folder_name
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')

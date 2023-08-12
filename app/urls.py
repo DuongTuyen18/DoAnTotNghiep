@@ -36,6 +36,7 @@ urlpatterns = [
 
 
     path('emaildatafile/inforemail/content/<str:filename>/<str:mesageid>', views.inforemail_content, name="inforemail_content"),
+    path('emaildatafile/inforemail/wordcloud/<str:filename>/<str:mesageid>', views.inforemail_wordcloud, name="inforemail_wordcloud"),
     path('emaildatafile/inforemail/massageheader/<path:filename>/<str:mesageid>', views.inforemail_massageheader, name="inforemail_massageheader"),
     path('emaildatafile/inforemail/hexview/<path:filename>/<str:mesageid>', views.inforemail_hexview, name="inforemail_hexview"),
 
@@ -44,9 +45,11 @@ urlpatterns = [
     path('emaildatafile/tabledataframe', views.tabledataframe, name="tabledataframe"),
     path('emaildatafile/linkanalysis', views.linkanalysis, name="linkanalysis"),
     path('emaildatafile/linkanalysisjson', views.linkanalysisjson, name="linkanalysisjson"),
+    path('emaildatafile/linkanalysisjson_single_email', views.linkanalysisjson_single_email, name="linkanalysisjson_single_email"),
     path('emaildatafile/analysis/persons', views.persons, name="persons"),
     path('emaildatafile/analysis/personinfor/<str:email>', views.personinfor, name="personinfor"),
     path('emaildatafile/analysis/personsent/<str:email>', views.personsent, name="personsent"),
+    path('emaildatafile/analysis/personreceive/<str:email>', views.personreceive, name="personreceive"),
     path('emaildatafile/analysis/personsent/<str:email>/<str:mesageid>', views.personsentemail, name="personsentemail"),
 
 
